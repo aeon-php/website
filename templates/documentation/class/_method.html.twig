@@ -1,0 +1,32 @@
+<span style="color: #936;">{{ method.accessType }}</span>
+{% if method.reflectionMethod.abstract and method.reflectionClass.interface == false %} abstract{% endif %}
+{% if method.reflectionMethod.static %} <span style="color: #936;">static</span> {% endif %}
+{% if method.PHPClass.calendar %}
+    <a href="{{ path('docs_calendar_class_method', {'classSlug' : method.PHPClass.slug, 'methodSlug' : method.slug }) }}" style="color:#369; border-bottom: 1px solid;">{{ method.name }}</a>
+{% else %}
+<a href="#" style="color:#369; border-bottom: 1px solid;">{{ method.name }}</a>
+{% endif %}
+({% if method.parameters|length == 0%}
+    <span style="color: #737373;">void</span>
+{% else%}
+    {% for parameter in method.parameters %}
+        {% include 'documentation/class/_parameter.html.twig' with {'parameter' : parameter} only %}
+        {% if loop.last == false %}, {% endif %}
+    {% endfor %}
+{% endif %})
+{% if method.reflectionMethod.returnType %}
+<span>:</span> {% if method.reflectionMethod.returnType.allowsNull %}?{% endif %}
+    {% if method.reflectionMethod.returnType.builtin %}
+        {{ method.reflectionMethod.returnType.name }}
+    {% else %}
+        {% if method.returnTypeClass.internal %}
+            <a href="#" style="color:#737373;">\{{ method.returnTypeClass.shortName }}</a>
+        {% else %}
+            {% if method.returnTypeClass.calendar %}
+                <a href="{{ path('docs_calendar_class', {'classSlug' : method.returnTypeClass.slug}) }}" style="color:#369; border-bottom: 1px solid;">{{ method.returnTypeClass.shortName }}</a>
+            {% else %}
+                <a href="#" style="color:#737373;">{{ method.returnTypeClass.shortName }}</a>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endif %}

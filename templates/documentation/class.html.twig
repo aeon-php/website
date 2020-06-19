@@ -1,0 +1,65 @@
+{% extends 'docs.html.twig' %}
+
+{% block title %}Aeon PHP - Calendar - {{ class.reflectionClass.shortName }}{% endblock %}
+
+{% block body %}
+    <div class="row doc-content-body">
+        <article class="col-md-12">
+
+            <h3>The <code>{{ class.name }}</code> {{ class.type }}</h3>
+            <small>( version >= {{ version }} )</small>
+            <section id="introduction">
+                <h5 class="section-title-2">Introduction <a href="#introduction" class="clipboard"></a></h5>
+                <hr/>
+            </section>
+
+            <section id="synopis">
+                <h5 class="section-title-2">{{ class.type|capitalize }} synopis <a href="#synopis" class="clipboard"></a></h5>
+                <hr/>
+                <div class="code-synopis" style="background:#fff;padding: 2rem; font-family:'Fira Mono', 'Source Code Pro', monospace;">
+                    <div>
+                    {% if class.reflectionClass.final %}
+                        <span>final</span>
+                    {% endif %}
+                    {% if class.reflectionClass.abstract %}
+                        <span>abstract</span>
+                    {% endif %}
+                        <span style="font-weight: bold; color: #369;">{{ class.name }}</span>
+                    {% if class.interfaces|length %}
+                        <span style="color: #936;">implements</span>
+                    {% endif %}
+                    {% for interace in class.interfaces %}
+                        {% if interace.internal %}
+                            <a href="#" style="color:#737373;">{{ interace.shortName }}</a>
+                        {% else %}
+                            {% if interace.calendar %}
+                                <a style="color:#369; border-bottom: 1px solid;" href="{{ path('docs_calendar_class', {'classSlug' : interace.slug }) }}">{{ interace.shortName }}</a>
+                            {% else %}
+                                <a href="#" style="color:#737373;">{{ interace.shortName }}</a>
+                            {% endif %}
+                        {% endif %}
+                        {% if loop.last == false %}, {% endif %}
+                    {% endfor %}
+                    </div>
+                    <div>{</div>
+                        {% for method in class.methods %}
+                    <div style="padding-left: 2rem; margin-bottom:0.5rem;">{% include 'documentation/class/_method.html.twig' with {'method' : method} only %}</div>
+                        {% endfor %}
+                    <div>}</div>
+                </div>
+            </section>
+
+            <section id="table-of-contents">
+                <h5 class="section-title-2">Table of Contents <a href="#table-of-contents" class="clipboard"></a></h5>
+                <hr/>
+                <ul>
+                    {% for method in class.methods %}
+                        <li><a style="color: #369;" href="{{ path('docs_calendar_class_method', {'classSlug' : class.slug, 'methodSlug': method.slug}) }}">{{ class.reflectionClass.shortName }}::{{ method.reflectionMethod.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </section>
+
+            <section id="template"></section>
+        </article>
+    </div>
+{% endblock %}

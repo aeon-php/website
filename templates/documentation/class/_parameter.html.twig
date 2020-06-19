@@ -1,0 +1,26 @@
+{% if parameter.reflectionParameter.defaultValueAvailable %}<span style="color: #737373;">[</span>{% endif %}
+{% if parameter.reflectionParameter.passedByReference %}&{% endif %}
+{% if parameter.reflectionParameter.type %}
+    {% if parameter.reflectionParameter.type.allowsNull %}?{% endif %}
+    {% if parameter.reflectionParameter.type.builtin %}
+        <span style="color: #693;">{{ parameter.reflectionParameter.type.name }}</span>
+    {% else %}
+        {% if parameter.typeClass.internal %}
+            <span style="color: #737373; border-bottom: 1px solid;">\{{ parameter.typeClass.shortName }}</span>
+        {% else %}
+            {% if parameter.typeClass.calendar %}
+                <a href="{{ path('docs_calendar_class', {'classSlug': parameter.typeClass.slug }) }}" style="color: #369; border-bottom: 1px solid;">{{ parameter.typeClass.shortName }}</a>
+            {% else %}
+                <a href="#" style="color: #369; border-bottom: 1px solid;">{{ parameter.typeClass.shortName }}</a>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+    <span style="color: #369;">${{ parameter.reflectionParameter.name }}</span>
+    {% if parameter.reflectionParameter.defaultValueAvailable %}
+        <span>=</span>
+        {% if parameter.reflectionParameter.defaultValue == null %}<span>null</span>{% endif %}
+    {% endif %}
+
+{% endif %}
+
+{% if parameter.reflectionParameter.defaultValueAvailable %}<span style="color: #737373;">]</span>{% endif %}

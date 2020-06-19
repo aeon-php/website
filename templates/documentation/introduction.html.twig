@@ -1,0 +1,60 @@
+{% extends 'docs.html.twig' %}
+
+{% block title %}Aeon PHP - Documentation{% endblock %}
+
+{% block body %}
+    <div class="row doc-content-body">
+        <article class="col-md-9">
+
+            <h1>Introduction</h1>
+            <p>
+                Aeon is a set of libraries that makes easier to work with Date & Time in PHP in elegant Object Oriented way.
+            </p>
+
+            <div class="alert alert-info">
+                <h4>Quote</h4>
+                <p>
+                    The word aeon /ˈiːɒn/, also spelled eon (in American English), originally meant "life", "vital force" or "being",
+                    "generation" or "a period of time", though it tended to be translated as "age" in the sense of "ages", "forever",
+                    "timeless" or "for eternity".
+                </p>
+                <i class="icon-alert-circle"></i>
+            </div>
+            <p class="text-right">
+                <a href="https://en.wikipedia.org/wiki/Aeon" target="_blank">Wikipedia</a>
+            </p>
+
+            <section id="components">
+                <h5 class="section-title-2">Features</h5>
+                <hr/>
+                <ul>
+                    <li>Full immutability</li>
+                    <li>Elegant object oriented interface</li>
+                    <li>Mocking time in tests</li>
+                    <li>Regional holidays detection</li>
+                    <li>Business hours abstraction</li>
+                    <li>Doctrine DBAL integration</li>
+                    <li>Compatibility with all modern frameworks</li>
+                    <li>Intuitive API and IDE autocompletion</li>
+                    <li>Optional leap seconds support</li>
+                    <li>High precision of elapsed time measurement</li>
+                    <li>Smooth integration with built in <a href="https://www.php.net/manual/en/class.datetimeinterface.php" target="_blank">\DateTimeInterface</a></li>
+                </ul>
+            </section>
+
+            <section id="components">
+                <h5 class="section-title-2">Components</h5>
+                <hr/>
+                <ul>
+                    <li><a href="https://packagist.org/packages/aeon-php/calendar" target="_blank">aeon-php/calendar</a></li>
+                    <li><a href="https://packagist.org/packages/aeon-php/calendar-doctrine" target="_blank">aeon-php/calendar-doctrine</a></li>
+                    <li><a href="https://packagist.org/packages/aeon-php/calendar-holidays" target="_blank">aeon-php/calendar-holidays</a></li>
+                    <li><a href="https://packagist.org/packages/aeon-php/calendar-holidays-yasumi" target="_blank">aeon-php/calendar-holidays-yasumi</a></li>
+                    <li><a href="https://packagist.org/packages/aeon-php/business-hours" target="_blank">aeon-php/business-hours</a></li>
+                    <li><a href="https://packagist.org/packages/aeon-php/process" target="_blank">aeon-php/process</a></li>
+                </ul>
+            </section>
+
+        </article>
+    </div>
+{% endblock %}

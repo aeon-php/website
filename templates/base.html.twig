@@ -1,12 +1,93 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/dist/css/vendor.css" />
+    <link rel="stylesheet" href="/dist/css/style.css" />
+
+    <title>{% block title %}Aeon PHP - Date Time Framework, Library{% endblock %}</title>
+</head>
+<body>
+
+<header class="header header-sticky header-transparent">
+    <div class="container">
+        <div class="row">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a href="{{ path('landing') }}" class="navbar-brand"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ path('landing') }}"><span>Home</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('documentation') }}"><span>Documentation</span></a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://packagist.org/packages/aeon-php/calendar" target="_blank">Install</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- / header -->
+
+
+<!-- hero -->
+<section class="bg-primary">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 text-white text-center">
+                <h1 class="font-weight-light">Aeon PHP <b>Date & Time</b> Management Framework.</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <a href="https://packagist.org/packages/aeon-php/calendar" class="btn btn-green">Install Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- / hero -->
+
+<!-- footer -->
+<footer class="bg-dark">
+    <div class="container">
+        <div class="row gutter-3">
+            <div class="col-12 col-md-2">
+                <a href="{{ path('landing') }}"></a>
+            </div>
+            <div class="col-12 col-md-6 text-white">
+                <p class="mb-4">
+                    Aeon is a set of libraries that makes easier to work with Date & Time in PHP in elegant Object Oriented way.
+                </p>
+                <div class="row">
+                    <div class="col">
+                        <ul class="list-group list-group-minimal">
+                            <li class="list-group-item"><a href="https://packagist.org/packages/aeon-php/calendar" target="_blank">aeon-php/calendar</a></li>
+                            <li class="list-group-item"><a href="https://packagist.org/packages/aeon-php/calendar-doctrine" target="_blank">aeon-php/calendar-doctrine</a></li>
+                            <li class="list-group-item"><a href="https://packagist.org/packages/aeon-php/calendar-holidays" target="_blank">aeon-php/calendar-holidays</a></li>
+                            <li class="list-group-item"><a href="https://packagist.org/packages/aeon-php/calendar-holidays-yasumi" target="_blank">aeon-php/calendar-holidays-yasumi</a></li>
+                            <li class="list-group-item"><a href="https://packagist.org/packages/aeon-php/business-hours" target="_blank">aeon-php/business-hours</a></li>
+                            <li class="list-group-item"><a href="https://packagist.org/packages/aeon-php/process" target="_blank">aeon-php/process</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- / footer -->
+
+<script src="/dist/js/vendor.min.js"></script>
+<script src="/dist/js/app.js"></script>
+</body>
 </html>

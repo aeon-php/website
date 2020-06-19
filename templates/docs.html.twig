@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/dist/css/vendor.css" />
+    <link rel="stylesheet" href="/dist/css/style.css" />
+
+    <title>Documentation - Introduction</title>
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+
+<section class="py-0">
+    <div class="container-fluid">
+        <div class="row justify-content-between">
+
+            <!-- navigation -->
+            <aside class="col-lg-3 p-3 doc-sidebar">
+                <div class="sticky">
+                    {{ render(controller(
+                        'App\\Controller\\DocumentationController::navigation', {'activeSection' : activeSection}
+                    )) }}
+                </div>
+            </aside>
+            <!-- / navigation -->
+
+            <!-- content -->
+            <article class="col-lg-9 doc-content">
+                <div class="row">
+                    <div class="col">
+                        <div class="doc-content-header">
+                            <div class="row align-items-center">
+                                <div class="col-6 col-lg-10">
+                                    <nav aria-label="breadcrumb d-none d-inline-flex-lg">
+                                        <a href="{{ path('landing') }}" class="breadcrumb-back" title="Back"></a>
+                                        <ol class="breadcrumb d-none d-lg-inline-flex">
+                                            <li class="breadcrumb-item"><a href="{{ path('landing') }}">Home</a></li>
+                                            <li class="breadcrumb-item active"><a href="{{ path('documentation') }}">Documentation</a></li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                                <div class="col text-right">
+                                    <a href="https://packagist.org/packages/aeon-php/calendar" class="btn btn-sm btn-rounded btn-primary">Install</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% block body %}{% endblock body %}
+            </article>
+            <!-- / content -->
+
+        </div>
+    </div>
+</section>
+
+
+<!-- footer -->
+<footer class="bg-dark">
+    <div class="container">
+        <div class="row gutter-3">
+            <div class="col-12 col-md-2">
+                <a href="{{ path('landing') }}"></a>
+            </div>
+            <div class="col-12 col-md-6 text-white">
+                <div class="row">
+                    <div class="col">
+                        <ul class="list-group list-group-minimal">
+                            <li class="list-group-item"><a href="https://packagist.org/packages/aeon-php/calendar" target="_blank">aeon-php/calendar</a></li>
+                            <li class="list-group-item"><a href="https://packagist.org/packages/aeon-php/calendar-doctrine" target="_blank">aeon-php/calendar-doctrine</a></li>
+                            <li class="list-group-item"><a href="https://packagist.org/packages/aeon-php/calendar-holidays" target="_blank">aeon-php/calendar-holidays</a></li>
+                            <li class="list-group-item"><a href="https://packagist.org/packages/aeon-php/calendar-holidays-yasumi" target="_blank">aeon-php/calendar-holidays-yasumi</a></li>
+                            <li class="list-group-item"><a href="https://packagist.org/packages/aeon-php/business-hours" target="_blank">aeon-php/business-hours</a></li>
+                            <li class="list-group-item"><a href="https://packagist.org/packages/aeon-php/process" target="_blank">aeon-php/process</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- / footer -->
+
+
+<script src="/dist/js/vendor.js"></script>
+<script src="/dist/js/app.js"></script>
+</body>
+</html>
