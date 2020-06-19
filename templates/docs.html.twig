@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/dist/css/vendor.css" />
-    <link rel="stylesheet" href="/dist/css/style.css" />
+    <link rel="stylesheet" href="{{ asset('/dist/css/vendor.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/dist/css/style.css') }}" />
 
-    <title>Documentation - Introduction</title>
+    <title>{% block title %}Aeon PHP - Date Time Framework, Library{% endblock %}</title>
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -83,7 +83,7 @@
 <!-- / footer -->
 
 
-<script src="/dist/js/vendor.js"></script>
-<script src="/dist/js/app.js"></script>
+<script src="{{ asset('/dist/js/vendor.js') }}"></script>
+<script src="{{ asset('/dist/js/app.js') }}"></script>
 </body>
 </html>
