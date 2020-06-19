@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="{{ asset('/dist/css/style.css') }}" />
 
     <title>{% block title %}Aeon PHP - Date Time Framework, Library{% endblock %}</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170080616-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '{{ google_analytics_tracking_code }}');
+    </script>
 </head>
 <body>
 
