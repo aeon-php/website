@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\Documentation\PHPClass;
@@ -30,7 +32,7 @@ final class DocumentationController extends AbstractController
     public function index()
     {
         return $this->render('documentation/introduction.html.twig', [
-            'activeSection' => 'introduction'
+            'activeSection' => 'introduction',
         ]);
     }
 
@@ -43,7 +45,7 @@ final class DocumentationController extends AbstractController
                     return new PHPClass($reflectionClass);
                 },
                 $this->calendarClassesReflection()
-            )
+            ),
         ]);
     }
 }

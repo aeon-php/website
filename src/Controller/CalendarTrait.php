@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Controller;
-
 
 use Roave\BetterReflection\BetterReflection;
 use Roave\BetterReflection\Reflection\ReflectionClass;
@@ -24,7 +24,7 @@ trait CalendarTrait
 
         $directoriesSourceLocator = new AggregateSourceLocator([
             new DirectoriesSourceLocator([$this->aeonCalendarSrc], $astLocator),
-            ($betterReflection)->sourceLocator()
+            ($betterReflection)->sourceLocator(),
         ]);
 
         $reflector = new ClassReflector($directoriesSourceLocator);

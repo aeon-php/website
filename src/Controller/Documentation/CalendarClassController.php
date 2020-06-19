@@ -1,21 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Documentation;
 
 use App\Controller\CalendarTrait;
 use App\Documentation\PHPClass;
 use PackageVersions\Versions;
-use Roave\BetterReflection\BetterReflection;
-use Roave\BetterReflection\Reflection\ReflectionClass;
-use Roave\BetterReflection\Reflector\ClassReflector;
-use Roave\BetterReflection\SourceLocator\Type\AggregateSourceLocator;
-use Roave\BetterReflection\SourceLocator\Type\DirectoriesSourceLocator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symplify\SymfonyStaticDumper\Contract\ControllerWithDataProviderInterface;
 
-final class CalendarClassController extends AbstractController
+final class CalendarClassController extends AbstractController implements ControllerWithDataProviderInterface
 {
     use CalendarTrait;
 
@@ -42,7 +40,7 @@ final class CalendarClassController extends AbstractController
                 return $this->render('documentation/class.html.twig', [
                     'class' => $phpClass,
                     'activeSection' => 'calendar',
-                    'version' => Versions::getVersion('aeon-php/calendar')
+                    'version' => Versions::getVersion('aeon-php/calendar'),
                 ]);
             }
         }
@@ -50,17 +48,17 @@ final class CalendarClassController extends AbstractController
         throw $this->createNotFoundException("Class ". $classSlug . " does not exists");
     }
 
-    public function getControllerClass(): string
+    public function getControllerClass() : string
     {
         return __CLASS__;
     }
 
-    public function getControllerMethod(): string
+    public function getControllerMethod() : string
     {
         return 'calendarClass';
     }
 
-    public function getArguments(): array
+    public function getArguments() : array
     {
         $arguments = [];
         foreach ($this->calendarClassesReflection()  as $reflectionClass) {

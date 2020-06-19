@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Documentation\ClassMethod;
 
 use App\Documentation\PHPClass;
@@ -15,7 +17,7 @@ final class Parameter
         $this->reflectionParameter = $reflectionParameter;
     }
 
-    public function reflectionParameter(): ReflectionParameter
+    public function reflectionParameter() : ReflectionParameter
     {
         return $this->reflectionParameter;
     }

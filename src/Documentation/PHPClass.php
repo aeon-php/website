@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Documentation;
 
@@ -9,10 +10,12 @@ use Roave\BetterReflection\Reflection\ReflectionMethod;
 final class PHPClass
 {
     const AEON_CALENDAR_NAMESPACE = 'Aeon\\Calendar';
+
     /**
      * @var ReflectionClass
      */
     private $reflectionClass;
+
     /**
      * @var string
      */
@@ -23,7 +26,7 @@ final class PHPClass
         $this->reflectionClass = $reflectionClass;
     }
 
-    public function reflectionClass(): ReflectionClass
+    public function reflectionClass() : ReflectionClass
     {
         return $this->reflectionClass;
     }
@@ -49,9 +52,10 @@ final class PHPClass
 
         return 'class';
     }
+
     public function shortName() : string
     {
-        if ($this->isCalendar()){
+        if ($this->isCalendar()) {
             return \ltrim($this->reflectionClass->getName(), self::AEON_CALENDAR_NAMESPACE);
         }
 
@@ -60,7 +64,7 @@ final class PHPClass
 
     public function slug() : string
     {
-        if ($this->isCalendar()){
+        if ($this->isCalendar()) {
             return \str_replace('\\', '-', \mb_strtolower(\ltrim($this->reflectionClass->getName(), self::AEON_CALENDAR_NAMESPACE)));
         }
 
@@ -73,7 +77,7 @@ final class PHPClass
     public function methods() : array
     {
         return \array_map(
-            function(ReflectionMethod $reflectionMethod) : ClassMethod {
+            function (ReflectionMethod $reflectionMethod) : ClassMethod {
                 return new ClassMethod($this, $reflectionMethod);
             },
             $this->reflectionClass->getMethods()
@@ -86,7 +90,7 @@ final class PHPClass
     public function interfaces() : array
     {
         return \array_map(
-            function(ReflectionClass $reflectionClass) : PHPClass {
+            function (ReflectionClass $reflectionClass) : PHPClass {
                 return new PHPClass($reflectionClass);
             },
             $this->reflectionClass()->getInterfaces()

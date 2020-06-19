@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Documentation;
 
 use App\Documentation\ClassMethod\Parameter;
@@ -24,17 +26,17 @@ final class ClassMethod
         return new PHPClass(ReflectionClass::createFromName($this->reflectionMethod->getReturnType()->getName()));
     }
 
-    public function PHPClass(): PHPClass
+    public function PHPClass() : PHPClass
     {
         return $this->PHPClass;
     }
 
-    public function reflectionClass(): ReflectionClass
+    public function reflectionClass() : ReflectionClass
     {
         return $this->PHPClass->reflectionClass();
     }
 
-    public function reflectionMethod(): ReflectionMethod
+    public function reflectionMethod() : ReflectionMethod
     {
         return $this->reflectionMethod;
     }

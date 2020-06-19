@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Documentation;
 
 use App\Controller\CalendarTrait;
@@ -41,7 +43,7 @@ final class CalendarClassMethodController extends AbstractController implements 
                             'class' => $phpClass,
                             'method' => $method,
                             'activeSection' => 'calendar',
-                            'version' => Versions::getVersion('aeon-php/calendar')
+                            'version' => Versions::getVersion('aeon-php/calendar'),
                         ]);
                     }
                 }
@@ -53,17 +55,17 @@ final class CalendarClassMethodController extends AbstractController implements 
         throw $this->createNotFoundException("Class ". $classSlug . " does not exists");
     }
 
-    public function getControllerClass(): string
+    public function getControllerClass() : string
     {
         return __CLASS__;
     }
 
-    public function getControllerMethod(): string
+    public function getControllerMethod() : string
     {
         return 'calendarClassMethod';
     }
 
-    public function getArguments(): array
+    public function getArguments() : array
     {
         $arguments = [];
         foreach ($this->calendarClassesReflection()  as $reflectionClass) {
