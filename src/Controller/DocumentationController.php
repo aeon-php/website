@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Documentation\PHPClass;
-use Roave\BetterReflection\Reflection\ReflectionClass;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,7 +31,17 @@ final class DocumentationController extends AbstractController
     {
         return $this->render('documentation/introduction.html.twig', [
             'activeSection' => 'introduction',
-            'calendarClasses' => $this->calendarClassesReflection()
+            'calendarClasses' => $this->calendarClassesReflection(),
+        ]);
+    }
+
+    /**
+     * @Route("/docs/getting-started", name="docs_getting_started")
+     */
+    public function gettingStarted()
+    {
+        return $this->render('documentation/getting_started.html.twig', [
+            'activeSection' => 'introduction',
         ]);
     }
 
@@ -44,7 +52,7 @@ final class DocumentationController extends AbstractController
     {
         return $this->render('documentation/calendar.html.twig', [
             'activeSection' => 'calendar',
-            'calendarClasses' => $this->calendarClassesReflection()
+            'calendarClasses' => $this->calendarClassesReflection(),
         ]);
     }
 
@@ -52,7 +60,7 @@ final class DocumentationController extends AbstractController
     {
         return $this->render('documentation/_navigation.html.twig', [
             'activeSection' => $activeSection,
-            'calendarClasses' => $this->calendarClassesReflection()
+            'calendarClasses' => $this->calendarClassesReflection(),
         ]);
     }
 }

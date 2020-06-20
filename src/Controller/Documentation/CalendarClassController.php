@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Controller\Documentation;
 
 use App\Controller\CalendarReflectionTrait;
-use App\Documentation\PHPClass;
 use PackageVersions\Versions;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -34,7 +33,6 @@ final class CalendarClassController extends AbstractController implements Contro
     public function calendarClass(string $classSlug) : Response
     {
         foreach ($this->calendarClassesReflection()  as $phpClass) {
-
             if ($phpClass->slug() === $classSlug) {
                 return $this->render('documentation/class.html.twig', [
                     'class' => $phpClass,

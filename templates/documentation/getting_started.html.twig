@@ -1,0 +1,128 @@
+{% extends 'docs.html.twig' %}
+
+{% block title %}Aeon PHP - Documentation{% endblock %}
+
+{% block body %}
+    <div class="row doc-content-body">
+        <article class="col-md-9">
+            <section id="features">
+                <h5 class="section-title-2" id="getting-started">Getting Started</h5>
+                <hr/>
+                <p>
+                    To get current time initialize <a href="{{ path('docs_calendar_class', {'classSlug': 'gregorian-gregoriancalendar'}) }}">GregorianCalendar</a>
+                    through <a href="{{ path('docs_calendar_class_method', {'classSlug': 'gregorian-gregoriancalendar', 'methodSlug': '__construct'}) }}">__construct</a> or by one of available static constructors.
+                </p>
+                <pre><code class="language-php">
+{% apply spaceless  %}
+&lt;?php
+
+use Aeon\Calendar\Gregorian\GregorianCalendar;
+
+echo GregorianCalendar::UTC()->now()->toISO8601();
+{% endapply %}
+                </code></pre>
+
+                <p>
+                    <a href="{{ path('docs_calendar_class', {'classSlug': 'gregorian-gregoriancalendar'}) }}">GregorianCalendar</a> implements
+                    <a href="{{ path('docs_calendar_class', {'classSlug': 'gregorian-calendar'}) }}">Calendar</a> interface which should
+                    be used for type hinting.
+                </p>
+                <p>
+                    <a href="{{ path('docs_calendar_class', {'classSlug': 'gregorian-gregoriancalendar'}) }}">Calendar</a>
+                    is always initialized for specific <a href="{{ path('docs_calendar_class', {'classSlug': 'gregorian-timezone'}) }}">TimeZone</a>
+                </p>
+            </section>
+            <section>
+                <h5 class="section-title-2" id="initializing-datetime">Initializing DateTime</h5>
+                <hr/>
+                <p>
+                    Initialization time from <code>string</code> is just as easy as using <code>\DateTime</code> or <code>\DateTimeInterface</code>.
+                    Just take the <code>string</code> and pass it to <a href="{{ path('docs_calendar_class_method', {'classSlug': 'gregorian-datetime', 'methodSlug': 'fromstring'}) }}">fromString</a>
+                    static constructor.
+                </p>
+                <pre><code class="language-php">
+{% apply spaceless  %}
+&lt;?php
+
+use Aeon\Calendar\Gregorian\DateTime;
+
+echo DateTime::fromString('2020-01-01 00:00:00 UTC')->toISO8601();
+{% endapply %}
+                </code></pre>
+            </section>
+
+            <section>
+                <h5 class="section-title-2" id="defining-period-of-time">Defining period of time</h5>
+                <hr/>
+                <p>
+                    There are few ways to define period of time, it can be done by initializing two <a href="{{ path('docs_calendar_class', {'classSlug': 'gregorian-datetime'}) }}">DateTime</a> instances
+                    and creating time period since one date <a href="{{ path('docs_calendar_class_method', {'classSlug': 'gregorian-datetime', 'methodSlug': 'until'}) }}">until</a> another.
+                </p>
+                <pre><code class="language-php">
+{% apply spaceless  %}
+&lt;?php
+
+use Aeon\Calendar\Gregorian\DateTime;
+
+$newYear = DateTime::fromString('2020-01-01 00:00:00 UTC');
+$timePeriod = $newYear->until(
+    DateTime::fromString('2020-01-10 00:00:00 UTC')
+);
+{% endapply %}
+                </code></pre>
+            </section>
+
+            <section>
+                <h5 class="section-title-2" id="iterating-over-time">Iterating over time</h5>
+                <hr/>
+                <p>
+                    <a href="{{ path('docs_calendar_class', {'classSlug': 'gregorian-timeperiod'}) }}">TimePeriod</a> is the very first step
+                    to iterate over time. In following example we are going to iterate between two points in time by 24 hours periods.
+                    <a href="{{ path('docs_calendar_class_method', {'classSlug': 'gregorian-timeperiod', 'methodSlug': 'iterate'}) }}">Iterate</a> method
+                    generates instance of <a href="{{ path('docs_calendar_class', {'classSlug': 'gregorian-timeperiods'}) }}">TimePeriods</a>
+                    which is collection of <a href="{{ path('docs_calendar_class', {'classSlug': 'gregorian-timeperiod'}) }}">TimePeriod</a> instances
+                    representing chunks of time between two points.
+                </p>
+                <pre><code class="language-php">
+{% apply spaceless  %}
+&lt;?php
+
+use Aeon\Calendar\Gregorian\DateTime;
+
+$newYear = DateTime::fromString('2020-01-01 00:00:00 UTC');
+$newYear->until(
+        DateTime::fromString('2020-01-10 00:00:00 UTC')
+    )->iterate(TimeUnit::day())
+    ->each(function(TimePeriod $timePeriod) : void {
+        var_dump(
+            $timePeriod->start()->toISO8601(),
+            $timePeriod->end()->toISO8601(),
+            $timePeriod->distance()->inHours()
+        );
+    });
+
+{% endapply %}
+                </code></pre>
+            </section>
+        </article>
+        <aside class="col-md-3 col-xxl-3 d-none d-md-block">
+            <div class="sticky">
+                <ul id="toc" class="nav flex-column toc">
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#getting-started">Getting started</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#initializing-datetime">Initializing DateTime</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#defining-period-of-time">Defining period of time</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#iterating-over-time">Iterating over time</a>
+                    </li>
+
+                </ul>
+            </div>
+        </aside>
+    </div>
+{% endblock %}
