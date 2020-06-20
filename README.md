@@ -28,3 +28,9 @@ symfony server:start
 ```bash
 php -d memory_limit=-1 bin/console dump-static-site
 ```
+
+### Push new changes to github pages
+
+```bash
+git subtree push --prefix=output upstream gh-pages
+```
