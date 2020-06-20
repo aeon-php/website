@@ -16,9 +16,15 @@ Documentation of Aeon PHP project.
 
 ### Development 
 
-```php
+```bash
 composer install
 symfony server:start
 ```
 
 [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+
+### Generate static content
+
+```bash
+php -d memory_limit=-1 bin/console dump-static-site
+```
