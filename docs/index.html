@@ -39,7 +39,7 @@
                 <div class="collapse show" id="getting-started" data-parent="#page-nav">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="/docs">Installation</a>
+                            <a class="nav-link" href="/docs">Introduction</a>
                         </li>
                     </ul>
                 </div>
@@ -49,6 +49,9 @@
                 <div class="collapse" id="calendar" data-parent="#page-nav">
                     <div>
                         <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/docs/calendar">Index</a>
+                            </li>
                                                             <li class="nav-item">
                                     <a class="nav-link" href="/docs/calendar/timeunit">TimeUnit</a>
                                 </li>
@@ -134,8 +137,8 @@
                             <div class="row align-items-center">
                                 <div class="col-6 col-lg-10">
                                     <nav aria-label="breadcrumb d-none d-inline-flex-lg">
-                                        <a href="/" class="breadcrumb-back" title="Back"></a>
-                                        <ol class="breadcrumb d-none d-lg-inline-flex">
+                                                                                    <a href="/" class="breadcrumb-back" title="Back"></a>
+                                                                                <ol class="breadcrumb d-none d-lg-inline-flex">
                                             <li class="breadcrumb-item"><a href="/">Home</a></li>
                                             <li class="breadcrumb-item active"><a href="/docs">Documentation</a></li>
                                         </ol>
@@ -153,7 +156,7 @@
 
             <h1>Introduction</h1>
             <p>
-                Aeon is a set of libraries that makes easier to work with Date & Time in PHP in elegant Object Oriented way.
+                Aeon is a set of libraries that makes easier to work with PHP Date & Time in elegant Object Oriented way.
             </p>
 
             <div class="alert alert-info">
@@ -169,7 +172,7 @@
                 <a href="https://en.wikipedia.org/wiki/Aeon" target="_blank">Wikipedia</a>
             </p>
 
-            <section id="components">
+            <section id="features">
                 <h5 class="section-title-2">Features</h5>
                 <hr/>
                 <ul>
@@ -200,7 +203,50 @@
                 </ul>
             </section>
 
+            <section id="calendar-interface">
+                <h5 class="section-title-2">Calendar Interface</h5>
+                <hr/>
+                <ul>
+                                    <li><a href="/docs/calendar/timeunit">TimeUnit</a></li>
+                                    <li><a href="/docs/calendar/stopwatch">Stopwatch</a></li>
+                                    <li><a href="/docs/calendar/gregorian-months">Gregorian\Months</a></li>
+                                    <li><a href="/docs/calendar/gregorian-datetime">Gregorian\DateTime</a></li>
+                                    <li><a href="/docs/calendar/gregorian-day">Gregorian\Day</a></li>
+                                    <li><a href="/docs/calendar/gregorian-month">Gregorian\Month</a></li>
+                                    <li><a href="/docs/calendar/gregorian-timeperiod">Gregorian\TimePeriod</a></li>
+                                    <li><a href="/docs/calendar/gregorian-time">Gregorian\Time</a></li>
+                                    <li><a href="/docs/calendar/gregorian-timezone-timeoffset">Gregorian\TimeZone\TimeOffset</a></li>
+                                    <li><a href="/docs/calendar/gregorian-year">Gregorian\Year</a></li>
+                                    <li><a href="/docs/calendar/gregorian-gregoriancalendarstub">Gregorian\GregorianCalendarStub</a></li>
+                                    <li><a href="/docs/calendar/gregorian-leapseconds">Gregorian\LeapSeconds</a></li>
+                                    <li><a href="/docs/calendar/gregorian-timeperiods">Gregorian\TimePeriods</a></li>
+                                    <li><a href="/docs/calendar/gregorian-gregoriancalendar">Gregorian\GregorianCalendar</a></li>
+                                    <li><a href="/docs/calendar/gregorian-calendar">Gregorian\Calendar</a></li>
+                                    <li><a href="/docs/calendar/gregorian-timezone">Gregorian\TimeZone</a></li>
+                                    <li><a href="/docs/calendar/gregorian-days">Gregorian\Days</a></li>
+                                    <li><a href="/docs/calendar/gregorian-leapsecond">Gregorian\LeapSecond</a></li>
+                                    <li><a href="/docs/calendar/gregorian-day-weekday">Gregorian\Day\WeekDay</a></li>
+                                    <li><a href="/docs/calendar/gregorian-timeepoch">Gregorian\TimeEpoch</a></li>
+                                    <li><a href="/docs/calendar/exception-invalidargumentexception">Exception\InvalidArgumentException</a></li>
+                                    <li><a href="/docs/calendar/exception-exception">Exception\Exception</a></li>
+                                </ul>
+            </section>
         </article>
+        <aside class="col-md-3 col-xxl-3 d-none d-md-block">
+            <div class="sticky">
+                <ul id="toc" class="nav flex-column toc">
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#components">Components</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#calendar-interface">Calendar Interface</a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
     </div>
             </article>
             <!-- / content -->
@@ -208,7 +254,6 @@
         </div>
     </div>
 </section>
-
 
 <!-- footer -->
 <footer class="bg-dark">
