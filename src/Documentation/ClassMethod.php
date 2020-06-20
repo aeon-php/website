@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Documentation;
 
 use App\Documentation\ClassMethod\Parameter;
+use phpDocumentor\Reflection\DocBlock;
+use phpDocumentor\Reflection\DocBlockFactory;
 use Roave\BetterReflection\Reflection\ReflectionClass;
 use Roave\BetterReflection\Reflection\ReflectionMethod;
 use Roave\BetterReflection\Reflection\ReflectionParameter;
@@ -75,5 +77,10 @@ final class ClassMethod
     public function slug()
     {
         return \str_replace('\\', '-', \mb_strtolower(\ltrim($this->reflectionMethod->getName())));
+    }
+
+    public function docComment() : DocBlock
+    {
+        return DocBlockFactory::createInstance()->create($this->reflectionMethod->getDocComment());
     }
 }

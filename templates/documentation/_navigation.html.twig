@@ -11,7 +11,7 @@
                 <div class="collapse{% if activeSection == "introduction" %} show{% endif %}" id="getting-started" data-parent="#page-nav">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('documentation') }}">Installation</a>
+                            <a class="nav-link" href="{{ path('documentation') }}">Introduction</a>
                         </li>
                     </ul>
                 </div>
@@ -21,6 +21,9 @@
                 <div class="collapse{% if activeSection == "calendar" %} show{% endif %}" id="calendar" data-parent="#page-nav">
                     <div>
                         <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('docs_calendar') }}">Index</a>
+                            </li>
                             {% for class in calendarClasses %}
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ path('docs_calendar_class', {'classSlug' : class.slug}) }}">{{ class.shortName }}</a>

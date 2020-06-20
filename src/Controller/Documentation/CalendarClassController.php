@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Documentation;
 
-use App\Controller\CalendarTrait;
+use App\Controller\CalendarReflectionTrait;
 use App\Documentation\PHPClass;
 use PackageVersions\Versions;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,7 +15,7 @@ use Symplify\SymfonyStaticDumper\Contract\ControllerWithDataProviderInterface;
 
 final class CalendarClassController extends AbstractController implements ControllerWithDataProviderInterface
 {
-    use CalendarTrait;
+    use CalendarReflectionTrait;
 
     /**
      * @var ParameterBagInterface
@@ -33,8 +33,7 @@ final class CalendarClassController extends AbstractController implements Contro
      */
     public function calendarClass(string $classSlug) : Response
     {
-        foreach ($this->calendarClassesReflection()  as $reflectionClass) {
-            $phpClass = new PHPClass($reflectionClass);
+        foreach ($this->calendarClassesReflection()  as $phpClass) {
 
             if ($phpClass->slug() === $classSlug) {
                 return $this->render('documentation/class.html.twig', [
@@ -61,8 +60,8 @@ final class CalendarClassController extends AbstractController implements Contro
     public function getArguments() : array
     {
         $arguments = [];
-        foreach ($this->calendarClassesReflection()  as $reflectionClass) {
-            $arguments[] = [(new PHPClass($reflectionClass))->slug()];
+        foreach ($this->calendarClassesReflection()  as $phpClass) {
+            $arguments[] = [$phpClass->slug()];
         }
 
         return $arguments;

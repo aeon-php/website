@@ -7,10 +7,12 @@
         <article class="col-md-12">
 
             <h3>The <code>{{ class.shortName }}::{{ method.name }}</code> method</h3>
-            <small>( version >= {{ version }} )</small>
+            <small>( {{ version }} )</small>
             <section id="introduction">
                 <h5 class="section-title-2">Introduction</h5>
                 <hr/>
+                <p>{{ method.docComment.summary | nl2br }}</p>
+                <p>{{ method.docComment.description | nl2br }}</p>
             </section>
 
             <section id="synopis">

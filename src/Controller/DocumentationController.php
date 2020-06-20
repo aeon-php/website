@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 final class DocumentationController extends AbstractController
 {
-    use CalendarTrait;
+    use CalendarReflectionTrait;
 
     /**
      * @var ParameterBagInterface
@@ -33,6 +33,18 @@ final class DocumentationController extends AbstractController
     {
         return $this->render('documentation/introduction.html.twig', [
             'activeSection' => 'introduction',
+            'calendarClasses' => $this->calendarClassesReflection()
+        ]);
+    }
+
+    /**
+     * @Route("/docs/calendar", name="docs_calendar")
+     */
+    public function calendar()
+    {
+        return $this->render('documentation/calendar.html.twig', [
+            'activeSection' => 'calendar',
+            'calendarClasses' => $this->calendarClassesReflection()
         ]);
     }
 
@@ -40,12 +52,7 @@ final class DocumentationController extends AbstractController
     {
         return $this->render('documentation/_navigation.html.twig', [
             'activeSection' => $activeSection,
-            'calendarClasses' => \array_map(
-                function (ReflectionClass $reflectionClass) : PHPClass {
-                    return new PHPClass($reflectionClass);
-                },
-                $this->calendarClassesReflection()
-            ),
+            'calendarClasses' => $this->calendarClassesReflection()
         ]);
     }
 }

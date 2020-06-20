@@ -8,7 +8,7 @@
 
             <h1>Introduction</h1>
             <p>
-                Aeon is a set of libraries that makes easier to work with Date & Time in PHP in elegant Object Oriented way.
+                Aeon is a set of libraries that makes easier to work with PHP Date & Time in elegant Object Oriented way.
             </p>
 
             <div class="alert alert-info">
@@ -24,7 +24,7 @@
                 <a href="https://en.wikipedia.org/wiki/Aeon" target="_blank">Wikipedia</a>
             </p>
 
-            <section id="components">
+            <section id="features">
                 <h5 class="section-title-2">Features</h5>
                 <hr/>
                 <ul>
@@ -55,6 +55,30 @@
                 </ul>
             </section>
 
+            <section id="calendar-interface">
+                <h5 class="section-title-2">Calendar Interface</h5>
+                <hr/>
+                <ul>
+                {% for phpClass in calendarClasses %}
+                    <li><a href="{{ path('docs_calendar_class', {'classSlug' : phpClass.slug}) }}">{{ phpClass.shortName }}</a></li>
+                {% endfor %}
+                </ul>
+            </section>
         </article>
+        <aside class="col-md-3 col-xxl-3 d-none d-md-block">
+            <div class="sticky">
+                <ul id="toc" class="nav flex-column toc">
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#components">Components</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#calendar-interface">Calendar Interface</a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
     </div>
 {% endblock %}

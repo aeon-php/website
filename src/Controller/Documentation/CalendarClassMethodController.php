@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Documentation;
 
-use App\Controller\CalendarTrait;
+use App\Controller\CalendarReflectionTrait;
 use App\Documentation\PHPClass;
 use PackageVersions\Versions;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,7 +15,7 @@ use Symplify\SymfonyStaticDumper\Contract\ControllerWithDataProviderInterface;
 
 final class CalendarClassMethodController extends AbstractController implements ControllerWithDataProviderInterface
 {
-    use CalendarTrait;
+    use CalendarReflectionTrait;
 
     /**
      * @var ParameterBagInterface
@@ -33,8 +33,7 @@ final class CalendarClassMethodController extends AbstractController implements 
      */
     public function calendarClassMethod(string $classSlug, string $methodSlug) : Response
     {
-        foreach ($this->calendarClassesReflection()  as $reflectionClass) {
-            $phpClass = new PHPClass($reflectionClass);
+        foreach ($this->calendarClassesReflection()  as $phpClass) {
 
             if ($phpClass->slug() === $classSlug) {
                 foreach ($phpClass->methods() as $method) {
@@ -68,9 +67,7 @@ final class CalendarClassMethodController extends AbstractController implements 
     public function getArguments() : array
     {
         $arguments = [];
-        foreach ($this->calendarClassesReflection()  as $reflectionClass) {
-            $phpClass = new PHPClass($reflectionClass);
-
+        foreach ($this->calendarClassesReflection()  as $phpClass) {
             foreach ($phpClass->methods() as $method) {
                 $arguments[] = [$phpClass->slug(), $method->slug()];
             }

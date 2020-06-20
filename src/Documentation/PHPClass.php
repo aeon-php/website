@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Documentation;
 
+use phpDocumentor\Reflection\DocBlock;
+use phpDocumentor\Reflection\DocBlockFactory;
 use Roave\BetterReflection\Reflection\ReflectionClass;
 use Roave\BetterReflection\Reflection\ReflectionMethod;
 
@@ -105,5 +107,10 @@ final class PHPClass
     public function isInternal() : bool
     {
         return $this->reflectionClass->isInternal();
+    }
+
+    public function docComment() : DocBlock
+    {
+        return DocBlockFactory::createInstance()->create($this->reflectionClass->getDocComment());
     }
 }

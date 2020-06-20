@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Documentation\PHPClass;
 use Roave\BetterReflection\BetterReflection;
 use Roave\BetterReflection\Reflection\ReflectionClass;
 use Roave\BetterReflection\Reflector\ClassReflector;
 use Roave\BetterReflection\SourceLocator\Type\AggregateSourceLocator;
 use Roave\BetterReflection\SourceLocator\Type\DirectoriesSourceLocator;
 
-trait CalendarTrait
+trait CalendarReflectionTrait
 {
     protected string $aeonCalendarSrc;
 
     /**
-     * @return ReflectionClass[]
+     * @return PHPClass[]
      */
     protected function calendarClassesReflection() : array
     {
@@ -29,6 +30,11 @@ trait CalendarTrait
 
         $reflector = new ClassReflector($directoriesSourceLocator);
 
-        return $reflector->getAllClasses();
+        return \array_map(
+            function (ReflectionClass $reflectionClass) : PHPClass {
+                return new PHPClass($reflectionClass);
+            },
+            $reflector->getAllClasses()
+        );
     }
 }

@@ -41,7 +41,11 @@
                             <div class="row align-items-center">
                                 <div class="col-6 col-lg-10">
                                     <nav aria-label="breadcrumb d-none d-inline-flex-lg">
-                                        <a href="{{ path('landing') }}" class="breadcrumb-back" title="Back"></a>
+                                        {% if activeSection == "calendar" %}
+                                            <a href="{{ path('docs_calendar') }}" class="breadcrumb-back" title="Back"></a>
+                                        {% else %}
+                                            <a href="{{ path('landing') }}" class="breadcrumb-back" title="Back"></a>
+                                        {% endif %}
                                         <ol class="breadcrumb d-none d-lg-inline-flex">
                                             <li class="breadcrumb-item"><a href="{{ path('landing') }}">Home</a></li>
                                             <li class="breadcrumb-item active"><a href="{{ path('documentation') }}">Documentation</a></li>
@@ -62,7 +66,6 @@
         </div>
     </div>
 </section>
-
 
 <!-- footer -->
 <footer class="bg-dark">
