@@ -6,9 +6,11 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "aeon-php/calendar": "^1.0@dev",
+        "aeon-php/calendar-holidays": "^1.0@dev",
         "doctrine/cache": "^1.10",
         "ocramius/package-versions": "^1.8",
         "phpdocumentor/reflection-docblock": "^5.1",
+        "phpunit/phpunit": "^9.2",
         "psr/simple-cache": "^1.0",
         "roave/better-reflection": "^4.6",
         "sensio/framework-extra-bundle": "^5.1",
@@ -75,7 +77,11 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
-        "cs:php:fix": "php-cs-fixer fix"
+        "cs:php:fix": "php-cs-fixer fix",
+        "test" : [
+            "php-cs-fixer fix --dry-run",
+            "phpunit"
+        ]
     },
     "conflict": {
         "symfony/symfony": "*"

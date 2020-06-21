@@ -11,17 +11,10 @@ use Roave\BetterReflection\Reflection\ReflectionMethod;
 
 final class PHPClass
 {
-    const AEON_CALENDAR_NAMESPACE = 'Aeon\\Calendar';
-
     /**
      * @var ReflectionClass
      */
     private $reflectionClass;
-
-    /**
-     * @var string
-     */
-    private $stripNamespace;
 
     public function __construct(ReflectionClass $reflectionClass)
     {
@@ -57,20 +50,7 @@ final class PHPClass
 
     public function shortName() : string
     {
-        if ($this->isCalendar()) {
-            return \ltrim($this->reflectionClass->getName(), self::AEON_CALENDAR_NAMESPACE);
-        }
-
         return $this->reflectionClass->getShortName();
-    }
-
-    public function slug() : string
-    {
-        if ($this->isCalendar()) {
-            return \str_replace('\\', '-', \mb_strtolower(\ltrim($this->reflectionClass->getName(), self::AEON_CALENDAR_NAMESPACE)));
-        }
-
-        return \str_replace('\\', '-', \mb_strtolower(\ltrim($this->reflectionClass->getName())));
     }
 
     /**
@@ -97,11 +77,6 @@ final class PHPClass
             },
             $this->reflectionClass()->getInterfaces()
         );
-    }
-
-    public function isCalendar() : bool
-    {
-        return \str_starts_with($this->reflectionClass->getNamespaceName(), self::AEON_CALENDAR_NAMESPACE);
     }
 
     public function isInternal() : bool

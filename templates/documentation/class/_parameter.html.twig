@@ -8,11 +8,7 @@
         {% if parameter.typeClass.internal %}
             <span style="color: #737373; border-bottom: 1px solid;">\{{ parameter.typeClass.shortName }}</span>
         {% else %}
-            {% if parameter.typeClass.calendar %}
-                <a href="{{ path('docs_calendar_class', {'classSlug': parameter.typeClass.slug }) }}" style="color: #369; border-bottom: 1px solid;">{{ parameter.typeClass.shortName }}</a>
-            {% else %}
-                <a href="#" style="color: #369; border-bottom: 1px solid;">{{ parameter.typeClass.shortName }}</a>
-            {% endif %}
+            <a href="{{ parameter.typeClass.name | class_url }}" style="color: #369; border-bottom: 1px solid;">{{ parameter.typeClass.shortName }}</a>
         {% endif %}
     {% endif %}
     <span style="color: #369;">${{ parameter.reflectionParameter.name }}</span>

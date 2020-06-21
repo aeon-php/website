@@ -43,13 +43,9 @@
                         {% if method.returnTypeClass.internal %}
                             {{ method.returnTypeClass.shortName }}
                         {% else %}
-                            {% if method.returnTypeClass.calendar %}
-                                <a style="color: #369;" href="{{ path('docs_calendar_class', {'classSlug' : method.returnTypeClass.slug }) }}">
-                                    <strong>{{ method.returnTypeClass.shortName }}</strong>
-                                </a>
-                            {% else %}
-                                {{ method.returnTypeClass.shortName }}
-                            {% endif %}
+                            <a style="color: #369;" href="{{ method.returnTypeClass.name | class_method_url(method.name) }}">
+                                <strong>{{ method.returnTypeClass.shortName }}</strong>
+                            </a>
                         {% endif %}
                     {% endif %}
                 {% endif %}

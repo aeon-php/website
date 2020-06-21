@@ -11,17 +11,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 final class DocumentationController extends AbstractController
 {
-    use CalendarReflectionTrait;
+    use CodeReflectionTrait;
 
-    /**
-     * @var ParameterBagInterface
-     */
-    private $parameterBag;
+    private ParameterBagInterface $parameterBag;
 
     public function __construct(ParameterBagInterface $parameterBag)
     {
         $this->parameterBag = $parameterBag;
-        $this->aeonCalendarSrc = $this->parameterBag->get('aeon_php_calendar_src');
     }
 
     /**
@@ -31,7 +27,8 @@ final class DocumentationController extends AbstractController
     {
         return $this->render('documentation/introduction.html.twig', [
             'activeSection' => 'introduction',
-            'calendarClasses' => $this->calendarClassesReflection(),
+            'calendarClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_calendar_src')),
+            'calendarHolidaysClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_calendar_holidays_src')),
         ]);
     }
 
@@ -52,7 +49,18 @@ final class DocumentationController extends AbstractController
     {
         return $this->render('documentation/calendar.html.twig', [
             'activeSection' => 'calendar',
-            'calendarClasses' => $this->calendarClassesReflection(),
+            'calendarClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_calendar_src')),
+        ]);
+    }
+
+    /**
+     * @Route("/docs/calendar-holidays", name="docs_calendar_holidays")
+     */
+    public function calendarHolidays()
+    {
+        return $this->render('documentation/calendar_holidays.html.twig', [
+            'activeSection' => 'calendar-holidays',
+            'calendarHolidaysClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_calendar_holidays_src')),
         ]);
     }
 
@@ -60,7 +68,8 @@ final class DocumentationController extends AbstractController
     {
         return $this->render('documentation/_navigation.html.twig', [
             'activeSection' => $activeSection,
-            'calendarClasses' => $this->calendarClassesReflection(),
+            'calendarClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_calendar_src')),
+            'calendarHolidaysClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_calendar_holidays_src')),
         ]);
     }
 }

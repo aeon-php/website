@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller\Documentation;
 
-use App\Controller\CalendarReflectionTrait;
+use App\Controller\CodeReflectionTrait;
+use App\Documentation\SlugGenerator;
 use PackageVersions\Versions;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -14,17 +15,13 @@ use Symplify\SymfonyStaticDumper\Contract\ControllerWithDataProviderInterface;
 
 final class CalendarClassMethodController extends AbstractController implements ControllerWithDataProviderInterface
 {
-    use CalendarReflectionTrait;
+    use CodeReflectionTrait;
 
-    /**
-     * @var ParameterBagInterface
-     */
-    private $parameterBag;
+    private ParameterBagInterface $parameterBag;
 
     public function __construct(ParameterBagInterface $parameterBag)
     {
         $this->parameterBag = $parameterBag;
-        $this->aeonCalendarSrc = $this->parameterBag->get('aeon_php_calendar_src');
     }
 
     /**
@@ -32,8 +29,8 @@ final class CalendarClassMethodController extends AbstractController implements 
      */
     public function calendarClassMethod(string $classSlug, string $methodSlug) : Response
     {
-        foreach ($this->calendarClassesReflection()  as $phpClass) {
-            if ($phpClass->slug() === $classSlug) {
+        foreach ($this->codeClassesReflection($this->parameterBag->get('aeon_php_calendar_src')) as $phpClass) {
+            if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
                 foreach ($phpClass->methods() as $method) {
                     if ($method->slug() === $methodSlug) {
                         return $this->render('documentation/method.html.twig', [
@@ -65,9 +62,9 @@ final class CalendarClassMethodController extends AbstractController implements 
     public function getArguments() : array
     {
         $arguments = [];
-        foreach ($this->calendarClassesReflection()  as $phpClass) {
+        foreach ($this->codeClassesReflection($this->parameterBag->get('aeon_php_calendar_src')) as $phpClass) {
             foreach ($phpClass->methods() as $method) {
-                $arguments[] = [$phpClass->slug(), $method->slug()];
+                $arguments[] = [SlugGenerator::forPHPClass($phpClass), $method->slug()];
             }
         }
 

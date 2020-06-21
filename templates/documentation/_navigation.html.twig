@@ -27,7 +27,24 @@
                             </li>
                             {% for class in calendarClasses %}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ path('docs_calendar_class', {'classSlug' : class.slug}) }}">{{ class.shortName }}</a>
+                                    <a class="nav-link" href="{{ class.reflectionClass.name | class_url }}">{{ class.shortName }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link{% if activeSection == "calendar-holidays" %} active{% endif %}" data-toggle="collapse" href="#calendar" role="button" aria-expanded="{% if activeSection == "calendar-holidays" %}true{% else %}false{% endif %}" aria-controls="menu-2">Calendar Holidays</a>
+                <div class="collapse{% if activeSection == "calendar-holidays" %} show{% endif %}" id="calendar" data-parent="#page-nav">
+                    <div>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('docs_calendar_holidays') }}">Index</a>
+                            </li>
+                            {% for class in calendarHolidaysClasses %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ class.reflectionClass.name | class_url }}">{{ class.shortName }}</a>
                                 </li>
                             {% endfor %}
                         </ul>

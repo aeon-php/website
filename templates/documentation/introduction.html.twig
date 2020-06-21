@@ -60,8 +60,17 @@
                 <hr/>
                 <ul>
                 {% for phpClass in calendarClasses %}
-                    <li><a href="{{ path('docs_calendar_class', {'classSlug' : phpClass.slug}) }}">{{ phpClass.shortName }}</a></li>
+                    <li><a href="{{ phpClass.name | class_url }}">{{ phpClass.shortName }}</a></li>
                 {% endfor %}
+                </ul>
+            </section>
+            <section id="calendar-interface">
+                <h5 class="section-title-2">Calendar Holidays Interface</h5>
+                <hr/>
+                <ul>
+                    {% for phpClass in calendarHolidaysClasses %}
+                        <li><a href="{{ phpClass.name | class_url }}">{{ phpClass.shortName }}</a></li>
+                    {% endfor %}
                 </ul>
             </section>
         </article>

@@ -11,20 +11,18 @@ use Roave\BetterReflection\Reflector\ClassReflector;
 use Roave\BetterReflection\SourceLocator\Type\AggregateSourceLocator;
 use Roave\BetterReflection\SourceLocator\Type\DirectoriesSourceLocator;
 
-trait CalendarReflectionTrait
+trait CodeReflectionTrait
 {
-    protected string $aeonCalendarSrc;
-
     /**
      * @return PHPClass[]
      */
-    protected function calendarClassesReflection() : array
+    protected function codeClassesReflection(string $srcPath) : array
     {
         $betterReflection = new BetterReflection();
         $astLocator = ($betterReflection)->astLocator();
 
         $directoriesSourceLocator = new AggregateSourceLocator([
-            new DirectoriesSourceLocator([$this->aeonCalendarSrc], $astLocator),
+            new DirectoriesSourceLocator([$srcPath], $astLocator),
             ($betterReflection)->sourceLocator(),
         ]);
 

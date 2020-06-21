@@ -32,11 +32,7 @@
                         {% if interace.internal %}
                             <a href="#" style="color:#737373;">{{ interace.shortName }}</a>
                         {% else %}
-                            {% if interace.calendar %}
-                                <a style="color:#369; border-bottom: 1px solid;" href="{{ path('docs_calendar_class', {'classSlug' : interace.slug }) }}">{{ interace.shortName }}</a>
-                            {% else %}
-                                <a href="#" style="color:#737373;">{{ interace.shortName }}</a>
-                            {% endif %}
+                                <a style="color:#369; border-bottom: 1px solid;" href="{{ class.name | class_url }}">{{ interace.shortName }}</a>
                         {% endif %}
                         {% if loop.last == false %}, {% endif %}
                     {% endfor %}
@@ -54,7 +50,7 @@
                 <hr/>
                 <ul>
                     {% for method in class.methods %}
-                        <li><a style="color: #369;" href="{{ path('docs_calendar_class_method', {'classSlug' : class.slug, 'methodSlug': method.slug}) }}">{{ class.reflectionClass.shortName }}::{{ method.reflectionMethod.name }}</a></li>
+                        <li><a style="color: #369;" href="{{ class.name | class_method_url(method.name) }}">{{ class.reflectionClass.shortName }}::{{ method.reflectionMethod.name }}</a></li>
                     {% endfor %}
                 </ul>
             </section>
