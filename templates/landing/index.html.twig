@@ -1,6 +1,192 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Aeon PHP - Date Time Framework Library{% endblock %}
+{% block title %}Aeon, simple php DateTime library{% endblock %}
 
 {% block body %}
+<!-- hero -->
+<section class="bg-primary">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 text-white text-center">
+                <h1 class="font-weight-light">Aeon, simple php <b>DateTime</b> library.</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <a href="{{ path('documentation') }}" class="btn btn-green">Documentation</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- / hero -->
+<section class="pt-3 pb-0">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <p>
+                    Aeon is a collection of libraries that are better way to handle <strong>DateTime</strong> in php.
+                    It provides elegan object oriented interface that is fully immutable focused around improving
+                    developre experience and making the implicit, explicit.
+                </p>
+                <h6>Installation</h6>
+                <code class="code">composer require aeon-php/calendar</code>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="pt-5 pb-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Object Oriented.</h2>
+                <p>Fully immutable thanks to <a href="https://psalm.dev/"  target="_blank">Psalm</a> and <a href="https://phpstan.org/">PHPStan</a></p>
+                <ul>
+                    <li>Strict types</li>
+                    <li><a href="https://www.php.net/manual/en/datetime.formats.relative.php" target="_blank">Relative formats</a> support</li>
+                    <li><a href="https://psalm.dev/articles/immutability-and-beyond" target="_blank">Immutability</a></li>
+                    <li>Following <a href="https://semver.org/" target="_blank">semver</a> promise</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+<pre><code class="language-php">{% apply spaceless  %}
+&lt;?php
+
+use Aeon\Calendar\Gregorian\GregorianCalendar;
+use Aeon\Calendar\TimeUnit;
+
+$calendar = GregorianCalendar::UTC();
+$calendar->currentYear()
+    ->january()
+    ->lastDay()
+    ->noon()
+    ->sub(TimeUnit::days(3));
+{% endapply %}</code></pre>
+{#                <img src="{{ asset('dist/images/code/relative_format.png') }}" />#}
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr />
+
+<section class="pt-3 pb-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+<pre><code class="language-php">{% apply spaceless  %}
+&lt;?php
+
+use Aeon\Calendar\Gregorian\Day;
+use Aeon\Calendar\Gregorian\GregorianCalendar;
+use Aeon\Calendar\Gregorian\DateTime;
+use Aeon\Calendar\Gregorian\Month;
+use Aeon\Calendar\Gregorian\Time;
+use Aeon\Calendar\Gregorian\TimeZone;
+use Aeon\Calendar\Gregorian\Year;
+
+$dateTime = GregorianCalendar::UTC()->now();
+$dateTime = DateTime::fromString('2020-01-01 00:00:00 UTC');
+$dateTime = DateTime::fromDateTime(
+    new DateTimeImmutable(
+        '2020-01-01 00:00:00',
+        new DateTimeZone('UTC')
+    )
+);
+$dateTime = new DateTime(
+    new Day(new Month(new Year(2020), 01), 01),
+    new Time(00, 00, 00, 0),
+    TimeZone::UTC()
+);
+$dateTime = DateTime::create(2020, 01, 01, 00, 00, 00, 0, 'UTC');
+{% endapply %}</code></pre>
+            </div>
+            <div class="col-md-4">
+                <h2>Intuitive interface.</h2>
+                <ul>
+                    <li>Full compatibility with <a href="https://www.php.net/manual/en/datetime.formats.date.php" target="_blank">php date formats</a></li>
+                    <li>Autocompletion in all modern IDE's</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <hr />
+
+<section class="pt-3 pb-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Simplifies time travels.</h2>
+                <ul>
+                    <li>Iterations forward and backward across time</li>
+                    <li>Measure distance in time</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <pre><code class="language-php">{% apply spaceless  %}
+&lt;?php
+
+use Aeon\Calendar\Gregorian\GregorianCalendar;
+use Aeon\Calendar\Gregorian\TimePeriod;
+use Aeon\Calendar\TimeUnit;
+
+$now = GregorianCalendar::UTC()->now();
+
+$now->until($now->add(TimeUnit::days(7)))
+    ->iterate(TimeUnit::day())
+    ->each(function(TimePeriod $timePeriod) {
+        echo $timePeriod->start()
+                ->day()
+                ->format('Y-m-d H:i:s.uO') . "\n";
+    });
+{% endapply %}</code></pre>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr />
+
+<section class="pt-3 pb-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+<pre><code class="language-php">{% apply spaceless  %}
+&lt;?php
+
+use Aeon\Calendar\Gregorian\DateTime;
+use Aeon\Calendar\Gregorian\TimeEpoch;
+
+require_once __DIR__ . '../vendor/autoload.php';
+
+$dateTime = DateTime::fromString('2020-01-01 00:00:00 UTC');
+$timestampUNIX = $dateTime->timestamp(TimeEpoch::UNIX());
+$timestampUTC = $dateTime->timestamp(TimeEpoch::UTC());
+$timestampGPS = $dateTime->timestamp(TimeEpoch::GPS());
+$timestampTAI = $dateTime->timestamp(TimeEpoch::TAI());
+{% endapply %}</code></pre>
+            </div>
+            <div class="col-md-6">
+                <h2>Precise timestamps.</h2>
+                <ul>
+                    <li>Support for leap seconds</li>
+                    <li>GPS - with leap seconds</li>
+                    <li>TAI - with leap seconds</li>
+                    <li>UTC - with leap seconds</li>
+                    <li>UNIX/POSIX - without leap seconds</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="row pb-4">
+        <div class="col text-center">
+            <h4 class="pb-3">Looking for more?</h4>
+            <a href="{{ path('documentation') }}" class="btn btn-green">Documentation</a>
+        </div>
+    </div>
+</section>
 {% endblock %}

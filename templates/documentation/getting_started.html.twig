@@ -12,15 +12,13 @@
                     To get current time initialize <a href="{{ path('docs_calendar_class', {'classSlug': 'gregorian-gregoriancalendar'}) }}">GregorianCalendar</a>
                     through <a href="{{ path('docs_calendar_class_method', {'classSlug': 'gregorian-gregoriancalendar', 'methodSlug': '__construct'}) }}">__construct</a> or by one of available static constructors.
                 </p>
-                <pre><code class="language-php">
-{% apply spaceless  %}
+                <pre><code class="language-php">{% apply spaceless  %}
 &lt;?php
 
 use Aeon\Calendar\Gregorian\GregorianCalendar;
 
 echo GregorianCalendar::UTC()->now()->toISO8601();
-{% endapply %}
-                </code></pre>
+{% endapply %}</code></pre>
 
                 <p>
                     <a href="{{ path('docs_calendar_class', {'classSlug': 'gregorian-gregoriancalendar'}) }}">GregorianCalendar</a> implements
@@ -40,15 +38,13 @@ echo GregorianCalendar::UTC()->now()->toISO8601();
                     Just take the <code>string</code> and pass it to <a href="{{ path('docs_calendar_class_method', {'classSlug': 'gregorian-datetime', 'methodSlug': 'fromstring'}) }}">fromString</a>
                     static constructor.
                 </p>
-                <pre><code class="language-php">
-{% apply spaceless  %}
+                <pre><code class="language-php">{% apply spaceless  %}
 &lt;?php
 
 use Aeon\Calendar\Gregorian\DateTime;
 
 echo DateTime::fromString('2020-01-01 00:00:00 UTC')->toISO8601();
-{% endapply %}
-                </code></pre>
+{% endapply %}</code></pre>
             </section>
 
             <section>
@@ -58,8 +54,7 @@ echo DateTime::fromString('2020-01-01 00:00:00 UTC')->toISO8601();
                     There are few ways to define period of time, it can be done by initializing two <a href="{{ path('docs_calendar_class', {'classSlug': 'gregorian-datetime'}) }}">DateTime</a> instances
                     and creating time period since one date <a href="{{ path('docs_calendar_class_method', {'classSlug': 'gregorian-datetime', 'methodSlug': 'until'}) }}">until</a> another.
                 </p>
-                <pre><code class="language-php">
-{% apply spaceless  %}
+                <pre><code class="language-php">{% apply spaceless  %}
 &lt;?php
 
 use Aeon\Calendar\Gregorian\DateTime;
@@ -68,8 +63,7 @@ $newYear = DateTime::fromString('2020-01-01 00:00:00 UTC');
 $timePeriod = $newYear->until(
     DateTime::fromString('2020-01-10 00:00:00 UTC')
 );
-{% endapply %}
-                </code></pre>
+{% endapply %}</code></pre>
             </section>
 
             <section>
@@ -83,8 +77,7 @@ $timePeriod = $newYear->until(
                     which is collection of <a href="{{ path('docs_calendar_class', {'classSlug': 'gregorian-timeperiod'}) }}">TimePeriod</a> instances
                     representing chunks of time between two points.
                 </p>
-                <pre><code class="language-php">
-{% apply spaceless  %}
+                <pre><code class="language-php">{% apply spaceless  %}
 &lt;?php
 
 use Aeon\Calendar\Gregorian\DateTime;
@@ -101,8 +94,30 @@ $newYear->until(
         );
     });
 
-{% endapply %}
-                </code></pre>
+{% endapply %}</code></pre>
+            </section>
+
+            <section>
+                <h5 class="section-title-2" id="measure-elapsed-time">Measure elapsed time</h5>
+                <hr/>
+                <p>
+                    It might look tempting to use measuring difference between two points in time to
+                    measure elapsed time but if you are looking for precise results use <a href="{{ path('docs_calendar_class', {'classSlug': 'stopwatch'}) }}">Stopwatch</a> class instead
+                    which is built on top of <a href="https://www.php.net/manual/en/function.hrtime.php" target="_blank">\hrtime</a> high resolution time php function.
+                </p>
+                <pre><code class="language-php">{% apply spaceless  %}
+&lt;?php
+
+use Aeon\Calendar\Gregorian\GregorianCalendar;
+use Aeon\Calendar\TimeUnit;
+
+$calendar = GregorianCalendar::UTC();
+$calendar->currentYear()
+    ->january()
+    ->lastDay()
+    ->noon()
+    ->sub(TimeUnit::days(3));
+{% endapply %}</code></pre>
             </section>
         </article>
         <aside class="col-md-3 col-xxl-3 d-none d-md-block">
@@ -120,7 +135,9 @@ $newYear->until(
                     <li class="nav-item">
                         <a data-scroll class="nav-link" href="#iterating-over-time">Iterating over time</a>
                     </li>
-
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#measure-elapsed-time">Measure elapsed time</a>
+                    </li>
                 </ul>
             </div>
         </aside>
