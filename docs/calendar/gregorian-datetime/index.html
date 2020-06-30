@@ -199,7 +199,7 @@
         <article class="col-md-12">
 
             <h3>The <code>Aeon\Calendar\Gregorian\DateTime</code> class</h3>
-            <small>( 1.x-dev@242ef84dabad263ae6d8920f4f2644d48d90befc )</small>
+            <small>( 1.x-dev@827b79e7c900b6c7fae7d5f81d70dcdf1bb777b0 )</small>
             <section id="introduction">
                 <h5 class="section-title-2">Introduction <a href="#introduction" class="clipboard"></a></h5>
                 <hr/>
@@ -294,7 +294,7 @@
 <span>:</span>             self
     </div>
                                             <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
- <span style="color: #936;">static</span> <a href="/docs/calendar/gregorian-datetime/method/fromtimestamp" style="color:#369; border-bottom: 1px solid;">fromTimestamp</a>
+ <span style="color: #936;">static</span> <a href="/docs/calendar/gregorian-datetime/method/fromtimestampunix" style="color:#369; border-bottom: 1px solid;">fromTimestampUnix</a>
 (                            <span style="color: #693;">int</span>
         <span style="color: #369;">$timestamp</span>
     
@@ -387,13 +387,13 @@
 <span>:</span>             string
     </div>
                                             <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
-<a href="/docs/calendar/gregorian-datetime/method/isdaylight" style="color:#369; border-bottom: 1px solid;">isDaylight</a>
+<a href="/docs/calendar/gregorian-datetime/method/isdaylightsaving" style="color:#369; border-bottom: 1px solid;">isDaylightSaving</a>
 (    <span style="color: #737373;">void</span>
 )
 <span>:</span>             bool
     </div>
                                             <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
-<a href="/docs/calendar/gregorian-datetime/method/issavingtime" style="color:#369; border-bottom: 1px solid;">isSavingTime</a>
+<a href="/docs/calendar/gregorian-datetime/method/isdaylight" style="color:#369; border-bottom: 1px solid;">isDaylight</a>
 (    <span style="color: #737373;">void</span>
 )
 <span>:</span>             bool
@@ -732,6 +732,12 @@
             )
 <span>:</span>                         <a href="/docs/calendar/gregorian-timeperiods" style="color:#369; border-bottom: 1px solid;">TimePeriods</a>
             </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar/gregorian-datetime/method/isambiguous" style="color:#369; border-bottom: 1px solid;">isAmbiguous</a>
+(    <span style="color: #737373;">void</span>
+)
+<span>:</span>             bool
+    </div>
                                             <div>}</div>
                 </div>
             </section>
@@ -744,7 +750,7 @@
                                             <li><a style="color: #369;" href="/docs/calendar/gregorian-datetime/method/create">DateTime::create</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/gregorian-datetime/method/fromdatetime">DateTime::fromDateTime</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/gregorian-datetime/method/fromstring">DateTime::fromString</a></li>
-                                            <li><a style="color: #369;" href="/docs/calendar/gregorian-datetime/method/fromtimestamp">DateTime::fromTimestamp</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar/gregorian-datetime/method/fromtimestampunix">DateTime::fromTimestampUnix</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/gregorian-datetime/method/__tostring">DateTime::__toString</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/gregorian-datetime/method/year">DateTime::year</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/gregorian-datetime/method/month">DateTime::month</a></li>
@@ -758,8 +764,8 @@
                                             <li><a style="color: #369;" href="/docs/calendar/gregorian-datetime/method/timeoffset">DateTime::timeOffset</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/gregorian-datetime/method/totimezone">DateTime::toTimeZone</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/gregorian-datetime/method/toiso8601">DateTime::toISO8601</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar/gregorian-datetime/method/isdaylightsaving">DateTime::isDaylightSaving</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/gregorian-datetime/method/isdaylight">DateTime::isDaylight</a></li>
-                                            <li><a style="color: #369;" href="/docs/calendar/gregorian-datetime/method/issavingtime">DateTime::isSavingTime</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/gregorian-datetime/method/timestamp">DateTime::timestamp</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/gregorian-datetime/method/timestampunix">DateTime::timestampUNIX</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/gregorian-datetime/method/modify">DateTime::modify</a></li>
@@ -802,6 +808,7 @@
                                             <li><a style="color: #369;" href="/docs/calendar/gregorian-datetime/method/distancesince">DateTime::distanceSince</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/gregorian-datetime/method/distanceuntil">DateTime::distanceUntil</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/gregorian-datetime/method/iterate">DateTime::iterate</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar/gregorian-datetime/method/isambiguous">DateTime::isAmbiguous</a></li>
                                     </ul>
             </section>
 
