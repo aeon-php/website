@@ -64,12 +64,24 @@ final class DocumentationController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/docs/process", name="docs_process")
+     */
+    public function process()
+    {
+        return $this->render('documentation/process.html.twig', [
+            'activeSection' => 'process',
+            'processClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_process_src')),
+        ]);
+    }
+
     public function navigation(?string $activeSection = null) : Response
     {
         return $this->render('documentation/_navigation.html.twig', [
             'activeSection' => $activeSection,
             'calendarClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_calendar_src')),
             'calendarHolidaysClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_calendar_holidays_src')),
+            'processClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_process_src')),
         ]);
     }
 }

@@ -6,6 +6,7 @@
 parameters:
     aeon_php_calendar_src: "%kernel.project_dir%/vendor/aeon-php/calendar/src"
     aeon_php_calendar_holidays_src: "%kernel.project_dir%/vendor/aeon-php/calendar-holidays/src"
+    aeon_php_process_src: "%kernel.project_dir%/vendor/aeon-php/process/src"
 
 services:
     # default configuration for services in *this* file

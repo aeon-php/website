@@ -7,6 +7,7 @@
         "ext-iconv": "*",
         "aeon-php/calendar": "^1.0@dev",
         "aeon-php/calendar-holidays": "^1.0@dev",
+        "aeon-php/process": "^1.0@dev",
         "doctrine/cache": "^1.10",
         "ocramius/package-versions": "^1.8",
         "phpdocumentor/reflection-docblock": "^5.1",

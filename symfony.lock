@@ -5,6 +5,9 @@
     "aeon-php/calendar-holidays": {
         "version": "1.0-dev"
     },
+    "aeon-php/process": {
+        "version": "1.x-dev"
+    },
     "amphp/amp": {
         "version": "v2.4.4"
     },

@@ -14,11 +14,15 @@ final class SlugGenerator
     public static function forClass(string $className) : string
     {
         if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calendar\\Gregorian\\Holidays')) {
-            return \str_replace('\\', '-', \mb_strtolower(\ltrim($className, 'Aeon\\Calendar\\Gregorian')));
+            return \str_replace('\\', '-', \mb_strtolower(\ltrim(\str_replace('Aeon\\Calendar\\Gregorian', '', $className), '\\')));
+        }
+
+        if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calendar\\System\\')) {
+            return \str_replace('\\', '-', \mb_strtolower(\ltrim(\str_replace('Aeon\\Calendar\\System', '', $className), '\\')));
         }
 
         if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calendar\\')) {
-            return \str_replace('\\', '-', \mb_strtolower(\ltrim($className, 'Aeon\\Calendar')));
+            return \str_replace('\\', '-', \mb_strtolower(\ltrim(\str_replace('Aeon\\Calendar', '', $className), '\\')));
         }
 
         return \str_replace('\\', '-', \mb_strtolower($className));
