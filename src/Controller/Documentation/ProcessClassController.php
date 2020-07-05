@@ -34,7 +34,7 @@ final class ProcessClassController extends AbstractController implements Control
                 return $this->render('documentation/class.html.twig', [
                     'class' => $phpClass,
                     'activeSection' => 'process',
-                    'version' => '1.0@dev', //Versions::getVersion('aeon-php/process'),
+                    'version' => Versions::getVersion('aeon-php/process'),
                 ]);
             }
         }

@@ -68,6 +68,23 @@
                     </div>
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link{% if activeSection == "retry" %} active{% endif %}" data-toggle="collapse" href="#retry" role="button" aria-expanded="{% if activeSection == "retry" %}true{% else %}false{% endif %}" aria-controls="menu-2">Retry</a>
+                <div class="collapse{% if activeSection == "retry" %} show{% endif %}" id="retry" data-parent="#page-nav">
+                    <div>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('docs_retry') }}">Index</a>
+                            </li>
+                            {% for class in retryClasses %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ class.reflectionClass.name | class_url }}">{{ class.shortName }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </li>
         </ul>
     </div>
 </nav>

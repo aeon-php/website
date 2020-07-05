@@ -85,7 +85,7 @@
 <section class="pt-5 pb-3">
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 mb-3 order-md-last">
                 <h2>Object Oriented.</h2>
                 <p>Fully immutable thanks to <a href="https://psalm.dev/"  target="_blank">Psalm</a> and <a href="https://phpstan.org/">PHPStan</a></p>
                 <ul>
@@ -117,6 +117,13 @@ $calendar->currentYear()
 <section class="pt-3 pb-3">
     <div class="container">
         <div class="row">
+            <div class="col-md-4 mb-3">
+                <h2>Intuitive interface.</h2>
+                <ul>
+                    <li>Full compatibility with <a href="https://www.php.net/manual/en/datetime.formats.date.php" target="_blank">php date formats</a></li>
+                    <li>Autocompletion in all modern IDE's</li>
+                </ul>
+            </div>
             <div class="col-md-8">
 <pre><code class="language-php">&lt;?php
 
@@ -143,13 +150,6 @@ $dateTime = new DateTime(
 );
 $dateTime = DateTime::create(2020, 01, 01, 00, 00, 00, 0, 'UTC');</code></pre>
             </div>
-            <div class="col-md-4">
-                <h2>Intuitive interface.</h2>
-                <ul>
-                    <li>Full compatibility with <a href="https://www.php.net/manual/en/datetime.formats.date.php" target="_blank">php date formats</a></li>
-                    <li>Autocompletion in all modern IDE's</li>
-                </ul>
-            </div>
         </div>
     </div>
 </section>
@@ -159,8 +159,8 @@ $dateTime = DateTime::create(2020, 01, 01, 00, 00, 00, 0, 'UTC');</code></pre>
 <section class="pt-3 pb-3">
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
-                <h2>Simplifies time travels.</h2>
+            <div class="col-md-6 mb-3  order-md-last">
+                <h2>Time iterations.</h2>
                 <ul>
                     <li>Iterations forward and backward across time</li>
                     <li>Measure distance in time</li>
@@ -192,6 +192,16 @@ $now->until($now->add(TimeUnit::days(7)))
 <section class="pt-3 pb-3">
     <div class="container">
         <div class="row">
+            <div class="col-md-6 mb-3">
+                <h2>Precise timestamps.</h2>
+                <ul>
+                    <li>Support for leap seconds</li>
+                    <li>GPS - with leap seconds</li>
+                    <li>TAI - with leap seconds</li>
+                    <li>UTC - with leap seconds</li>
+                    <li>UNIX/POSIX - without leap seconds</li>
+                </ul>
+            </div>
             <div class="col-md-6">
 <pre><code class="language-php">&lt;?php
 
@@ -206,15 +216,37 @@ $timestampUTC = $dateTime->timestamp(TimeEpoch::UTC());
 $timestampGPS = $dateTime->timestamp(TimeEpoch::GPS());
 $timestampTAI = $dateTime->timestamp(TimeEpoch::TAI());</code></pre>
             </div>
-            <div class="col-md-6">
-                <h2>Precise timestamps.</h2>
+        </div>
+    </div>
+</section>
+
+<section class="pt-3 pb-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mb-3 order-md-last">
+                <h2>Retry Pattern.</h2>
                 <ul>
-                    <li>Support for leap seconds</li>
-                    <li>GPS - with leap seconds</li>
-                    <li>TAI - with leap seconds</li>
-                    <li>UTC - with leap seconds</li>
-                    <li>UNIX/POSIX - without leap seconds</li>
+                    <li>Any time units</li>
+                    <li>High precision</li>
+                    <li>Different delay modifiers</li>
                 </ul>
+            </div>
+            <div class="col-md-6">
+<pre><code class="language-php">&lt;?php
+
+use Aeon\Calendar\TimeUnit;
+use Aeon\Retry\Execution;
+use function Aeon\Retry\retry;
+
+$result = retry(function (Execution $execution) {
+    $random = \random_int(1, 3);
+
+    if ($random === 2) {
+        throw new \RuntimeException('exception');
+    }
+
+    return $random;
+}, 3, TimeUnit::seconds(3));</code></pre>
             </div>
         </div>
     </div>
@@ -236,19 +268,26 @@ $timestampTAI = $dateTime->timestamp(TimeEpoch::TAI());</code></pre>
             <div class="col-12 col-md-2">
                 <a href="/"></a>
             </div>
-            <div class="col-12 col-md-6 text-white">
+            <div class="col-12 col-md-8 text-white">
                 <p class="mb-4">
                     Aeon is a set of libraries that makes easier to work with PHP Date & Time in elegant Object Oriented way.
                 </p>
                 <div class="row">
-                    <div class="col">
+                    <div class="col-6">
                         <ul class="list-group list-group-minimal">
                             <li class="list-group-item"><a href="https://packagist.org/packages/aeon-php/calendar" target="_blank">aeon-php/calendar</a></li>
                             <li class="list-group-item"><a href="https://packagist.org/packages/aeon-php/calendar-doctrine" target="_blank">aeon-php/calendar-doctrine</a></li>
                             <li class="list-group-item"><a href="https://packagist.org/packages/aeon-php/calendar-holidays" target="_blank">aeon-php/calendar-holidays</a></li>
                             <li class="list-group-item"><a href="https://packagist.org/packages/aeon-php/calendar-holidays-yasumi" target="_blank">aeon-php/calendar-holidays-yasumi</a></li>
+                            <li class="list-group-item"><a href="https://packagist.org/packages/aeon-php/cli" target="_blank">aeon-php/cli</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6">
+                        <ul class="list-group list-group-minimal">
                             <li class="list-group-item"><a href="https://packagist.org/packages/aeon-php/business-hours" target="_blank">aeon-php/business-hours</a></li>
                             <li class="list-group-item"><a href="https://packagist.org/packages/aeon-php/process" target="_blank">aeon-php/process</a></li>
+                            <li class="list-group-item"><a href="https://packagist.org/packages/aeon-php/retry" target="_blank">aeon-php/retry</a></li>
+                            <li class="list-group-item"><a href="https://packagist.org/packages/aeon-php/calendar-twig" target="_blank">aeon-php/calendar-twig</a></li>
                         </ul>
                     </div>
                 </div>

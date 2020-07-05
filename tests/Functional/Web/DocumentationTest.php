@@ -34,6 +34,21 @@ final class DocumentationTest extends WebTestCase
         $this->assertResponseStatusCodeSame(200);
     }
 
+    public function test_process_page() : void
+    {
+        $client = self::createClient();
+        $client->request('GET', $this->generateUrl('docs_process'));
+
+        $this->assertResponseStatusCodeSame(200);
+    }
+
+    public function test_retry_page() : void
+    {
+        $client = self::createClient();
+        $client->request('GET', $this->generateUrl('docs_retry'));
+
+        $this->assertResponseStatusCodeSame(200);
+    }
 
     /**
      * @dataProvider calendar_class_slug_data_provider

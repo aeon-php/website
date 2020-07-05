@@ -75,6 +75,17 @@ final class DocumentationController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/docs/retry", name="docs_retry")
+     */
+    public function retry()
+    {
+        return $this->render('documentation/retry.html.twig', [
+            'activeSection' => 'process',
+            'retryClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_retry_src')),
+        ]);
+    }
+
     public function navigation(?string $activeSection = null) : Response
     {
         return $this->render('documentation/_navigation.html.twig', [
@@ -82,6 +93,7 @@ final class DocumentationController extends AbstractController
             'calendarClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_calendar_src')),
             'calendarHolidaysClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_calendar_holidays_src')),
             'processClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_process_src')),
+            'retryClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_retry_src')),
         ]);
     }
 }
