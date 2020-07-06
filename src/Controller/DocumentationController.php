@@ -29,6 +29,8 @@ final class DocumentationController extends AbstractController
             'activeSection' => 'introduction',
             'calendarClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_calendar_src')),
             'calendarHolidaysClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_calendar_holidays_src')),
+            'processClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_process_src')),
+            'retryClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_retry_src')),
         ]);
     }
 

@@ -29,8 +29,11 @@
                 <hr/>
                 <ul>
                     <li>Full immutability</li>
-                    <li>Elegant object oriented interface</li>
+                    <li>No dependencies</li>
+                    <li>Object oriented interface</li>
                     <li>Mocking time in tests</li>
+                    <li>Retry fragile operations</li>
+                    <li>CLI application</li>
                     <li>Regional holidays detection</li>
                     <li>Business hours abstraction</li>
                     <li>Doctrine DBAL integration</li>
@@ -64,11 +67,29 @@
                 {% endfor %}
                 </ul>
             </section>
-            <section id="calendar-interface">
+            <section id="calendar-holidays-interface">
                 <h5 class="section-title-2">Calendar Holidays Interface</h5>
                 <hr/>
                 <ul>
                     {% for phpClass in calendarHolidaysClasses %}
+                        <li><a href="{{ phpClass.name | class_url }}">{{ phpClass.shortName }}</a></li>
+                    {% endfor %}
+                </ul>
+            </section>
+            <section id="process-interface">
+                <h5 class="section-title-2">Process Interface</h5>
+                <hr/>
+                <ul>
+                    {% for phpClass in processClasses %}
+                        <li><a href="{{ phpClass.name | class_url }}">{{ phpClass.shortName }}</a></li>
+                    {% endfor %}
+                </ul>
+            </section>
+            <section id="retry-interface">
+                <h5 class="section-title-2">Retry Interface</h5>
+                <hr/>
+                <ul>
+                    {% for phpClass in retryClasses %}
                         <li><a href="{{ phpClass.name | class_url }}">{{ phpClass.shortName }}</a></li>
                     {% endfor %}
                 </ul>
@@ -88,6 +109,15 @@
                     </li>
                     <li class="nav-item">
                         <a data-scroll class="nav-link" href="#calendar-interface">Calendar Interface</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#calendar-holidays-interface">Calendar Holidays Interface</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#process-interface">Process</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#retry-interface">Retry</a>
                     </li>
                 </ul>
             </div>
