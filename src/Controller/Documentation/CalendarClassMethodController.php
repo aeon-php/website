@@ -33,7 +33,7 @@ final class CalendarClassMethodController extends AbstractController implements 
      */
     public function calendarClassMethod(string $version, string $classSlug, string $methodSlug) : Response
     {
-        foreach ($this->calendarClasses($version) as $phpClass) {
+        foreach ($classes = $this->calendarClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
                 foreach ($phpClass->methods() as $method) {
                     if (SlugGenerator::forClassMethod($method) === $methodSlug) {
@@ -42,6 +42,8 @@ final class CalendarClassMethodController extends AbstractController implements 
                             'method' => $method,
                             'activeSection' => 'calendar',
                             'version' => $version,
+                            'classes' => $classes,
+                            'library' => 'Calendar'
                         ]);
                     }
                 }

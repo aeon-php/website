@@ -1,16 +1,24 @@
 {% extends 'docs.html.twig' %}
 
-{% block title %}Aeon PHP - {{ class.reflectionClass.shortName }}::{{ method.name }} Method{% endblock %}
+{% block title %}{{ class.name }}::{{ method.name }} method documentation{% endblock %}
 
 {% block body %}
     <div class="row doc-content-body">
-        <article class="col-md-12">
+        <article class="col-md-9">
 
-            <h3>The <code>{{ class.shortName }}::{{ method.name }}</code> method</h3>
+            <h3>The <code><a href="{{ class.name|class_url(version) }}">{{ class.shortName }}</a>::{{ method.name }}</code> method</h3>
             <small>version: {{ version }}</small>
             <section id="introduction">
                 <h5 class="section-title-2">Introduction</h5>
                 <hr/>
+                {% if method.docComment %}
+                    {% if method.docComment.getSummary %}
+                        <p>{{ method.docComment.getSummary|raw|striptags(html_strip_tags) }}</p>
+                    {% endif %}
+                    {% if method.docComment.getDescription %}
+                        <p>{{ method.docComment.getDescription|raw|striptags(html_strip_tags) }}</p>
+                    {% endif %}
+                {% endif %}
             </section>
 
             <section id="synopis">
@@ -50,6 +58,14 @@
                     {% endif %}
                 {% endif %}
             </section>
+        </article>
+        <article class="col-md-3">
+            <h4>{{ library }} - {{ version }}</h4>
+            <ul>
+                {% for phpClass in classes %}
+                    <li><a href="{{ phpClass.name | class_url(version) }}">{{ phpClass.shortName }}</a></li>
+                {% endfor %}
+            </ul>
         </article>
     </div>
 {% endblock %}

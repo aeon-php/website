@@ -33,12 +33,14 @@ final class RetryClassController extends AbstractController implements Controlle
      */
     public function retryClass(string $version, string $classSlug) : Response
     {
-        foreach ($this->retryClasses($version) as $phpClass) {
+        foreach ($classes = $this->retryClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
                 return $this->render('documentation/class.html.twig', [
                     'class' => $phpClass,
                     'activeSection' => 'retry',
                     'version' => $version,
+                    'classes' => $classes,
+                    'library' => 'Retry'
                 ]);
             }
         }

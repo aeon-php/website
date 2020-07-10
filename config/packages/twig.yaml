@@ -5,3 +5,4 @@ twig:
     exception_controller: null
     globals:
         google_analytics_tracking_code: '%env(GOOGLE_ANALYTICS_TRACKING_CODE)%'
+        html_strip_tags: '<a><br><ul><li><ol><h1><h2><h3><h4><h5><h6><pre><code>'

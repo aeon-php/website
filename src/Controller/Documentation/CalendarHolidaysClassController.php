@@ -33,12 +33,14 @@ final class CalendarHolidaysClassController extends AbstractController implement
      */
     public function calendarHolidaysClass(string $version, string $classSlug) : Response
     {
-        foreach ($this->calendarHolidaysClasses($version) as $phpClass) {
+        foreach ($classes = $this->calendarHolidaysClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
                 return $this->render('documentation/class.html.twig', [
                     'class' => $phpClass,
                     'activeSection' => 'calendar-holidays',
                     'version' => $version,
+                    'classes' => $classes,
+                    'library' => 'Calendar Holidays'
                 ]);
             }
         }

@@ -80,6 +80,15 @@ final class PHPClass
         );
     }
 
+    public function parent() : ?PHPClass
+    {
+        if ($this->reflectionClass->getParentClass()) {
+            return new PHPClass($this->reflectionClass->getParentClass(), $this->reflector);
+        }
+
+        return null;
+    }
+
     public function isInternal() : bool
     {
         return $this->reflectionClass->isInternal();

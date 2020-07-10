@@ -33,7 +33,7 @@ final class ProcessClassMethodController extends AbstractController implements C
      */
     public function processClassMethod(string $version, string $classSlug, string $methodSlug) : Response
     {
-        foreach ($this->processClasses($version) as $phpClass) {
+        foreach ($classes = $this->processClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
                 foreach ($phpClass->methods() as $method) {
                     if (SlugGenerator::forClassMethod($method) === $methodSlug) {
@@ -42,6 +42,8 @@ final class ProcessClassMethodController extends AbstractController implements C
                             'method' => $method,
                             'activeSection' => 'process',
                             'version' => $version,
+                            'classes' => $classes,
+                            'library' => 'Process'
                         ]);
                     }
                 }

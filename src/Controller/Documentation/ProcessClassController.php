@@ -33,12 +33,14 @@ final class ProcessClassController extends AbstractController implements Control
      */
     public function processClass(string $version, string $classSlug) : Response
     {
-        foreach ($this->processClasses($version) as $phpClass) {
+        foreach ($classes = $this->processClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
                 return $this->render('documentation/class.html.twig', [
                     'class' => $phpClass,
                     'activeSection' => 'process',
                     'version' => $version,
+                    'classes' => $classes,
+                    'library' => 'Process'
                 ]);
             }
         }

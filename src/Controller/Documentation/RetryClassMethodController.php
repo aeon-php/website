@@ -33,7 +33,7 @@ final class RetryClassMethodController extends AbstractController implements Con
      */
     public function retryClassMethod(string $version, string $classSlug, string $methodSlug) : Response
     {
-        foreach ($this->retryClasses($version) as $phpClass) {
+        foreach ($classes = $this->retryClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
                 foreach ($phpClass->methods() as $method) {
                     if (SlugGenerator::forClassMethod($method) === $methodSlug) {
@@ -42,6 +42,8 @@ final class RetryClassMethodController extends AbstractController implements Con
                             'method' => $method,
                             'activeSection' => 'retry',
                             'version' => $version,
+                            'classes' => $classes,
+                            'library' => 'Retry'
                         ]);
                     }
                 }

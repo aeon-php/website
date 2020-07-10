@@ -33,12 +33,14 @@ final class CalendarClassController extends AbstractController implements Contro
      */
     public function calendarClass(string $version, string $classSlug) : Response
     {
-        foreach ($this->calendarClasses($version) as $phpClass) {
+        foreach ($classes = $this->calendarClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
                 return $this->render('documentation/class.html.twig', [
                     'class' => $phpClass,
                     'activeSection' => 'calendar',
                     'version' => $version,
+                    'classes' => $classes,
+                    'library' => 'Calendar'
                 ]);
             }
         }

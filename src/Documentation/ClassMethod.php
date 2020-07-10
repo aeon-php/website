@@ -78,8 +78,12 @@ final class ClassMethod
         );
     }
 
-    public function docComment() : DocBlock
+    public function docComment() : ?DocBlock
     {
-        return DocBlockFactory::createInstance()->create($this->reflectionMethod->getDocComment());
+        if ($this->reflectionMethod->getDocComment()) {
+            return DocBlockFactory::createInstance()->create($this->reflectionMethod->getDocComment());
+        }
+
+        return null;
     }
 }
