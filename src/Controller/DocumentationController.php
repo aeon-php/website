@@ -34,6 +34,10 @@ final class DocumentationController extends AbstractController
             'activeSection' => 'introduction',
             'calendarClasses' => $this->calendarClasses('1.x'),
             'calendarVersion' => '1.x',
+            'calendarTwigClasses' => $this->calendarTwigClasses('1.x'),
+            'calendarTwigVersion' => '1.x',
+            'calendarDoctrineClasses' => $this->calendarDoctrineClasses('1.x'),
+            'calendarDoctrineVersion' => '1.x',
             'calendarHolidaysClasses' => $this->calendarHolidaysClasses('1.x'),
             'calendarHolidaysVersion' => '1.x',
             'processClasses' => $this->processClasses('1.x'),
@@ -57,10 +61,12 @@ final class DocumentationController extends AbstractController
     {
         return $this->render('documentation/_navigation.html.twig', [
             'activeSection' => $activeSection,
-            'calendarVersions' => $this->parameterBag->get('aeon_php_calendar')['versions'],
-            'calendarHolidaysVersions' => $this->parameterBag->get('aeon_php_calendar_holidays')['versions'],
-            'processVersions' => $this->parameterBag->get('aeon_php_process')['versions'],
-            'retryVersions' => $this->parameterBag->get('aeon_php_retry')['versions'],
+            'calendarVersions' => $this->calendarVersions(),
+            'calendarDoctrineVersions' => $this->calendarDoctrineVersions(),
+            'calendarTwigVersions' => $this->calendarTwigVersions(),
+            'calendarHolidaysVersions' => $this->calendarHolidaysVersions(),
+            'processVersions' => $this->processVersions(),
+            'retryVersions' => $this->retryVersions(),
         ]);
     }
 }

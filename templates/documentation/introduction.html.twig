@@ -69,6 +69,15 @@
                 {% endfor %}
                 </ul>
             </section>
+            <section id="calendar-interface">
+                <h5 class="section-title-2">Calendar Twig Interface - {{ calendarTwigVersion }}</h5>
+                <hr/>
+                <ul>
+                    {% for phpClass in calendarTwigClasses %}
+                        <li><a href="{{ phpClass.name | class_url(calendarVersion) }}">{{ phpClass.shortName }}</a></li>
+                    {% endfor %}
+                </ul>
+            </section>
             <section id="process-interface">
                 <h5 class="section-title-2">Process Interface - {{ processVersion }}</h5>
                 <hr/>

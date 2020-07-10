@@ -25,6 +25,10 @@ final class SlugGenerator
             return \str_replace('\\', '-', \mb_strtolower(\ltrim(\str_replace('Aeon\\Retry', '', $className), '\\')));
         }
 
+        if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Twig\\')) {
+            return \str_replace('\\', '-', \mb_strtolower(\ltrim(\str_replace('Aeon\\Twig', '', $className), '\\')));
+        }
+
         if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calculator\\')) {
             return \str_replace('\\', '-', \mb_strtolower(\ltrim(\str_replace('Aeon\\Calculator', '', $className), '\\')));
         }

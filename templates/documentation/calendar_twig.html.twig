@@ -1,0 +1,36 @@
+{% extends 'docs.html.twig' %}
+
+{% block title %}Aeon PHP - Calendar Twig - Documentation{% endblock %}
+
+{% block body %}
+    <div class="row doc-content-body">
+        <article class="col-md-9">
+            <section id="calendar-interface">
+                <h5 class="section-title-2">Calendar Twig</h5>
+                <hr/>
+                Available versions:
+                <ul>
+                {% for version, src in versions %}
+                    <li><a href="{{ path('docs_calendar_twig_version', { version: version }) }}">{{ version }}</a></li>
+                {% endfor %}
+                </ul>
+            </section>
+            <section>
+                <h3>Description</h3>
+                <p>
+                    This library provides Aeon Twig extension.
+                </p>
+
+                <h5>Filters</h5>
+                <ul>
+                    <li><code>aeon_date(string $format = null, string $timezone = null) : string</code> - formats Aeon <code>DateTime</code> object into string.
+                </ul>
+
+                <h5>Functions</h5>
+                <ul>
+                    <li><code>aeon_now(string $timezone = null) : Aeon\Calendar\Gregorian\DateTime</code> - creates new instance of Aeon <code>DateTime</code> from current time.</li>
+                </ul>
+            </section>
+        </article>
+    </div>
+{% endblock %}

@@ -7,6 +7,16 @@ parameters:
     aeon_php_calendar:
         versions:
             1.x: "%kernel.project_dir%/sources/calendar/1.x/src"
+    aeon_php_calendar_twig:
+        versions:
+            1.x: "%kernel.project_dir%/sources/calendar-twig/1.x/src"
+        dependencies:
+            aeon_php_calendar: "1.x"
+    aeon_php_calendar_doctrine:
+        versions:
+            1.x: "%kernel.project_dir%/sources/calendar-doctrine/1.x/src"
+        dependencies:
+            aeon_php_calendar: "1.x"
     aeon_php_process:
         versions:
             1.x: "%kernel.project_dir%/sources/process/1.x/src"

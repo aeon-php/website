@@ -54,6 +54,33 @@ trait CodeReflectionTrait
         );
     }
 
+    private function calendarTwigVersions() : array
+    {
+        return $this->parameterBag()->get('aeon_php_calendar_twig')['versions'];
+    }
+
+    private function calendarTwigClasses(string $version) : array
+    {
+        return $this->loadCode(
+            $this->parameterBag()->get('aeon_php_calendar_twig'),
+            $version
+        );
+    }
+
+    private function calendarDoctrineVersions() : array
+    {
+        return $this->parameterBag()->get('aeon_php_calendar_doctrine')['versions'];
+    }
+
+    private function calendarDoctrineClasses(string $version) : array
+    {
+        return $this->loadCode(
+            $this->parameterBag()->get('aeon_php_calendar_doctrine'),
+            $version
+        );
+    }
+
+
     private function calendarHolidaysClasses(string $version) : array
     {
         return $this->loadCode(

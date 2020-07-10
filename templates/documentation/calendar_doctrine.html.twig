@@ -1,0 +1,54 @@
+{% extends 'docs.html.twig' %}
+
+{% block title %}Aeon PHP - Calendar Doctrine - Documentation{% endblock %}
+
+{% block body %}
+    <div class="row doc-content-body">
+        <article class="col-md-9">
+            <section id="calendar-interface">
+                <h5 class="section-title-2">Calendar Doctrine</h5>
+                <hr/>
+                Available versions:
+                <ul>
+                {% for version, src in versions %}
+                    <li><a href="{{ path('docs_calendar_doctrine_version', { version: version }) }}">{{ version }}</a></li>
+                {% endfor %}
+                </ul>
+            </section>
+            <section>
+                <h3>Description</h3>
+                <p>
+                    This library provides Aeon Doctrine DBAL types.
+                </p>
+            </section>
+            <section>
+                <h3>Usage PHP</h3>
+
+                <pre><code class="language-php">{% apply spaceless  %}
+&lt;?php
+use Doctrine\DBAL\Types\Type;
+use Aeon\Doctrine\Calendar\Gregorian\DateType;
+use Aeon\Doctrine\Calendar\Gregorian\DateTimeType;
+use Aeon\Doctrine\Calendar\Gregorian\DateTimeTzType;
+
+Type::addType(DateType::NAME, DateType::class); // aeon_date
+Type::addType(DateTimeType::NAME, DateTimeType::class); // aeon_datetime
+Type::addType(DateTimeTzType::NAME, DateTimeTzType::class); // aeon_datetime_tz
+{% endapply %}</code></pre>
+
+                <h3>Usage Symfony</h3>
+
+                <pre><code class="language-yaml">{% apply spaceless  %}
+# config/packages/doctrine.yaml
+
+doctrine:
+    dbal:
+        types:
+            aeon_date: Aeon\Calendar\Doctrine\Gregorian\DateType
+            aeon_datetime: Aeon\Calendar\Doctrine\Gregorian\DateTimeType
+            aeon_datetime_tz: Aeon\Calendar\Doctrine\Gregorian\DateTimeTzType
+{% endapply %}</code></pre>
+            </section>
+        </article>
+    </div>
+{% endblock %}

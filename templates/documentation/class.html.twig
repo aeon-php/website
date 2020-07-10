@@ -62,7 +62,7 @@
             <section id="template"></section>
         </article>
         <article class="col-md-3">
-            <h3>{{ library }} - {{ version }}</h3>
+            <h5>{{ library }} - {{ version }}</h5>
             <ul>
                 {% for phpClass in classes %}
                     <li><a href="{{ phpClass.name | class_url(version) }}">{{ phpClass.shortName }}</a></li>

@@ -40,6 +40,14 @@ final class PHPDocsExtension extends AbstractExtension
             return $this->router->generate('docs_process_class', ['classSlug' => SlugGenerator::forClass($className), 'version' => $version]);
         }
 
+        if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Twig\\')) {
+            return $this->router->generate('docs_calendar_twig_class', ['classSlug' => SlugGenerator::forClass($className), 'version' => $version]);
+        }
+
+        if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Doctrine\\')) {
+            return $this->router->generate('docs_calendar_doctrine_class', ['classSlug' => SlugGenerator::forClass($className), 'version' => $version]);
+        }
+
         if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calculator\\')) {
             return $this->router->generate('docs_calendar_class', ['classSlug' => SlugGenerator::forClass($className), 'version' => $version]);
         }
@@ -63,6 +71,22 @@ final class PHPDocsExtension extends AbstractExtension
 
         if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Retry')) {
             return $this->router->generate('docs_retry_class_method', [
+                'version' => $version,
+                'classSlug' => SlugGenerator::forClass($className),
+                'methodSlug' => SlugGenerator::forMethod($methodName),
+            ]);
+        }
+
+        if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Doctrine\\')) {
+            return $this->router->generate('docs_calendar_doctrine_class_method', [
+                'version' => $version,
+                'classSlug' => SlugGenerator::forClass($className),
+                'methodSlug' => SlugGenerator::forMethod($methodName),
+            ]);
+        }
+
+        if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Twig\\')) {
+            return $this->router->generate('docs_calendar_twig_class_method', [
                 'version' => $version,
                 'classSlug' => SlugGenerator::forClass($className),
                 'methodSlug' => SlugGenerator::forMethod($methodName),
