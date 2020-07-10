@@ -18,7 +18,7 @@ abstract class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestC
 
     public function calendarSrcPath() : string
     {
-        return self::$container->getParameter('aeon_php_calendar_src');
+        return self::$container->getParameter('aeon_php_calendar')['versions']['1.x'];
     }
 
     public function calendarHolidaySrcPath() : string

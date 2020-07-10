@@ -6,7 +6,6 @@ namespace App\Controller\Documentation;
 
 use App\Controller\CodeReflectionTrait;
 use App\Documentation\SlugGenerator;
-use PackageVersions\Versions;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,17 +23,22 @@ final class ProcessClassController extends AbstractController implements Control
         $this->parameterBag = $parameterBag;
     }
 
-    /**
-     * @Route("/docs/process/{classSlug}", name="docs_process_class")
-     */
-    public function processClass(string $classSlug) : Response
+    protected function parameterBag() : ParameterBagInterface
     {
-        foreach ($this->codeClassesReflection($this->parameterBag->get('aeon_php_process_src')) as $phpClass) {
+        return $this->parameterBag;
+    }
+
+    /**
+     * @Route("/docs/process/{version}/{classSlug}", name="docs_process_class")
+     */
+    public function processClass(string $version, string $classSlug) : Response
+    {
+        foreach ($this->processClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
                 return $this->render('documentation/class.html.twig', [
                     'class' => $phpClass,
                     'activeSection' => 'process',
-                    'version' => Versions::getVersion('aeon-php/process'),
+                    'version' => $version,
                 ]);
             }
         }
@@ -55,8 +59,10 @@ final class ProcessClassController extends AbstractController implements Control
     public function getArguments() : array
     {
         $arguments = [];
-        foreach ($this->codeClassesReflection($this->parameterBag->get('aeon_php_process_src')) as $phpClass) {
-            $arguments[] = [SlugGenerator::forPHPClass($phpClass)];
+        foreach ($this->processVersions() as $version => $src) {
+            foreach ($this->processClasses($version) as $phpClass) {
+                $arguments[] = [$version, SlugGenerator::forPHPClass($phpClass)];
+            }
         }
 
         return $arguments;

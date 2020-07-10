@@ -6,7 +6,6 @@ namespace App\Controller\Documentation;
 
 use App\Controller\CodeReflectionTrait;
 use App\Documentation\SlugGenerator;
-use PackageVersions\Versions;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,12 +23,17 @@ final class ProcessClassMethodController extends AbstractController implements C
         $this->parameterBag = $parameterBag;
     }
 
-    /**
-     * @Route("/docs/process/{classSlug}/method/{methodSlug}", name="docs_process_class_method")
-     */
-    public function processClassMethod(string $classSlug, string $methodSlug) : Response
+    protected function parameterBag() : ParameterBagInterface
     {
-        foreach ($this->codeClassesReflection($this->parameterBag->get('aeon_php_process_src')) as $phpClass) {
+        return $this->parameterBag;
+    }
+
+    /**
+     * @Route("/docs/process/{version}/{classSlug}/method/{methodSlug}", name="docs_process_class_method")
+     */
+    public function processClassMethod(string $version, string $classSlug, string $methodSlug) : Response
+    {
+        foreach ($this->processClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
                 foreach ($phpClass->methods() as $method) {
                     if ($method->slug() === $methodSlug) {
@@ -37,7 +41,7 @@ final class ProcessClassMethodController extends AbstractController implements C
                             'class' => $phpClass,
                             'method' => $method,
                             'activeSection' => 'process',
-                            'version' => Versions::getVersion('aeon-php/process'),
+                            'version' => $version,
                         ]);
                     }
                 }
@@ -62,9 +66,11 @@ final class ProcessClassMethodController extends AbstractController implements C
     public function getArguments() : array
     {
         $arguments = [];
-        foreach ($this->codeClassesReflection($this->parameterBag->get('aeon_php_process_src')) as $phpClass) {
-            foreach ($phpClass->methods() as $method) {
-                $arguments[] = [SlugGenerator::forPHPClass($phpClass), $method->slug()];
+        foreach ($this->processVersions() as $version => $src) {
+            foreach ($this->processClasses($version) as $phpClass) {
+                foreach ($phpClass->methods() as $method) {
+                    $arguments[] = [$version, SlugGenerator::forPHPClass($phpClass), $method->slug()];
+                }
             }
         }
 

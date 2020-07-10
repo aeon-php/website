@@ -7,7 +7,7 @@
         <article class="col-md-12">
 
             <h3>The <code>{{ class.shortName }}::{{ method.name }}</code> method</h3>
-            <small>( {{ version }} )</small>
+            <small>version: {{ version }}</small>
             <section id="introduction">
                 <h5 class="section-title-2">Introduction</h5>
                 <hr/>
@@ -17,7 +17,7 @@
                 <h5 class="section-title-2">Description</h5>
                 <hr/>
                 <div class="code-synopis" style="background:#fff;padding: 2rem; font-family:'Fira Mono', 'Source Code Pro', monospace;">
-                    {% include 'documentation/class/_method.html.twig' with {method: method} only %}
+                    {% include 'documentation/class/_method.html.twig' with {'method': method, 'version': version} only %}
                 </div>
             </section>
 
@@ -27,7 +27,7 @@
                 {% if method.parameters|length %}
                     <ul>
                         {% for parameter in method.parameters %}
-                        <li>{% include 'documentation/class/_parameter.html.twig' with {parameter: parameter} %}</li>
+                        <li>{% include 'documentation/class/_parameter.html.twig' with {'parameter': parameter, 'version': version} %}</li>
                         {% endfor %}
                     </ul>
                 {% endif %}
@@ -43,7 +43,7 @@
                         {% if method.returnTypeClass.internal %}
                             {{ method.returnTypeClass.shortName }}
                         {% else %}
-                            <a style="color: #369;" href="{{ method.returnTypeClass.name | class_method_url(method.name) }}">
+                            <a style="color: #369;" href="{{ method.returnTypeClass.name | class_url(version) }}">
                                 <strong>{{ method.returnTypeClass.shortName }}</strong>
                             </a>
                         {% endif %}

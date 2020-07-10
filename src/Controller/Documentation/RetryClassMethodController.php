@@ -6,7 +6,6 @@ namespace App\Controller\Documentation;
 
 use App\Controller\CodeReflectionTrait;
 use App\Documentation\SlugGenerator;
-use PackageVersions\Versions;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,12 +23,17 @@ final class RetryClassMethodController extends AbstractController implements Con
         $this->parameterBag = $parameterBag;
     }
 
-    /**
-     * @Route("/docs/retry/{classSlug}/method/{methodSlug}", name="docs_retry_class_method")
-     */
-    public function retryClassMethod(string $classSlug, string $methodSlug) : Response
+    protected function parameterBag() : ParameterBagInterface
     {
-        foreach ($this->codeClassesReflection($this->parameterBag->get('aeon_php_retry_src')) as $phpClass) {
+        return $this->parameterBag;
+    }
+
+    /**
+     * @Route("/docs/retry/{version}/{classSlug}/method/{methodSlug}", name="docs_retry_class_method")
+     */
+    public function retryClassMethod(string $version, string $classSlug, string $methodSlug) : Response
+    {
+        foreach ($this->retryClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
                 foreach ($phpClass->methods() as $method) {
                     if ($method->slug() === $methodSlug) {
@@ -37,7 +41,7 @@ final class RetryClassMethodController extends AbstractController implements Con
                             'class' => $phpClass,
                             'method' => $method,
                             'activeSection' => 'retry',
-                            'version' => Versions::getVersion('aeon-php/retry'),
+                            'version' => $version,
                         ]);
                     }
                 }
@@ -62,9 +66,11 @@ final class RetryClassMethodController extends AbstractController implements Con
     public function getArguments() : array
     {
         $arguments = [];
-        foreach ($this->codeClassesReflection($this->parameterBag->get('aeon_php_retry_src')) as $phpClass) {
-            foreach ($phpClass->methods() as $method) {
-                $arguments[] = [SlugGenerator::forPHPClass($phpClass), $method->slug()];
+        foreach ($this->retryVersions() as $version => $src) {
+            foreach ($this->retryClasses($version) as $phpClass) {
+                foreach ($phpClass->methods() as $method) {
+                    $arguments[] = [$version, SlugGenerator::forPHPClass($phpClass), $method->slug()];
+                }
             }
         }
 

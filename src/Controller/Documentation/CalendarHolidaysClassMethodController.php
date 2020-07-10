@@ -6,7 +6,6 @@ namespace App\Controller\Documentation;
 
 use App\Controller\CodeReflectionTrait;
 use App\Documentation\SlugGenerator;
-use PackageVersions\Versions;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,20 +23,25 @@ final class CalendarHolidaysClassMethodController extends AbstractController imp
         $this->parameterBag = $parameterBag;
     }
 
-    /**
-     * @Route("/docs/calendar-holidays/{classSlug}/method/{methodSlug}", name="docs_calendar_holidays_class_method")
-     */
-    public function calendarHolidaysClassMethod(string $classSlug, string $methodSlug) : Response
+    protected function parameterBag() : ParameterBagInterface
     {
-        foreach ($this->codeClassesReflection($this->parameterBag->get('aeon_php_calendar_holidays_src')) as $phpClass) {
+        return $this->parameterBag;
+    }
+
+    /**
+     * @Route("/docs/calendar-holidays/{version}/{classSlug}/method/{methodSlug}", name="docs_calendar_holidays_class_method")
+     */
+    public function calendarHolidaysClassMethod(string $version, string $classSlug, string $methodSlug) : Response
+    {
+        foreach ($this->calendarHolidaysClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
                 foreach ($phpClass->methods() as $method) {
                     if ($method->slug() === $methodSlug) {
                         return $this->render('documentation/method.html.twig', [
                             'class' => $phpClass,
                             'method' => $method,
-                            'activeSection' => 'calendar',
-                            'version' => Versions::getVersion('aeon-php/calendar'),
+                            'activeSection' => 'calendar-holidays',
+                            'version' => $version,
                         ]);
                     }
                 }
@@ -62,9 +66,11 @@ final class CalendarHolidaysClassMethodController extends AbstractController imp
     public function getArguments() : array
     {
         $arguments = [];
-        foreach ($this->codeClassesReflection($this->parameterBag->get('aeon_php_calendar_holidays_src')) as $phpClass) {
-            foreach ($phpClass->methods() as $method) {
-                $arguments[] = [SlugGenerator::forPHPClass($phpClass), $method->slug()];
+        foreach ($this->calendarHolidaysVersions() as $version => $srv) {
+            foreach ($this->calendarHolidaysClasses($version) as $phpClass) {
+                foreach ($phpClass->methods() as $method) {
+                    $arguments[] = [$version, SlugGenerator::forPHPClass($phpClass), $method->slug()];
+                }
             }
         }
 

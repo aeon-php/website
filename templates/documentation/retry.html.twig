@@ -8,10 +8,11 @@
         <section id="calendar-interface">
             <h5 class="section-title-2">Retry</h5>
             <hr/>
+            Available versions:
             <ul>
-            {% for phpClass in retryClasses %}
-                <li><a href="{{ phpClass.name | class_url }}">{{ phpClass.shortName }}</a></li>
-            {% endfor %}
+                {% for version, src in versions %}
+                    <li><a href="{{ path('docs_retry_version', { version: version }) }}">{{ version }}</a></li>
+                {% endfor %}
             </ul>
         </section>
         </article>

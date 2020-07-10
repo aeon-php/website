@@ -10,6 +10,7 @@ use phpDocumentor\Reflection\DocBlockFactory;
 use Roave\BetterReflection\Reflection\ReflectionClass;
 use Roave\BetterReflection\Reflection\ReflectionMethod;
 use Roave\BetterReflection\Reflection\ReflectionParameter;
+use Roave\BetterReflection\Reflector\ClassReflector;
 
 final class ClassMethod
 {
@@ -17,15 +18,18 @@ final class ClassMethod
 
     private PHPClass $PHPClass;
 
-    public function __construct(PHPClass $PHPClass, ReflectionMethod $reflectionMethod)
+    private ClassReflector $reflector;
+
+    public function __construct(PHPClass $PHPClass, ReflectionMethod $reflectionMethod, ClassReflector $reflector)
     {
         $this->reflectionMethod = $reflectionMethod;
         $this->PHPClass = $PHPClass;
+        $this->reflector = $reflector;
     }
 
     public function returnTypeClass() : PHPClass
     {
-        return new PHPClass(ReflectionClass::createFromName($this->reflectionMethod->getReturnType()->getName()));
+        return new PHPClass($this->reflector->reflect($this->reflectionMethod->getReturnType()->getName()), $this->reflector);
     }
 
     public function PHPClass() : PHPClass
@@ -68,7 +72,7 @@ final class ClassMethod
     {
         return \array_map(
             function (ReflectionParameter $reflectionParameter) : Parameter {
-                return new Parameter($reflectionParameter);
+                return new Parameter($reflectionParameter, $this->reflector);
             },
             $this->reflectionMethod->getParameters()
         );

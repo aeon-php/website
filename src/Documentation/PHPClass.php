@@ -8,17 +8,18 @@ use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlockFactory;
 use Roave\BetterReflection\Reflection\ReflectionClass;
 use Roave\BetterReflection\Reflection\ReflectionMethod;
+use Roave\BetterReflection\Reflector\ClassReflector;
 
 final class PHPClass
 {
-    /**
-     * @var ReflectionClass
-     */
-    private $reflectionClass;
+    private ReflectionClass $reflectionClass;
 
-    public function __construct(ReflectionClass $reflectionClass)
+    private ClassReflector $reflector;
+
+    public function __construct(ReflectionClass $reflectionClass, ClassReflector $reflector)
     {
         $this->reflectionClass = $reflectionClass;
+        $this->reflector = $reflector;
     }
 
     public function reflectionClass() : ReflectionClass
@@ -60,7 +61,7 @@ final class PHPClass
     {
         return \array_map(
             function (ReflectionMethod $reflectionMethod) : ClassMethod {
-                return new ClassMethod($this, $reflectionMethod);
+                return new ClassMethod($this, $reflectionMethod, $this->reflector);
             },
             $this->reflectionClass->getMethods()
         );
@@ -73,7 +74,7 @@ final class PHPClass
     {
         return \array_map(
             function (ReflectionClass $reflectionClass) : PHPClass {
-                return new PHPClass($reflectionClass);
+                return new PHPClass($reflectionClass, $this->reflector);
             },
             $this->reflectionClass()->getInterfaces()
         );

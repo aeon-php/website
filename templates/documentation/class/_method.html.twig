@@ -1,12 +1,12 @@
 <span style="color: #936;">{{ method.accessType }}</span>
 {% if method.reflectionMethod.abstract and method.reflectionClass.interface == false %} abstract{% endif %}
 {% if method.reflectionMethod.static %} <span style="color: #936;">static</span> {% endif %}
-<a href="{{ method.PHPClass.name | class_method_url(method.name) }}" style="color:#369; border-bottom: 1px solid;">{{ method.name }}</a>
+<a href="{{ method.PHPClass.name | class_method_url(method.name, version) }}" style="color:#369; border-bottom: 1px solid;">{{ method.name }}</a>
 ({% if method.parameters|length == 0%}
     <span style="color: #737373;">void</span>
 {% else%}
     {% for parameter in method.parameters %}
-        {% include 'documentation/class/_parameter.html.twig' with {'parameter' : parameter} only %}
+        {% include 'documentation/class/_parameter.html.twig' with {'parameter' : parameter, 'version' : version} only %}
         {% if loop.last == false %}, {% endif %}
     {% endfor %}
 {% endif %})
@@ -18,7 +18,7 @@
         {% if method.returnTypeClass.internal %}
             <a href="#" style="color:#737373;">\{{ method.returnTypeClass.shortName }}</a>
         {% else %}
-            <a href="{{ method.returnTypeClass.name | class_url }}" style="color:#369; border-bottom: 1px solid;">{{ method.returnTypeClass.shortName }}</a>
+            <a href="{{ method.returnTypeClass.name | class_url(version) }}" style="color:#369; border-bottom: 1px solid;">{{ method.returnTypeClass.shortName }}</a>
         {% endif %}
     {% endif %}
 {% endif %}

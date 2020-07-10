@@ -50,47 +50,49 @@
                 <hr/>
                 <ul>
                     <li><a href="https://packagist.org/packages/aeon-php/calendar" target="_blank">aeon-php/calendar</a></li>
-                    <li><a href="https://packagist.org/packages/aeon-php/calendar-doctrine" target="_blank">aeon-php/calendar-doctrine</a></li>
-                    <li><a href="https://packagist.org/packages/aeon-php/calendar-holidays" target="_blank">aeon-php/calendar-holidays</a></li>
-                    <li><a href="https://packagist.org/packages/aeon-php/calendar-holidays-yasumi" target="_blank">aeon-php/calendar-holidays-yasumi</a></li>
-                    <li><a href="https://packagist.org/packages/aeon-php/business-hours" target="_blank">aeon-php/business-hours</a></li>
-                    <li><a href="https://packagist.org/packages/aeon-php/process" target="_blank">aeon-php/process</a></li>
+                    <li><a href="https://packagist.org/packages/aeon-php/process" target="_blank">aeon-php/process</a> - improved sleep function</li>
+                    <li><a href="https://packagist.org/packages/aeon-php/retry" target="_blank">aeon-php/retry</a> - retry strategy for failing processes</li>
+                    <li><a href="https://packagist.org/packages/aeon-php/cli" target="_blank">aeon-php/cli</a> - CLI app to check if time is synced</li>
+                    <li><a href="https://packagist.org/packages/aeon-php/calendar-doctrine" target="_blank">aeon-php/calendar-doctrine</a> - DBAL types</li>
+                    <li><a href="https://packagist.org/packages/aeon-php/calendar-holidays" target="_blank">aeon-php/calendar-holidays</a> - Regional Holidays abstraction /li>
+                    <li><a href="https://packagist.org/packages/aeon-php/calendar-holidays-yasumi" target="_blank">aeon-php/calendar-holidays-yasumi</a> - Yasumi bridge</li>
+                    <li><a href="https://packagist.org/packages/aeon-php/business-hours" target="_blank">aeon-php/business-hours</a> - Business Hours abstraction</li>
                 </ul>
             </section>
 
             <section id="calendar-interface">
-                <h5 class="section-title-2">Calendar Interface</h5>
+                <h5 class="section-title-2">Calendar Interface - {{ calendarVersion }}</h5>
                 <hr/>
                 <ul>
                 {% for phpClass in calendarClasses %}
-                    <li><a href="{{ phpClass.name | class_url }}">{{ phpClass.shortName }}</a></li>
+                    <li><a href="{{ phpClass.name | class_url(calendarVersion) }}">{{ phpClass.shortName }}</a></li>
                 {% endfor %}
                 </ul>
             </section>
-            <section id="calendar-holidays-interface">
-                <h5 class="section-title-2">Calendar Holidays Interface</h5>
-                <hr/>
-                <ul>
-                    {% for phpClass in calendarHolidaysClasses %}
-                        <li><a href="{{ phpClass.name | class_url }}">{{ phpClass.shortName }}</a></li>
-                    {% endfor %}
-                </ul>
-            </section>
             <section id="process-interface">
-                <h5 class="section-title-2">Process Interface</h5>
+                <h5 class="section-title-2">Process Interface - {{ processVersion }}</h5>
                 <hr/>
                 <ul>
                     {% for phpClass in processClasses %}
-                        <li><a href="{{ phpClass.name | class_url }}">{{ phpClass.shortName }}</a></li>
+                        <li><a href="{{ phpClass.name | class_url(processVersion) }}">{{ phpClass.shortName }}</a></li>
                     {% endfor %}
                 </ul>
             </section>
             <section id="retry-interface">
-                <h5 class="section-title-2">Retry Interface</h5>
+                <h5 class="section-title-2">Retry Interface - {{ retryVersion }}</h5>
                 <hr/>
                 <ul>
                     {% for phpClass in retryClasses %}
-                        <li><a href="{{ phpClass.name | class_url }}">{{ phpClass.shortName }}</a></li>
+                        <li><a href="{{ phpClass.name | class_url(retryVersion) }}">{{ phpClass.shortName }}</a></li>
+                    {% endfor %}
+                </ul>
+            </section>
+            <section id="calendar-holidays-interface">
+                <h5 class="section-title-2">Calendar Holidays Interface - {{ calendarHolidaysVersion }}</h5>
+                <hr/>
+                <ul>
+                    {% for phpClass in calendarHolidaysClasses %}
+                        <li><a href="{{ phpClass.name | class_url(calendarHolidaysVersion) }}">{{ phpClass.shortName }}</a></li>
                     {% endfor %}
                 </ul>
             </section>
@@ -111,13 +113,13 @@
                         <a data-scroll class="nav-link" href="#calendar-interface">Calendar Interface</a>
                     </li>
                     <li class="nav-item">
-                        <a data-scroll class="nav-link" href="#calendar-holidays-interface">Calendar Holidays Interface</a>
-                    </li>
-                    <li class="nav-item">
                         <a data-scroll class="nav-link" href="#process-interface">Process</a>
                     </li>
                     <li class="nav-item">
                         <a data-scroll class="nav-link" href="#retry-interface">Retry</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#calendar-holidays-interface">Calendar Holidays Interface</a>
                     </li>
                 </ul>
             </div>

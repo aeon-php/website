@@ -26,39 +26,32 @@ final class PHPDocsExtension extends AbstractExtension
         ];
     }
 
-    public function classUrlFilter(string $className) : string
+    public function classUrlFilter(string $className, string $version) : string
     {
-        if (!\class_exists($className) && !\interface_exists($className)) {
-            return '#';
-        }
-
         if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calendar\\Gregorian\\Holidays')) {
-            return $this->router->generate('docs_calendar_holidays_class', ['classSlug' => SlugGenerator::forClass($className)]);
+            return $this->router->generate('docs_calendar_holidays_class', ['classSlug' => SlugGenerator::forClass($className), 'version' => $version]);
         }
 
         if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Retry')) {
-            return $this->router->generate('docs_retry_class', ['classSlug' => SlugGenerator::forClass($className)]);
+            return $this->router->generate('docs_retry_class', ['classSlug' => SlugGenerator::forClass($className), 'version' => $version]);
         }
 
         if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calendar\\System')) {
-            return $this->router->generate('docs_process_class', ['classSlug' => SlugGenerator::forClass($className)]);
+            return $this->router->generate('docs_process_class', ['classSlug' => SlugGenerator::forClass($className), 'version' => $version]);
         }
 
         if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calendar\\')) {
-            return $this->router->generate('docs_calendar_class', ['classSlug' => SlugGenerator::forClass($className)]);
+            return $this->router->generate('docs_calendar_class', ['classSlug' => SlugGenerator::forClass($className), 'version' => $version]);
         }
 
         return '#';
     }
 
-    public function classMethodUrlFilter(string $className, string $methodName) : string
+    public function classMethodUrlFilter(string $className, string $methodName, string $version) : string
     {
-        if (!\class_exists($className) && !\interface_exists($className)) {
-            return '#';
-        }
-
         if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calendar\\Gregorian\\Holidays')) {
             return $this->router->generate('docs_calendar_holidays_class_method', [
+                'version' => $version,
                 'classSlug' => SlugGenerator::forClass($className),
                 'methodSlug' => SlugGenerator::forMethod($methodName),
             ]);
@@ -66,6 +59,7 @@ final class PHPDocsExtension extends AbstractExtension
 
         if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Retry')) {
             return $this->router->generate('docs_retry_class_method', [
+                'version' => $version,
                 'classSlug' => SlugGenerator::forClass($className),
                 'methodSlug' => SlugGenerator::forMethod($methodName),
             ]);
@@ -73,6 +67,7 @@ final class PHPDocsExtension extends AbstractExtension
 
         if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calendar\\System')) {
             return $this->router->generate('docs_process_class_method', [
+                'version' => $version,
                 'classSlug' => SlugGenerator::forClass($className),
                 'methodSlug' => SlugGenerator::forMethod($methodName),
             ]);
@@ -80,6 +75,7 @@ final class PHPDocsExtension extends AbstractExtension
 
         if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calendar\\')) {
             return $this->router->generate('docs_calendar_class_method', [
+                'version' => $version,
                 'classSlug' => SlugGenerator::forClass($className),
                 'methodSlug' => SlugGenerator::forMethod($methodName),
             ]);

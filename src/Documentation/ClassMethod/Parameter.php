@@ -5,16 +5,19 @@ declare(strict_types=1);
 namespace App\Documentation\ClassMethod;
 
 use App\Documentation\PHPClass;
-use Roave\BetterReflection\Reflection\ReflectionClass;
 use Roave\BetterReflection\Reflection\ReflectionParameter;
+use Roave\BetterReflection\Reflector\ClassReflector;
 
 final class Parameter
 {
     private ReflectionParameter $reflectionParameter;
 
-    public function __construct(ReflectionParameter $reflectionParameter)
+    private ClassReflector $reflector;
+
+    public function __construct(ReflectionParameter $reflectionParameter, ClassReflector $reflector)
     {
         $this->reflectionParameter = $reflectionParameter;
+        $this->reflector = $reflector;
     }
 
     public function reflectionParameter() : ReflectionParameter
@@ -24,12 +27,12 @@ final class Parameter
 
     public function typeClass() : PHPClass
     {
-        return new PHPClass(ReflectionClass::createFromName($this->reflectionParameter->getType()->getName()));
+        return new PHPClass($this->reflector->reflect($this->reflectionParameter->getType()->getName()), $this->reflector);
     }
 
     public function isTypeFromGlobalNamespace() : bool
     {
-        return $this->typeReflectionClass()->getLocatedSource()->isInternal();
+        return $this->typeClass()->isInternal();
     }
 
     public function type() : string

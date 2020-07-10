@@ -32,14 +32,14 @@
                         {% if interace.internal %}
                             <a href="#" style="color:#737373;">{{ interace.shortName }}</a>
                         {% else %}
-                                <a style="color:#369; border-bottom: 1px solid;" href="{{ class.name | class_url }}">{{ interace.shortName }}</a>
+                                <a style="color:#369; border-bottom: 1px solid;" href="{{ class.name | class_url(version) }}">{{ interace.shortName }}</a>
                         {% endif %}
                         {% if loop.last == false %}, {% endif %}
                     {% endfor %}
                     </div>
                     <div>{</div>
                         {% for method in class.methods %}
-                    <div style="padding-left: 2rem; margin-bottom:0.5rem;">{% include 'documentation/class/_method.html.twig' with {'method' : method} only %}</div>
+                    <div style="padding-left: 2rem; margin-bottom:0.5rem;">{% include 'documentation/class/_method.html.twig' with {'method' : method, 'version' : version} only %}</div>
                         {% endfor %}
                     <div>}</div>
                 </div>
@@ -50,7 +50,7 @@
                 <hr/>
                 <ul>
                     {% for method in class.methods %}
-                        <li><a style="color: #369;" href="{{ class.name | class_method_url(method.name) }}">{{ class.reflectionClass.shortName }}::{{ method.reflectionMethod.name }}</a></li>
+                        <li><a style="color: #369;" href="{{ class.name | class_method_url(method.name, version) }}">{{ class.reflectionClass.shortName }}::{{ method.reflectionMethod.name }}</a></li>
                     {% endfor %}
                 </ul>
             </section>

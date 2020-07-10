@@ -8,9 +8,10 @@
         <section id="calendar-interface">
             <h5 class="section-title-2">Calendar</h5>
             <hr/>
+            Available versions:
             <ul>
-            {% for phpClass in calendarClasses %}
-                <li><a href="{{ phpClass.name | class_url }}">{{ phpClass.shortName }}</a></li>
+            {% for version, src in versions %}
+                <li><a href="{{ path('docs_calendar_version', { version: version }) }}">{{ version }}</a></li>
             {% endfor %}
             </ul>
         </section>

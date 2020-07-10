@@ -20,6 +20,11 @@ final class DocumentationController extends AbstractController
         $this->parameterBag = $parameterBag;
     }
 
+    protected function parameterBag() : ParameterBagInterface
+    {
+        return $this->parameterBag;
+    }
+
     /**
      * @Route("/docs", name="documentation")
      */
@@ -27,10 +32,14 @@ final class DocumentationController extends AbstractController
     {
         return $this->render('documentation/introduction.html.twig', [
             'activeSection' => 'introduction',
-            'calendarClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_calendar_src')),
-            'calendarHolidaysClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_calendar_holidays_src')),
-            'processClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_process_src')),
-            'retryClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_retry_src')),
+            'calendarClasses' => $this->calendarClasses('1.x'),
+            'calendarVersion' => '1.x',
+            'calendarHolidaysClasses' => $this->calendarHolidaysClasses('1.x'),
+            'calendarHolidaysVersion' => '1.x',
+            'processClasses' => $this->processClasses('1.x'),
+            'processVersion' => '1.x',
+            'retryClasses' => $this->retryClasses('1.x'),
+            'retryVersion' => '1.x',
         ]);
     }
 
@@ -51,7 +60,19 @@ final class DocumentationController extends AbstractController
     {
         return $this->render('documentation/calendar.html.twig', [
             'activeSection' => 'calendar',
-            'calendarClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_calendar_src')),
+            'versions' => $this->parameterBag->get('aeon_php_calendar')['versions'],
+        ]);
+    }
+
+    /**
+     * @Route("/docs/calendar/{version}", name="docs_calendar_version")
+     */
+    public function calendarVersion(string $version)
+    {
+        return $this->render('documentation/calendar_version.html.twig', [
+            'activeSection' => 'calendar',
+            'calendarClasses' => $this->calendarClasses($version),
+            'version' => $version,
         ]);
     }
 
@@ -62,7 +83,19 @@ final class DocumentationController extends AbstractController
     {
         return $this->render('documentation/calendar_holidays.html.twig', [
             'activeSection' => 'calendar-holidays',
-            'calendarHolidaysClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_calendar_holidays_src')),
+            'versions' => $this->parameterBag->get('aeon_php_calendar_holidays')['versions'],
+        ]);
+    }
+
+    /**
+     * @Route("/docs/calendar-holidays/{version}", name="docs_calendar_holidays_version")
+     */
+    public function calendarHolidaysVersion(string $version)
+    {
+        return $this->render('documentation/calendar_holidays_version.html.twig', [
+            'activeSection' => 'calendar-holidays',
+            'calendarHolidaysClasses' => $this->calendarHolidaysClasses($version),
+            'version' => $version,
         ]);
     }
 
@@ -73,7 +106,19 @@ final class DocumentationController extends AbstractController
     {
         return $this->render('documentation/process.html.twig', [
             'activeSection' => 'process',
-            'processClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_process_src')),
+            'versions' => $this->parameterBag->get('aeon_php_process')['versions'],
+        ]);
+    }
+
+    /**
+     * @Route("/docs/process/{version}", name="docs_process_version")
+     */
+    public function processVersion(string $version)
+    {
+        return $this->render('documentation/process_version.html.twig', [
+            'activeSection' => 'process',
+            'processClasses' => $this->processClasses($version),
+            'version' => $version,
         ]);
     }
 
@@ -83,8 +128,20 @@ final class DocumentationController extends AbstractController
     public function retry()
     {
         return $this->render('documentation/retry.html.twig', [
-            'activeSection' => 'process',
-            'retryClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_retry_src')),
+            'activeSection' => 'retry',
+            'versions' => $this->parameterBag->get('aeon_php_retry')['versions'],
+        ]);
+    }
+
+    /**
+     * @Route("/docs/retry/{version}", name="docs_retry_version")
+     */
+    public function retryVersion(string $version)
+    {
+        return $this->render('documentation/retry_version.html.twig', [
+            'activeSection' => 'retry',
+            'retryClasses' => $this->retryClasses($version),
+            'version' => $version,
         ]);
     }
 
@@ -92,10 +149,10 @@ final class DocumentationController extends AbstractController
     {
         return $this->render('documentation/_navigation.html.twig', [
             'activeSection' => $activeSection,
-            'calendarClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_calendar_src')),
-            'calendarHolidaysClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_calendar_holidays_src')),
-            'processClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_process_src')),
-            'retryClasses' => $this->codeClassesReflection($this->parameterBag->get('aeon_php_retry_src')),
+            'calendarVersions' => $this->parameterBag->get('aeon_php_calendar')['versions'],
+            'calendarHolidaysVersions' => $this->parameterBag->get('aeon_php_calendar_holidays')['versions'],
+            'processVersions' => $this->parameterBag->get('aeon_php_process')['versions'],
+            'retryVersions' => $this->parameterBag->get('aeon_php_retry')['versions'],
         ]);
     }
 }

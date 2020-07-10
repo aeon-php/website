@@ -4,8 +4,26 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    aeon_php_calendar_src: "%kernel.project_dir%/vendor/aeon-php/calendar/src"
-    aeon_php_calendar_holidays_src: "%kernel.project_dir%/vendor/aeon-php/calendar-holidays/src"
+    aeon_php_calendar:
+        versions:
+            1.x: "%kernel.project_dir%/sources/calendar/1.x/src"
+    aeon_php_process:
+        versions:
+            1.x: "%kernel.project_dir%/sources/process/1.x/src"
+        dependencies:
+            aeon_php_calendar: "1.x"
+    aeon_php_retry:
+        versions:
+            1.x: "%kernel.project_dir%/sources/retry/1.x/src"
+        dependencies:
+            aeon_php_calendar: "1.x"
+            aeon_php_process: "1.x"
+    aeon_php_calendar_holidays:
+        versions:
+            1.x: "%kernel.project_dir%/sources/calendar-holidays/1.x/src"
+        dependencies:
+            aeon_php_calendar: "1.x"
+
     aeon_php_process_src: "%kernel.project_dir%/vendor/aeon-php/process/src"
     aeon_php_retry_src: "%kernel.project_dir%/vendor/aeon-php/retry/src"
 

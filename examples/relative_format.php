@@ -9,5 +9,5 @@ $calendar = GregorianCalendar::UTC();
 $calendar->currentYear()
     ->january()
     ->lastDay()
-    ->noon()
+    ->noon($calendar->timeZone())
     ->sub(TimeUnit::days(3));

@@ -8,7 +8,7 @@
         {% if parameter.typeClass.internal %}
             <span style="color: #737373; border-bottom: 1px solid;">\{{ parameter.typeClass.shortName }}</span>
         {% else %}
-            <a href="{{ parameter.typeClass.name | class_url }}" style="color: #369; border-bottom: 1px solid;">{{ parameter.typeClass.shortName }}</a>
+            <a href="{{ parameter.typeClass.name | class_url(version) }}" style="color: #369; border-bottom: 1px solid;">{{ parameter.typeClass.shortName }}</a>
         {% endif %}
     {% endif %}
     <span style="color: #369;">${{ parameter.reflectionParameter.name }}</span>

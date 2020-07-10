@@ -6,7 +6,6 @@ namespace App\Controller\Documentation;
 
 use App\Controller\CodeReflectionTrait;
 use App\Documentation\SlugGenerator;
-use PackageVersions\Versions;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,17 +23,22 @@ final class RetryClassController extends AbstractController implements Controlle
         $this->parameterBag = $parameterBag;
     }
 
-    /**
-     * @Route("/docs/retry/{classSlug}", name="docs_retry_class")
-     */
-    public function retryClass(string $classSlug) : Response
+    protected function parameterBag() : ParameterBagInterface
     {
-        foreach ($this->codeClassesReflection($this->parameterBag->get('aeon_php_retry_src')) as $phpClass) {
+        return $this->parameterBag;
+    }
+
+    /**
+     * @Route("/docs/retry/{version}/{classSlug}", name="docs_retry_class")
+     */
+    public function retryClass(string $version, string $classSlug) : Response
+    {
+        foreach ($this->retryClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
                 return $this->render('documentation/class.html.twig', [
                     'class' => $phpClass,
                     'activeSection' => 'retry',
-                    'version' => Versions::getVersion('aeon-php/retry'),
+                    'version' => $version,
                 ]);
             }
         }
@@ -55,8 +59,10 @@ final class RetryClassController extends AbstractController implements Controlle
     public function getArguments() : array
     {
         $arguments = [];
-        foreach ($this->codeClassesReflection($this->parameterBag->get('aeon_php_retry_src')) as $phpClass) {
-            $arguments[] = [SlugGenerator::forPHPClass($phpClass)];
+        foreach ($this->retryVersions() as $version => $src) {
+            foreach ($this->retryClasses($version) as $phpClass) {
+                $arguments[] = [$version, SlugGenerator::forPHPClass($phpClass)];
+            }
         }
 
         return $arguments;
