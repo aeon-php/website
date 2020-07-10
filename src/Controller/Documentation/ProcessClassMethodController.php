@@ -36,7 +36,7 @@ final class ProcessClassMethodController extends AbstractController implements C
         foreach ($this->processClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
                 foreach ($phpClass->methods() as $method) {
-                    if ($method->slug() === $methodSlug) {
+                    if (SlugGenerator::forClassMethod($method) === $methodSlug) {
                         return $this->render('documentation/method.html.twig', [
                             'class' => $phpClass,
                             'method' => $method,
@@ -69,7 +69,7 @@ final class ProcessClassMethodController extends AbstractController implements C
         foreach ($this->processVersions() as $version => $src) {
             foreach ($this->processClasses($version) as $phpClass) {
                 foreach ($phpClass->methods() as $method) {
-                    $arguments[] = [$version, SlugGenerator::forPHPClass($phpClass), $method->slug()];
+                    $arguments[] = [$version, SlugGenerator::forPHPClass($phpClass), SlugGenerator::forClassMethod($method)];
                 }
             }
         }

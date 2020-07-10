@@ -40,6 +40,10 @@ final class PHPDocsExtension extends AbstractExtension
             return $this->router->generate('docs_process_class', ['classSlug' => SlugGenerator::forClass($className), 'version' => $version]);
         }
 
+        if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calculator\\')) {
+            return $this->router->generate('docs_calendar_class', ['classSlug' => SlugGenerator::forClass($className), 'version' => $version]);
+        }
+
         if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calendar\\')) {
             return $this->router->generate('docs_calendar_class', ['classSlug' => SlugGenerator::forClass($className), 'version' => $version]);
         }

@@ -78,11 +78,6 @@ final class ClassMethod
         );
     }
 
-    public function slug()
-    {
-        return \str_replace('\\', '-', \mb_strtolower(\ltrim($this->reflectionMethod->getName())));
-    }
-
     public function docComment() : DocBlock
     {
         return DocBlockFactory::createInstance()->create($this->reflectionMethod->getDocComment());

@@ -25,6 +25,10 @@ final class SlugGenerator
             return \str_replace('\\', '-', \mb_strtolower(\ltrim(\str_replace('Aeon\\Retry', '', $className), '\\')));
         }
 
+        if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calculator\\')) {
+            return \str_replace('\\', '-', \mb_strtolower(\ltrim(\str_replace('Aeon\\Calculator', '', $className), '\\')));
+        }
+
         if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calendar\\')) {
             return \str_replace('\\', '-', \mb_strtolower(\ltrim(\str_replace('Aeon\\Calendar', '', $className), '\\')));
         }
@@ -39,6 +43,9 @@ final class SlugGenerator
 
     public static function forMethod(string $method) : string
     {
-        return \str_replace('\\', '-', \mb_strtolower(\ltrim($method)));
+        return \str_replace(
+            '_', '',
+            \str_replace('\\', '-', \mb_strtolower(\ltrim($method)))
+        );
     }
 }

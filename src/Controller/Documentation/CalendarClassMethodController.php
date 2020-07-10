@@ -36,7 +36,7 @@ final class CalendarClassMethodController extends AbstractController implements 
         foreach ($this->calendarClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
                 foreach ($phpClass->methods() as $method) {
-                    if ($method->slug() === $methodSlug) {
+                    if (SlugGenerator::forClassMethod($method) === $methodSlug) {
                         return $this->render('documentation/method.html.twig', [
                             'class' => $phpClass,
                             'method' => $method,
@@ -69,7 +69,7 @@ final class CalendarClassMethodController extends AbstractController implements 
         foreach ($this->calendarVersions() as $version => $srv) {
             foreach ($this->calendarClasses($version) as $phpClass) {
                 foreach ($phpClass->methods() as $method) {
-                    $arguments[] = [$version, SlugGenerator::forPHPClass($phpClass), $method->slug()];
+                    $arguments[] = [$version, SlugGenerator::forPHPClass($phpClass), SlugGenerator::forClassMethod($method)];
                 }
             }
         }
