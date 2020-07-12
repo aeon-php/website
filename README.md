@@ -26,7 +26,8 @@ symfony server:start
 ### Generate static content
 
 ```bash
-php -d memory_limit=-1 bin/console dump-static-site
+bin/console static-content-generator:copy:assets
+bin/console static-content-generator:generate:routes
 ```
 
 ### Push new changes to github pages
