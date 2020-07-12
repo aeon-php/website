@@ -6,9 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symplify\SymfonyStaticDumper\Contract\ControllerWithDataProviderInterface;
 
-final class CalendarDocumentation extends AbstractController implements ControllerWithDataProviderInterface
+final class CalendarDocumentation extends AbstractController
 {
     use CodeReflectionTrait;
 
@@ -64,7 +63,7 @@ final class CalendarDocumentation extends AbstractController implements Controll
     {
         $arguments = [];
         foreach ($this->calendarVersions() as $version => $srv) {
-                $arguments[] = [$version];
+            $arguments[] = [$version];
         }
 
         return $arguments;

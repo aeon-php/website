@@ -10,9 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symplify\SymfonyStaticDumper\Contract\ControllerWithDataProviderInterface;
 
-final class RetryClassController extends AbstractController implements ControllerWithDataProviderInterface
+final class RetryClassController extends AbstractController
 {
     use CodeReflectionTrait;
 
@@ -46,27 +45,5 @@ final class RetryClassController extends AbstractController implements Controlle
         }
 
         throw $this->createNotFoundException("Class ". $classSlug . " does not exists");
-    }
-
-    public function getControllerClass() : string
-    {
-        return __CLASS__;
-    }
-
-    public function getControllerMethod() : string
-    {
-        return 'retryClass';
-    }
-
-    public function getArguments() : array
-    {
-        $arguments = [];
-        foreach ($this->retryVersions() as $version => $src) {
-            foreach ($this->retryClasses($version) as $phpClass) {
-                $arguments[] = [$version, SlugGenerator::forPHPClass($phpClass)];
-            }
-        }
-
-        return $arguments;
     }
 }

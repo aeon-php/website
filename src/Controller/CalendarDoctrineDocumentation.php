@@ -6,9 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symplify\SymfonyStaticDumper\Contract\ControllerWithDataProviderInterface;
 
-final class CalendarDoctrineDocumentation extends AbstractController implements ControllerWithDataProviderInterface
+final class CalendarDoctrineDocumentation extends AbstractController
 {
     use CodeReflectionTrait;
 
@@ -48,25 +47,5 @@ final class CalendarDoctrineDocumentation extends AbstractController implements 
             'calendarDoctrineClasses' => $this->calendarDoctrineClasses($version),
             'version' => $version,
         ]);
-    }
-
-    public function getControllerClass() : string
-    {
-        return __CLASS__;
-    }
-
-    public function getControllerMethod() : string
-    {
-        return 'calendarDoctrineVersion';
-    }
-
-    public function getArguments() : array
-    {
-        $arguments = [];
-        foreach ($this->calendarVersions() as $version => $srv) {
-                $arguments[] = [$version];
-        }
-
-        return $arguments;
     }
 }

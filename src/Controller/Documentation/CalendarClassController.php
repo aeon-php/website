@@ -10,9 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symplify\SymfonyStaticDumper\Contract\ControllerWithDataProviderInterface;
 
-final class CalendarClassController extends AbstractController implements ControllerWithDataProviderInterface
+final class CalendarClassController extends AbstractController
 {
     use CodeReflectionTrait;
 
@@ -46,27 +45,5 @@ final class CalendarClassController extends AbstractController implements Contro
         }
 
         throw $this->createNotFoundException("Class ". $classSlug . " does not exists");
-    }
-
-    public function getControllerClass() : string
-    {
-        return __CLASS__;
-    }
-
-    public function getControllerMethod() : string
-    {
-        return 'calendarClass';
-    }
-
-    public function getArguments() : array
-    {
-        $arguments = [];
-        foreach ($this->calendarVersions() as $version => $srv) {
-            foreach ($this->calendarClasses($version) as $phpClass) {
-                $arguments[] = [$version, SlugGenerator::forPHPClass($phpClass)];
-            }
-        }
-
-        return $arguments;
     }
 }

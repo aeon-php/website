@@ -77,14 +77,11 @@
     "netresearch/jsonmapper": {
         "version": "v2.1.0"
     },
-    "nette/finder": {
-        "version": "v2.5.2"
-    },
-    "nette/utils": {
-        "version": "v3.1.2"
-    },
     "nikic/php-parser": {
         "version": "v4.5.0"
+    },
+    "norberttech/static-content-generator-bundle": {
+        "version": "1.x-dev"
     },
     "ocramius/package-versions": {
         "version": "1.8.0"
@@ -566,18 +563,6 @@
     },
     "symfony/yaml": {
         "version": "v4.4.9"
-    },
-    "symplify/autowire-array-parameter": {
-        "version": "v8.0.1"
-    },
-    "symplify/package-builder": {
-        "version": "v8.0.1"
-    },
-    "symplify/smart-file-system": {
-        "version": "v8.0.1"
-    },
-    "symplify/symfony-static-dumper": {
-        "version": "v8.0.1"
     },
     "theseer/tokenizer": {
         "version": "1.1.3"

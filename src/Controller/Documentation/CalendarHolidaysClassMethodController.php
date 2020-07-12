@@ -10,9 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symplify\SymfonyStaticDumper\Contract\ControllerWithDataProviderInterface;
 
-final class CalendarHolidaysClassMethodController extends AbstractController implements ControllerWithDataProviderInterface
+final class CalendarHolidaysClassMethodController extends AbstractController
 {
     use CodeReflectionTrait;
 
@@ -53,29 +52,5 @@ final class CalendarHolidaysClassMethodController extends AbstractController imp
         }
 
         throw $this->createNotFoundException("Class ". $classSlug . " does not exists");
-    }
-
-    public function getControllerClass() : string
-    {
-        return __CLASS__;
-    }
-
-    public function getControllerMethod() : string
-    {
-        return 'calendarHolidaysClassMethod';
-    }
-
-    public function getArguments() : array
-    {
-        $arguments = [];
-        foreach ($this->calendarHolidaysVersions() as $version => $srv) {
-            foreach ($this->calendarHolidaysClasses($version) as $phpClass) {
-                foreach ($phpClass->methods() as $method) {
-                    $arguments[] = [$version, SlugGenerator::forPHPClass($phpClass), SlugGenerator::forClassMethod($method)];
-                }
-            }
-        }
-
-        return $arguments;
     }
 }

@@ -60,3 +60,6 @@ services:
     App\Twig\:
         resource: '../src/Twig'
         tags: ['twig.extension']
+
+    App\StaticContent\AeonDocsSourceProvider:
+        tags: ['static_content_generator.source_provider']
