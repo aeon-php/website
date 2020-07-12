@@ -26,8 +26,8 @@ symfony server:start
 ### Generate static content
 
 ```bash
-bin/console static-content-generator:copy:assets
-bin/console static-content-generator:generate:routes
+bin/console static-content-generator:copy:assets --env=prod
+bin/console static-content-generator:generate:routes --env=prod
 ```
 
 ### Push new changes to github pages
