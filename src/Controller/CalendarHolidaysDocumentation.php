@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Documentation\SlugGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -49,23 +50,50 @@ final class CalendarHolidaysDocumentation extends AbstractController
         ]);
     }
 
-    public function getControllerClass() : string
+    /**
+     * @Route("/docs/calendar-holidays/{version}/{classSlug}", name="docs_calendar_holidays_class")
+     */
+    public function calendarHolidaysClass(string $version, string $classSlug) : Response
     {
-        return __CLASS__;
-    }
-
-    public function getControllerMethod() : string
-    {
-        return 'calendarHolidaysVersion';
-    }
-
-    public function getArguments() : array
-    {
-        $arguments = [];
-        foreach ($this->calendarVersions() as $version => $srv) {
-                $arguments[] = [$version];
+        foreach ($classes = $this->calendarHolidaysClasses($version) as $phpClass) {
+            if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
+                return $this->render('documentation/class.html.twig', [
+                    'class' => $phpClass,
+                    'activeSection' => 'calendar-holidays',
+                    'version' => $version,
+                    'classes' => $classes,
+                    'library' => 'Calendar Holidays'
+                ]);
+            }
         }
 
-        return $arguments;
+        throw $this->createNotFoundException("Class ". $classSlug . " does not exists");
+    }
+
+    /**
+     * @Route("/docs/calendar-holidays/{version}/{classSlug}/method/{methodSlug}", name="docs_calendar_holidays_class_method")
+     */
+    public function calendarHolidaysClassMethod(string $version, string $classSlug, string $methodSlug) : Response
+    {
+        foreach ($classes = $this->calendarHolidaysClasses($version) as $phpClass) {
+            if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
+                foreach ($phpClass->methods() as $method) {
+                    if (SlugGenerator::forClassMethod($method) === $methodSlug) {
+                        return $this->render('documentation/method.html.twig', [
+                            'class' => $phpClass,
+                            'method' => $method,
+                            'activeSection' => 'calendar-holidays',
+                            'version' => $version,
+                            'classes' => $classes,
+                            'library' => 'Calendar Holidays'
+                        ]);
+                    }
+                }
+
+                throw $this->createNotFoundException("Class ". $classSlug . " method " . $methodSlug ." does not exists");
+            }
+        }
+
+        throw $this->createNotFoundException("Class ". $classSlug . " does not exists");
     }
 }

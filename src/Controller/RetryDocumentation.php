@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Documentation\SlugGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -49,23 +50,50 @@ final class RetryDocumentation extends AbstractController
         ]);
     }
 
-    public function getControllerClass() : string
+    /**
+     * @Route("/docs/retry/{version}/{classSlug}", name="docs_retry_class")
+     */
+    public function retryClass(string $version, string $classSlug) : Response
     {
-        return __CLASS__;
-    }
-
-    public function getControllerMethod() : string
-    {
-        return 'retryVersion';
-    }
-
-    public function getArguments() : array
-    {
-        $arguments = [];
-        foreach ($this->retryVersions() as $version => $srv) {
-                $arguments[] = [$version];
+        foreach ($classes = $this->retryClasses($version) as $phpClass) {
+            if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
+                return $this->render('documentation/class.html.twig', [
+                    'class' => $phpClass,
+                    'activeSection' => 'retry',
+                    'version' => $version,
+                    'classes' => $classes,
+                    'library' => 'Retry'
+                ]);
+            }
         }
 
-        return $arguments;
+        throw $this->createNotFoundException("Class ". $classSlug . " does not exists");
+    }
+
+    /**
+     * @Route("/docs/retry/{version}/{classSlug}/method/{methodSlug}", name="docs_retry_class_method")
+     */
+    public function retryClassMethod(string $version, string $classSlug, string $methodSlug) : Response
+    {
+        foreach ($classes = $this->retryClasses($version) as $phpClass) {
+            if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
+                foreach ($phpClass->methods() as $method) {
+                    if (SlugGenerator::forClassMethod($method) === $methodSlug) {
+                        return $this->render('documentation/method.html.twig', [
+                            'class' => $phpClass,
+                            'method' => $method,
+                            'activeSection' => 'retry',
+                            'version' => $version,
+                            'classes' => $classes,
+                            'library' => 'Retry'
+                        ]);
+                    }
+                }
+
+                throw $this->createNotFoundException("Class ". $classSlug . " method " . $methodSlug ." does not exists");
+            }
+        }
+
+        throw $this->createNotFoundException("Class ". $classSlug . " does not exists");
     }
 }

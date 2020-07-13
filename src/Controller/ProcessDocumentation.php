@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Documentation\SlugGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -47,5 +48,52 @@ final class ProcessDocumentation extends AbstractController
             'processClasses' => $this->processClasses($version),
             'version' => $version,
         ]);
+    }
+
+    /**
+     * @Route("/docs/process/{version}/{classSlug}", name="docs_process_class")
+     */
+    public function processClass(string $version, string $classSlug) : Response
+    {
+        foreach ($classes = $this->processClasses($version) as $phpClass) {
+            if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
+                return $this->render('documentation/class.html.twig', [
+                    'class' => $phpClass,
+                    'activeSection' => 'process',
+                    'version' => $version,
+                    'classes' => $classes,
+                    'library' => 'Process'
+                ]);
+            }
+        }
+
+        throw $this->createNotFoundException("Class ". $classSlug . " does not exists");
+    }
+
+    /**
+     * @Route("/docs/process/{version}/{classSlug}/method/{methodSlug}", name="docs_process_class_method")
+     */
+    public function processClassMethod(string $version, string $classSlug, string $methodSlug) : Response
+    {
+        foreach ($classes = $this->processClasses($version) as $phpClass) {
+            if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
+                foreach ($phpClass->methods() as $method) {
+                    if (SlugGenerator::forClassMethod($method) === $methodSlug) {
+                        return $this->render('documentation/method.html.twig', [
+                            'class' => $phpClass,
+                            'method' => $method,
+                            'activeSection' => 'process',
+                            'version' => $version,
+                            'classes' => $classes,
+                            'library' => 'Process'
+                        ]);
+                    }
+                }
+
+                throw $this->createNotFoundException("Class ". $classSlug . " method " . $methodSlug ." does not exists");
+            }
+        }
+
+        throw $this->createNotFoundException("Class ". $classSlug . " does not exists");
     }
 }

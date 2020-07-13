@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Documentation\SlugGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -47,5 +48,52 @@ final class CalendarDoctrineDocumentation extends AbstractController
             'calendarDoctrineClasses' => $this->calendarDoctrineClasses($version),
             'version' => $version,
         ]);
+    }
+
+    /**
+     * @Route("/docs/calendar-doctrine/{version}/{classSlug}", name="docs_calendar_doctrine_class")
+     */
+    public function calendarDoctrineClass(string $version, string $classSlug) : Response
+    {
+        foreach ($classes = $this->calendarDoctrineClasses($version) as $phpClass) {
+            if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
+                return $this->render('documentation/class.html.twig', [
+                    'class' => $phpClass,
+                    'activeSection' => 'calendar-doctrine',
+                    'version' => $version,
+                    'classes' => $classes,
+                    'library' => 'Calendar Doctrine'
+                ]);
+            }
+        }
+
+        throw $this->createNotFoundException("Class ". $classSlug . " does not exists");
+    }
+
+    /**
+     * @Route("/docs/calendar-doctrine/{version}/{classSlug}/method/{methodSlug}", name="docs_calendar_doctrine_class_method")
+     */
+    public function calendarDoctrineClassMethod(string $version, string $classSlug, string $methodSlug) : Response
+    {
+        foreach ($classes = $this->calendarDoctrineClasses($version) as $phpClass) {
+            if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
+                foreach ($phpClass->methods() as $method) {
+                    if (SlugGenerator::forClassMethod($method) === $methodSlug) {
+                        return $this->render('documentation/method.html.twig', [
+                            'class' => $phpClass,
+                            'method' => $method,
+                            'activeSection' => 'calendar-doctrine',
+                            'version' => $version,
+                            'classes' => $classes,
+                            'library' => 'Calendar Doctrine'
+                        ]);
+                    }
+                }
+
+                throw $this->createNotFoundException("Class ". $classSlug . " method " . $methodSlug ." does not exists");
+            }
+        }
+
+        throw $this->createNotFoundException("Class ". $classSlug . " does not exists");
     }
 }

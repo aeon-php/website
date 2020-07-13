@@ -1,0 +1,41 @@
+{% extends 'docs.html.twig' %}
+
+{% block title %}Aeon PHP - Retry - Documentation{% endblock %}
+
+{% block body %}
+    <div class="row doc-content-body">
+        <article class="col-md-9">
+        <section id="calendar-interface">
+            <h5 class="section-title-2">Command Line Application</h5>
+            <hr/>
+        </section>
+        <section>
+            <h3>Installation</h3>
+            <p>
+                It's recommended to install Aeon CLI through phive
+            </p>
+            <pre><code>phive install aeon-php/cli --force-accept-unsigned</code></pre>
+            <p>
+                Using phive your project is free from aeon-php/cli dependencies.
+            </p>
+            <p>It's possible to install aeon-php/cli through composer</p>
+            <pre><code>composer require aeon-php/cli</code></pre>
+        </section>
+        <section>
+            <h3>Description</h3>
+
+            <p>
+                Aeon CLI application brings few simple functions that helps to work with time related issues.
+            </p>
+
+            <ul>
+                <li><code>bin/aeon calendar:ntp:time --compare</code> - compare system timestamp with NTP server</li>
+                <li><code>bin/aeon calendar:timezonedb:version</code> - compare timezonedb used by PHP with the one available at IANA website</li>
+            </ul>
+            <p>
+                All commands returns status code 0 in case of success and 1 after failure.
+            </p>
+        </section>
+        </article>
+    </div>
+{% endblock %}
