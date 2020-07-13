@@ -48,24 +48,4 @@ final class ProcessDocumentation extends AbstractController
             'version' => $version,
         ]);
     }
-
-    public function getControllerClass() : string
-    {
-        return __CLASS__;
-    }
-
-    public function getControllerMethod() : string
-    {
-        return 'processVersion';
-    }
-
-    public function getArguments() : array
-    {
-        $arguments = [];
-        foreach ($this->retryVersions() as $version => $srv) {
-                $arguments[] = [$version];
-        }
-
-        return $arguments;
-    }
 }
