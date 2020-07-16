@@ -1,14 +1,16 @@
 {
     "type": "project",
     "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "php": ">=7.4.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "aeon-php/calendar": "^0.1.0",
+        "aeon-php/calendar": "^0.2.0",
         "doctrine/cache": "^1.10",
         "doctrine/dbal": "^2.10",
-        "norberttech/static-content-generator-bundle": "1.x-dev",
+        "norberttech/static-content-generator-bundle": "1.x-dev#39b090c5ba4f35a9bb2afe10f0581d59f0e65e70",
         "phpdocumentor/reflection-docblock": "^5.1",
         "phpunit/phpunit": "^9.2",
         "psr/simple-cache": "^1.0",
