@@ -6,29 +6,41 @@ namespace Aeon\Calendar\Gregorian;
 
 /**
  * @psalm-immutable
+ * @implements \IteratorAggregate<int, Day>
+ * @implements \ArrayAccess<int, Day>
  */
-final class Days implements \Countable
+final class Days implements \ArrayAccess, \Countable, \IteratorAggregate
 {
-    private Month $month;
+    /**
+     * @var array<int, Day>
+     */
+    private array $days;
 
-    public function __construct(Month $month)
+    public function __construct(Day ...$days)
     {
-        $this->month = $month;
+        $this->days = $days;
     }
 
-    public function count() : int
+    public function offsetExists($offset) : bool
     {
-        return $this->month->numberOfDays();
+        return isset($this->all()[(int) $offset]);
     }
 
-    public function first() : Day
+    public function offsetGet($offset) : ?Day
     {
-        return new Day($this->month, 1);
+        return isset($this->all()[(int) $offset]) ? $this->all()[(int) $offset] : null;
     }
 
-    public function last() : Day
+    /** @codeCoverageIgnore */
+    public function offsetSet($offset, $value) : void
     {
-        return new Day($this->month, $this->month->numberOfDays());
+        throw new \RuntimeException(__CLASS__ . ' is immutable.');
+    }
+
+    /** @codeCoverageIgnore */
+    public function offsetUnset($offset) : void
+    {
+        throw new \RuntimeException(__CLASS__ . ' is immutable.');
     }
 
     /**
@@ -36,35 +48,34 @@ final class Days implements \Countable
      */
     public function all() : array
     {
-        return \array_map(
-            fn (int $dayNumber) : Day => new Day($this->month, $dayNumber),
-            \range(1, $this->month->numberOfDays())
-        );
+        return $this->days;
     }
 
     /**
-     * @param callable(Day $day) : void $iterator
+     * @param callable(Day $day) : mixed $iterator
      *
      * @return array<mixed>
      */
     public function map(callable $iterator) : array
     {
-        return \array_map(
-            $iterator,
-            $this->all()
-        );
+        return \array_map($iterator, $this->all());
     }
 
     /**
      * @param callable(Day $day) : bool $iterator
-     *
-     * @return array<Day>
      */
-    public function filter(callable $iterator) : array
+    public function filter(callable $iterator) : self
     {
-        return \array_filter(
-            $this->all(),
-            $iterator
-        );
+        return new self(...\array_filter($this->all(), $iterator));
+    }
+
+    public function count() : int
+    {
+        return \count($this->all());
+    }
+
+    public function getIterator() : \Traversable
+    {
+        return new \ArrayIterator($this->all());
     }
 }
