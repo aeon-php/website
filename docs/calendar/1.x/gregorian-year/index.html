@@ -305,13 +305,31 @@
 <a href="/docs/calendar/1.x/gregorian-year/method/months" style="color:#369; border-bottom: 1px solid;">months</a>
 (    <span style="color: #737373;">void</span>
 )
-<span>:</span>                         <a href="/docs/calendar/1.x/gregorian-months" style="color:#369; border-bottom: 1px solid;">Months</a>
+<span>:</span>                         <a href="/docs/calendar/1.x/gregorian-yearmonths" style="color:#369; border-bottom: 1px solid;">YearMonths</a>
             </div>
                                             <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
 <a href="/docs/calendar/1.x/gregorian-year/method/number" style="color:#369; border-bottom: 1px solid;">number</a>
 (    <span style="color: #737373;">void</span>
 )
 <span>:</span>             int
+    </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar/1.x/gregorian-year/method/plus" style="color:#369; border-bottom: 1px solid;">plus</a>
+(                            <span style="color: #693;">int</span>
+        <span style="color: #369;">$years</span>
+    
+
+            )
+<span>:</span>             self
+    </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar/1.x/gregorian-year/method/minus" style="color:#369; border-bottom: 1px solid;">minus</a>
+(                            <span style="color: #693;">int</span>
+        <span style="color: #369;">$years</span>
+    
+
+            )
+<span>:</span>             self
     </div>
                                             <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
 <a href="/docs/calendar/1.x/gregorian-year/method/next" style="color:#369; border-bottom: 1px solid;">next</a>
@@ -353,8 +371,8 @@
     
 
             )
-<span>:</span>             array
-    </div>
+<span>:</span>                         <a href="/docs/calendar/1.x/gregorian-days" style="color:#369; border-bottom: 1px solid;">Days</a>
+            </div>
                                             <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
 <a href="/docs/calendar/1.x/gregorian-year/method/isleap" style="color:#369; border-bottom: 1px solid;">isLeap</a>
 (    <span style="color: #737373;">void</span>
@@ -366,6 +384,78 @@
 (    <span style="color: #737373;">void</span>
 )
 <span>:</span>                         <a href="#" style="color:#737373;">\DateTimeImmutable</a>
+            </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar/1.x/gregorian-year/method/isequal" style="color:#369; border-bottom: 1px solid;">isEqual</a>
+(                            <span style="color: #693;">self</span>
+        <span style="color: #369;">$year</span>
+    
+
+            )
+<span>:</span>             bool
+    </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar/1.x/gregorian-year/method/isbefore" style="color:#369; border-bottom: 1px solid;">isBefore</a>
+(                            <span style="color: #693;">self</span>
+        <span style="color: #369;">$year</span>
+    
+
+            )
+<span>:</span>             bool
+    </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar/1.x/gregorian-year/method/isbeforeorequal" style="color:#369; border-bottom: 1px solid;">isBeforeOrEqual</a>
+(                            <span style="color: #693;">self</span>
+        <span style="color: #369;">$year</span>
+    
+
+            )
+<span>:</span>             bool
+    </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar/1.x/gregorian-year/method/isafter" style="color:#369; border-bottom: 1px solid;">isAfter</a>
+(                            <span style="color: #693;">self</span>
+        <span style="color: #369;">$year</span>
+    
+
+            )
+<span>:</span>             bool
+    </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar/1.x/gregorian-year/method/isafterorequal" style="color:#369; border-bottom: 1px solid;">isAfterOrEqual</a>
+(                            <span style="color: #693;">self</span>
+        <span style="color: #369;">$year</span>
+    
+
+            )
+<span>:</span>             bool
+    </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar/1.x/gregorian-year/method/iterate" style="color:#369; border-bottom: 1px solid;">iterate</a>
+(                            <span style="color: #693;">self</span>
+        <span style="color: #369;">$destination</span>
+    
+
+            )
+<span>:</span>                         <a href="/docs/calendar/1.x/gregorian-years" style="color:#369; border-bottom: 1px solid;">Years</a>
+            </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar/1.x/gregorian-year/method/until" style="color:#369; border-bottom: 1px solid;">until</a>
+(                            <span style="color: #693;">self</span>
+        <span style="color: #369;">$month</span>
+    
+
+            )
+<span>:</span>                         <a href="/docs/calendar/1.x/gregorian-years" style="color:#369; border-bottom: 1px solid;">Years</a>
+            </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar/1.x/gregorian-year/method/since" style="color:#369; border-bottom: 1px solid;">since</a>
+(                            <span style="color: #693;">self</span>
+        <span style="color: #369;">$month</span>
+    
+
+            )
+<span>:</span>                         <a href="/docs/calendar/1.x/gregorian-years" style="color:#369; border-bottom: 1px solid;">Years</a>
             </div>
                                             <div>}</div>
                 </div>
@@ -393,6 +483,8 @@
                                             <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-year/method/december">Year::december</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-year/method/months">Year::months</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-year/method/number">Year::number</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-year/method/plus">Year::plus</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-year/method/minus">Year::minus</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-year/method/next">Year::next</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-year/method/previous">Year::previous</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-year/method/numberofmonths">Year::numberOfMonths</a></li>
@@ -401,6 +493,14 @@
                                             <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-year/method/filterdays">Year::filterDays</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-year/method/isleap">Year::isLeap</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-year/method/todatetimeimmutable">Year::toDateTimeImmutable</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-year/method/isequal">Year::isEqual</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-year/method/isbefore">Year::isBefore</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-year/method/isbeforeorequal">Year::isBeforeOrEqual</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-year/method/isafter">Year::isAfter</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-year/method/isafterorequal">Year::isAfterOrEqual</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-year/method/iterate">Year::iterate</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-year/method/until">Year::until</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-year/method/since">Year::since</a></li>
                                     </ul>
             </section>
 
@@ -421,7 +521,10 @@
                                     <li><a href="/docs/calendar/1.x/gregorian-year">Year</a></li>
                                     <li><a href="/docs/calendar/1.x/gregorian-gregoriancalendarstub">GregorianCalendarStub</a></li>
                                     <li><a href="/docs/calendar/1.x/gregorian-leapseconds">LeapSeconds</a></li>
+                                    <li><a href="/docs/calendar/1.x/gregorian-years">Years</a></li>
+                                    <li><a href="/docs/calendar/1.x/gregorian-monthdays">MonthDays</a></li>
                                     <li><a href="/docs/calendar/1.x/gregorian-timeperiods">TimePeriods</a></li>
+                                    <li><a href="/docs/calendar/1.x/gregorian-yearmonths">YearMonths</a></li>
                                     <li><a href="/docs/calendar/1.x/gregorian-gregoriancalendar">GregorianCalendar</a></li>
                                     <li><a href="/docs/calendar/1.x/gregorian-calendar">Calendar</a></li>
                                     <li><a href="/docs/calendar/1.x/gregorian-timezone">TimeZone</a></li>

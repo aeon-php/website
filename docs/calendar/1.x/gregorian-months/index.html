@@ -196,32 +196,45 @@
                                             <span>final</span>
                                                                 <span style="font-weight: bold; color: #369;">Months</span>
                                                                 <span style="color: #936;">implements</span>
-                                                                                            <a href="#" style="color:#737373;">\Countable</a>
+                                                                                            <a href="#" style="color:#737373;">\ArrayAccess, </a>
+                                                                                                <a href="#" style="color:#737373;">\Countable, </a>
+                                                                                                <a href="#" style="color:#737373;">\IteratorAggregate, </a>
+                                                                                                <a href="#" style="color:#737373;">\Traversable</a>
                                                                 </div>
                     <div>{</div>
                                             <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
 <a href="/docs/calendar/1.x/gregorian-months/method/construct" style="color:#369; border-bottom: 1px solid;">__construct</a>
-(                                        <a href="/docs/calendar/1.x/gregorian-year" style="color: #369; border-bottom: 1px solid;">Year</a>
-                <span style="color: #369;">$year</span>
+(                                        <a href="/docs/calendar/1.x/gregorian-month" style="color: #369; border-bottom: 1px solid;">Month</a>
+                <span style="color: #369;">$months</span>
     
 
             )
 </div>
                                             <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
-<a href="/docs/calendar/1.x/gregorian-months/method/count" style="color:#369; border-bottom: 1px solid;">count</a>
-(    <span style="color: #737373;">void</span>
-)
-<span>:</span>             int
+<a href="/docs/calendar/1.x/gregorian-months/method/offsetexists" style="color:#369; border-bottom: 1px solid;">offsetExists</a>
+(            
+            )
+<span>:</span>             bool
     </div>
                                             <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
-<a href="/docs/calendar/1.x/gregorian-months/method/bynumber" style="color:#369; border-bottom: 1px solid;">byNumber</a>
-(                            <span style="color: #693;">int</span>
-        <span style="color: #369;">$number</span>
-    
-
+<a href="/docs/calendar/1.x/gregorian-months/method/offsetget" style="color:#369; border-bottom: 1px solid;">offsetGet</a>
+(            
             )
-<span>:</span>                         <a href="/docs/calendar/1.x/gregorian-month" style="color:#369; border-bottom: 1px solid;">Month</a>
+<span>:</span> ?                        <a href="/docs/calendar/1.x/gregorian-month" style="color:#369; border-bottom: 1px solid;">Month</a>
             </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar/1.x/gregorian-months/method/offsetset" style="color:#369; border-bottom: 1px solid;">offsetSet</a>
+(            
+        ,             
+            )
+<span>:</span>             void
+    </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar/1.x/gregorian-months/method/offsetunset" style="color:#369; border-bottom: 1px solid;">offsetUnset</a>
+(            
+            )
+<span>:</span>             void
+    </div>
                                             <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
 <a href="/docs/calendar/1.x/gregorian-months/method/all" style="color:#369; border-bottom: 1px solid;">all</a>
 (    <span style="color: #737373;">void</span>
@@ -244,8 +257,20 @@
     
 
             )
-<span>:</span>             array
+<span>:</span>             self
     </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar/1.x/gregorian-months/method/count" style="color:#369; border-bottom: 1px solid;">count</a>
+(    <span style="color: #737373;">void</span>
+)
+<span>:</span>             int
+    </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar/1.x/gregorian-months/method/getiterator" style="color:#369; border-bottom: 1px solid;">getIterator</a>
+(    <span style="color: #737373;">void</span>
+)
+<span>:</span>                         <a href="#" style="color:#737373;">\Traversable</a>
+            </div>
                                             <div>}</div>
                 </div>
             </section>
@@ -255,11 +280,15 @@
                 <hr/>
                 <ul>
                                             <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-months/method/construct">Months::__construct</a></li>
-                                            <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-months/method/count">Months::count</a></li>
-                                            <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-months/method/bynumber">Months::byNumber</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-months/method/offsetexists">Months::offsetExists</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-months/method/offsetget">Months::offsetGet</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-months/method/offsetset">Months::offsetSet</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-months/method/offsetunset">Months::offsetUnset</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-months/method/all">Months::all</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-months/method/map">Months::map</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-months/method/filter">Months::filter</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-months/method/count">Months::count</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-months/method/getiterator">Months::getIterator</a></li>
                                     </ul>
             </section>
 
@@ -280,7 +309,10 @@
                                     <li><a href="/docs/calendar/1.x/gregorian-year">Year</a></li>
                                     <li><a href="/docs/calendar/1.x/gregorian-gregoriancalendarstub">GregorianCalendarStub</a></li>
                                     <li><a href="/docs/calendar/1.x/gregorian-leapseconds">LeapSeconds</a></li>
+                                    <li><a href="/docs/calendar/1.x/gregorian-years">Years</a></li>
+                                    <li><a href="/docs/calendar/1.x/gregorian-monthdays">MonthDays</a></li>
                                     <li><a href="/docs/calendar/1.x/gregorian-timeperiods">TimePeriods</a></li>
+                                    <li><a href="/docs/calendar/1.x/gregorian-yearmonths">YearMonths</a></li>
                                     <li><a href="/docs/calendar/1.x/gregorian-gregoriancalendar">GregorianCalendar</a></li>
                                     <li><a href="/docs/calendar/1.x/gregorian-calendar">Calendar</a></li>
                                     <li><a href="/docs/calendar/1.x/gregorian-timezone">TimeZone</a></li>
