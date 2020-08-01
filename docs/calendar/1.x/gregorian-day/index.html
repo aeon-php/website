@@ -210,6 +210,23 @@
             )
 </div>
                                             <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+ <span style="color: #936;">static</span> <a href="/docs/calendar/1.x/gregorian-day/method/create" style="color:#369; border-bottom: 1px solid;">create</a>
+(                            <span style="color: #693;">int</span>
+        <span style="color: #369;">$year</span>
+    
+
+        ,                             <span style="color: #693;">int</span>
+        <span style="color: #369;">$month</span>
+    
+
+        ,                             <span style="color: #693;">int</span>
+        <span style="color: #369;">$day</span>
+    
+
+            )
+<span>:</span>             self
+    </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
  <span style="color: #936;">static</span> <a href="/docs/calendar/1.x/gregorian-day/method/fromdatetime" style="color:#369; border-bottom: 1px solid;">fromDateTime</a>
 (                                        <span style="color: #737373; border-bottom: 1px solid;">\DateTimeInterface</span>
                 <span style="color: #369;">$dateTime</span>
@@ -233,6 +250,15 @@
 )
 <span>:</span>             array
     </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar/1.x/gregorian-day/method/timebetween" style="color:#369; border-bottom: 1px solid;">timeBetween</a>
+(                            <span style="color: #693;">self</span>
+        <span style="color: #369;">$day</span>
+    
+
+            )
+<span>:</span>                         <a href="/docs/calendar/1.x/timeunit" style="color:#369; border-bottom: 1px solid;">TimeUnit</a>
+            </div>
                                             <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
 <a href="/docs/calendar/1.x/gregorian-day/method/plus" style="color:#369; border-bottom: 1px solid;">plus</a>
 (                            <span style="color: #693;">int</span>
@@ -504,9 +530,11 @@
                 <hr/>
                 <ul>
                                             <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-day/method/construct">Day::__construct</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-day/method/create">Day::create</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-day/method/fromdatetime">Day::fromDateTime</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-day/method/fromstring">Day::fromString</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-day/method/debuginfo">Day::__debugInfo</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-day/method/timebetween">Day::timeBetween</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-day/method/plus">Day::plus</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-day/method/minus">Day::minus</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar/1.x/gregorian-day/method/plusdays">Day::plusDays</a></li>
@@ -569,6 +597,7 @@
                                     <li><a href="/docs/calendar/1.x/gregorian-leapsecond">LeapSecond</a></li>
                                     <li><a href="/docs/calendar/1.x/gregorian-day-weekday">WeekDay</a></li>
                                     <li><a href="/docs/calendar/1.x/gregorian-timeepoch">TimeEpoch</a></li>
+                                    <li><a href="/docs/calendar/1.x/timeunit-hrtime">HRTime</a></li>
                                     <li><a href="/docs/calendar/1.x/exception-invalidargumentexception">InvalidArgumentException</a></li>
                                     <li><a href="/docs/calendar/1.x/exception-exception">Exception</a></li>
                                     <li><a href="/docs/calendar/1.x/phpcalculator">PHPCalculator</a></li>
