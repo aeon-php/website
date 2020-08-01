@@ -28,6 +28,14 @@ final class Month
         $this->days = new MonthDays($this);
     }
 
+    public static function create(int $year, int $month) : self
+    {
+        return new self(
+            new Year($year),
+            $month
+        );
+    }
+
     /**
      * @psalm-pure
      * @psalm-suppress ImpureMethodCall
@@ -138,9 +146,7 @@ final class Month
 
     public function toDateTimeImmutable() : \DateTimeImmutable
     {
-        return (new \DateTimeImmutable('now', new \DateTimeZone('UTC')))
-            ->setDate($this->year()->number(), $this->number(), 1)
-            ->setTime(0, 0, 0, 0);
+        return new \DateTimeImmutable(\sprintf('%d-%d-01 00:00:00.000000 UTC', $this->year()->number(), $this->number()));
     }
 
     public function iterate(self $destination) : Months
@@ -194,10 +200,6 @@ final class Month
             );
         }
 
-        $interval = new \DateInterval('P1M');
-        /** @psalm-suppress ImpurePropertyAssignment */
-        $interval->invert = 1;
-
         return new Months(
             ...\array_map(
                 function (\DateTimeImmutable $dateTimeImmutable) : self {
@@ -207,7 +209,7 @@ final class Month
                     \iterator_to_array(
                         new \DatePeriod(
                             $month->toDateTimeImmutable(),
-                            $interval,
+                            new \DateInterval('P1M'),
                             $this->toDateTimeImmutable()
                         )
                     )
@@ -218,26 +220,59 @@ final class Month
 
     public function isEqual(self $month) : bool
     {
-        return $this->toDateTimeImmutable() == $month->toDateTimeImmutable();
+        return $this->number() == $month->number()
+            && $this->year()->isEqual($month->year());
     }
 
     public function isBefore(self $month) : bool
     {
-        return $this->toDateTimeImmutable() < $month->toDateTimeImmutable();
+        if ($this->year()->isBefore($month->year())) {
+            return true;
+        }
+
+        if ($this->year()->isAfter($month->year())) {
+            return false;
+        }
+
+        return $this->number() < $month->number();
     }
 
     public function isBeforeOrEqual(self $month) : bool
     {
-        return $this->toDateTimeImmutable() <= $month->toDateTimeImmutable();
+        if ($this->year()->isBefore($month->year())) {
+            return true;
+        }
+
+        if ($this->year()->isAfter($month->year())) {
+            return false;
+        }
+
+        return $this->number() <= $month->number();
     }
 
     public function isAfter(self $month) : bool
     {
-        return $this->toDateTimeImmutable() > $month->toDateTimeImmutable();
+        if ($this->year()->isAfter($month->year())) {
+            return true;
+        }
+
+        if ($this->year()->isBefore($month->year())) {
+            return false;
+        }
+
+        return $this->number() > $month->number();
     }
 
     public function isAfterOrEqual(self $month) : bool
     {
-        return $this->toDateTimeImmutable() >= $month->toDateTimeImmutable();
+        if ($this->year()->isAfter($month->year())) {
+            return true;
+        }
+
+        if ($this->year()->isBefore($month->year())) {
+            return false;
+        }
+
+        return $this->number() >= $month->number();
     }
 }

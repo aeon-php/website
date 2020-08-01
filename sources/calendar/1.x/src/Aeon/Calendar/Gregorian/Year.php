@@ -47,62 +47,62 @@ final class Year
 
     public function january() : Month
     {
-        return $this->months->byNumber(1);
+        return $this->months()->byNumber(1);
     }
 
     public function february() : Month
     {
-        return $this->months->byNumber(2);
+        return $this->months()->byNumber(2);
     }
 
     public function march() : Month
     {
-        return $this->months->byNumber(3);
+        return $this->months()->byNumber(3);
     }
 
     public function april() : Month
     {
-        return $this->months->byNumber(4);
+        return $this->months()->byNumber(4);
     }
 
     public function may() : Month
     {
-        return $this->months->byNumber(5);
+        return $this->months()->byNumber(5);
     }
 
     public function june() : Month
     {
-        return $this->months->byNumber(6);
+        return $this->months()->byNumber(6);
     }
 
     public function july() : Month
     {
-        return $this->months->byNumber(7);
+        return $this->months()->byNumber(7);
     }
 
     public function august() : Month
     {
-        return $this->months->byNumber(8);
+        return $this->months()->byNumber(8);
     }
 
     public function september() : Month
     {
-        return $this->months->byNumber(9);
+        return $this->months()->byNumber(9);
     }
 
     public function october() : Month
     {
-        return $this->months->byNumber(10);
+        return $this->months()->byNumber(10);
     }
 
     public function november() : Month
     {
-        return $this->months->byNumber(11);
+        return $this->months()->byNumber(11);
     }
 
     public function december() : Month
     {
-        return $this->months->byNumber(12);
+        return $this->months()->byNumber(12);
     }
 
     public function months() : YearMonths
@@ -156,7 +156,7 @@ final class Year
             $iterator,
             \array_merge(
                 ...\array_map(
-                    fn (int $month) : array => $this->months->byNumber($month)->days()->all(),
+                    fn (int $month) : array => $this->months()->byNumber($month)->days()->all(),
                     \range(1, 12)
                 )
             )
@@ -173,7 +173,7 @@ final class Year
         return new Days(...\array_filter(
             \array_merge(
                 ...\array_map(
-                    fn (int $month) : array => $this->months->byNumber($month)->days()->all(),
+                    fn (int $month) : array => $this->months()->byNumber($month)->days()->all(),
                     \range(1, 12)
                 )
             ),
@@ -188,9 +188,7 @@ final class Year
 
     public function toDateTimeImmutable() : \DateTimeImmutable
     {
-        return (new \DateTimeImmutable('now', new \DateTimeZone('UTC')))
-            ->setDate($this->number(), 1, 1)
-            ->setTime(0, 0, 0, 0);
+        return new \DateTimeImmutable(\sprintf('%d-01-01 00:00:00.000000 UTC', $this->number()));
     }
 
     public function isEqual(self $year) : bool
@@ -200,22 +198,22 @@ final class Year
 
     public function isBefore(self $year) : bool
     {
-        return $this->toDateTimeImmutable() < $year->toDateTimeImmutable();
+        return $this->number() < $year->number();
     }
 
     public function isBeforeOrEqual(self $year) : bool
     {
-        return $this->toDateTimeImmutable() <= $year->toDateTimeImmutable();
+        return $this->number() <= $year->number();
     }
 
     public function isAfter(self $year) : bool
     {
-        return $this->toDateTimeImmutable() > $year->toDateTimeImmutable();
+        return $this->number() > $year->number();
     }
 
     public function isAfterOrEqual(self $year) : bool
     {
-        return $this->toDateTimeImmutable() >= $year->toDateTimeImmutable();
+        return $this->number() >= $year->number();
     }
 
     public function iterate(self $destination) : Years
@@ -265,10 +263,6 @@ final class Year
             );
         }
 
-        $interval = new \DateInterval('P1Y');
-        /** @psalm-suppress ImpurePropertyAssignment */
-        $interval->invert = 1;
-
         return new Years(
             ...\array_map(
                 function (\DateTimeImmutable $dateTimeImmutable) : self {
@@ -278,7 +272,7 @@ final class Year
                     \iterator_to_array(
                         new \DatePeriod(
                             $month->toDateTimeImmutable(),
-                            $interval,
+                            new \DateInterval('P1Y'),
                             $this->toDateTimeImmutable()
                         )
                     )

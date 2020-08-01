@@ -22,6 +22,8 @@ final class DateTime
 
     private TimeOffset $timeOffset;
 
+    private int $unixTimestamp;
+
     /**
      * TimeZone is optional, if not provided it will be set to UTC.
      * DateTime always has TimeOffset but when not provided it's calculated from offset and when
@@ -52,9 +54,17 @@ final class DateTime
 
         $this->timeOffset = $timeOffset !== null
             ? $timeOffset
-            : ($timeZone !== null ? $timeZone->timeOffset($this) : TimeOffset::UTC());
+            : (
+                $timeZone !== null
+                ? ($timeZone->name() === 'UTC' ? TimeOffset::UTC() : $timeZone->timeOffset($this))
+                : TimeOffset::UTC()
+            );
 
-        if ($this->time->toString() !== $this->toDateTimeImmutable()->format('H:i:s.u')) {
+        $dateTimeImmutable = $this->toDateTimeImmutable();
+
+        $this->unixTimestamp = $dateTimeImmutable->getTimestamp();
+
+        if ($this->time->toString() !== $dateTimeImmutable->format('H:i:s.u')) {
             $this->time = Time::fromDateTime($this->toDateTimeImmutable());
         }
     }
@@ -80,12 +90,16 @@ final class DateTime
      */
     public static function fromDateTime(\DateTimeInterface $dateTime) : self
     {
+        try {
+            $tz = TimeZone::fromDateTimeZone($dateTime->getTimezone());
+        } catch (InvalidArgumentException $e) {
+            $tz = null;
+        }
+
         return new self(
             Day::fromDateTime($dateTime),
             Time::fromDateTime($dateTime),
-            TimeZone::isValid($dateTime->getTimezone()->getName())
-                ? TimeZone::fromDateTimeZone($dateTime->getTimezone())
-                : null,
+            $tz,
             TimeOffset::fromTimeUnit(TimeUnit::seconds($dateTime->getOffset()))
         );
     }
@@ -98,6 +112,9 @@ final class DateTime
         return self::fromDateTime(new \DateTimeImmutable($date));
     }
 
+    /**
+     * @psalm-pure
+     */
     public static function fromTimestampUnix(int $timestamp) : self
     {
         return self::fromDateTime((new \DateTimeImmutable)->setTimestamp($timestamp));
@@ -132,19 +149,21 @@ final class DateTime
     {
         $tz = $this->timeZone();
 
-        return (
-            new \DateTimeImmutable(
-                $this->day->toDateTimeImmutable()->format('Y-m-d'),
-                $tz !== null
-                    ? $tz->toDateTimeZone()
-                    : $this->timeOffset()->toDateTimeZone()
-            ))
-            ->setTime(
+        return new \DateTimeImmutable(
+            \sprintf(
+                '%d-%d-%d %d:%d:%d.%06d',
+                $this->day->year()->number(),
+                $this->day->month()->number(),
+                $this->day->number(),
                 $this->time->hour(),
                 $this->time->minute(),
                 $this->time->second(),
                 $this->time->microsecond()
-            );
+            ),
+            $tz !== null
+                ? $tz->toDateTimeZone()
+                : $this->timeOffset()->toDateTimeZone()
+        );
     }
 
     public function toAtomicTime() : self
@@ -232,9 +251,11 @@ final class DateTime
      */
     public function timestampUNIX() : TimeUnit
     {
-        return (int) $this->toDateTimeImmutable()->format('U') >= 0
-            ? TimeUnit::positive((int) $this->toDateTimeImmutable()->format('U'), $this->time->microsecond())
-            : TimeUnit::negative(\abs((int) $this->toDateTimeImmutable()->format('U')), $this->time->microsecond());
+        $unixTimestamp = $this->unixTimestamp;
+
+        return $unixTimestamp >= 0
+            ? TimeUnit::positive($unixTimestamp, $this->time->microsecond())
+            : TimeUnit::negative(\abs($unixTimestamp), $this->time->microsecond());
     }
 
     public function modify(string $modify) : self
@@ -486,20 +507,18 @@ final class DateTime
          * @var array<int, array{ts: int, time: string, offset: int, isdst: bool, abbr: string}> $transitions
          */
         $transitions = $tz->toDateTimeZone()->getTransitions(
-            $this->timestampUNIX()->sub(TimeUnit::hours(1)->add(TimeUnit::seconds(1)))->inSeconds(),
-            $this->timestampUNIX()->add(TimeUnit::hours(1)->add(TimeUnit::seconds(1)))->inSeconds(),
+            $this->timestampUNIX()->sub(TimeUnit::hours(1)->add(TimeUnit::minute()))->inSeconds(),
+            $this->timestampUNIX()->add(TimeUnit::hours(1))->inSeconds(),
         );
 
         if (\count($transitions) === 1) {
             return false;
         }
 
-        if ($transitions[1]['offset'] - $transitions[0]['offset'] > 0) {
+        if ($transitions[1]['offset'] - $transitions[0]['offset'] === 3600) {
             return false;
         }
 
-        $diff = $this->timestampUNIX()->sub(self::fromString($transitions[1]['time'])->timestampUNIX());
-
-        return $diff->isGreaterThanEq(TimeUnit::seconds(0)) && $diff->isLessThanEq(TimeUnit::hour());
+        return true;
     }
 }

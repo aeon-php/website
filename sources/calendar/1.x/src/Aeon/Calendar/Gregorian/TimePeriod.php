@@ -46,31 +46,12 @@ final class TimePeriod
      */
     public function distance() : TimeUnit
     {
-        $result = TimeUnit::seconds(0);
+        $startUnixTimestamp = $this->start->timestampUNIX();
+        $endUnixTimestamp = $this->end->timestampUNIX();
 
-        if ($this->start->timestampUNIX()->isPositive() && $this->end->timestampUNIX()->isPositive()) {
-            $result = $this->end->timestampUNIX()
-                ->sub($this->start->timestampUNIX())
-                ->absolute();
-        }
-
-        if ($this->start->timestampUNIX()->isNegative() && $this->end->timestampUNIX()->isNegative()) {
-            $result = $this->end->timestampUNIX()
-                ->add($this->start->timestampUNIX()->invert())
-                ->absolute();
-        }
-
-        if ($this->start->timestampUNIX()->isNegative() && $this->end->timestampUNIX()->isPositive()) {
-            $result = $this->end->timestampUNIX()
-                ->add($this->start->timestampUNIX()->invert())
-                ->absolute();
-        }
-
-        if ($this->start->timestampUNIX()->isPositive() && $this->end->timestampUNIX()->isNegative()) {
-            $result = $this->end->timestampUNIX()->invert()
-                ->add($this->start->timestampUNIX())
-                ->absolute();
-        }
+        $result = $endUnixTimestamp
+            ->sub($startUnixTimestamp)
+            ->absolute();
 
         return $this->start->isAfter($this->end) ? $result->invert() : $result;
     }
@@ -134,51 +115,37 @@ final class TimePeriod
             ? $timePeriod->revert()
             : $timePeriod;
 
-        if ($thisPeriodForward->start()->isBefore($otherPeriodForward->start()) &&
-            $thisPeriodForward->start()->isBefore($otherPeriodForward->end()) &&
-            $thisPeriodForward->end()->isBefore($otherPeriodForward->start()) &&
-            $thisPeriodForward->end()->isBefore($otherPeriodForward->end())
-        ) {
-            return false;
-        }
-
-        if ($thisPeriodForward->start()->isBefore($otherPeriodForward->start()) &&
-            $thisPeriodForward->start()->isBefore($otherPeriodForward->end()) &&
-            $thisPeriodForward->end()->isAfter($otherPeriodForward->start()) &&
-            $thisPeriodForward->end()->isBefore($otherPeriodForward->end())
-        ) {
-            return true;
-        }
-
-        if ($thisPeriodForward->start()->isAfter($otherPeriodForward->start()) &&
-            $thisPeriodForward->start()->isBefore($otherPeriodForward->end()) &&
-            $thisPeriodForward->end()->isAfter($otherPeriodForward->start()) &&
-            $thisPeriodForward->end()->isBefore($otherPeriodForward->end())
-        ) {
-            return true;
-        }
-
-        if ($thisPeriodForward->start()->isAfter($otherPeriodForward->start()) &&
-            $thisPeriodForward->start()->isBefore($otherPeriodForward->end()) &&
-            $thisPeriodForward->end()->isAfter($otherPeriodForward->start()) &&
-            $thisPeriodForward->end()->isAfter($otherPeriodForward->end())
-        ) {
-            return true;
-        }
-
-        if ($thisPeriodForward->start()->isAfter($otherPeriodForward->start()) &&
-            $thisPeriodForward->start()->isAfter($otherPeriodForward->end()) &&
-            $thisPeriodForward->end()->isAfter($otherPeriodForward->start()) &&
-            $thisPeriodForward->end()->isAfter($otherPeriodForward->end())
-        ) {
-            return false;
-        }
+        $thisPeriodStart = $thisPeriodForward->start();
+        $thisPeriodEnd = $thisPeriodForward->end();
+        $otherPeriodStart = $otherPeriodForward->start();
+        $otherPeriodEnd = $otherPeriodForward->end();
 
         if ($thisPeriodForward->abuts($otherPeriodForward)) {
             return false;
         }
 
-        if ($otherPeriodForward->abuts($thisPeriodForward)) {
+        if ($thisPeriodStart->isBefore($otherPeriodStart) &&
+            $thisPeriodEnd->isBefore($otherPeriodStart) &&
+            $thisPeriodEnd->isBefore($otherPeriodEnd)
+        ) {
+            return false;
+        }
+
+        if ($thisPeriodEnd->isBefore($otherPeriodEnd)) {
+            return true;
+        }
+
+        if ($thisPeriodStart->isAfter($otherPeriodStart) &&
+            $thisPeriodStart->isBefore($otherPeriodEnd) &&
+            $thisPeriodEnd->isAfter($otherPeriodStart)
+        ) {
+            return true;
+        }
+
+        if ($thisPeriodStart->isAfter($otherPeriodStart) &&
+            $thisPeriodEnd->isAfter($otherPeriodStart) &&
+            $thisPeriodEnd->isAfter($otherPeriodEnd)
+        ) {
             return false;
         }
 

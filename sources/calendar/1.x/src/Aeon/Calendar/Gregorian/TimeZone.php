@@ -871,16 +871,16 @@ final class TimeZone
 
     private string $name;
 
+    /**
+     * @throws InvalidArgumentException
+     */
     public function __construct(string $name)
     {
-        if (!\in_array(
-            $name,
-            \array_merge(
-                (array) \DateTimeZone::listIdentifiers(),
-                [self::AMERICA_GODTHAB, self::PACIFIC_JOHNSTON]
-            ),
-            true,
-        )) {
+        if (!self::isValid($name)) {
+            throw new InvalidArgumentException("\"{$name}\" is not a valid timezone.");
+        }
+
+        if (TimeOffset::isValid($name)) {
             throw new InvalidArgumentException("\"{$name}\" is not a valid timezone.");
         }
 
@@ -892,11 +892,19 @@ final class TimeZone
      */
     public static function isValid(string $name) : bool
     {
-        return \in_array($name, (array) \DateTimeZone::listIdentifiers(), true);
+        try {
+            new \DateTimeZone($name);
+
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 
     /**
      * @psalm-pure
+     *
+     * @throws InvalidArgumentException
      */
     public static function fromDateTimeZone(\DateTimeZone $dateTimeZone) : self
     {

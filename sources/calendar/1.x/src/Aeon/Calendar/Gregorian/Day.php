@@ -6,6 +6,7 @@ namespace Aeon\Calendar\Gregorian;
 
 use Aeon\Calendar\Exception\InvalidArgumentException;
 use Aeon\Calendar\Gregorian\Day\WeekDay;
+use Aeon\Calendar\TimeUnit;
 
 /**
  * @psalm-immutable
@@ -26,6 +27,17 @@ final class Day
         $this->month = $month;
     }
 
+    public static function create(int $year, int $month, int $day) : self
+    {
+        return new self(
+            new Month(
+                new Year($year),
+                $month
+            ),
+            $day
+        );
+    }
+
     /**
      * @psalm-pure
      * @psalm-suppress ImpureMethodCall
@@ -42,7 +54,6 @@ final class Day
     }
 
     /**
-     * @throws \Exception
      * @psalm-pure
      */
     public static function fromString(string $date) : self
@@ -60,6 +71,11 @@ final class Day
             'month' => $this->month->number(),
             'day' => $this->number,
         ];
+    }
+
+    public function timeBetween(self $day) : TimeUnit
+    {
+        return TimeUnit::seconds(\abs(($this->toDateTimeImmutable()->getTimestamp() - $day->toDateTimeImmutable()->getTimestamp())));
     }
 
     public function plus(int $years, int $months, int $days) : self
@@ -168,7 +184,7 @@ final class Day
      */
     public function dayOfYear() : int
     {
-        return ((int) $this->toDateTimeImmutable()->format('z')) + 1;
+        return \intval($this->toDateTimeImmutable()->format('z')) + 1;
     }
 
     public function isWeekend() : bool
@@ -178,13 +194,7 @@ final class Day
 
     public function toDateTimeImmutable() : \DateTimeImmutable
     {
-        return (new \DateTimeImmutable('now', new \DateTimeZone('UTC')))
-            ->setDate(
-                $this->month()->year()->number(),
-                $this->month()->number(),
-                $this->number()
-            )
-            ->setTime(0, 0, 0, 0);
+        return new \DateTimeImmutable(\sprintf('%d-%d-%d 00:00:00.000000 UTC', $this->month()->year()->number(), $this->month()->number(), $this->number()));
     }
 
     public function format(string $format) : string
@@ -194,27 +204,60 @@ final class Day
 
     public function isEqual(self $day) : bool
     {
-        return $this->number() === $day->number();
+        return $this->number() === $day->number()
+            && $this->month()->isEqual($day->month());
     }
 
     public function isBefore(self $day) : bool
     {
-        return $this->toDateTimeImmutable() < $day->toDateTimeImmutable();
+        if ($this->month()->isBefore($day->month())) {
+            return true;
+        }
+
+        if ($this->month()->isAfter($day->month())) {
+            return false;
+        }
+
+        return $this->number() < $day->number();
     }
 
     public function isBeforeOrEqual(self $day) : bool
     {
-        return $this->toDateTimeImmutable() <= $day->toDateTimeImmutable();
+        if ($this->month()->isBefore($day->month())) {
+            return true;
+        }
+
+        if ($this->month()->isAfter($day->month())) {
+            return false;
+        }
+
+        return $this->number() <= $day->number();
     }
 
     public function isAfter(self $day) : bool
     {
-        return $this->toDateTimeImmutable() > $day->toDateTimeImmutable();
+        if ($this->month()->isAfter($day->month())) {
+            return true;
+        }
+
+        if ($this->month()->isBefore($day->month())) {
+            return false;
+        }
+
+        return $this->number() > $day->number();
     }
 
     public function isAfterOrEqual(self $day) : bool
     {
-        return $this->toDateTimeImmutable() >= $day->toDateTimeImmutable();
+        if ($this->month()->isAfter($day->month())) {
+            return true;
+        }
+
+        if ($this->month()->isBefore($day->month())) {
+            return false;
+        }
+
+        return $this->number() >= $day->number();
     }
 
     public function iterate(self $destination) : Days
@@ -272,10 +315,6 @@ final class Day
             );
         }
 
-        $interval = new \DateInterval('P1D');
-        /** @psalm-suppress ImpurePropertyAssignment */
-        $interval->invert = 1;
-
         return new Days(
             ...\array_map(
                 function (\DateTimeImmutable $dateTimeImmutable) : self {
@@ -285,7 +324,7 @@ final class Day
                     \iterator_to_array(
                         new \DatePeriod(
                             $day->toDateTimeImmutable(),
-                            $interval,
+                            new \DateInterval('P1D'),
                             $this->toDateTimeImmutable()
                         )
                     )
