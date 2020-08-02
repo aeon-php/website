@@ -10,7 +10,7 @@
         "aeon-php/calendar": "^0.2.0",
         "doctrine/cache": "^1.10",
         "doctrine/dbal": "^2.10",
-        "norberttech/static-content-generator-bundle": "1.x-dev#39b090c5ba4f35a9bb2afe10f0581d59f0e65e70",
+        "norberttech/static-content-generator-bundle": "1.x-dev#de5b079f5cd1728ac7f3deeb47db54ce9ac19d54",
         "phpdocumentor/reflection-docblock": "^5.1",
         "phpunit/phpunit": "^9.2",
         "psr/simple-cache": "^1.0",

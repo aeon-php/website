@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "54070911ab8b4dc7806bdf6703061fad",
+    "content-hash": "09f2e817497a97fcbde1064d8193482a",
     "packages": [
         {
             "name": "aeon-php/calendar",
@@ -967,12 +967,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/norberttech/static-content-generator-bundle.git",
-                "reference": "39b090c5ba4f35a9bb2afe10f0581d59f0e65e70"
+                "reference": "de5b079f5cd1728ac7f3deeb47db54ce9ac19d54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/norberttech/static-content-generator-bundle/zipball/39b090c5ba4f35a9bb2afe10f0581d59f0e65e70",
-                "reference": "39b090c5ba4f35a9bb2afe10f0581d59f0e65e70",
+                "url": "https://api.github.com/repos/norberttech/static-content-generator-bundle/zipball/de5b079f5cd1728ac7f3deeb47db54ce9ac19d54",
+                "reference": "de5b079f5cd1728ac7f3deeb47db54ce9ac19d54",
                 "shasum": ""
             },
             "require": {
@@ -1018,7 +1018,7 @@
                 "issues": "https://github.com/norberttech/static-content-generator-bundle/issues",
                 "source": "https://github.com/norberttech/static-content-generator-bundle/tree/1.x"
             },
-            "time": "2020-07-16T21:54:22+00:00"
+            "time": "2020-08-02T17:15:24+00:00"
         },
         {
             "name": "norberttech/symfony-process-executor",
