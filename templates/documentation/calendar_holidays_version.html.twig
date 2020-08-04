@@ -6,8 +6,9 @@
     <div class="row doc-content-body">
         <article class="col-md-9">
         <section id="calendar-interface">
-            <h5 class="section-title-2">Calendar Holidays</h5>
+            <h5 class="section-title-2">Calendar Holidays - {{ version }}</h5>
             <hr/>
+            <ul>
             {% for phpClass in calendarHolidaysClasses %}
                 <li><a href="{{ phpClass.name | class_url(version) }}">{{ phpClass.shortName }}</a></li>
             {% endfor %}

@@ -41,7 +41,6 @@
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link" href="/docs">Introduction</a>
-                            <a class="nav-link" href="/docs/getting-started">Getting Started</a>
                         </li>
                     </ul>
                 </div>
@@ -148,6 +147,21 @@
                     </div>
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#business-hours" role="button" aria-expanded="false" aria-controls="menu-2">Business Hours Library</a>
+                <div class="collapse" id="business-hours" data-parent="#page-nav">
+                    <div>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/docs/business-hours">index</a>
+                            </li>
+                                                            <li class="nav-item">
+                                    <a class="nav-link" href="/docs/business-hours/1.x">version 1.x</a>
+                                </li>
+                                                    </ul>
+                    </div>
+                </div>
+            </li>
         </ul>
     </div>
 </nav>
@@ -179,15 +193,170 @@
                 </div>
                 <div class="row doc-content-body">
         <article class="col-md-9">
-        <section id="calendar-interface">
-            <h5 class="section-title-2">Calendar</h5>
-            <hr/>
-            Available versions:
-            <ul>
-                            <li><a href="/docs/calendar/1.x">1.x</a></li>
-                        </ul>
-        </section>
+            <section id="calendar-interface">
+                <h5 class="section-title-2">Calendar</h5>
+                <hr/>
+                Available versions:
+                <ul>
+                                    <li><a href="/docs/calendar/1.x">1.x</a></li>
+                                </ul>
+            </section>
+            <section id="features">
+                <h5 class="section-title-2" id="getting-started">Getting Started</h5>
+                <hr/>
+                <p>
+                    To get current time initialize <a href="/docs/calendar/1.x/gregorian-gregoriancalendar">GregorianCalendar</a>
+                    through <a href="/docs/calendar/1.x/gregorian-gregoriancalendar/method/__construct">__construct</a> or by one of available static constructors.
+                </p>
+                <pre><code class="language-php">&lt;?php
+
+use Aeon\Calendar\Gregorian\GregorianCalendar;
+
+echo GregorianCalendar::UTC()->now()->toISO8601();</code></pre>
+
+                <p>
+                    <a href="/docs/calendar/1.x/gregorian-gregoriancalendar">GregorianCalendar</a> implements
+                    <a href="/docs/calendar/1.x/gregorian-calendar">Calendar</a> interface which should
+                    be used for type hinting.
+                </p>
+                <p>
+                    <a href="/docs/calendar/1.x/gregorian-gregoriancalendar">Calendar</a>
+                    is always initialized for specific <a href="/docs/calendar/1.x/gregorian-timezone">TimeZone</a>
+                </p>
+            </section>
+            <section>
+                <h5 class="section-title-2" id="initializing-datetime">Initializing DateTime</h5>
+                <hr/>
+                <p>
+                    Initialization time from <code>string</code> is just as easy as using <code>\DateTime</code> or <code>\DateTimeInterface</code>.
+                    Just take the <code>string</code> and pass it to <a href="/docs/calendar/1.x/gregorian-datetime/method/fromstring">fromString</a>
+                    static constructor.
+                </p>
+                <pre><code class="language-php">&lt;?php
+
+use Aeon\Calendar\Gregorian\DateTime;
+
+echo DateTime::fromString('2020-01-01 00:00:00 UTC')->toISO8601();</code></pre>
+            </section>
+
+            <section>
+                <h5 class="section-title-2" id="defining-period-of-time">Defining period of time</h5>
+                <hr/>
+                <p>
+                    There are few ways to define period of time, it can be done by initializing two <a href="/docs/calendar/1.x/gregorian-datetime">DateTime</a> instances
+                    and creating time period since one date <a href="/docs/calendar/1.x/gregorian-datetime/method/until">until</a> another.
+                </p>
+                <pre><code class="language-php">&lt;?php
+
+use Aeon\Calendar\Gregorian\DateTime;
+
+$newYear = DateTime::fromString('2020-01-01 00:00:00 UTC');
+$timePeriod = $newYear->until(
+    DateTime::fromString('2020-01-10 00:00:00 UTC')
+);</code></pre>
+            </section>
+
+            <section>
+                <h5 class="section-title-2" id="iterating-over-time">Iterating over time</h5>
+                <hr/>
+                <p>
+                    <a href="/docs/calendar/1.x/gregorian-timeperiod">TimePeriod</a> is the very first step
+                    to iterate over time. In following example we are going to iterate between two points in time by 24 hours periods.
+                    <a href="/docs/calendar/1.x/gregorian-timeperiod/method/iterate">Iterate</a> method
+                    generates instance of <a href="/docs/calendar/1.x/gregorian-timeperiods">TimePeriods</a>
+                    which is collection of <a href="/docs/calendar/1.x/gregorian-timeperiod">TimePeriod</a> instances
+                    representing chunks of time between two points.
+                </p>
+                <pre><code class="language-php">&lt;?php
+
+use Aeon\Calendar\Gregorian\DateTime;
+
+$newYear = DateTime::fromString('2020-01-01 00:00:00 UTC');
+$newYear->until(
+        DateTime::fromString('2020-01-10 00:00:00 UTC')
+    )->iterate(TimeUnit::day())
+    ->each(function(TimePeriod $timePeriod) : void {
+        var_dump(
+            $timePeriod->start()->toISO8601(),
+            $timePeriod->end()->toISO8601(),
+            $timePeriod->distance()->inHours()
+        );
+    });</code></pre>
+            </section>
+
+            <section>
+                <h5 class="section-title-2" id="measure-elapsed-time">Measure elapsed time</h5>
+                <hr/>
+                <p>
+                    It might look tempting to use measuring difference between two points in time to
+                    measure elapsed time but if you are looking for precise results use <a href="/docs/calendar/1.x/stopwatch">Stopwatch</a> class instead
+                    which is built on top of <a href="https://www.php.net/manual/en/function.hrtime.php" target="_blank">\hrtime</a> high resolution time php function.
+                </p>
+                <pre><code class="language-php">&lt;?php
+
+use Aeon\Calendar\Stopwatch;
+use Aeon\Calendar\TimeUnit;
+
+$stopwatch = new Stopwatch();
+
+$stopwatch->start();
+
+\usleep(TimeUnit::milliseconds(500)->microsecond());
+
+$stopwatch->lap();
+
+\usleep(TimeUnit::milliseconds(700)->microsecond());
+
+$stopwatch->stop();
+
+var_dump($stopwatch->elapsedTime(1)->inSecondsPrecise());
+var_dump($stopwatch->firstLapElapsedTime()->inSecondsPrecise());
+var_dump($stopwatch->lastLapElapsedTime()->inSecondsPrecise());
+var_dump($stopwatch->elapsedTime(2)->inSecondsPrecise());
+var_dump($stopwatch->totalElapsedTime()->inSecondsPrecise());</code></pre>
+            </section>
+            <section>
+                <h5 class="section-title-2" id="measure-elapsed-time">Relative format interface</h5>
+                <hr/>
+                <p>
+                    <a href="https://www.php.net/manual/en/datetime.formats.relative.php">PHP DateTime Relative Formats </a>
+                    are powerful and flexible, Aeon brings similar experience through object oriented API.
+                </p>
+                <pre><code class="language-php">&lt;?php
+
+use Aeon\Calendar\Gregorian\GregorianCalendar;
+use Aeon\Calendar\TimeUnit;
+
+$calendar = GregorianCalendar::UTC();
+
+$calendar->currentYear()
+    ->january()
+    ->lastDay()
+    ->noon($calendar->timeZone())
+    ->sub(TimeUnit::days(3));</code></pre>
+            </section>
         </article>
+        <aside class="col-md-3 col-xxl-3 d-none d-md-block">
+            <div class="sticky">
+                <ul id="toc" class="nav flex-column toc">
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#getting-started">Getting started</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#initializing-datetime">Initializing DateTime</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#defining-period-of-time">Defining period of time</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#iterating-over-time">Iterating over time</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#measure-elapsed-time">Measure elapsed time</a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
     </div>
             </article>
             <!-- / content -->

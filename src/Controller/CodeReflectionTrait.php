@@ -80,7 +80,6 @@ trait CodeReflectionTrait
         );
     }
 
-
     private function calendarHolidaysClasses(string $version) : array
     {
         return $this->loadCode(
@@ -92,6 +91,19 @@ trait CodeReflectionTrait
     private function calendarHolidaysVersions() : array
     {
         return $this->parameterBag()->get('aeon_php_calendar_holidays')['versions'];
+    }
+
+    private function businessHoursClasses(string $version) : array
+    {
+        return $this->loadCode(
+            $this->parameterBag()->get('aeon_php_business_hours'),
+            $version
+        );
+    }
+
+    private function businessHoursVersions() : array
+    {
+        return $this->parameterBag()->get('aeon_php_business_hours')['versions'];
     }
 
     private function processClasses(string $version)

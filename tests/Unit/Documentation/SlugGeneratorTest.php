@@ -21,6 +21,7 @@ final class SlugGeneratorTest extends TestCase
 
     public function generate_slug_for_classes_data_provider() : \Generator
     {
+        yield ['Aeon\\Calendar\\Gregorian\\BusinessHours', 'business-hours'];
         yield [Process::class, 'process'];
         yield [DummyProcess::class, 'dummyprocess'];
         yield [SystemProcess::class, 'systemprocess'];

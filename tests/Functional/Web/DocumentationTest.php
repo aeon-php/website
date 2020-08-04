@@ -6,14 +6,6 @@ use App\Tests\Functional\WebTestCase;
 
 final class DocumentationTest extends WebTestCase
 {
-    public function test_getting_started_page() : void
-    {
-        $client = self::createClient();
-        $client->request('GET', $this->generateUrl('docs_getting_started'));
-
-        $this->assertResponseStatusCodeSame(200);
-    }
-
     public function test_calendar_page() : void
     {
         $client = self::createClient();

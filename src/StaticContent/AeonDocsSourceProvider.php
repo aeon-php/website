@@ -21,7 +21,7 @@ final class AeonDocsSourceProvider implements SourceProvider
         $this->parameterBag = $parameterBag;
     }
 
-    protected function parameterBag(): ParameterBagInterface
+    protected function parameterBag() : ParameterBagInterface
     {
         return $this->parameterBag;
     }
@@ -41,7 +41,7 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    private function calendarSources(): array
+    private function calendarSources() : array
     {
         $sources = [];
 
@@ -63,7 +63,7 @@ final class AeonDocsSourceProvider implements SourceProvider
                         [
                             'version' => $version,
                             'classSlug' => SlugGenerator::forPHPClass($phpClass),
-                            'methodSlug' => SlugGenerator::forClassMethod($method)
+                            'methodSlug' => SlugGenerator::forClassMethod($method),
                         ]
                     );
                 }
@@ -76,7 +76,7 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    private function calendarDoctrineSources(): array
+    private function calendarDoctrineSources() : array
     {
         $sources = [];
 
@@ -98,7 +98,7 @@ final class AeonDocsSourceProvider implements SourceProvider
                         [
                             'version' => $version,
                             'classSlug' => SlugGenerator::forPHPClass($phpClass),
-                            'methodSlug' => SlugGenerator::forClassMethod($method)
+                            'methodSlug' => SlugGenerator::forClassMethod($method),
                         ]
                     );
                 }
@@ -111,7 +111,7 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    private function calendarTwigSources(): array
+    private function calendarTwigSources() : array
     {
         $sources = [];
 
@@ -133,7 +133,7 @@ final class AeonDocsSourceProvider implements SourceProvider
                         [
                             'version' => $version,
                             'classSlug' => SlugGenerator::forPHPClass($phpClass),
-                            'methodSlug' => SlugGenerator::forClassMethod($method)
+                            'methodSlug' => SlugGenerator::forClassMethod($method),
                         ]
                     );
                 }
@@ -146,7 +146,7 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    private function calendarHolidaysSources(): array
+    private function calendarHolidaysSources() : array
     {
         $sources = [];
 
@@ -168,7 +168,7 @@ final class AeonDocsSourceProvider implements SourceProvider
                         [
                             'version' => $version,
                             'classSlug' => SlugGenerator::forPHPClass($phpClass),
-                            'methodSlug' => SlugGenerator::forClassMethod($method)
+                            'methodSlug' => SlugGenerator::forClassMethod($method),
                         ]
                     );
                 }
@@ -181,7 +181,7 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    private function processSources(): array
+    private function processSources() : array
     {
         $sources = [];
 
@@ -203,7 +203,7 @@ final class AeonDocsSourceProvider implements SourceProvider
                         [
                             'version' => $version,
                             'classSlug' => SlugGenerator::forPHPClass($phpClass),
-                            'methodSlug' => SlugGenerator::forClassMethod($method)
+                            'methodSlug' => SlugGenerator::forClassMethod($method),
                         ]
                     );
                 }
@@ -216,7 +216,7 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    private function retrySources(): array
+    private function retrySources() : array
     {
         $sources = [];
 
@@ -238,7 +238,7 @@ final class AeonDocsSourceProvider implements SourceProvider
                         [
                             'version' => $version,
                             'classSlug' => SlugGenerator::forPHPClass($phpClass),
-                            'methodSlug' => SlugGenerator::forClassMethod($method)
+                            'methodSlug' => SlugGenerator::forClassMethod($method),
                         ]
                     );
                 }

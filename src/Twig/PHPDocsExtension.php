@@ -32,6 +32,10 @@ final class PHPDocsExtension extends AbstractExtension
             return $this->router->generate('docs_calendar_holidays_class', ['classSlug' => SlugGenerator::forClass($className), 'version' => $version]);
         }
 
+        if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calendar\\Gregorian\\BusinessHours')) {
+            return $this->router->generate('docs_business_hours_class', ['classSlug' => SlugGenerator::forClass($className), 'version' => $version]);
+        }
+
         if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Retry')) {
             return $this->router->generate('docs_retry_class', ['classSlug' => SlugGenerator::forClass($className), 'version' => $version]);
         }
@@ -63,6 +67,14 @@ final class PHPDocsExtension extends AbstractExtension
     {
         if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calendar\\Gregorian\\Holidays')) {
             return $this->router->generate('docs_calendar_holidays_class_method', [
+                'version' => $version,
+                'classSlug' => SlugGenerator::forClass($className),
+                'methodSlug' => SlugGenerator::forMethod($methodName),
+            ]);
+        }
+
+        if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calendar\\Gregorian\\BusinessHours')) {
+            return $this->router->generate('docs_business_hours_class_method', [
                 'version' => $version,
                 'classSlug' => SlugGenerator::forClass($className),
                 'methodSlug' => SlugGenerator::forMethod($methodName),

@@ -33,9 +33,12 @@ parameters:
             1.x: "%kernel.project_dir%/sources/calendar-holidays/1.x/src"
         dependencies:
             aeon_php_calendar: "1.x"
-
-    aeon_php_process_src: "%kernel.project_dir%/vendor/aeon-php/process/src"
-    aeon_php_retry_src: "%kernel.project_dir%/vendor/aeon-php/retry/src"
+    aeon_php_business_hours:
+        versions:
+            1.x: "%kernel.project_dir%/sources/business-hours/1.x/src"
+        dependencies:
+            aeon_php_calendar: "1.x"
+            aeon_php_calendar_holidays: "1.x"
 
 services:
     # default configuration for services in *this* file

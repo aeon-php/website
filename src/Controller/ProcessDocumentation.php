@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\Documentation\SlugGenerator;
@@ -22,7 +24,7 @@ final class ProcessDocumentation extends AbstractController
         $this->parameterBag = $parameterBag;
     }
 
-    protected function parameterBag(): ParameterBagInterface
+    protected function parameterBag() : ParameterBagInterface
     {
         return $this->parameterBag;
     }
@@ -62,7 +64,7 @@ final class ProcessDocumentation extends AbstractController
                     'activeSection' => 'process',
                     'version' => $version,
                     'classes' => $classes,
-                    'library' => 'Process'
+                    'library' => 'Process',
                 ]);
             }
         }
@@ -85,7 +87,7 @@ final class ProcessDocumentation extends AbstractController
                             'activeSection' => 'process',
                             'version' => $version,
                             'classes' => $classes,
-                            'library' => 'Process'
+                            'library' => 'Process',
                         ]);
                     }
                 }

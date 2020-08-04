@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\Documentation\SlugGenerator;
@@ -22,7 +24,7 @@ final class CalendarDocumentation extends AbstractController
         $this->parameterBag = $parameterBag;
     }
 
-    protected function parameterBag(): ParameterBagInterface
+    protected function parameterBag() : ParameterBagInterface
     {
         return $this->parameterBag;
     }
@@ -62,7 +64,7 @@ final class CalendarDocumentation extends AbstractController
                     'activeSection' => 'calendar',
                     'version' => $version,
                     'classes' => $classes,
-                    'library' => 'Calendar'
+                    'library' => 'Calendar',
                 ]);
             }
         }
@@ -85,7 +87,7 @@ final class CalendarDocumentation extends AbstractController
                             'activeSection' => 'calendar',
                             'version' => $version,
                             'classes' => $classes,
-                            'library' => 'Calendar'
+                            'library' => 'Calendar',
                         ]);
                     }
                 }

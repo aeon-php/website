@@ -1,0 +1,103 @@
+{% extends 'docs.html.twig' %}
+
+{% block title %}Aeon PHP - Calendar Holidays - Documentation{% endblock %}
+
+{% block body %}
+    <div class="row doc-content-body">
+        <article class="col-md-9">
+            <section id="calendar-interface">
+                <h5 class="section-title-2">Business Hours</h5>
+                <hr/>
+                Available versions:
+                <ul>
+                    {% for version, src in versions %}
+                        <li><a href="{{ path('docs_business_hours_version', { version: version }) }}">{{ version }}</a></li>
+                    {% endfor %}
+                </ul>
+            </section>
+            <section id="features">
+                <h5 class="section-title-2" id="getting-started">Basics</h5>
+                <hr/>
+                <p>
+                    <a href="{{ 'Aeon\\Calendar\\Gregorian\\BusinessHours'|class_url('1.x') }}">BusinessHours</a> holds whole logic of this library.
+                    It checks 3 collections in given order to determine if during given date and time business is open or not.
+                    Those 3 collections are described below:
+                </p>
+                <ul>
+                    <li><code>BusinessDays $regularBusinessDays - lowest priority when checking open hours, overwrites nothing</code></li>
+                    <li><code>BusinessDays $customBusinessDays - highest priority when checking open hours, overwrites business days and non business days</code></li>
+                    <li><code>NonBusinessDays $nonBusinessDays - medium priority when checking open hours, overwrites regular business days</code></li>
+                </ul>
+                <p>
+                    Lets see some examples.
+                </p>
+            </section>
+            <section id="features">
+                <h5 class="section-title-2" id="getting-started">Linear Working Hours</h5>
+                <hr/>
+                <p>
+                    This library provides simple abstraction over Business Hours. The easiest example where
+                    there are no holidays and business working Mon-Fri from 6am and 6pm is presented below.
+                </p>
+                <pre><code class="language-php">{% apply spaceless  %}
+&lt;?php
+
+use Aeon\Calendar\Gregorian\BusinessHours;
+use Aeon\Calendar\Gregorian\BusinessHours\WorkingHours\LinearWorkingHours;
+use Aeon\Calendar\Gregorian\Time;
+use Aeon\Calendar\Gregorian\DateTime;
+
+$businessHours = new BusinessHours(
+    $regularBusinessDays = BusinessHours\BusinessDays::mondayFriday(
+        new LinearWorkingHours(Time::fromString('6am'), Time::fromString('6pm'))
+    ),
+    BusinessHours\BusinessDays::none(),
+    BusinessHours\NonBusinessDays::none()
+);
+
+$businessHours->isOpen(DateTime::fromString('2020-01-03 8am')); // true
+// 2020-01-11 - Saturday
+$businessHours->nextBusinessDay(Day::fromString('2020-01-11')); // 2020-01-13
+{% endapply %}</code></pre>
+            </section>
+            <section id="features">
+                <h5 class="section-title-2" id="getting-started">Working Hours with Holidays</h5>
+                <hr/>
+                <p>
+                    Thanks to integration with <a href="{{ path('docs_calendar_holidays') }}">Aeon Holidays Library</a>
+                    previous example can be decorated with regional holidays.
+                </p>
+                <pre><code class="language-php">{% apply spaceless  %}
+&lt;?php
+
+use Aeon\Calendar\Gregorian\BusinessHours;
+use Aeon\Calendar\Gregorian\BusinessHours\WorkingHours\LinearWorkingHours;
+use Aeon\Calendar\Gregorian\Time;
+use Aeon\Calendar\Gregorian\Day;
+use Aeon\Calendar\Gregorian\Holidays\GoogleCalendar\CountryCodes;
+use Aeon\Calendar\Gregorian\Holidays\GoogleCalendarRegionalHolidays;
+
+$businessHours = new BusinessHours(
+    $regularBusinessDays = BusinessHours\BusinessDays::wholeWeek(
+        $weekWorkingHours = new LinearWorkingHours(Time::fromString('6am'), Time::fromString('6pm')),
+        $weekendWorkingHours = new LinearWorkingHours(Time::fromString('11am'), Time::fromString('6pm'))
+    ),
+    $customBusinessDays = new BusinessHours\BusinessDays(
+        new BusinessHours\BusinssDay\CustomBusinessDay(
+            Day::fromString('2020-01-01'),
+            new LinearWorkingHours(Time::fromString('11am'), Time::fromString('3pm'))
+        )
+    ),
+    $nonBusinessDay = new BusinessHours\NonBusinessDays(
+        new BusinessHours\NonBusinessDay\Holidays(
+            new GoogleCalendarRegionalHolidays(CountryCodes::PL)
+        )
+    )
+);
+
+$businessHours->isOpenOn(Day::fromString('2020-06-11')); // false
+{% endapply %}</code></pre>
+            </section>
+        </article>
+    </div>
+{% endblock %}

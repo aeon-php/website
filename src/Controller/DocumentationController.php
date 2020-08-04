@@ -47,16 +47,6 @@ final class DocumentationController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/docs/getting-started", name="docs_getting_started")
-     */
-    public function gettingStarted() : Response
-    {
-        return $this->render('documentation/getting_started.html.twig', [
-            'activeSection' => 'introduction',
-        ]);
-    }
-
     public function navigation(?string $activeSection = null) : Response
     {
         return $this->render('documentation/_navigation.html.twig', [
@@ -65,6 +55,7 @@ final class DocumentationController extends AbstractController
             'calendarDoctrineVersions' => $this->calendarDoctrineVersions(),
             'calendarTwigVersions' => $this->calendarTwigVersions(),
             'calendarHolidaysVersions' => $this->calendarHolidaysVersions(),
+            'businessHoursVersions' => $this->businessHoursVersions(),
             'processVersions' => $this->processVersions(),
             'retryVersions' => $this->retryVersions(),
         ]);

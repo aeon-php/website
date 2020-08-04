@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\Documentation\SlugGenerator;
@@ -62,7 +64,7 @@ final class RetryDocumentation extends AbstractController
                     'activeSection' => 'retry',
                     'version' => $version,
                     'classes' => $classes,
-                    'library' => 'Retry'
+                    'library' => 'Retry',
                 ]);
             }
         }
@@ -85,7 +87,7 @@ final class RetryDocumentation extends AbstractController
                             'activeSection' => 'retry',
                             'version' => $version,
                             'classes' => $classes,
-                            'library' => 'Retry'
+                            'library' => 'Retry',
                         ]);
                     }
                 }

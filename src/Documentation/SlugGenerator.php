@@ -17,6 +17,14 @@ final class SlugGenerator
             return \str_replace('\\', '-', \mb_strtolower(\ltrim(\str_replace('Aeon\\Calendar\\Gregorian', '', $className), '\\')));
         }
 
+        if (\ltrim($className, '\\') === 'Aeon\\Calendar\\Gregorian\\BusinessHours') {
+            return 'business-hours';
+        }
+
+        if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calendar\\Gregorian\\BusinessHours')) {
+            return \str_replace('\\', '-', \mb_strtolower(\ltrim(\str_replace('Aeon\\Calendar\\Gregorian\\BusinessHours', '', $className), '\\')));
+        }
+
         if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calendar\\System\\')) {
             return \str_replace('\\', '-', \mb_strtolower(\ltrim(\str_replace('Aeon\\Calendar\\System', '', $className), '\\')));
         }
@@ -48,7 +56,8 @@ final class SlugGenerator
     public static function forMethod(string $method) : string
     {
         return \str_replace(
-            '_', '',
+            '_',
+            '',
             \str_replace('\\', '-', \mb_strtolower(\ltrim($method)))
         );
     }

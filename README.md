@@ -18,6 +18,8 @@ Documentation of Aeon PHP project.
 
 ```bash
 composer install
+npm install
+node_modules/.bin/gulp
 symfony server:start
 ```
 
@@ -27,7 +29,7 @@ symfony server:start
 
 ```bash
 bin/console static-content-generator:copy:assets --env=prod
-bin/console static-content-generator:generate:routes --env=prod
+bin/console static-content-generator:generate:routes --env=prod --parallel=8
 ```
 
 ### Push new changes to github pages

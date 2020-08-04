@@ -12,7 +12,6 @@
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('documentation') }}">Introduction</a>
-                            <a class="nav-link" href="{{ path('docs_getting_started') }}">Getting Started</a>
                         </li>
                     </ul>
                 </div>
@@ -125,6 +124,23 @@
                             {% for version, src in calendarHolidaysVersions %}
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ path('docs_calendar_holidays_version', {version: version}) }}">version {{ version }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link{% if activeSection == "business-hours" %} active{% endif %}" data-toggle="collapse" href="#business-hours" role="button" aria-expanded="{% if activeSection == "calendar-holidays" %}true{% else %}false{% endif %}" aria-controls="menu-2">Business Hours Library</a>
+                <div class="collapse{% if activeSection == "business-hours" %} show{% endif %}" id="business-hours" data-parent="#page-nav">
+                    <div>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('docs_business_hours') }}">index</a>
+                            </li>
+                            {% for version, src in calendarHolidaysVersions %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('docs_business_hours_version', {version: version}) }}">version {{ version }}</a>
                                 </li>
                             {% endfor %}
                         </ul>
