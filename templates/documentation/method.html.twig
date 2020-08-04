@@ -59,13 +59,18 @@
                 {% endif %}
             </section>
         </article>
-        <article class="col-md-3">
-            <h5>{{ library }} - {{ version }}</h5>
-            <ul>
-                {% for phpClass in classes %}
-                    <li><a href="{{ phpClass.name | class_url(version) }}">{{ phpClass.shortName }}</a></li>
-                {% endfor %}
-            </ul>
-        </article>
+        <aside class="col-md-3">
+            <div class="sticky">
+                <h5>{{ library }} - {{ version }}</h5>
+                <ul>
+                    {% for phpClass in classes %}
+                        <li><a href="{{ phpClass.name | class_url(version) }}">{{ phpClass.shortName }}</a></li>
+                    {% endfor %}
+                </ul>
+                <section class="text-center mt-2">
+                    <a href="https://github.com/aeon-php/website/blob/1.x/templates/{{ _self }}" class="btn btn-secondary p-1" target="_blank"><i class="fab fa-github"></i> Edit this page</a>
+                </section>
+            </div>
+        </aside>
     </div>
 {% endblock %}
