@@ -212,11 +212,11 @@
 
                 <pre><code class="language-php">&lt;?php
 use Doctrine\DBAL\Types\Type;
-use Aeon\Doctrine\Calendar\Gregorian\DateType;
+use Aeon\Doctrine\Calendar\Gregorian\DayType;
 use Aeon\Doctrine\Calendar\Gregorian\DateTimeType;
 use Aeon\Doctrine\Calendar\Gregorian\DateTimeTzType;
 
-Type::addType(DateType::NAME, DateType::class); // aeon_date
+Type::addType(DayType::NAME, DayType::class); // aeon_day
 Type::addType(DateTimeType::NAME, DateTimeType::class); // aeon_datetime
 Type::addType(DateTimeTzType::NAME, DateTimeTzType::class); // aeon_datetime_tz</code></pre>
 
@@ -227,7 +227,7 @@ Type::addType(DateTimeTzType::NAME, DateTimeTzType::class); // aeon_datetime_tz<
 doctrine:
     dbal:
         types:
-            aeon_date: Aeon\Calendar\Doctrine\Gregorian\DateType
+            aeon_dat: Aeon\Calendar\Doctrine\Gregorian\DayType
             aeon_datetime: Aeon\Calendar\Doctrine\Gregorian\DateTimeType
             aeon_datetime_tz: Aeon\Calendar\Doctrine\Gregorian\DateTimeTzType</code></pre>
             </section>
