@@ -93,6 +93,19 @@ trait CodeReflectionTrait
         return $this->parameterBag()->get('aeon_php_calendar_holidays')['versions'];
     }
 
+    private function calendarHolidaysYasumiClasses(string $version) : array
+    {
+        return $this->loadCode(
+            $this->parameterBag()->get('aeon_php_calendar_holidays_yasumi'),
+            $version
+        );
+    }
+
+    private function calendarHolidaysYasumiVersions() : array
+    {
+        return $this->parameterBag()->get('aeon_php_calendar_holidays_yasumi')['versions'];
+    }
+
     private function businessHoursClasses(string $version) : array
     {
         return $this->loadCode(
@@ -106,17 +119,17 @@ trait CodeReflectionTrait
         return $this->parameterBag()->get('aeon_php_business_hours')['versions'];
     }
 
-    private function processClasses(string $version)
+    private function sleepClasses(string $version)
     {
         return $this->loadCode(
-            $this->parameterBag()->get('aeon_php_process'),
+            $this->parameterBag()->get('aeon_php_sleep'),
             $version
         );
     }
 
-    private function processVersions()
+    private function sleepVersions()
     {
-        return $this->parameterBag()->get('aeon_php_process')['versions'];
+        return $this->parameterBag()->get('aeon_php_sleep')['versions'];
     }
 
     private function retryClasses(string $version)

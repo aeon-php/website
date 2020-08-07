@@ -1,6 +1,6 @@
 {% extends 'docs.html.twig' %}
 
-{% block title %}Aeon PHP - Business Hours - Documentation{% endblock %}
+{% block title %}Aeon PHP - Calendar Holidays - Documentation{% endblock %}
 
 {% block body %}
     <div class="row doc-content-body">
@@ -14,6 +14,12 @@
                         <li><a href="{{ path('docs_calendar_holidays_version', { version: version }) }}">{{ version }}</a></li>
                     {% endfor %}
                 </ul>
+            </section>
+            <section>
+                <h3>Installation</h3>
+                <p>
+                    <code class="code">composer require aeon-php/calendar-holidays</code>
+                </p>
             </section>
             <section>
                 <h3>Description</h3>

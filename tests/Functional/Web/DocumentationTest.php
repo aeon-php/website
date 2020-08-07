@@ -22,10 +22,34 @@ final class DocumentationTest extends WebTestCase
         $this->assertResponseStatusCodeSame(200);
     }
 
-    public function test_process_page() : void
+    public function test_calendar_holidays_yasumi_page() : void
     {
         $client = self::createClient();
-        $client->request('GET', $this->generateUrl('docs_process'));
+        $client->request('GET', $this->generateUrl('docs_calendar_holidays_yasumi'));
+
+        $this->assertResponseStatusCodeSame(200);
+    }
+
+    public function test_sleep_page() : void
+    {
+        $client = self::createClient();
+        $client->request('GET', $this->generateUrl('docs_sleep'));
+
+        $this->assertResponseStatusCodeSame(200);
+    }
+
+    public function test_calendar_doctrine_page() : void
+    {
+        $client = self::createClient();
+        $client->request('GET', $this->generateUrl('docs_calendar_doctrine'));
+
+        $this->assertResponseStatusCodeSame(200);
+    }
+
+    public function test_calendar_twig_page() : void
+    {
+        $client = self::createClient();
+        $client->request('GET', $this->generateUrl('docs_calendar_twig'));
 
         $this->assertResponseStatusCodeSame(200);
     }

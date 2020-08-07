@@ -1,0 +1,73 @@
+{% extends 'docs.html.twig' %}
+
+{% block title %}Aeon PHP - Sleep - Documentation{% endblock %}
+
+{% block body %}
+    <div class="row doc-content-body">
+        <article class="col-md-9">
+        <section id="calendar-interface">
+            <h5 class="section-title-2">Sleep</h5>
+            <hr/>
+            Available versions:
+            <ul>
+                {% for version, src in versions %}
+                    <li><a href="{{ path('docs_sleep_version', { version: version }) }}">{{ version }}</a></li>
+                {% endfor %}
+            </ul>
+        </section>
+            <section>
+                <h3>Installation</h3>
+                <p>
+                    <code class="code">composer require aeon-php/sleep</code>
+                </p>
+            </section>
+        <section>
+            <h3>Description</h3>
+            <p>
+                This library provides literally one function that makes it easier to pause your process for a certain time.
+            </p>
+            <p>
+                Let say you would like to sleep for 200 milliseconds. Instead of using usleep and multiplication of 200 by...
+                exactly, how much? Just use Aeon sleep.
+            </p>
+
+            <pre><code class="language-php">{% apply spaceless  %}
+&lt;?php
+
+use Aeon\Calendar\TimeUnit;
+use function \Aeon\Calendar\System\sleep;
+
+sleep(TimeUnit::milliseconds(200));
+{% endapply %}</code></pre>
+
+            <p>Thanks to <a href="{{ path('docs_calendar_class', {'version': '1.x', 'classSlug': 'timeunit'}) }}">TimeUnit</a> you can sleep with any precision you need.</p>
+
+            <p>
+                Sleeping in tests might be tricky, one might put sleep in the test case but who likes slow test suite?
+                Instead of using function go with <code>SystemProcess</code> and expect instance of <code>Process</code>
+                in your <a href="https://en.wikipedia.org/wiki/System_under_test" target="_blank">system under test</a>.
+            </p>
+
+
+            <pre><code class="language-php">{% apply spaceless  %}
+&lt;??hp
+
+use Aeon\Calendar\System\SystemProcess;
+use Aeon\Calendar\TimeUnit;
+
+$process = SystemProcess::current();
+
+$process->sleep(TimeUnit::milliseconds(200));
+{% endapply %}</code></pre>
+
+        </section>
+        </article>
+        <aside class="col-md-3">
+            <div class="sticky">
+                <section class="text-center">
+                    <a href="https://github.com/aeon-php/website/blob/1.x/templates/{{ _self }}" class="btn btn-secondary p-1" target="_blank"><i class="fab fa-github"></i> Edit this page</a>
+                </section>
+            </div>
+        </aside>
+    </div>
+{% endblock %}

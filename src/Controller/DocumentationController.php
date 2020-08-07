@@ -40,8 +40,10 @@ final class DocumentationController extends AbstractController
             'calendarDoctrineVersion' => '1.x',
             'calendarHolidaysClasses' => $this->calendarHolidaysClasses('1.x'),
             'calendarHolidaysVersion' => '1.x',
-            'processClasses' => $this->processClasses('1.x'),
-            'processVersion' => '1.x',
+            'calendarHolidaysYasumiClasses' => $this->calendarHolidaysYasumiClasses('1.x'),
+            'calendarHolidaysYasumiVersion' => '1.x',
+            'sleepClasses' => $this->sleepClasses('1.x'),
+            'sleepVersion' => '1.x',
             'retryClasses' => $this->retryClasses('1.x'),
             'retryVersion' => '1.x',
         ]);
@@ -55,8 +57,9 @@ final class DocumentationController extends AbstractController
             'calendarDoctrineVersions' => $this->calendarDoctrineVersions(),
             'calendarTwigVersions' => $this->calendarTwigVersions(),
             'calendarHolidaysVersions' => $this->calendarHolidaysVersions(),
+            'calendarHolidaysYasumiVersions' => $this->calendarHolidaysYasumiVersions(),
             'businessHoursVersions' => $this->businessHoursVersions(),
-            'processVersions' => $this->processVersions(),
+            'sleepVersions' => $this->sleepVersions(),
             'retryVersions' => $this->retryVersions(),
         ]);
     }

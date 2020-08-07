@@ -21,6 +21,10 @@ final class SlugGenerator
             return 'business-hours';
         }
 
+        if (\ltrim($className, '\\') === 'Aeon\\Calendar\\Gregorian\\YasumiHolidays') {
+            return 'yasumi-holidays';
+        }
+
         if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calendar\\Gregorian\\BusinessHours')) {
             return \str_replace('\\', '-', \mb_strtolower(\ltrim(\str_replace('Aeon\\Calendar\\Gregorian\\BusinessHours', '', $className), '\\')));
         }

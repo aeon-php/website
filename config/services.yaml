@@ -17,9 +17,9 @@ parameters:
             1.x: "%kernel.project_dir%/sources/calendar-doctrine/1.x/src"
         dependencies:
             aeon_php_calendar: "1.x"
-    aeon_php_process:
+    aeon_php_sleep:
         versions:
-            1.x: "%kernel.project_dir%/sources/process/1.x/src"
+            1.x: "%kernel.project_dir%/sources/sleep/1.x/src"
         dependencies:
             aeon_php_calendar: "1.x"
     aeon_php_retry:
@@ -27,12 +27,18 @@ parameters:
             1.x: "%kernel.project_dir%/sources/retry/1.x/src"
         dependencies:
             aeon_php_calendar: "1.x"
-            aeon_php_process: "1.x"
+            aeon_php_sleep: "1.x"
     aeon_php_calendar_holidays:
         versions:
             1.x: "%kernel.project_dir%/sources/calendar-holidays/1.x/src"
         dependencies:
             aeon_php_calendar: "1.x"
+    aeon_php_calendar_holidays_yasumi:
+        versions:
+            1.x: "%kernel.project_dir%/sources/calendar-holidays-yasumi/1.x/src"
+        dependencies:
+            aeon_php_calendar: "1.x"
+            aeon_php_calendar_holidays: "1.x"
     aeon_php_business_hours:
         versions:
             1.x: "%kernel.project_dir%/sources/business-hours/1.x/src"

@@ -79,11 +79,11 @@
                 </ul>
             </section>
             <section id="process-interface">
-                <h5 class="section-title-2">Process Interface - {{ processVersion }}</h5>
+                <h5 class="section-title-2">Process Interface - {{ sleepVersion }}</h5>
                 <hr/>
                 <ul>
-                    {% for phpClass in processClasses %}
-                        <li><a href="{{ phpClass.name | class_url(processVersion) }}">{{ phpClass.shortName }}</a></li>
+                    {% for phpClass in sleepClasses %}
+                        <li><a href="{{ phpClass.name | class_url(sleepVersion) }}">{{ phpClass.shortName }}</a></li>
                     {% endfor %}
                 </ul>
             </section>

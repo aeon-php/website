@@ -34,7 +34,7 @@ final class AeonDocsSourceProvider implements SourceProvider
             $this->calendarTwigSources(),
             $this->calendarHolidaysSources(),
             $this->businessHoursSources(),
-            $this->processSources(),
+            $this->sleepSources(),
             $this->retrySources()
         );
     }
@@ -217,25 +217,25 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    private function processSources() : array
+    private function sleepSources() : array
     {
         $sources = [];
 
-        foreach ($this->processVersions() as $version => $srv) {
-            $sources[] = new Source('docs_process_version', ['version' => $version]);
+        foreach ($this->sleepVersions() as $version => $srv) {
+            $sources[] = new Source('docs_sleep_version', ['version' => $version]);
         }
 
-        foreach ($this->processVersions() as $version => $srv) {
-            foreach ($this->processClasses($version) as $phpClass) {
-                $sources[] = new Source('docs_process_class', ['version' => $version, 'classSlug' => SlugGenerator::forPHPClass($phpClass)]);
+        foreach ($this->sleepVersions() as $version => $srv) {
+            foreach ($this->sleepClasses($version) as $phpClass) {
+                $sources[] = new Source('docs_sleep_class', ['version' => $version, 'classSlug' => SlugGenerator::forPHPClass($phpClass)]);
             }
         }
 
-        foreach ($this->processVersions() as $version => $srv) {
-            foreach ($this->processClasses($version) as $phpClass) {
+        foreach ($this->sleepVersions() as $version => $srv) {
+            foreach ($this->sleepClasses($version) as $phpClass) {
                 foreach ($phpClass->methods() as $method) {
                     $sources[] = new Source(
-                        'docs_process_class_method',
+                        'docs_sleep_class_method',
                         [
                             'version' => $version,
                             'classSlug' => SlugGenerator::forPHPClass($phpClass),

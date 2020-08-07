@@ -97,16 +97,16 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link{% if activeSection == "process" %} active{% endif %}" data-toggle="collapse" href="#process" role="button" aria-expanded="{% if activeSection == "process" %}true{% else %}false{% endif %}" aria-controls="menu-2">Process Library</a>
-                <div class="collapse{% if activeSection == "process" %} show{% endif %}" id="process" data-parent="#page-nav">
+                <a class="nav-link{% if activeSection == "sleep" %} active{% endif %}" data-toggle="collapse" href="#sleep" role="button" aria-expanded="{% if activeSection == "process" %}true{% else %}false{% endif %}" aria-controls="menu-2">Sleep Library</a>
+                <div class="collapse{% if activeSection == "sleep" %} show{% endif %}" id="sleep" data-parent="#page-nav">
                     <div>
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('docs_process') }}">Index</a>
+                                <a class="nav-link" href="{{ path('docs_sleep') }}">Index</a>
                             </li>
-                            {% for version, src in processVersions %}
+                            {% for version, src in sleepVersions %}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ path('docs_process_version', {version: version}) }}">version {{ version }}</a>
+                                    <a class="nav-link" href="{{ path('docs_sleep_version', {version: version}) }}">version {{ version }}</a>
                                 </li>
                             {% endfor %}
                         </ul>
@@ -131,6 +131,23 @@
                 </div>
             </li>
             <li class="nav-item">
+                <a class="nav-link{% if activeSection == "calendar-holidays-yasumi" %} active{% endif %}" data-toggle="collapse" href="#calendar-holidays-yasumi" role="button" aria-expanded="{% if activeSection == "calendar-holidays-yasumi" %}true{% else %}false{% endif %}" aria-controls="menu-2">Calendar Holidays Yasumi Library</a>
+                <div class="collapse{% if activeSection == "calendar-holidays-yasumi" %} show{% endif %}" id="calendar-holidays-yasumi" data-parent="#page-nav">
+                    <div>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('docs_calendar_holidays_yasumi') }}">index</a>
+                            </li>
+                            {% for version, src in calendarHolidaysYasumiVersions %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('docs_calendar_holidays_yasumi_version', {version: version}) }}">version {{ version }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link{% if activeSection == "business-hours" %} active{% endif %}" data-toggle="collapse" href="#business-hours" role="button" aria-expanded="{% if activeSection == "calendar-holidays" %}true{% else %}false{% endif %}" aria-controls="menu-2">Business Hours Library</a>
                 <div class="collapse{% if activeSection == "business-hours" %} show{% endif %}" id="business-hours" data-parent="#page-nav">
                     <div>
@@ -138,7 +155,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('docs_business_hours') }}">index</a>
                             </li>
-                            {% for version, src in calendarHolidaysVersions %}
+                            {% for version, src in businessHoursVersions %}
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ path('docs_business_hours_version', {version: version}) }}">version {{ version }}</a>
                                 </li>
