@@ -69,6 +69,14 @@ final class PHPDocsExtension extends AbstractExtension
 
     public function classMethodUrlFilter(string $className, string $methodName, string $version) : string
     {
+        if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calendar\\Gregorian\\YasumiHolidays')) {
+            return $this->router->generate('docs_calendar_holidays_yasumi_class_method', [
+                'version' => $version,
+                'classSlug' => SlugGenerator::forClass($className),
+                'methodSlug' => SlugGenerator::forMethod($methodName),
+            ]);
+        }
+
         if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calendar\\Gregorian\\Holidays')) {
             return $this->router->generate('docs_calendar_holidays_class_method', [
                 'version' => $version,

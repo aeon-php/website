@@ -77,7 +77,7 @@ final class CalendarHolidaysYasumiDocumentation extends AbstractController
      */
     public function calendarHolidaysYasumiClassMethod(string $version, string $classSlug, string $methodSlug) : Response
     {
-        foreach ($classes = $this->calendarHolidaysClasses($version) as $phpClass) {
+        foreach ($classes = $this->calendarHolidaysYasumiClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
                 foreach ($phpClass->methods() as $method) {
                     if (SlugGenerator::forClassMethod($method) === $methodSlug) {
