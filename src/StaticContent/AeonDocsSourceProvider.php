@@ -26,6 +26,9 @@ final class AeonDocsSourceProvider implements SourceProvider
         return $this->parameterBag;
     }
 
+    /**
+     * @return Source[]
+     */
     public function all() : array
     {
         return \array_merge(

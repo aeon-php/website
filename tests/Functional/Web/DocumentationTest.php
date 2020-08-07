@@ -6,6 +6,14 @@ use App\Tests\Functional\WebTestCase;
 
 final class DocumentationTest extends WebTestCase
 {
+    public function test_sitemap() : void
+    {
+        $client = self::createClient();
+        $client->request('GET', $this->generateUrl('werkspot_sitemap_index'));
+
+        $this->assertResponseStatusCodeSame(200);
+    }
+
     public function test_calendar_page() : void
     {
         $client = self::createClient();

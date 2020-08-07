@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "df2496249f87892f0a3247a387d32352",
+    "content-hash": "adf41820438cb11982b29fca056e15dd",
     "packages": [
         {
             "name": "aeon-php/calendar",
@@ -8212,6 +8212,61 @@
                 "source": "https://github.com/webmozart/assert/tree/master"
             },
             "time": "2020-07-08T17:02:28+00:00"
+        },
+        {
+            "name": "werkspot/sitemap-bundle",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Werkspot/sitemap-bundle.git",
+                "reference": "b6345f2d6341dbeb16963b5ce5f1062ad7b07f9a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Werkspot/sitemap-bundle/zipball/b6345f2d6341dbeb16963b5ce5f1062ad7b07f9a",
+                "reference": "b6345f2d6341dbeb16963b5ce5f1062ad7b07f9a",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4",
+                "symfony/framework-bundle": "^4.4 || ^5.1"
+            },
+            "require-dev": {
+                "ext-simplexml": "*",
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^9.0",
+                "symfony/asset": "^4.4 || ^5.1",
+                "symfony/browser-kit": "^4.4 || ^5.1",
+                "symfony/finder": "^4.4 || ^5.1",
+                "symfony/templating": "^4.4 || 5.1",
+                "symfony/twig-bridge": "^4.4 || ^5.1",
+                "symfony/twig-bundle": "^4.4 || ^5.1",
+                "symfony/yaml": "^4.4 || ^5.1"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Werkspot\\Bundle\\SitemapBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Werkspot Developers"
+                }
+            ],
+            "description": "Bundle for generating dynamic sitemap.xml content with support for multiple sections",
+            "keywords": [
+                "Sitemap",
+                "bundle",
+                "seo",
+                "symfony"
+            ],
+            "time": "2020-07-30T11:26:27+00:00"
         }
     ],
     "packages-dev": [

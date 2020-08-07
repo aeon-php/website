@@ -11,4 +11,5 @@ return [
     Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true, 'test' => true],
     Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true],
     NorbertTech\StaticContentGeneratorBundle\StaticContentGeneratorBundle::class => ['all' => true],
+    Werkspot\Bundle\SitemapBundle\WerkspotSitemapBundle::class => ['all' => true],
 ];

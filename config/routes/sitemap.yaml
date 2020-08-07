@@ -1,0 +1,3 @@
+werkspot_sitemap:
+  resource: "@WerkspotSitemapBundle/Resources/config/routing.yml"
+  prefix:   /

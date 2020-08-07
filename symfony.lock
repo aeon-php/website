@@ -605,5 +605,8 @@
     },
     "webmozart/path-util": {
         "version": "2.3.0"
+    },
+    "werkspot/sitemap-bundle": {
+        "version": "v3.0.0"
     }
 }

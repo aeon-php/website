@@ -72,3 +72,12 @@ services:
 
     App\StaticContent\AeonDocsSourceProvider:
         tags: ['static_content_generator.source_provider']
+
+    App\StaticContent\AeonSitemapSourceProvider:
+        tags: ['static_content_generator.source_provider']
+
+    App\Sitemap\SitemapDocumentationProvider:
+        tags: ['werkspot.sitemap_provider']
+
+    App\Sitemap\SitemapLandingProvider:
+        tags: ['werkspot.sitemap_provider']
