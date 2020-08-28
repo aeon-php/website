@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- [#56](https://github.com/aeon-php/calendar/pull/56) - **Added possibility to define type of the interval when iterating over time periods** - [@norberttech](https://github.com/norberttech)
+- [#55](https://github.com/aeon-php/calendar/pull/55) - **Updated phive dependencies** - [@norberttech](https://github.com/norberttech)
+
+### Added 
+- [#53](https://github.com/aeon-php/calendar/pull/53) - **Added DateTime::setTimeIn method** - [@norberttech](https://github.com/norberttech)
+
+## [0.5.0] - 2020-08-24
+### Added 
+- [#52](https://github.com/aeon-php/calendar/pull/52) - **Add psalm-pure for static factory methods** - [@tomaszhanc](https://github.com/tomaszhanc)
+
+## [0.4.0] - 2020-08-15
+### Added
+- [#51](https://github.com/aeon-php/calendar/pull/51) - **Added DateTime setTime and setDay methods** - [@norberttech](https://github.com/norberttech)
+- [#49](https://github.com/aeon-php/calendar/pull/49) - **Updated phpunit to version ^9.3** - [@norberttech](https://github.com/norberttech)
+
 ## [0.3.0] - 2020-08-01
 ### Added
 - [#48](https://github.com/aeon-php/calendar/pull/48) - **Moved tools to phive**  - [@norberttech](https://github.com/norberttech)

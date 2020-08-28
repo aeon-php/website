@@ -149,7 +149,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "master",
             "version": "4.7",
-            "ref": "00fdb38c318774cd39f475a753028a5e8d25d47c"
+            "ref": "477e1387616f39505ba79715f43f124836020d71"
         },
         "files": [
             ".env.test",
@@ -176,6 +176,9 @@
         "version": "4.6.1"
     },
     "roave/signature": {
+        "version": "1.0.0"
+    },
+    "sebastian/cli-parser": {
         "version": "1.0.0"
     },
     "sebastian/code-unit": {

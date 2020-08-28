@@ -69,6 +69,9 @@ final class DateTime
         }
     }
 
+    /**
+     * @psalm-pure
+     */
     public static function create(int $year, int $month, int $day, int $hour, int $minute, int $second, int $microsecond = 0, string $timezone = 'UTC') : self
     {
         return new self(
@@ -143,6 +146,37 @@ final class DateTime
     public function time() : Time
     {
         return $this->time;
+    }
+
+    public function setTime(Time $time) : self
+    {
+        return new self(
+            $this->day(),
+            $time,
+            $this->timeZone(),
+            $this->timeOffset()
+        );
+    }
+
+    public function setTimeIn(Time $time, TimeZone $timeZone) : self
+    {
+        return (new self(
+            $this->day(),
+            $time,
+            $this->timeZone(),
+            $this->timeOffset()
+        ))->toTimeZone($timeZone)
+            ->setTime($time);
+    }
+
+    public function setDay(Day $day) : self
+    {
+        return new self(
+            $day,
+            $this->time(),
+            $this->timeZone(),
+            $this->timeOffset()
+        );
     }
 
     public function toDateTimeImmutable() : \DateTimeImmutable
@@ -491,8 +525,8 @@ final class DateTime
     public function iterate(self $pointInTime, TimeUnit $by) : TimePeriods
     {
         return $pointInTime->isBefore($this)
-            ? $this->since($pointInTime)->iterateBackward($by)
-            : $this->until($pointInTime)->iterate($by);
+            ? $this->since($pointInTime)->iterateBackward($by, Interval::closed())
+            : $this->until($pointInTime)->iterate($by, Interval::closed());
     }
 
     public function isAmbiguous() : bool
