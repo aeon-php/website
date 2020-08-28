@@ -106,6 +106,10 @@
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-interval</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
             <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-year</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
@@ -495,6 +499,18 @@
             <priority>1.0</priority>                    </url>
             <url>
             <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetime/method/time</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetime/method/settime</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetime/method/settimein</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetime/method/setday</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
@@ -1147,6 +1163,34 @@
             <priority>1.0</priority>                    </url>
             <url>
             <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timezone-timeoffset/method/isequal</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-interval/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-interval/method/closed</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-interval/method/rightopen</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-interval/method/leftopen</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-interval/method/open</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-interval/method/todateperiod</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-interval/method/todateperiodbackward</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
