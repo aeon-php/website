@@ -36,7 +36,7 @@ final class RetryDocumentation extends AbstractController
     {
         return $this->render('documentation/retry.html.twig', [
             'activeSection' => 'retry',
-            'versions' => $this->parameterBag->get('aeon_php_retry')['versions'],
+            'versions' => $this->retryVersions()
         ]);
     }
 

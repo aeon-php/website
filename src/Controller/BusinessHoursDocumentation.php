@@ -36,7 +36,7 @@ final class BusinessHoursDocumentation extends AbstractController
     {
         return $this->render('documentation/business_hours.html.twig', [
             'activeSection' => 'business-hours',
-            'versions' => $this->parameterBag->get('aeon_php_business_hours')['versions'],
+            'versions' => $this->businessHoursVersions(),
         ]);
     }
 

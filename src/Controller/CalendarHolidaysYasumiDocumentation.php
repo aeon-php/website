@@ -36,7 +36,7 @@ final class CalendarHolidaysYasumiDocumentation extends AbstractController
     {
         return $this->render('documentation/calendar_holidays_yasumi.html.twig', [
             'activeSection' => 'calendar-holidays-yasumi',
-            'versions' => $this->parameterBag->get('aeon_php_calendar_holidays_yasumi')['versions'],
+            'versions' => $this->calendarHolidaysYasumiVersions()
         ]);
     }
 

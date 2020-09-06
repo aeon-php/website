@@ -4,47 +4,72 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    aeon_php_calendar:
-        versions:
-            1.x: "%kernel.project_dir%/sources/calendar/1.x/src"
-    aeon_php_calendar_twig:
-        versions:
-            1.x: "%kernel.project_dir%/sources/calendar-twig/1.x/src"
-        dependencies:
-            aeon_php_calendar: "1.x"
-    aeon_php_calendar_doctrine:
-        versions:
-            1.x: "%kernel.project_dir%/sources/calendar-doctrine/1.x/src"
-        dependencies:
-            aeon_php_calendar: "1.x"
-    aeon_php_sleep:
-        versions:
-            1.x: "%kernel.project_dir%/sources/sleep/1.x/src"
-        dependencies:
-            aeon_php_calendar: "1.x"
-    aeon_php_retry:
-        versions:
-            1.x: "%kernel.project_dir%/sources/retry/1.x/src"
-        dependencies:
-            aeon_php_calendar: "1.x"
-            aeon_php_sleep: "1.x"
-    aeon_php_calendar_holidays:
-        versions:
-            1.x: "%kernel.project_dir%/sources/calendar-holidays/1.x/src"
-        dependencies:
-            aeon_php_calendar: "1.x"
-    aeon_php_calendar_holidays_yasumi:
-        versions:
-            1.x: "%kernel.project_dir%/sources/calendar-holidays-yasumi/1.x/src"
-        dependencies:
-            aeon_php_calendar: "1.x"
-            aeon_php_calendar_holidays: "1.x"
-    aeon_php_business_hours:
-        versions:
-            1.x: "%kernel.project_dir%/sources/business-hours/1.x/src"
-        dependencies:
-            aeon_php_calendar: "1.x"
-            aeon_php_calendar_holidays: "1.x"
+    aeon_libraries:
+        calendar:
+            name: 'calendar'
+            versions:
+                1.x:
+                    source: "https://github.com/aeon-php/calendar/archive/1.x.zip"
+                    destination: "%kernel.project_dir%/sources/calendar-1.x"
+        calendar_twig:
+            name: 'calendar-twig'
+            versions:
+                1.x:
+                    source: "https://github.com/aeon-php/calendar-twig/archive/1.x.zip"
+                    destination: "%kernel.project_dir%/sources/calendar-twig-1.x/src"
+            dependencies:
+                calendar: "1.x"
+        calendar_doctrine:
+            name: 'calendar-doctrine'
+            versions:
+                1.x:
+                    source: "https://github.com/aeon-php/calendar-doctrine/archive/1.x.zip"
+                    destination: "%kernel.project_dir%/sources/calendar-doctrine-1.x"
+            dependencies:
+                calendar: "1.x"
+        sleep:
+            name: 'sleep'
+            versions:
+                1.x:
+                    source: "https://github.com/aeon-php/sleep/archive/1.x.zip"
+                    destination: "%kernel.project_dir%/sources/sleep-1.x"
+            dependencies:
+                calendar: "1.x"
+        retry:
+            name: 'retry'
+            versions:
+                1.x:
+                    source: "https://github.com/aeon-php/retry/archive/1.x.zip"
+                    destination: "%kernel.project_dir%/sources/retry-1.x"
+            dependencies:
+                calendar: "1.x"
+                sleep: "1.x"
+        calendar_holidays:
+            name: 'calendar-holidays'
+            versions:
+                1.x:
+                    source: "https://github.com/aeon-php/calendar-holidays/archive/1.x.zip"
+                    destination: "%kernel.project_dir%/sources/calendar-holidays-1.x"
+            dependencies:
+                calendar: "1.x"
+        calendar_holidays_yasumi:
+            name: 'calendar-holidays-yasumi'
+            versions:
+                1.x:
+                    source: "https://github.com/aeon-php/calendar-holidays-yasumi/archive/1.x.zip"
+                    destination: "%kernel.project_dir%/sources/calendar-holidays-yasumi-1.x"
+            dependencies:
+                calendar: "1.x"
+                calendar_holidays: "1.x"
+        business_hours:
+            name: 'business-hours'
+            versions:
+                1.x:
+                    source: "https://github.com/aeon-php/business-hours/archive/1.x.zip"
+                    destination: "%kernel.project_dir%/sources/business-hours-1.x"
+            dependencies:
+                calendar: "1.x"
+                calendar_holidays: "1.x"
 
 services:
     # default configuration for services in *this* file

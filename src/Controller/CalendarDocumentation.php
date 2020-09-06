@@ -36,7 +36,7 @@ final class CalendarDocumentation extends AbstractController
     {
         return $this->render('documentation/calendar.html.twig', [
             'activeSection' => 'calendar',
-            'versions' => $this->parameterBag->get('aeon_php_calendar')['versions'],
+            'versions' => $this->parameterBag->get('aeon_libraries')['calendar']['versions'],
         ]);
     }
 

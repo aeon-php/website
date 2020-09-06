@@ -43,39 +43,39 @@ trait CodeReflectionTrait
 
     private function calendarVersions() : array
     {
-        return $this->parameterBag()->get('aeon_php_calendar')['versions'];
+        return $this->parameterBag()->get('aeon_libraries')['calendar']['versions'];
     }
 
     private function calendarClasses(string $version) : array
     {
         return $this->loadCode(
-            $this->parameterBag()->get('aeon_php_calendar'),
+            $this->parameterBag()->get('aeon_libraries')['calendar'],
             $version
         );
     }
 
     private function calendarTwigVersions() : array
     {
-        return $this->parameterBag()->get('aeon_php_calendar_twig')['versions'];
+        return $this->parameterBag()->get('aeon_libraries')['calendar_twig']['versions'];
     }
 
     private function calendarTwigClasses(string $version) : array
     {
         return $this->loadCode(
-            $this->parameterBag()->get('aeon_php_calendar_twig'),
+            $this->parameterBag()->get('aeon_libraries')['calendar_twig'],
             $version
         );
     }
 
     private function calendarDoctrineVersions() : array
     {
-        return $this->parameterBag()->get('aeon_php_calendar_doctrine')['versions'];
+        return $this->parameterBag()->get('aeon_libraries')['calendar_doctrine']['versions'];
     }
 
     private function calendarDoctrineClasses(string $version) : array
     {
         return $this->loadCode(
-            $this->parameterBag()->get('aeon_php_calendar_doctrine'),
+            $this->parameterBag()->get('aeon_libraries')['calendar_doctrine'],
             $version
         );
     }
@@ -83,80 +83,88 @@ trait CodeReflectionTrait
     private function calendarHolidaysClasses(string $version) : array
     {
         return $this->loadCode(
-            $this->parameterBag()->get('aeon_php_calendar_holidays'),
+            $this->parameterBag()->get('aeon_libraries')['calendar_holidays'],
             $version
         );
     }
 
     private function calendarHolidaysVersions() : array
     {
-        return $this->parameterBag()->get('aeon_php_calendar_holidays')['versions'];
+        return $this->parameterBag()->get('aeon_libraries')['calendar_holidays']['versions'];
     }
 
     private function calendarHolidaysYasumiClasses(string $version) : array
     {
         return $this->loadCode(
-            $this->parameterBag()->get('aeon_php_calendar_holidays_yasumi'),
+            $this->parameterBag()->get('aeon_libraries')['calendar_holidays_yasumi'],
             $version
         );
     }
 
     private function calendarHolidaysYasumiVersions() : array
     {
-        return $this->parameterBag()->get('aeon_php_calendar_holidays_yasumi')['versions'];
+        return $this->parameterBag()->get('aeon_libraries')['calendar_holidays_yasumi']['versions'];
     }
 
     private function businessHoursClasses(string $version) : array
     {
         return $this->loadCode(
-            $this->parameterBag()->get('aeon_php_business_hours'),
+            $this->parameterBag()->get('aeon_libraries')['business_hours'],
             $version
         );
     }
 
     private function businessHoursVersions() : array
     {
-        return $this->parameterBag()->get('aeon_php_business_hours')['versions'];
+        return $this->parameterBag()->get('aeon_libraries')['business_hours']['versions'];
     }
 
     private function sleepClasses(string $version)
     {
         return $this->loadCode(
-            $this->parameterBag()->get('aeon_php_sleep'),
+            $this->parameterBag()->get('aeon_libraries')['sleep'],
             $version
         );
     }
 
     private function sleepVersions()
     {
-        return $this->parameterBag()->get('aeon_php_sleep')['versions'];
+        return $this->parameterBag()->get('aeon_libraries')['sleep']['versions'];
     }
 
     private function retryClasses(string $version)
     {
         return $this->loadCode(
-            $this->parameterBag()->get('aeon_php_retry'),
+            $this->parameterBag()->get('aeon_libraries')['retry'],
             $version
         );
     }
 
     private function retryVersions()
     {
-        return $this->parameterBag()->get('aeon_php_retry')['versions'];
+        return $this->parameterBag()->get('aeon_libraries')['retry']['versions'];
     }
 
     private function loadCode(array $library, string $version) : array
     {
-        $codePath = $library['versions'][$version];
+        $codePath = $library['versions'][$version]['destination'];
 
         $dependenciesPaths = [];
         if (isset($library['dependencies'])) {
             foreach ($library['dependencies'] as $dependency => $dependencyVersion) {
-                $dependenciesPaths[] = $this->parameterBag()->get($dependency)['versions'][$dependencyVersion];
+                $dependenciesPaths[] = $this->parameterBag()->get('aeon_libraries')[$dependency]['versions'][$dependencyVersion];
             }
         }
 
-        return $this->codeClassesReflection($codePath, ...$dependenciesPaths);
+        return $this->codeClassesReflection(
+            $codePath,
+            ...\array_map(
+                function (array $libraryData) {
+                    return $libraryData['destination'];
+                },
+                $dependenciesPaths
+            )
+        );
     }
 
     abstract protected function parameterBag() : ParameterBagInterface;
