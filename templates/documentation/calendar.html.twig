@@ -168,6 +168,69 @@ $calendar->currentYear()
     ->sub(TimeUnit::days(3));
 {% endapply %}</code></pre>
             </section>
+            <section>
+                <h5 class="section-title-2" id="measure-elapsed-time">Day Value Set - Collection</h5>
+                <hr/>
+                <p>
+                    One of the most common use cases is to assign values into given days and then filter/map/sum/split
+                    this collection.
+                </p>
+                <p>
+                    Let say one would like to calculate average sales from last 10 days knowing there is a gap
+                    in sales. Following example explains how to do define <code>DayValueSet</code> and work on it.
+                </p>
+                <pre><code class="language-php">{% apply spaceless  %}
+&lt;?php
+
+use Aeon\Calendar\Gregorian\Day;
+use Aeon\Collection\DayValue;
+use Aeon\Collection\DayValueSet;
+
+$initialSet = DayValueSet::createWith(
+    Day::fromString('-10 days'),
+    Day::fromString('yesterday'),
+    $initialValue = 0
+);
+
+// Fetch those values from database or any other source
+$sales = [
+    new DayValue(Day::fromString('-1 day'), 100),
+    new DayValue(Day::fromString('-2 day'), 150),
+    new DayValue(Day::fromString('-3 day'), 125),
+    // Day 4 business was closed, no sales
+    new DayValue(Day::fromString('-5 day'), 180),
+    new DayValue(Day::fromString('-6 day'), 100),
+    new DayValue(Day::fromString('-7 day'), 108),
+    new DayValue(Day::fromString('-8 day'), 100),
+    new DayValue(Day::fromString('-9 day'), 150),
+    new DayValue(Day::fromString('-10 day'), 130),
+];
+
+$salesSet = $initialSet->put(...$sales)->sortDescending();
+$totalSales = $salesSet->reduce(
+    fn(int $total, DayValue $dayValue) : int => $dayValue->value() + $total, 0
+);
+
+$T10AvgSales = floor($totalSales / $salesSet->count());
+
+/**
+
+2020-10-08 - 100
+2020-10-07 - 150
+2020-10-06 - 125
+2020-10-05 - 0
+2020-10-04 - 180
+2020-10-03 - 100
+2020-10-02 - 108
+2020-10-01 - 100
+2020-09-30 - 150
+2020-09-29 - 130
+---
+AVG Sales: 114
+
+*/
+{% endapply %}</code></pre>
+            </section>
         </article>
         <aside class="col-md-3 col-xxl-3 d-none d-md-block">
             <div class="sticky">
