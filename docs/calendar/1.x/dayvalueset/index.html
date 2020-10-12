@@ -234,19 +234,16 @@
 (                                        <a href="/docs/calendar/1.x/dayvalue" style="color: #369; border-bottom: 1px solid;">DayValue</a>
                 <span style="color: #369;">$dayValues</span>
     
-
             )
-</div>
+    </div>
                                             <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
  <span style="color: #936;">static</span> <a href="/docs/calendar/1.x/dayvalueset/method/createempty" style="color:#369; border-bottom: 1px solid;">createEmpty</a>
 (                                        <a href="/docs/calendar/1.x/gregorian-day" style="color: #369; border-bottom: 1px solid;">Day</a>
                 <span style="color: #369;">$start</span>
     
-
         ,                                         <a href="/docs/calendar/1.x/gregorian-day" style="color: #369; border-bottom: 1px solid;">Day</a>
                 <span style="color: #369;">$end</span>
     
-
             )
 <span>:</span>             self
     </div>
@@ -255,18 +252,20 @@
 (                                        <a href="/docs/calendar/1.x/gregorian-day" style="color: #369; border-bottom: 1px solid;">Day</a>
                 <span style="color: #369;">$start</span>
     
-
         ,                                         <a href="/docs/calendar/1.x/gregorian-day" style="color: #369; border-bottom: 1px solid;">Day</a>
                 <span style="color: #369;">$end</span>
     
-
-        ,             
+        ,                 mixed
+    <span style="color: #369;">$value</span>
+    
             )
 <span>:</span>             self
     </div>
                                             <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
 <a href="/docs/calendar/1.x/dayvalueset/method/fillmissingwith" style="color:#369; border-bottom: 1px solid;">fillMissingWith</a>
-(            
+(                mixed
+    <span style="color: #369;">$value</span>
+    
             )
 <span>:</span>             self
     </div>
@@ -275,7 +274,6 @@
 (                                        <a href="/docs/calendar/1.x/dayvalue" style="color: #369; border-bottom: 1px solid;">DayValue</a>
                 <span style="color: #369;">$dayValues</span>
     
-
             )
 <span>:</span>             self
     </div>
@@ -284,7 +282,6 @@
 (                                        <a href="/docs/calendar/1.x/gregorian-day" style="color: #369; border-bottom: 1px solid;">Day</a>
                 <span style="color: #369;">$days</span>
     
-
             )
 <span>:</span>             self
     </div>
@@ -293,7 +290,6 @@
 (                                        <a href="/docs/calendar/1.x/gregorian-day" style="color: #369; border-bottom: 1px solid;">Day</a>
                 <span style="color: #369;">$day</span>
     
-
             )
 <span>:</span>             bool
     </div>
@@ -302,7 +298,6 @@
 (                                        <a href="/docs/calendar/1.x/gregorian-day" style="color: #369; border-bottom: 1px solid;">Day</a>
                 <span style="color: #369;">$day</span>
     
-
             )
 <span>:</span>                         <a href="/docs/calendar/1.x/dayvalue" style="color:#369; border-bottom: 1px solid;">DayValue</a>
             </div>
@@ -329,7 +324,6 @@
 (                            <span style="color: #693;">callable</span>
         <span style="color: #369;">$callback</span>
     
-
             )
 <span>:</span>             self
     </div>
@@ -338,7 +332,6 @@
 (                            <span style="color: #693;">callable</span>
         <span style="color: #369;">$callback</span>
     
-
             )
 <span>:</span>             self
     </div>
@@ -347,10 +340,13 @@
 (                            <span style="color: #693;">callable</span>
         <span style="color: #369;">$callback</span>
     
-
-        ,             <span style="color: #737373;">[</span>
+        ,             <span style="color: #737373;">[</span>    mixed
+    <span style="color: #369;">$initial</span>
+            <span>=</span>
+        <span>null</span>    
 <span style="color: #737373;">]</span>            )
-</div>
+        <span>:</span> mixed
+    </div>
                                             <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
 <a href="/docs/calendar/1.x/dayvalueset/method/todays" style="color:#369; border-bottom: 1px solid;">toDays</a>
 (    <span style="color: #737373;">void</span>
@@ -380,7 +376,6 @@
 (                            <span style="color: #693;">int</span>
         <span style="color: #369;">$days</span>
     
-
             )
 <span>:</span>             self
     </div>
@@ -389,11 +384,9 @@
 (                            <span style="color: #693;">int</span>
         <span style="color: #369;">$offset</span>
     
-
         ,                             <span style="color: #693;">int</span>
         <span style="color: #369;">$days</span>
     
-
             )
 <span>:</span>             self
     </div>
@@ -402,7 +395,6 @@
 (                            <span style="color: #693;">int</span>
         <span style="color: #369;">$offset</span>
     
-
             )
 <span>:</span>             self
     </div>
