@@ -16,7 +16,13 @@
         <span>=</span>
         {% if parameter.reflectionParameter.defaultValue == null %}<span>null</span>{% endif %}
     {% endif %}
-
+{% else %}
+    mixed
+    <span style="color: #369;">${{ parameter.reflectionParameter.name }}</span>
+    {% if parameter.reflectionParameter.defaultValueAvailable %}
+        <span>=</span>
+        {% if parameter.reflectionParameter.defaultValue == null %}<span>null</span>{% endif %}
+    {% endif %}
 {% endif %}
 
 {% if parameter.reflectionParameter.defaultValueAvailable %}<span style="color: #737373;">]</span>{% endif %}

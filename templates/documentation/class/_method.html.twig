@@ -21,4 +21,8 @@
             <a href="{{ method.returnTypeClass.name | class_url(version) }}" style="color:#369; border-bottom: 1px solid;">{{ method.returnTypeClass.shortName }}</a>
         {% endif %}
     {% endif %}
+{% else %}
+    {% if method.reflectionMethod.constructor == false %}
+    <span>:</span> mixed
+    {% endif %}
 {% endif %}
