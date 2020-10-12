@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Aeon\Calendar\Gregorian;
 
 use Aeon\Calendar\Exception\InvalidArgumentException;
+use Aeon\Calendar\RelativeTimeUnit;
+use Aeon\Calendar\TimeUnit;
 
 /**
  * @psalm-immutable
@@ -68,6 +70,11 @@ final class Month
             'year' => $this->year->number(),
             'month' => $this->number,
         ];
+    }
+
+    public function toString() : string
+    {
+        return $this->toDateTimeImmutable()->format('Y-m');
     }
 
     public function previous() : self
@@ -155,14 +162,14 @@ final class Month
         return new \DateTimeImmutable(\sprintf('%d-%d-01 00:00:00.000000 UTC', $this->year()->number(), $this->number()));
     }
 
-    public function iterate(self $destination) : Months
+    public function iterate(self $destination, Interval $interval) : Months
     {
         return $this->isAfter($destination)
-            ? $this->since($destination)
-            : $this->until($destination);
+            ? $this->since($destination, $interval)
+            : $this->until($destination, $interval);
     }
 
-    public function until(self $month) : Months
+    public function until(self $month, Interval $interval) : Months
     {
         if ($this->isAfter($month)) {
             throw new InvalidArgumentException(
@@ -182,17 +189,17 @@ final class Month
                     return self::fromDateTime($dateTimeImmutable);
                 },
                 \iterator_to_array(
-                    new \DatePeriod(
-                        $this->toDateTimeImmutable(),
-                        new \DateInterval('P1M'),
-                        $month->toDateTimeImmutable()
+                    $interval->toDatePeriod(
+                        $this->firstDay()->midnight(TimeZone::UTC()),
+                        RelativeTimeUnit::month(),
+                        $month->firstDay()->midnight(TimeZone::UTC())
                     )
                 )
             )
         );
     }
 
-    public function since(self $month) : Months
+    public function since(self $month, Interval $interval) : Months
     {
         if ($this->isBefore($month)) {
             throw new InvalidArgumentException(
@@ -213,10 +220,10 @@ final class Month
                 },
                 \array_reverse(
                     \iterator_to_array(
-                        new \DatePeriod(
-                            $month->toDateTimeImmutable(),
-                            new \DateInterval('P1M'),
-                            $this->toDateTimeImmutable()
+                        $interval->toDatePeriodBackward(
+                            $month->firstDay()->midnight(TimeZone::UTC()),
+                            RelativeTimeUnit::month(),
+                            $this->firstDay()->midnight(TimeZone::UTC())
                         )
                     )
                 )
@@ -280,6 +287,11 @@ final class Month
         }
 
         return $this->number() >= $month->number();
+    }
+
+    public function distance(self $to) : TimeUnit
+    {
+        return (new TimePeriod($this->firstDay()->midnight(TimeZone::UTC()), $to->firstDay()->midnight(TimeZone::UTC())))->distance();
     }
 
     public function quarter() : Quarter

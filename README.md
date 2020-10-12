@@ -25,11 +25,23 @@ symfony server:start
 
 [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
+### Download latest version of the library
+
+```bash
+bin/console aeon:library:download calendar 1.x
+```
+
 ### Generate static content
 
 ```bash
 bin/console static-content-generator:copy:assets --env=prod
 bin/console static-content-generator:generate:routes --env=prod --parallel=8
+```
+
+### Generate static content for single library
+
+```bash
+bin/console static-content-generator:generate:routes --env=prod --parallel=8 --filter-route-prefix=docs_calendar
 ```
 
 ### Push new changes to github pages

@@ -38,7 +38,8 @@ final class DownloadCommand extends Command
                 'version',
                 InputArgument::REQUIRED,
                 'Library version'
-            );;
+            );
+        ;
         ;
     }
 

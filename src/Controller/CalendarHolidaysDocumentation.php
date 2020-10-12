@@ -36,7 +36,7 @@ final class CalendarHolidaysDocumentation extends AbstractController
     {
         return $this->render('documentation/calendar_holidays.html.twig', [
             'activeSection' => 'calendar-holidays',
-            'versions' => $this->calendarHolidaysVersions()
+            'versions' => $this->calendarHolidaysVersions(),
         ]);
     }
 

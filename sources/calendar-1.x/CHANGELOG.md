@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## [0.8.0] - 2020-10-11
+### Added
+- [#68](https://github.com/aeon-php/calendar/pull/68) - **DayValue Set collection** - [@norberttech](https://github.com/norberttech)
+
+### Fixed
+- [#69](https://github.com/aeon-php/calendar/pull/69) - **Replaced DateTime offset assertion with offset correction** - [@norberttech](https://github.com/norberttech)
+
+## [0.7.0] - 2020-09-20
+### Added
+- [#66](https://github.com/aeon-php/calendar/pull/66) - **Added distance to method to Day/Month/Year/DateTime** - [@norberttech](https://github.com/norberttech)
+- [#64](https://github.com/aeon-php/calendar/pull/64) - **Added possibility to setTime on Day in order to create DateTime** - [@norberttech](https://github.com/norberttech)
+- [#63](https://github.com/aeon-php/calendar/pull/63) - **TimeUnit added modulo and isZero methods** - [@norberttech](https://github.com/norberttech)
+
+### Changed
+- [#67](https://github.com/aeon-php/calendar/pull/67) - **Unified Day/Month/Year and DateTime interval method** - [@norberttech](https://github.com/norberttech)
+- [#63](https://github.com/aeon-php/calendar/pull/63) - **Unified TimeUnit multiply/divide arguments** - [@norberttech](https://github.com/norberttech)
+
 ## [0.6.0] - 2020-09-04
 ### Changed
 - [#56](https://github.com/aeon-php/calendar/pull/56) - **Added possibility to define type of the interval when iterating over time periods** - [@norberttech](https://github.com/norberttech)

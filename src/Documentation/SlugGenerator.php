@@ -45,6 +45,10 @@ final class SlugGenerator
             return \str_replace('\\', '-', \mb_strtolower(\ltrim(\str_replace('Aeon\\Calculator', '', $className), '\\')));
         }
 
+        if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Collection\\')) {
+            return \str_replace('\\', '-', \mb_strtolower(\ltrim(\str_replace('Aeon\\Collection', '', $className), '\\')));
+        }
+
         if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calendar\\')) {
             return \str_replace('\\', '-', \mb_strtolower(\ltrim(\str_replace('Aeon\\Calendar', '', $className), '\\')));
         }

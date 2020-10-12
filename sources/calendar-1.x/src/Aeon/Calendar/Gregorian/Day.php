@@ -76,6 +76,11 @@ final class Day
         ];
     }
 
+    public function toString() : string
+    {
+        return $this->format('Y-m-d');
+    }
+
     public function timeBetween(self $day) : TimeUnit
     {
         return TimeUnit::seconds(\abs(($this->toDateTimeImmutable()->getTimestamp() - $day->toDateTimeImmutable()->getTimestamp())));
@@ -144,6 +149,15 @@ final class Day
     public function endOfDay(TimeZone $timeZone) : DateTime
     {
         return new DateTime($this, new Time(23, 59, 59, 999999), $timeZone);
+    }
+
+    public function setTime(Time $time, TimeZone $timeZone) : DateTime
+    {
+        return new DateTime(
+            $this,
+            $time,
+            $timeZone
+        );
     }
 
     public function month() : Month
@@ -263,14 +277,14 @@ final class Day
         return $this->number() >= $day->number();
     }
 
-    public function iterate(self $destination) : Days
+    public function iterate(self $destination, Interval $interval) : Days
     {
         return $this->isAfter($destination)
-            ? $this->since($destination)
-            : $this->until($destination);
+            ? $this->since($destination, $interval)
+            : $this->until($destination, $interval);
     }
 
-    public function until(self $day) : Days
+    public function until(self $day, Interval $interval) : Days
     {
         if ($this->isAfter($day)) {
             throw new InvalidArgumentException(
@@ -292,17 +306,13 @@ final class Day
                     return self::fromDateTime($dateTimeImmutable);
                 },
                 \iterator_to_array(
-                    new \DatePeriod(
-                        $this->toDateTimeImmutable(),
-                        new \DateInterval('P1D'),
-                        $day->toDateTimeImmutable()
-                    )
+                    $interval->toDatePeriod($this->midnight(TimeZone::UTC()), TimeUnit::day(), $day->midnight(TimeZone::UTC()))
                 )
             )
         );
     }
 
-    public function since(self $day) : Days
+    public function since(self $day, Interval $interval) : Days
     {
         if ($this->isBefore($day)) {
             throw new InvalidArgumentException(
@@ -325,15 +335,16 @@ final class Day
                 },
                 \array_reverse(
                     \iterator_to_array(
-                        new \DatePeriod(
-                            $day->toDateTimeImmutable(),
-                            new \DateInterval('P1D'),
-                            $this->toDateTimeImmutable()
-                        )
+                        $interval->toDatePeriodBackward($day->midnight(TimeZone::UTC()), TimeUnit::day(), $this->midnight(TimeZone::UTC()))
                     )
                 )
             )
         );
+    }
+
+    public function distance(self $to) : TimeUnit
+    {
+        return (new TimePeriod($this->midnight(TimeZone::UTC()), $to->midnight(TimeZone::UTC())))->distance();
     }
 
     public function quarter() : Quarter

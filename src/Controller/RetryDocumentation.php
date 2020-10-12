@@ -36,7 +36,7 @@ final class RetryDocumentation extends AbstractController
     {
         return $this->render('documentation/retry.html.twig', [
             'activeSection' => 'retry',
-            'versions' => $this->retryVersions()
+            'versions' => $this->retryVersions(),
         ]);
     }
 

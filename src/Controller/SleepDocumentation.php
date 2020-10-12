@@ -36,7 +36,7 @@ final class SleepDocumentation extends AbstractController
     {
         return $this->render('documentation/sleep.html.twig', [
             'activeSection' => 'sleep',
-            'versions' => $this->sleepVersions()
+            'versions' => $this->sleepVersions(),
         ]);
     }
 

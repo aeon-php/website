@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Aeon\Calendar\Gregorian;
 
 use Aeon\Calendar\Exception\InvalidArgumentException;
+use Aeon\Calendar\RelativeTimeUnit;
+use Aeon\Calendar\TimeUnit;
 
 /**
  * @psalm-immutable
@@ -46,6 +48,11 @@ final class Year
         return [
             'year' => $this->year,
         ];
+    }
+
+    public function toString() : string
+    {
+        return (string) $this->year;
     }
 
     public function january() : Month
@@ -236,14 +243,14 @@ final class Year
         return $this->number() >= $year->number();
     }
 
-    public function iterate(self $destination) : Years
+    public function iterate(self $destination, Interval $interval) : Years
     {
         return $this->isAfter($destination)
-            ? $this->since($destination)
-            : $this->until($destination);
+            ? $this->since($destination, $interval)
+            : $this->until($destination, $interval);
     }
 
-    public function until(self $month) : Years
+    public function until(self $month, Interval $interval) : Years
     {
         if ($this->isAfter($month)) {
             throw new InvalidArgumentException(
@@ -261,17 +268,17 @@ final class Year
                     return self::fromDateTime($dateTimeImmutable);
                 },
                 \iterator_to_array(
-                    new \DatePeriod(
-                        $this->toDateTimeImmutable(),
-                        new \DateInterval('P1Y'),
-                        $month->toDateTimeImmutable()
+                    $interval->toDatePeriod(
+                        $this->january()->firstDay()->midnight(TimeZone::UTC()),
+                        RelativeTimeUnit::year(),
+                        $month->january()->firstDay()->midnight(TimeZone::UTC())
                     )
                 )
             )
         );
     }
 
-    public function since(self $month) : Years
+    public function since(self $month, Interval $interval) : Years
     {
         if ($this->isBefore($month)) {
             throw new InvalidArgumentException(
@@ -290,14 +297,19 @@ final class Year
                 },
                 \array_reverse(
                     \iterator_to_array(
-                        new \DatePeriod(
-                            $month->toDateTimeImmutable(),
-                            new \DateInterval('P1Y'),
-                            $this->toDateTimeImmutable()
+                        $interval->toDatePeriodBackward(
+                            $month->january()->firstDay()->midnight(TimeZone::UTC()),
+                            RelativeTimeUnit::year(),
+                            $this->january()->firstDay()->midnight(TimeZone::UTC())
                         )
                     )
                 )
             )
         );
+    }
+
+    public function distance(self $to) : TimeUnit
+    {
+        return (new TimePeriod($this->january()->firstDay()->midnight(TimeZone::UTC()), $to->january()->firstDay()->midnight(TimeZone::UTC())))->distance();
     }
 }
