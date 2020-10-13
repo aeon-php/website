@@ -237,13 +237,17 @@
                 <span style="color: #369;">$calendar</span>
     
         ,             <span style="color: #737373;">[</span>                <span style="color: #693;">string</span>
-        <span style="color: #369;">$defaultFormat</span>
+        <span style="color: #369;">$defaultDateTimeFormat</span>
             <span>=</span>
             
-<span style="color: #737373;">]</span>        ,             <span style="color: #737373;">[</span>    ?            <span style="color: #693;">string</span>
-        <span style="color: #369;">$defaultTimeZone</span>
+<span style="color: #737373;">]</span>        ,             <span style="color: #737373;">[</span>                <span style="color: #693;">string</span>
+        <span style="color: #369;">$defaultDayFormat</span>
             <span>=</span>
-        <span>null</span>    
+            
+<span style="color: #737373;">]</span>        ,             <span style="color: #737373;">[</span>                <span style="color: #693;">string</span>
+        <span style="color: #369;">$defaultTimeFormat</span>
+            <span>=</span>
+            
 <span style="color: #737373;">]</span>            )
     </div>
                                             <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
@@ -259,7 +263,7 @@
 <span>:</span>             array
     </div>
                                             <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
-<a href="/docs/calendar-twig/1.x/calendarextension/method/aeondate" style="color:#369; border-bottom: 1px solid;">aeon_date</a>
+<a href="/docs/calendar-twig/1.x/calendarextension/method/aeondatetimeformat" style="color:#369; border-bottom: 1px solid;">aeon_datetime_format</a>
 (                                        <a href="/docs/calendar/1.x/gregorian-datetime" style="color: #369; border-bottom: 1px solid;">DateTime</a>
                 <span style="color: #369;">$dateTime</span>
     
@@ -275,6 +279,86 @@
 <span>:</span>             string
     </div>
                                             <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar-twig/1.x/calendarextension/method/aeontimeformat" style="color:#369; border-bottom: 1px solid;">aeon_time_format</a>
+(                                        <a href="/docs/calendar/1.x/gregorian-time" style="color: #369; border-bottom: 1px solid;">Time</a>
+                <span style="color: #369;">$time</span>
+    
+        ,             <span style="color: #737373;">[</span>    ?            <span style="color: #693;">string</span>
+        <span style="color: #369;">$format</span>
+            <span>=</span>
+        <span>null</span>    
+<span style="color: #737373;">]</span>            )
+<span>:</span>             string
+    </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar-twig/1.x/calendarextension/method/aeondayformat" style="color:#369; border-bottom: 1px solid;">aeon_day_format</a>
+(                                        <a href="/docs/calendar/1.x/gregorian-day" style="color: #369; border-bottom: 1px solid;">Day</a>
+                <span style="color: #369;">$day</span>
+    
+        ,             <span style="color: #737373;">[</span>    ?            <span style="color: #693;">string</span>
+        <span style="color: #369;">$format</span>
+            <span>=</span>
+        <span>null</span>    
+<span style="color: #737373;">]</span>            )
+<span>:</span>             string
+    </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar-twig/1.x/calendarextension/method/aeoninterval" style="color:#369; border-bottom: 1px solid;">aeon_interval</a>
+(                            <span style="color: #693;">string</span>
+        <span style="color: #369;">$interval</span>
+    
+            )
+<span>:</span>                         <a href="/docs/calendar/1.x/gregorian-interval" style="color:#369; border-bottom: 1px solid;">Interval</a>
+            </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar-twig/1.x/calendarextension/method/aeoninsecondsprecise" style="color:#369; border-bottom: 1px solid;">aeon_in_seconds_precise</a>
+(                                        <a href="/docs/calendar/1.x/timeunit" style="color: #369; border-bottom: 1px solid;">TimeUnit</a>
+                <span style="color: #369;">$timeUnit</span>
+    
+            )
+<span>:</span>             string
+    </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar-twig/1.x/calendarextension/method/aeoninseconds" style="color:#369; border-bottom: 1px solid;">aeon_in_seconds</a>
+(                                        <a href="/docs/calendar/1.x/timeunit" style="color: #369; border-bottom: 1px solid;">TimeUnit</a>
+                <span style="color: #369;">$timeUnit</span>
+    
+            )
+<span>:</span>             int
+    </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar-twig/1.x/calendarextension/method/aeonsecond" style="color:#369; border-bottom: 1px solid;">aeon_second</a>
+(                            <span style="color: #693;">int</span>
+        <span style="color: #369;">$seconds</span>
+    
+            )
+<span>:</span>                         <a href="/docs/calendar/1.x/timeunit" style="color:#369; border-bottom: 1px solid;">TimeUnit</a>
+            </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar-twig/1.x/calendarextension/method/aeonminute" style="color:#369; border-bottom: 1px solid;">aeon_minute</a>
+(                            <span style="color: #693;">int</span>
+        <span style="color: #369;">$minutes</span>
+    
+            )
+<span>:</span>                         <a href="/docs/calendar/1.x/timeunit" style="color:#369; border-bottom: 1px solid;">TimeUnit</a>
+            </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar-twig/1.x/calendarextension/method/aeonhour" style="color:#369; border-bottom: 1px solid;">aeon_hour</a>
+(                            <span style="color: #693;">int</span>
+        <span style="color: #369;">$hours</span>
+    
+            )
+<span>:</span>                         <a href="/docs/calendar/1.x/timeunit" style="color:#369; border-bottom: 1px solid;">TimeUnit</a>
+            </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar-twig/1.x/calendarextension/method/aeonday" style="color:#369; border-bottom: 1px solid;">aeon_day</a>
+(                            <span style="color: #693;">int</span>
+        <span style="color: #369;">$days</span>
+    
+            )
+<span>:</span>                         <a href="/docs/calendar/1.x/timeunit" style="color:#369; border-bottom: 1px solid;">TimeUnit</a>
+            </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
 <a href="/docs/calendar-twig/1.x/calendarextension/method/aeonnow" style="color:#369; border-bottom: 1px solid;">aeon_now</a>
 (            <span style="color: #737373;">[</span>    ?            <span style="color: #693;">string</span>
         <span style="color: #369;">$timezone</span>
@@ -282,6 +366,54 @@
         <span>null</span>    
 <span style="color: #737373;">]</span>            )
 <span>:</span>                         <a href="/docs/calendar/1.x/gregorian-datetime" style="color:#369; border-bottom: 1px solid;">DateTime</a>
+            </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar-twig/1.x/calendarextension/method/aeoncurrenttime" style="color:#369; border-bottom: 1px solid;">aeon_current_time</a>
+(    <span style="color: #737373;">void</span>
+)
+<span>:</span>                         <a href="/docs/calendar/1.x/gregorian-time" style="color:#369; border-bottom: 1px solid;">Time</a>
+            </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar-twig/1.x/calendarextension/method/aeoncurrentday" style="color:#369; border-bottom: 1px solid;">aeon_current_day</a>
+(    <span style="color: #737373;">void</span>
+)
+<span>:</span>                         <a href="/docs/calendar/1.x/gregorian-day" style="color:#369; border-bottom: 1px solid;">Day</a>
+            </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar-twig/1.x/calendarextension/method/aeoncurrentmonth" style="color:#369; border-bottom: 1px solid;">aeon_current_month</a>
+(    <span style="color: #737373;">void</span>
+)
+<span>:</span>                         <a href="/docs/calendar/1.x/gregorian-month" style="color:#369; border-bottom: 1px solid;">Month</a>
+            </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar-twig/1.x/calendarextension/method/aeoncurrentyear" style="color:#369; border-bottom: 1px solid;">aeon_current_year</a>
+(    <span style="color: #737373;">void</span>
+)
+<span>:</span>                         <a href="/docs/calendar/1.x/gregorian-year" style="color:#369; border-bottom: 1px solid;">Year</a>
+            </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar-twig/1.x/calendarextension/method/aeonintervalleftopen" style="color:#369; border-bottom: 1px solid;">aeon_interval_left_open</a>
+(    <span style="color: #737373;">void</span>
+)
+<span>:</span>                         <a href="/docs/calendar/1.x/gregorian-interval" style="color:#369; border-bottom: 1px solid;">Interval</a>
+            </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar-twig/1.x/calendarextension/method/aeonintervalrightopen" style="color:#369; border-bottom: 1px solid;">aeon_interval_right_open</a>
+(    <span style="color: #737373;">void</span>
+)
+<span>:</span>                         <a href="/docs/calendar/1.x/gregorian-interval" style="color:#369; border-bottom: 1px solid;">Interval</a>
+            </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar-twig/1.x/calendarextension/method/aeonintervalclosed" style="color:#369; border-bottom: 1px solid;">aeon_interval_closed</a>
+(    <span style="color: #737373;">void</span>
+)
+<span>:</span>                         <a href="/docs/calendar/1.x/gregorian-interval" style="color:#369; border-bottom: 1px solid;">Interval</a>
+            </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/calendar-twig/1.x/calendarextension/method/aeonintervalopen" style="color:#369; border-bottom: 1px solid;">aeon_interval_open</a>
+(    <span style="color: #737373;">void</span>
+)
+<span>:</span>                         <a href="/docs/calendar/1.x/gregorian-interval" style="color:#369; border-bottom: 1px solid;">Interval</a>
             </div>
                                             <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
 <a href="/docs/calendar-twig/1.x/calendarextension/method/gettokenparsers" style="color:#369; border-bottom: 1px solid;">getTokenParsers</a>
@@ -318,8 +450,25 @@
                                             <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/construct">CalendarExtension::__construct</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/getfilters">CalendarExtension::getFilters</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/getfunctions">CalendarExtension::getFunctions</a></li>
-                                            <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/aeondate">CalendarExtension::aeon_date</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/aeondatetimeformat">CalendarExtension::aeon_datetime_format</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/aeontimeformat">CalendarExtension::aeon_time_format</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/aeondayformat">CalendarExtension::aeon_day_format</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/aeoninterval">CalendarExtension::aeon_interval</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/aeoninsecondsprecise">CalendarExtension::aeon_in_seconds_precise</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/aeoninseconds">CalendarExtension::aeon_in_seconds</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/aeonsecond">CalendarExtension::aeon_second</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/aeonminute">CalendarExtension::aeon_minute</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/aeonhour">CalendarExtension::aeon_hour</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/aeonday">CalendarExtension::aeon_day</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/aeonnow">CalendarExtension::aeon_now</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/aeoncurrenttime">CalendarExtension::aeon_current_time</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/aeoncurrentday">CalendarExtension::aeon_current_day</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/aeoncurrentmonth">CalendarExtension::aeon_current_month</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/aeoncurrentyear">CalendarExtension::aeon_current_year</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/aeonintervalleftopen">CalendarExtension::aeon_interval_left_open</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/aeonintervalrightopen">CalendarExtension::aeon_interval_right_open</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/aeonintervalclosed">CalendarExtension::aeon_interval_closed</a></li>
+                                            <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/aeonintervalopen">CalendarExtension::aeon_interval_open</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/gettokenparsers">CalendarExtension::getTokenParsers</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/getnodevisitors">CalendarExtension::getNodeVisitors</a></li>
                                             <li><a style="color: #369;" href="/docs/calendar-twig/1.x/calendarextension/method/gettests">CalendarExtension::getTests</a></li>

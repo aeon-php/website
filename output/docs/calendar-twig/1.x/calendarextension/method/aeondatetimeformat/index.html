@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/dracula.min.css" />
     <script src="https://kit.fontawesome.com/134a4a1c71.js" crossorigin="anonymous"></script>
 
-    <title>Aeon\Twig\CalendarExtension::__construct method documentation</title>
+    <title>Aeon\Twig\CalendarExtension::aeon_datetime_format method documentation</title>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170080616-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -210,7 +210,7 @@
                     <div class="row doc-content-body">
         <article class="col-md-9">
 
-            <h3>The <code><a href="/docs/calendar-twig/1.x/calendarextension">CalendarExtension</a>::__construct</code> method</h3>
+            <h3>The <code><a href="/docs/calendar-twig/1.x/calendarextension">CalendarExtension</a>::aeon_datetime_format</code> method</h3>
             <small>version: 1.x</small>
             <section id="introduction">
                 <h5 class="section-title-2">Introduction</h5>
@@ -222,23 +222,20 @@
                 <hr/>
                 <div class="code-synopis" style="background:#fff;padding: 2rem; font-family:'Fira Mono', 'Source Code Pro', monospace;">
                     <span style="color: #936;">public</span>
-<a href="/docs/calendar-twig/1.x/calendarextension/method/construct" style="color:#369; border-bottom: 1px solid;">__construct</a>
-(                                        <a href="/docs/calendar/1.x/gregorian-calendar" style="color: #369; border-bottom: 1px solid;">Calendar</a>
-                <span style="color: #369;">$calendar</span>
+<a href="/docs/calendar-twig/1.x/calendarextension/method/aeondatetimeformat" style="color:#369; border-bottom: 1px solid;">aeon_datetime_format</a>
+(                                        <a href="/docs/calendar/1.x/gregorian-datetime" style="color: #369; border-bottom: 1px solid;">DateTime</a>
+                <span style="color: #369;">$dateTime</span>
     
-        ,             <span style="color: #737373;">[</span>                <span style="color: #693;">string</span>
-        <span style="color: #369;">$defaultDateTimeFormat</span>
+        ,             <span style="color: #737373;">[</span>    ?            <span style="color: #693;">string</span>
+        <span style="color: #369;">$format</span>
             <span>=</span>
-            
-<span style="color: #737373;">]</span>        ,             <span style="color: #737373;">[</span>                <span style="color: #693;">string</span>
-        <span style="color: #369;">$defaultDayFormat</span>
+        <span>null</span>    
+<span style="color: #737373;">]</span>        ,             <span style="color: #737373;">[</span>    ?            <span style="color: #693;">string</span>
+        <span style="color: #369;">$timezone</span>
             <span>=</span>
-            
-<span style="color: #737373;">]</span>        ,             <span style="color: #737373;">[</span>                <span style="color: #693;">string</span>
-        <span style="color: #369;">$defaultTimeFormat</span>
-            <span>=</span>
-            
+        <span>null</span>    
 <span style="color: #737373;">]</span>            )
+<span>:</span>             string
                     </div>
             </section>
 
@@ -246,24 +243,19 @@
                 <h5 class="section-title-2">Parameters</h5>
                 <hr/>
                                     <ul>
-                                                <li>                            <a href="/docs/calendar/1.x/gregorian-calendar" style="color: #369; border-bottom: 1px solid;">Calendar</a>
-                <span style="color: #369;">$calendar</span>
+                                                <li>                            <a href="/docs/calendar/1.x/gregorian-datetime" style="color: #369; border-bottom: 1px solid;">DateTime</a>
+                <span style="color: #369;">$dateTime</span>
     
 </li>
-                                                <li><span style="color: #737373;">[</span>                <span style="color: #693;">string</span>
-        <span style="color: #369;">$defaultDateTimeFormat</span>
+                                                <li><span style="color: #737373;">[</span>    ?            <span style="color: #693;">string</span>
+        <span style="color: #369;">$format</span>
             <span>=</span>
-            
+        <span>null</span>    
 <span style="color: #737373;">]</span></li>
-                                                <li><span style="color: #737373;">[</span>                <span style="color: #693;">string</span>
-        <span style="color: #369;">$defaultDayFormat</span>
+                                                <li><span style="color: #737373;">[</span>    ?            <span style="color: #693;">string</span>
+        <span style="color: #369;">$timezone</span>
             <span>=</span>
-            
-<span style="color: #737373;">]</span></li>
-                                                <li><span style="color: #737373;">[</span>                <span style="color: #693;">string</span>
-        <span style="color: #369;">$defaultTimeFormat</span>
-            <span>=</span>
-            
+        <span>null</span>    
 <span style="color: #737373;">]</span></li>
                                             </ul>
                             </section>
@@ -271,8 +263,8 @@
             <section id="synopis">
                 <h5 class="section-title-2">Return Values</h5>
                 <hr/>
-                                    mixed
-                            </section>
+                                                            string
+                                                </section>
         </article>
         <aside class="col-md-3">
             <div class="sticky">
