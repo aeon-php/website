@@ -231,12 +231,29 @@
 
                 <h5>Filters</h5>
                 <ul>
-                    <li><code>aeon_date(string $format = null, string $timezone = null) : string</code> - formats Aeon <code>DateTime</code> object into string.
+                    <li><code>aeon_datetime_format(DateTime $dateTime, string $format = null, string $timezone = null) : string</code> - formats Aeon <code>DateTime</code> object into string.
+                    <li><code>aeon_time_format(Time $time, string $format = null) : string</code> - formats Aeon <code>Time</code> object into string</li>
+                    <li><code>aeon_day_format(Day $day, string $format = null) : string</code> - formats Aeon <code>Day</code> object into string</li>
+                    <li><code>aeon_interval(string $interval) : Interval</code> - convert string into <code>Interval</code> object</li>
+                    <li><code>aeon_in_seconds_precise(TimeUnit $timeUnit) : string</code> - conver <code>TimeUnit</code> into string</li>
+                    <li><code>aeon_in_seconds(TimeUnit $timeUnit) : int</code></li>
+                    <li><code>aeon_second(int $seconds) : TimeUnit</code></li>
+                    <li><code>aeon_minute(int $minutes) : TimeUnit</code></li>
+                    <li><code>aeon_hour(int $hours) : TimeUnit</code></li>
+                    <li><code>aeon_day(int $days) : TimeUnit</code></li>
                 </ul>
 
                 <h5>Functions</h5>
                 <ul>
-                    <li><code>aeon_now(string $timezone = null) : Aeon\Calendar\Gregorian\DateTime</code> - creates new instance of Aeon <code>DateTime</code> from current time.</li>
+                    <li><code>aeon_now(string $timezone = null) : DateTime</code> - creates new instance of Aeon <code>DateTime</code> from current time.</li>
+                    <li><code>aeon_current_time() : Time</code></li>
+                    <li><code>aeon_current_day() : Day</code></li>
+                    <li><code>aeon_current_month() : Month</code></li>
+                    <li><code>aeon_current_year() : Year</code></li>
+                    <li><code>aeon_interval_left_open() : Interval</code></li>
+                    <li><code>aeon_interval_right_open() : Interval</code></li>
+                    <li><code>aeon_interval_closed() : Interval</code></li>
+                    <li><code>aeon_interval_open() : Interval</code></li>
                 </ul>
             </section>
         </article>
