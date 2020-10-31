@@ -46,6 +46,8 @@ final class DocumentationController extends AbstractController
             'sleepVersion' => '1.x',
             'retryClasses' => $this->retryClasses('1.x'),
             'retryVersion' => '1.x',
+            'symfonyBundle'=> $this->symfonyBundleClasses('1.x'),
+            'symfonyBundleVersion' => '1.x'
         ]);
     }
 
@@ -61,6 +63,7 @@ final class DocumentationController extends AbstractController
             'businessHoursVersions' => $this->businessHoursVersions(),
             'sleepVersions' => $this->sleepVersions(),
             'retryVersions' => $this->retryVersions(),
+            'symfonyBundleVersions' => $this->symfonyBundleVersions()
         ]);
     }
 }

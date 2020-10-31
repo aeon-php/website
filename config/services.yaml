@@ -70,6 +70,17 @@ parameters:
             dependencies:
                 calendar: "1.x"
                 calendar_holidays: "1.x"
+        symfony_bundle:
+            name: 'symfony-bundle'
+            versions:
+                1.x:
+                    source: "https://github.com/aeon-php/symfony-bundle/archive/1.x.zip"
+                    destination: "%kernel.project_dir%/sources/symfony-bundle-1.x"
+            dependencies:
+                calendar: "1.x"
+                calendar_twig: "1.x"
+                retry: "1.x"
+                sleep: "1.x"
 
 services:
     # default configuration for services in *this* file

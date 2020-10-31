@@ -55,6 +55,9 @@ final class SitemapDocumentationProvider extends AbstractSinglePageSitemapProvid
         $page->addUrl(new Url($this->generateUrl('docs_business_hours'), Url::CHANGEFREQ_WEEKLY, 1.0));
         $page->addUrl(new Url($this->generateUrl('docs_business_hours_version', ['version' => '1.x']), Url::CHANGEFREQ_WEEKLY, 1.0));
 
+        $page->addUrl(new Url($this->generateUrl('docs_symfony_bundle'), Url::CHANGEFREQ_WEEKLY, 1.0));
+        $page->addUrl(new Url($this->generateUrl('docs_symfony_bundle_version', ['version' => '1.x']), Url::CHANGEFREQ_WEEKLY, 1.0));
+
         foreach ($this->provider->all() as $source) {
             $route = $this->generateUrl($source->routerName(), $source->parameters());
             $page->addUrl(new Url($route, Url::CHANGEFREQ_DAILY, 1));

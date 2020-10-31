@@ -1,0 +1,139 @@
+{% extends 'docs.html.twig' %}
+
+{% block title %}Aeon PHP - Symfony Bundle - Documentation{% endblock %}
+
+{% block body %}
+    <div class="row doc-content-body">
+        <article class="col-md-9">
+            <section id="calendar-interface">
+                <h5 class="section-title-2">Symfony Bundle</h5>
+                <hr/>
+                Available versions:
+                <ul>
+                {% for version, src in versions %}
+                    <li><a href="{{ path('docs_symfony_bundle_version', { version: version }) }}">{{ version }}</a></li>
+                {% endfor %}
+                </ul>
+            </section>
+            <section>
+                <h3>Installation</h3>
+                <p>
+                    <code class="code">composer require aeon-php/symfony-bundle</code>
+                </p>
+            </section>
+            <section>
+                <h3>Configuration</h3>
+                <p>
+
+                </p>
+                <h5>Register Bundle</h5>
+            <pre><code class="language-php">{% apply spaceless  %}
+&lt;?php
+
+// AppKernel.php or bundles.php
+
+$bundles = [
+    new Aeon\Symfony\AeonBundle\AeonBundle(),
+];
+{% endapply %}</code></pre>
+                <h5>Configure Bundle</h5>
+                <pre><code class="language-yaml">{% apply spaceless  %}
+# config/packages/aeon.yaml
+
+aeon:
+  calendar_timezone: 'UTC'
+  ui_timezone: 'America/Los_Angeles'
+  ui_datetime_format: 'Y-m-d H:i:s'
+  ui_date_format: 'Y-m-d'
+  ui_time_format: 'H:i:s'
+{% endapply %}</code></pre>
+            </section>
+            <section>
+                <h3>How to get current time in Symfony</h3>
+                <p>
+                    The easiest, cleanest and most reliable way to get current DateTime in Symfony is to use <a href="{{ path('docs_calendar_class', {'version': '1.x', 'classSlug': 'gregorian-calendar'}) }}">Calendar</a>.
+                    For example in order to get current time in Symfony Controller use following code (AeonBundle register Calendar as Autowired service).
+                </p>
+                <h6>Controller</h6>
+                <pre><code class="language-php">{% apply spaceless  %}
+&lt;?php
+
+namespace App\Controller;
+
+use Aeon\Calendar\Gregorian\Calendar;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+class AeonCalendarController extends AbstractController
+{
+    private Calendar $calendar;
+
+    public function __construct(Calendar $calendar)
+    {
+        $this->calendar = $calendar;
+    }
+
+    /**
+     * @Route("/aeon/calendar", name="aeon_calendar")
+     */
+    public function index(): Response
+    {
+        return $this->render('aeon_calendar/index.html.twig', [
+            'calendar' => $this->calendar
+        ]);
+    }
+}
+{% endapply %}</code></pre>
+                <h6>Twig</h6>
+                <script src="https://gist.github.com/norberttech/ab14611673fb0d61d670df9f6946177e.js"></script>
+                {# Using gist was the easiest way to embed code snippet with html and twig tags. Feel free to replace that snippet with regular code example #}
+            </section>
+            <section>
+                <h3>How to test features that depends on time in Symfony</h3>
+                <p>
+                    AeonBundle automatically replace GregorianCalendar with  <a href="{{ path('docs_calendar_class', {'version': '1.x', 'classSlug': 'gregorian-gregoriancalendarstub'}) }}">GregorianCalendarStub</a> instance
+                    in <code>test</code> environment.
+                </p>
+                <p>
+                    Knowing that we must just get the GregorianCalendarStub::class class from the service container (GregorianCalendarStub::class is an alias for Calendar::class) and use <code>setNow</code> method.
+                </p>
+                <pre><code class="language-php">{% apply spaceless  %}
+&lt;?php
+
+namespace App\Tests;
+
+use Aeon\Calendar\Gregorian\DateTime;
+use Aeon\Calendar\Gregorian\GregorianCalendarStub;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+
+class AeonCalendarControllerTest extends WebTestCase
+{
+    public function testSomething()
+    {
+        $client = static::createClient();
+
+        $client->getContainer()->get(GregorianCalendarStub::class)->setNow(DateTime::fromString('2020-01-01 00:00:00 America/Los_Angeles'));
+
+        $client->request('GET', '/aeon/calendar');
+
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('code#calendar-year', '2020');
+        $this->assertSelectorTextContains('code#calendar-month', '2020-01');
+        $this->assertSelectorTextContains('code#calendar-day', '2020-01-01');
+        $this->assertSelectorTextContains('code#calendar-datetime', '2020-01-01T00:00:00-08:00');
+    }
+}
+
+{% endapply %}</code></pre>
+            </section>
+        </article>
+        <aside class="col-md-3">
+            <div class="sticky">
+                <section class="text-center">
+                    <a href="https://github.com/aeon-php/website/blob/1.x/templates/{{ _self }}" class="btn btn-secondary p-1" target="_blank"><i class="fab fa-github"></i> Edit this page</a>
+                </section>
+            </div>
+        </aside>
+    </div>
+{% endblock %}

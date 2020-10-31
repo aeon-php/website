@@ -67,6 +67,19 @@ trait CodeReflectionTrait
         );
     }
 
+    private function symfonyBundleClasses(string $version) : array
+    {
+        return $this->loadCode(
+            $this->parameterBag()->get('aeon_libraries')['symfony_bundle'],
+            $version
+        );
+    }
+
+    private function symfonyBundleVersions() : array
+    {
+        return $this->parameterBag()->get('aeon_libraries')['symfony_bundle']['versions'];
+    }
+
     private function calendarDoctrineVersions() : array
     {
         return $this->parameterBag()->get('aeon_libraries')['calendar_doctrine']['versions'];

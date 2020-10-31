@@ -13,6 +13,10 @@ final class SlugGenerator
 
     public static function forClass(string $className) : string
     {
+        if (\ltrim($className, '\\') === 'Aeon\\Symfony\\AeonBundle') {
+            return 'symfony-bundle';
+        }
+
         if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calendar\\Gregorian\\Holidays')) {
             return \str_replace('\\', '-', \mb_strtolower(\ltrim(\str_replace('Aeon\\Calendar\\Gregorian', '', $className), '\\')));
         }

@@ -39,7 +39,8 @@ final class AeonDocsSourceProvider implements SourceProvider
             $this->calendarHolidaysYasumiSources(),
             $this->businessHoursSources(),
             $this->sleepSources(),
-            $this->retrySources()
+            $this->retrySources(),
+            $this->symfonyBundleSources()
         );
     }
 
@@ -310,6 +311,41 @@ final class AeonDocsSourceProvider implements SourceProvider
                 foreach ($phpClass->methods() as $method) {
                     $sources[] = new Source(
                         'docs_retry_class_method',
+                        [
+                            'version' => $version,
+                            'classSlug' => SlugGenerator::forPHPClass($phpClass),
+                            'methodSlug' => SlugGenerator::forClassMethod($method),
+                        ]
+                    );
+                }
+            }
+        }
+
+        return $sources;
+    }
+
+    /**
+     * @return Source[]
+     */
+    private function symfonyBundleSources() : array
+    {
+        $sources = [];
+
+        foreach ($this->symfonyBundleVersions() as $version => $srv) {
+            $sources[] = new Source('docs_symfony_bundle_version', ['version' => $version]);
+        }
+
+        foreach ($this->symfonyBundleVersions() as $version => $srv) {
+            foreach ($this->symfonyBundleClasses($version) as $phpClass) {
+                $sources[] = new Source('docs_symfony_bundle_class', ['version' => $version, 'classSlug' => SlugGenerator::forPHPClass($phpClass)]);
+            }
+        }
+
+        foreach ($this->symfonyBundleVersions()  as $version => $srv) {
+            foreach ($this->symfonyBundleClasses($version) as $phpClass) {
+                foreach ($phpClass->methods() as $method) {
+                    $sources[] = new Source(
+                        'docs_symfony_bundle_class_method',
                         [
                             'version' => $version,
                             'classSlug' => SlugGenerator::forPHPClass($phpClass),
