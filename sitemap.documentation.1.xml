@@ -66,6 +66,14 @@
             <changefreq>weekly</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle</loc>
+            <changefreq>weekly</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x</loc>
+            <changefreq>weekly</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
             <loc>https://aeon-php.org/docs/calendar/1.x</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
@@ -5175,6 +5183,714 @@
             <priority>1.0</priority>                    </url>
             <url>
             <loc>https://aeon-php.org/docs/retry/1.x/delaymodifier-retrymultiplydelay/method/modify</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-datatransformer-aeontimezonetodatetimetransformer</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-datatransformer-aeondaytodatetimetransformer</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-datatransformer-aeontimetodatetimetransformer</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-datatransformer-aeondatetimetodatetimetransformer</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeontimetype</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeondatetimetype</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeondaytype</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeontimezonetype</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-before</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-equalvalidator</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforeorequalvalidator</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-after</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-equal</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforeorequal</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-afterorequal</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-afterorequalvalidator</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-aftervalidator</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforevalidator</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-aeonbundle</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-dependencyinjection-configuration</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-dependencyinjection-aeonextension</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-datatransformer-aeontimezonetodatetimetransformer/method/transform</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-datatransformer-aeontimezonetodatetimetransformer/method/reversetransform</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-datatransformer-aeondaytodatetimetransformer/method/transform</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-datatransformer-aeondaytodatetimetransformer/method/reversetransform</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-datatransformer-aeontimetodatetimetransformer/method/transform</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-datatransformer-aeontimetodatetimetransformer/method/reversetransform</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-datatransformer-aeondatetimetodatetimetransformer/method/transform</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-datatransformer-aeondatetimetodatetimetransformer/method/reversetransform</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeontimetype/method/getparent</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeontimetype/method/getblockprefix</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeontimetype/method/buildform</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeontimetype/method/buildview</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeontimetype/method/finishview</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeontimetype/method/configureoptions</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeondatetimetype/method/getparent</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeondatetimetype/method/getblockprefix</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeondatetimetype/method/buildform</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeondatetimetype/method/buildview</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeondatetimetype/method/finishview</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeondatetimetype/method/configureoptions</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeondaytype/method/getparent</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeondaytype/method/getblockprefix</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeondaytype/method/buildform</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeondaytype/method/buildview</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeondaytype/method/finishview</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeondaytype/method/configureoptions</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeontimezonetype/method/getparent</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeontimezonetype/method/getblockprefix</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeontimezonetype/method/buildform</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeontimezonetype/method/buildview</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeontimezonetype/method/finishview</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-form-type-aeontimezonetype/method/configureoptions</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-before/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-before/method/getdefaultoption</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-before/method/geterrorname</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-before/method/set</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-before/method/get</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-before/method/isset</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-before/method/addimplicitgroupname</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-before/method/getrequiredoptions</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-before/method/validatedby</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-before/method/gettargets</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-before/method/sleep</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-equalvalidator/method/comparevalues</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-equalvalidator/method/geterrorcode</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-equalvalidator/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-equalvalidator/method/validate</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-equalvalidator/method/getpropertyaccessor</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-equalvalidator/method/initialize</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-equalvalidator/method/formattypeof</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-equalvalidator/method/formatvalue</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-equalvalidator/method/formatvalues</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforeorequalvalidator/method/comparevalues</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforeorequalvalidator/method/geterrorcode</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforeorequalvalidator/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforeorequalvalidator/method/validate</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforeorequalvalidator/method/getpropertyaccessor</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforeorequalvalidator/method/initialize</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforeorequalvalidator/method/formattypeof</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforeorequalvalidator/method/formatvalue</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforeorequalvalidator/method/formatvalues</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-after/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-after/method/getdefaultoption</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-after/method/geterrorname</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-after/method/set</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-after/method/get</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-after/method/isset</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-after/method/addimplicitgroupname</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-after/method/getrequiredoptions</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-after/method/validatedby</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-after/method/gettargets</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-after/method/sleep</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-equal/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-equal/method/getdefaultoption</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-equal/method/geterrorname</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-equal/method/set</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-equal/method/get</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-equal/method/isset</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-equal/method/addimplicitgroupname</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-equal/method/getrequiredoptions</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-equal/method/validatedby</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-equal/method/gettargets</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-equal/method/sleep</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforeorequal/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforeorequal/method/getdefaultoption</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforeorequal/method/geterrorname</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforeorequal/method/set</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforeorequal/method/get</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforeorequal/method/isset</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforeorequal/method/addimplicitgroupname</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforeorequal/method/getrequiredoptions</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforeorequal/method/validatedby</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforeorequal/method/gettargets</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforeorequal/method/sleep</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-afterorequal/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-afterorequal/method/getdefaultoption</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-afterorequal/method/geterrorname</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-afterorequal/method/set</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-afterorequal/method/get</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-afterorequal/method/isset</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-afterorequal/method/addimplicitgroupname</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-afterorequal/method/getrequiredoptions</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-afterorequal/method/validatedby</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-afterorequal/method/gettargets</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-afterorequal/method/sleep</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-afterorequalvalidator/method/comparevalues</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-afterorequalvalidator/method/geterrorcode</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-afterorequalvalidator/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-afterorequalvalidator/method/validate</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-afterorequalvalidator/method/getpropertyaccessor</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-afterorequalvalidator/method/initialize</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-afterorequalvalidator/method/formattypeof</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-afterorequalvalidator/method/formatvalue</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-afterorequalvalidator/method/formatvalues</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-aftervalidator/method/comparevalues</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-aftervalidator/method/geterrorcode</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-aftervalidator/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-aftervalidator/method/validate</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-aftervalidator/method/getpropertyaccessor</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-aftervalidator/method/initialize</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-aftervalidator/method/formattypeof</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-aftervalidator/method/formatvalue</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-aftervalidator/method/formatvalues</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforevalidator/method/comparevalues</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforevalidator/method/geterrorcode</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforevalidator/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforevalidator/method/validate</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforevalidator/method/getpropertyaccessor</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforevalidator/method/initialize</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforevalidator/method/formattypeof</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforevalidator/method/formatvalue</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforevalidator/method/formatvalues</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-aeonbundle/method/boot</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-aeonbundle/method/shutdown</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-aeonbundle/method/build</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-aeonbundle/method/getcontainerextension</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-aeonbundle/method/getnamespace</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-aeonbundle/method/getpath</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-aeonbundle/method/getname</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-aeonbundle/method/registercommands</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-aeonbundle/method/getcontainerextensionclass</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-aeonbundle/method/createcontainerextension</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-aeonbundle/method/parseclassname</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-aeonbundle/method/setcontainer</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-dependencyinjection-configuration/method/getconfigtreebuilder</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-dependencyinjection-aeonextension/method/load</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-dependencyinjection-aeonextension/method/getannotatedclassestocompile</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-dependencyinjection-aeonextension/method/addannotatedclassestocompile</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-dependencyinjection-aeonextension/method/getxsdvalidationbasepath</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-dependencyinjection-aeonextension/method/getnamespace</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-dependencyinjection-aeonextension/method/getalias</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-dependencyinjection-aeonextension/method/getconfiguration</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-dependencyinjection-aeonextension/method/processconfiguration</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-dependencyinjection-aeonextension/method/getprocessedconfigs</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-dependencyinjection-aeonextension/method/isconfigenabled</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
     </urlset>
