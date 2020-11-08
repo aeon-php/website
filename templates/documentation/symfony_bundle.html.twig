@@ -16,13 +16,13 @@
                 </ul>
             </section>
             <section>
-                <h3>Installation</h3>
+                <h3 id="installation">Installation</h3>
                 <p>
                     <code class="code">composer require aeon-php/symfony-bundle</code>
                 </p>
             </section>
             <section>
-                <h3>Configuration</h3>
+                <h3 id="configuration">Configuration</h3>
                 <p>
 
                 </p>
@@ -42,6 +42,7 @@ $bundles = [
 
 aeon:
   calendar_timezone: 'UTC'
+  calendar_holidays_factory_service: 'calendar.holidays.factory.google'
   ui_timezone: 'America/Los_Angeles'
   ui_datetime_format: 'Y-m-d H:i:s'
   ui_date_format: 'Y-m-d'
@@ -49,7 +50,28 @@ aeon:
 {% endapply %}</code></pre>
             </section>
             <section>
-                <h3>How to get current time in Symfony</h3>
+                <h3 id="aeon-symfony-form-types">Aeon Symfony Form Types</h3>
+                <ul>
+                    <li><code>Aeon\Symfony\AeonBundle\Form\Type\AeonDayType</code></li>
+                    <li><code>Aeon\Symfony\AeonBundle\Form\Type\AeonDateTimeType</code></li>
+                    <li><code>Aeon\Symfony\AeonBundle\Form\Type\AeonTime</code></li>
+                    <li><code>Aeon\Symfony\AeonBundle\Form\Type\AeonTimeZone</code></li>
+                </ul>
+            </section>
+            <section>
+                <h3 id="aeon-symfony-validators">Aeon Symfony Validators</h3>
+                <ul>
+                    <li><code>Aeon\Symfony\AeonBundle\Validator\Constraints\After</code></li>
+                    <li><code>Aeon\Symfony\AeonBundle\Validator\Constraints\AfterOrEqual</code></li>
+                    <li><code>Aeon\Symfony\AeonBundle\Validator\Constraints\Before</code></li>
+                    <li><code>Aeon\Symfony\AeonBundle\Validator\Constraints\BeforeOrEqual</code></li>
+                    <li><code>Aeon\Symfony\AeonBundle\Validator\Constraints\Equal</code></li>
+                    <li><code>Aeon\Symfony\AeonBundle\Validator\Constraints\Holiday</code></li>
+                    <li><code>Aeon\Symfony\AeonBundle\Validator\Constraints\NotHoliday</code></li>
+                </ul>
+            </section>
+            <section>
+                <h3 id="current-time">How to get current time in Symfony</h3>
                 <p>
                     The easiest, cleanest and most reliable way to get current DateTime in Symfony is to use <a href="{{ path('docs_calendar_class', {'version': '1.x', 'classSlug': 'gregorian-calendar'}) }}">Calendar</a>.
                     For example in order to get current time in Symfony Controller use following code (AeonBundle register Calendar as Autowired service).
@@ -90,7 +112,7 @@ class AeonCalendarController extends AbstractController
                 {# Using gist was the easiest way to embed code snippet with html and twig tags. Feel free to replace that snippet with regular code example #}
             </section>
             <section>
-                <h3>How to test features that depends on time in Symfony</h3>
+                <h3 id="testing">How to test features that depends on time in Symfony</h3>
                 <p>
                     AeonBundle automatically replace GregorianCalendar with  <a href="{{ path('docs_calendar_class', {'version': '1.x', 'classSlug': 'gregorian-gregoriancalendarstub'}) }}">GregorianCalendarStub</a> instance
                     in <code>test</code> environment.
@@ -127,12 +149,235 @@ class AeonCalendarControllerTest extends WebTestCase
 
 {% endapply %}</code></pre>
             </section>
+            <section>
+                <h3>How to check in Symfony Form if a given date is a holiday</h3>
+                <p>
+                    Aeon Symfony Bundle provides two Symfony Validators.
+                </p>
+                <ul>
+                    <li><code>Aeon\Symfony\AeonBundle\Validator\Constraints\Holiday</code></li>
+                    <li><code>Aeon\Symfony\AeonBundle\Validator\Constraints\NoyHoliday</code></li>
+                </ul>
+                <p>
+                    Example usage:
+                </p>
+                <pre><code class="language-php">{% apply spaceless  %}
+&lt;?php
+
+declare(strict_types=1);
+
+namespace App\Form;
+
+use Aeon\Symfony\AeonBundle\Validator\Constraints\Holiday;
+use Aeon\Symfony\AeonBundle\Validator\Constraints\NotHoliday;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
+final class AeonFormType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options) : void
+    {
+        $builder->add('datetime', AeonDateTimeType::class, [
+            'widget' => 'single_text',
+            'input' => 'string',
+            'data' => $options['calendar']->now()->format('Y-m-d H:i:s'),
+        ]);
+
+        $builder->add('submit', SubmitType::class);
+    }
+
+    public function configureOptions(OptionsResolver $resolver) : void
+    {
+        parent::configureOptions($resolver);
+
+        $resolver->setRequired('calendar');
+        $resolver->setAllowedTypes('calendar', Calendar::class);
+    }
+}
+
+{% endapply %}</code></pre>
+            </section>
+            <section>
+                <h3>How to set current date in Symfony Form field</h3>
+                <p>
+                    The bast practice is to always take the current date and time from one Calendar instance
+                    registered in Symfony Service Container, because it can be also mocked in the tests making them predictable and stable.
+                    In order to use Calendar in the form first it needs to be configured as an required option.
+                </p>
+                <pre><code class="language-php">{% apply spaceless  %}
+&lt;?php
+
+declare(strict_types=1);
+
+namespace App\Form;
+
+use Aeon\Symfony\AeonBundle\Validator\Constraints\Holiday;
+use Aeon\Symfony\AeonBundle\Validator\Constraints\NotHoliday;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
+final class AeonFormType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options) : void
+    {
+        $builder->add('holiday', AeonDayType::class, [
+            'constraints' => [new Holiday(['countryCode' => 'US'])]
+        ]);
+
+        $builder->add('not_holiday', AeonDayType::class, [
+            'constraints' => [new NotHoliday(['countryCode' => 'US'])]
+        ]);
+
+        $builder->add('submit', SubmitType::class);
+    }
+}
+
+{% endapply %}</code></pre>
+                <p>
+                    Later when creating form this option is required:
+                </p>
+                <pre><code class="language-php">{% apply spaceless  %}
+&lt;?php
+
+declare(strict_types=1);
+
+namespace App\Controller;
+
+use Aeon\Calendar\Gregorian\Calendar;
+use App\Form\AeonFormType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+class AeonCalendarController extends AbstractController
+{
+    private Calendar $calendar;
+
+    public function __construct(Calendar $calendar)
+    {
+        $this->calendar = $calendar;
+    }
+
+    /**
+     * @Route("/aeon/form", name="aeon_form")
+     */
+    public function form(Request $request) : Response
+    {
+        $form = $this->createForm(AeonFormType::class, null, ['calendar' => $this->calendar]);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+        }
+
+        return $this->render('aeon_calendar/form.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+}
+
+
+{% endapply %}</code></pre>
+            </section>
+            <section>
+                <h3>How to compare two Symfony DateTime fields</h3>
+                <p>
+                    In order to compare two symfony fields when not using object as a form model in order
+                    to compare one field with another we need to use constraint <code>propertyPath</code> option
+                    and select other field through current field <code>parent</code> (form)
+                </p>
+                <pre><code class="language-php">{% apply spaceless  %}
+&lt;?php
+
+declare(strict_types=1);
+
+namespace App\Form;
+
+use Aeon\Symfony\AeonBundle\Validator\Constraints\Holiday;
+use Aeon\Symfony\AeonBundle\Validator\Constraints\NotHoliday;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
+final class AeonFormType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options) : void
+    {
+        $builder->add('datetime_compare_1', AeonDateTimeType::class, [
+            'widget' => 'single_text',
+            'input' => 'string',
+            'data' => $options['calendar']->now()->sub(TimeUnit::second())->format('Y-m-d H:i:s'),
+            'constraints' => [
+                new Before(['propertyPath' => 'parent.all[datetime_compare_2].data']),
+            ],
+        ]);
+        $builder->add('datetime_compare_2', AeonDateTimeType::class, [
+            'widget' => 'single_text',
+            'input' => 'string',
+            'data' => $options['calendar']->now()->format('Y-m-d H:i:s'),
+        ]);
+
+        $builder->add('submit', SubmitType::class);
+    }
+}
+
+{% endapply %}</code></pre>
+            </section>
+            <section>
+                <h3 id="yasumi">How to use <a href="https://github.com/azuyalabs/yasumi" target="_blank">Yasumi</a> holidays provider</h3>
+                <p>
+                    By default symfony bundle registers <code>calendar.holidays.factory.google</code> service as a holiday provide however Yasumi is much more reliable and precise.
+                    It's also recommended holidays provider, in order to use it first install:
+                </p>
+                <p>
+                    <code>composer require aeon-php/calendar-holidays-yasumi</code>
+                </p>
+                <p>
+                    And then configure the bundle
+                </p>
+                <pre><code class="language-yaml">{% apply spaceless  %}
+# config/packages/aeon.yaml
+
+aeon:
+  calendar_holidays_factory_service: 'calendar.holidays.factory.yasumi'
+{% endapply %}</code></pre>
+            </section>
         </article>
         <aside class="col-md-3">
             <div class="sticky">
-                <section class="text-center">
+                <section class="text-center mb-2">
                     <a href="https://github.com/aeon-php/website/blob/1.x/templates/{{ _self }}" class="btn btn-secondary p-1" target="_blank"><i class="fab fa-github"></i> Edit this page</a>
                 </section>
+                <ul id="toc" class="nav flex-column toc">
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#installation">Installation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#configuration">Configuration</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#aeon-symfony-form-types">Aeon Symfony Form Types</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#aeon-symfony-validators">Aeon Symfony Validators</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#current-time">Current Time</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#testing">Testing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-scroll class="nav-link" href="#yasumi">Yasumi</a>
+                    </li>
+                </ul>
             </div>
         </aside>
     </div>

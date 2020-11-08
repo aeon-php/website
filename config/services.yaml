@@ -81,6 +81,7 @@ parameters:
                 calendar_twig: "1.x"
                 retry: "1.x"
                 sleep: "1.x"
+                calendar_holidays: "1.x"
 
 services:
     # default configuration for services in *this* file

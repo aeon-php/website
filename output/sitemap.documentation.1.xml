@@ -4478,6 +4478,10 @@
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
+            <loc>https://aeon-php.org/docs/calendar-holidays/1.x/holidays-googleregionalholidaysfactory</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
             <loc>https://aeon-php.org/docs/calendar-holidays/1.x/holidays-googlecalendar-countrycodes</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
@@ -4487,6 +4491,10 @@
             <priority>1.0</priority>                    </url>
             <url>
             <loc>https://aeon-php.org/docs/calendar-holidays/1.x/holidays</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar-holidays/1.x/holidaysfactory</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
@@ -4566,6 +4574,10 @@
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
+            <loc>https://aeon-php.org/docs/calendar-holidays/1.x/holidays-googleregionalholidaysfactory/method/create</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
             <loc>https://aeon-php.org/docs/calendar-holidays/1.x/holidays-googlecalendar-countrycodes/method/all</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
@@ -4591,6 +4603,10 @@
             <priority>1.0</priority>                    </url>
             <url>
             <loc>https://aeon-php.org/docs/calendar-holidays/1.x/holidays/method/holidaysat</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar-holidays/1.x/holidaysfactory/method/create</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
@@ -4690,11 +4706,15 @@
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
-            <loc>https://aeon-php.org/docs/calendar-holidays-yasumi/1.x/yasumi-holidays/method/construct</loc>
+            <loc>https://aeon-php.org/docs/calendar-holidays-yasumi/1.x/gregorian-yasumiholidaysfactory</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
-            <loc>https://aeon-php.org/docs/calendar-holidays-yasumi/1.x/yasumi-holidays/method/provider</loc>
+            <loc>https://aeon-php.org/docs/calendar-holidays-yasumi/1.x/gregorian-providers</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar-holidays-yasumi/1.x/yasumi-holidays/method/construct</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
@@ -4707,6 +4727,18 @@
             <priority>1.0</priority>                    </url>
             <url>
             <loc>https://aeon-php.org/docs/calendar-holidays-yasumi/1.x/yasumi-holidays/method/yasumi</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar-holidays-yasumi/1.x/gregorian-yasumiholidaysfactory/method/create</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar-holidays-yasumi/1.x/gregorian-providers/method/all</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar-holidays-yasumi/1.x/gregorian-providers/method/fromcountrycode</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
@@ -5230,6 +5262,10 @@
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-holidayvalidator</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
             <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforeorequalvalidator</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
@@ -5239,6 +5275,14 @@
             <priority>1.0</priority>                    </url>
             <url>
             <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-equal</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-holiday</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-notholidayvalidator</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
@@ -5255,6 +5299,10 @@
             <priority>1.0</priority>                    </url>
             <url>
             <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-aftervalidator</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-notholiday</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
@@ -5482,6 +5530,30 @@
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-holidayvalidator/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-holidayvalidator/method/validate</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-holidayvalidator/method/initialize</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-holidayvalidator/method/formattypeof</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-holidayvalidator/method/formatvalue</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-holidayvalidator/method/formatvalues</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
             <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-beforeorequalvalidator/method/comparevalues</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
@@ -5603,6 +5675,74 @@
             <priority>1.0</priority>                    </url>
             <url>
             <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-equal/method/sleep</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-holiday/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-holiday/method/getrequiredoptions</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-holiday/method/validatedby</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-holiday/method/geterrorname</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-holiday/method/set</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-holiday/method/get</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-holiday/method/isset</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-holiday/method/addimplicitgroupname</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-holiday/method/getdefaultoption</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-holiday/method/gettargets</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-holiday/method/sleep</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-notholidayvalidator/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-notholidayvalidator/method/validate</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-notholidayvalidator/method/initialize</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-notholidayvalidator/method/formattypeof</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-notholidayvalidator/method/formatvalue</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-notholidayvalidator/method/formatvalues</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
@@ -5763,6 +5903,50 @@
             <priority>1.0</priority>                    </url>
             <url>
             <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-aftervalidator/method/formatvalues</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-notholiday/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-notholiday/method/getrequiredoptions</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-notholiday/method/validatedby</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-notholiday/method/geterrorname</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-notholiday/method/set</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-notholiday/method/get</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-notholiday/method/isset</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-notholiday/method/addimplicitgroupname</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-notholiday/method/getdefaultoption</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-notholiday/method/gettargets</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-validator-constraints-notholiday/method/sleep</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
