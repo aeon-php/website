@@ -22,9 +22,9 @@ final class AeonTimeZoneToDateTimeTransformer implements DataTransformerInterfac
         return $value;
     }
 
-    public function reverseTransform($value) : ?TimeZone
+    public function reverseTransform($value): ?TimeZone
     {
-        if ($value === null) {
+        if (null === $value) {
             return null;
         }
 

@@ -13,9 +13,6 @@ final class CLIDocumentation extends AbstractController
 {
     use CodeReflectionTrait;
 
-    /**
-     * @var ParameterBagInterface
-     */
     private ParameterBagInterface $parameterBag;
 
     public function __construct(ParameterBagInterface $parameterBag)
@@ -23,7 +20,7 @@ final class CLIDocumentation extends AbstractController
         $this->parameterBag = $parameterBag;
     }
 
-    protected function parameterBag() : ParameterBagInterface
+    protected function parameterBag(): ParameterBagInterface
     {
         return $this->parameterBag;
     }
@@ -31,7 +28,7 @@ final class CLIDocumentation extends AbstractController
     /**
      * @Route("/docs/cli", name="docs_cli")
      */
-    public function retry() : Response
+    public function retry(): Response
     {
         return $this->render('documentation/cli.html.twig', [
             'activeSection' => 'cli',

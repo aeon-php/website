@@ -15,10 +15,10 @@ final class HRTime
     /**
      * @psalm-pure
      */
-    public static function convert(int $seconds, int $nanosecond) : TimeUnit
+    public static function convert(int $seconds, int $nanosecond): TimeUnit
     {
         if ($nanosecond < 0) {
-            throw new InvalidArgumentException("Nanoseconds can't be less than 0, given " . $nanosecond);
+            throw new InvalidArgumentException("Nanoseconds can't be less than 0, given ".$nanosecond);
         }
 
         return TimeUnit::precise(\floatval(\sprintf(

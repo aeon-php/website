@@ -22,9 +22,9 @@ final class AeonDayToDateTimeTransformer implements DataTransformerInterface
         return $value;
     }
 
-    public function reverseTransform($value) : ?Day
+    public function reverseTransform($value): ?Day
     {
-        if ($value === null) {
+        if (null === $value) {
             return null;
         }
 

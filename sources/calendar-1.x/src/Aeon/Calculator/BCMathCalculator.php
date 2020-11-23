@@ -21,12 +21,12 @@ final class BCMathCalculator implements Calculator
     /**
      * @psalm-pure
      */
-    public static function supported() : bool
+    public static function supported(): bool
     {
         return \extension_loaded('bcmath');
     }
 
-    public function precision() : int
+    public function precision(): int
     {
         return $this->precision;
     }
@@ -35,7 +35,7 @@ final class BCMathCalculator implements Calculator
      * @psalm-suppress InvalidNullableReturnType
      * @psalm-suppress NullableReturnStatement
      */
-    public function divide(string $value, string $divisor) : string
+    public function divide(string $value, string $divisor): string
     {
         if (!\is_numeric($value) || !\is_numeric($divisor)) {
             throw new InvalidTypeException('Expected values to be numeric string');
@@ -45,7 +45,7 @@ final class BCMathCalculator implements Calculator
             throw new \LogicException("Divisor can't be 0");
         }
 
-        /**
+        /*
          * @phpstan-ignore-next-line
          */
         return \bcdiv($value, $divisor, $this->precision);
@@ -55,7 +55,7 @@ final class BCMathCalculator implements Calculator
      * @psalm-suppress InvalidNullableReturnType
      * @psalm-suppress NullableReturnStatement
      */
-    public function modulo(string $value, string $divisor) : string
+    public function modulo(string $value, string $divisor): string
     {
         if (!\is_numeric($value) || !\is_numeric($divisor)) {
             throw new InvalidTypeException('Expected values to be numeric string');
@@ -65,13 +65,13 @@ final class BCMathCalculator implements Calculator
             throw new \LogicException("Divisor can't be 0");
         }
 
-        /**
+        /*
          * @phpstan-ignore-next-line
          */
         return \bcmod($value, $divisor, $this->precision);
     }
 
-    public function multiply(string $value, string $multiplier) : string
+    public function multiply(string $value, string $multiplier): string
     {
         if (!\is_numeric($value) || !\is_numeric($multiplier)) {
             throw new InvalidTypeException('Expected values to be numeric string');
@@ -80,7 +80,7 @@ final class BCMathCalculator implements Calculator
         return \bcmul($value, $multiplier, $this->precision);
     }
 
-    public function add(string $value, string $nextValue) : string
+    public function add(string $value, string $nextValue): string
     {
         if (!\is_numeric($value) || !\is_numeric($nextValue)) {
             throw new InvalidTypeException('Expected values to be numeric string');
@@ -89,7 +89,7 @@ final class BCMathCalculator implements Calculator
         return \bcadd($value, $nextValue, $this->precision);
     }
 
-    public function sub(string $value, string $nextValue) : string
+    public function sub(string $value, string $nextValue): string
     {
         if (!\is_numeric($value) || !\is_numeric($nextValue)) {
             throw new InvalidTypeException('Expected values to be numeric string');
@@ -98,16 +98,16 @@ final class BCMathCalculator implements Calculator
         return \bcsub($value, $nextValue, $this->precision);
     }
 
-    public function isGreaterThan(string $value, string $nextValue) : bool
+    public function isGreaterThan(string $value, string $nextValue): bool
     {
         if (!\is_numeric($value) || !\is_numeric($nextValue)) {
             throw new InvalidTypeException('Expected values to be numeric string');
         }
 
-        return \bccomp($value, $nextValue, $this->precision) === 1;
+        return 1 === \bccomp($value, $nextValue, $this->precision);
     }
 
-    public function isGreaterThanEq(string $value, string $nextValue) : bool
+    public function isGreaterThanEq(string $value, string $nextValue): bool
     {
         if (!\is_numeric($value) || !\is_numeric($nextValue)) {
             throw new InvalidTypeException('Expected values to be numeric string');
@@ -116,16 +116,16 @@ final class BCMathCalculator implements Calculator
         return \in_array(\bccomp($value, $nextValue, $this->precision), [0, 1], true);
     }
 
-    public function isLessThan(string $value, string $nextValue) : bool
+    public function isLessThan(string $value, string $nextValue): bool
     {
         if (!\is_numeric($value) || !\is_numeric($nextValue)) {
             throw new InvalidTypeException('Expected values to be numeric string');
         }
 
-        return \bccomp($value, $nextValue, $this->precision) === -1;
+        return -1 === \bccomp($value, $nextValue, $this->precision);
     }
 
-    public function isLessThanEq(string $value, string $nextValue) : bool
+    public function isLessThanEq(string $value, string $nextValue): bool
     {
         if (!\is_numeric($value) || !\is_numeric($nextValue)) {
             throw new InvalidTypeException('Expected values to be numeric string');
@@ -134,12 +134,12 @@ final class BCMathCalculator implements Calculator
         return \in_array(\bccomp($value, $nextValue, $this->precision), [-1, 0], true);
     }
 
-    public function isEqual(string $value, string $nextValue) : bool
+    public function isEqual(string $value, string $nextValue): bool
     {
         if (!\is_numeric($value) || !\is_numeric($nextValue)) {
             throw new InvalidTypeException('Expected values to be numeric string');
         }
 
-        return \bccomp($value, $nextValue, $this->precision) === 0;
+        return 0 === \bccomp($value, $nextValue, $this->precision);
     }
 }

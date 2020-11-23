@@ -27,7 +27,7 @@ final class BusinessDays
     /**
      * @psalm-pure
      */
-    public static function none() : self
+    public static function none(): self
     {
         return new self();
     }
@@ -35,7 +35,7 @@ final class BusinessDays
     /**
      * @psalm-pure
      */
-    public static function wholeWeek(WorkingHours $weekWorkingHours, ?WorkingHours $weekendWorkingHours = null) : self
+    public static function wholeWeek(WorkingHours $weekWorkingHours, ?WorkingHours $weekendWorkingHours = null): self
     {
         return new self(
             new RegularBusinessDay(Day\WeekDay::monday(), $weekWorkingHours),
@@ -51,7 +51,7 @@ final class BusinessDays
     /**
      * @psalm-pure
      */
-    public static function mondayFriday(LinearWorkingHours $workingHours) : self
+    public static function mondayFriday(LinearWorkingHours $workingHours): self
     {
         return new self(
             new RegularBusinessDay(Day\WeekDay::monday(), $workingHours),
@@ -62,7 +62,7 @@ final class BusinessDays
         );
     }
 
-    public function isOpen(DateTime $dateTime) : bool
+    public function isOpen(DateTime $dateTime): bool
     {
         foreach ($this->businessDays as $customBusinessDay) {
             if ($customBusinessDay->isOpen($dateTime)) {
@@ -73,7 +73,7 @@ final class BusinessDays
         return false;
     }
 
-    public function isOpenOn(Day $day) : bool
+    public function isOpenOn(Day $day): bool
     {
         try {
             $this->get($day);
@@ -84,7 +84,7 @@ final class BusinessDays
         }
     }
 
-    public function get(Day $day) : BusinessDay
+    public function get(Day $day): BusinessDay
     {
         foreach ($this->businessDays as $regularBusinessDay) {
             if ($regularBusinessDay->is($day)) {
@@ -92,6 +92,6 @@ final class BusinessDays
             }
         }
 
-        throw new BusinessDayException($day->format('Y-m-d') . ' is not a business day.');
+        throw new BusinessDayException($day->format('Y-m-d').' is not a business day.');
     }
 }

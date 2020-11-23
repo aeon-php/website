@@ -11,9 +11,9 @@ use Aeon\Calendar\Gregorian\Time;
  */
 interface WorkingHours
 {
-    public function openFrom() : Time;
+    public function openFrom(): Time;
 
-    public function openTo() : Time;
+    public function openTo(): Time;
 
-    public function isOpen(Time $time) : bool;
+    public function isOpen(Time $time): bool;
 }

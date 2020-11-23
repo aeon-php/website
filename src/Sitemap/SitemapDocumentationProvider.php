@@ -22,12 +22,12 @@ final class SitemapDocumentationProvider extends AbstractSinglePageSitemapProvid
         $this->provider = $provider;
     }
 
-    public function getSectionName() : string
+    public function getSectionName(): string
     {
         return 'documentation';
     }
 
-    public function getSinglePage() : SitemapSectionPage
+    public function getSinglePage(): SitemapSectionPage
     {
         $page = new SitemapSectionPage();
 
@@ -39,6 +39,9 @@ final class SitemapDocumentationProvider extends AbstractSinglePageSitemapProvid
 
         $page->addUrl(new Url($this->generateUrl('docs_retry'), Url::CHANGEFREQ_WEEKLY, 1.0));
         $page->addUrl(new Url($this->generateUrl('docs_retry_version', ['version' => '1.x']), Url::CHANGEFREQ_WEEKLY, 1.0));
+
+        $page->addUrl(new Url($this->generateUrl('docs_rate_limiter'), Url::CHANGEFREQ_WEEKLY, 1.0));
+        $page->addUrl(new Url($this->generateUrl('docs_rate_limiter_version', ['version' => '1.x']), Url::CHANGEFREQ_WEEKLY, 1.0));
 
         $page->addUrl(new Url($this->generateUrl('docs_calendar_holidays'), Url::CHANGEFREQ_WEEKLY, 1.0));
         $page->addUrl(new Url($this->generateUrl('docs_calendar_holidays_version', ['version' => '1.x']), Url::CHANGEFREQ_WEEKLY, 1.0));

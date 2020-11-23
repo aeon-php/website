@@ -24,12 +24,12 @@ final class NonBusinessDays
     /**
      * @psalm-pure
      */
-    public static function none() : self
+    public static function none(): self
     {
         return new self();
     }
 
-    public function is(Day $day) : bool
+    public function is(Day $day): bool
     {
         foreach ($this->nonBusinessDays as $exceptionalNonBusinessDay) {
             if ($exceptionalNonBusinessDay->is($day)) {

@@ -17,29 +17,29 @@ final class GregorianCalendarStub implements Calendar
         $this->currentDate = $currentDate;
     }
 
-    public function timeZone() : TimeZone
+    public function timeZone(): TimeZone
     {
         $tz = $this->now()->timeZone();
 
         return $tz ? $tz : TimeZone::UTC();
     }
 
-    public function currentYear() : Year
+    public function currentYear(): Year
     {
         return Year::fromDateTime($this->now()->toDateTimeImmutable());
     }
 
-    public function currentMonth() : Month
+    public function currentMonth(): Month
     {
         return Month::fromDateTime($this->now()->toDateTimeImmutable());
     }
 
-    public function currentDay() : Day
+    public function currentDay(): Day
     {
         return Day::fromDateTime($this->now()->toDateTimeImmutable());
     }
 
-    public function now() : DateTime
+    public function now(): DateTime
     {
         return DateTime::fromDateTime(
             $this->currentDate
@@ -48,12 +48,12 @@ final class GregorianCalendarStub implements Calendar
         );
     }
 
-    public function yesterday() : DateTime
+    public function yesterday(): DateTime
     {
         return $this->now()->yesterday();
     }
 
-    public function tomorrow() : DateTime
+    public function tomorrow(): DateTime
     {
         return $this->now()->tomorrow();
     }
@@ -61,7 +61,7 @@ final class GregorianCalendarStub implements Calendar
     /**
      * @psalm-suppress InaccessibleProperty
      */
-    public function setNow(DateTime $dateTime) : void
+    public function setNow(DateTime $dateTime): void
     {
         $this->currentDate = $dateTime->toDateTimeImmutable();
     }

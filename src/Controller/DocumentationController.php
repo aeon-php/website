@@ -20,7 +20,7 @@ final class DocumentationController extends AbstractController
         $this->parameterBag = $parameterBag;
     }
 
-    protected function parameterBag() : ParameterBagInterface
+    protected function parameterBag(): ParameterBagInterface
     {
         return $this->parameterBag;
     }
@@ -46,12 +46,14 @@ final class DocumentationController extends AbstractController
             'sleepVersion' => '1.x',
             'retryClasses' => $this->retryClasses('1.x'),
             'retryVersion' => '1.x',
-            'symfonyBundle'=> $this->symfonyBundleClasses('1.x'),
-            'symfonyBundleVersion' => '1.x'
+            'rateLimiterClasses' => $this->rateLimiterClasses('1.x'),
+            'rateLimiterVersion' => '1.x',
+            'symfonyBundle' => $this->symfonyBundleClasses('1.x'),
+            'symfonyBundleVersion' => '1.x',
         ]);
     }
 
-    public function navigation(?string $activeSection = null) : Response
+    public function navigation(?string $activeSection = null): Response
     {
         return $this->render('documentation/_navigation.html.twig', [
             'activeSection' => $activeSection,
@@ -63,7 +65,8 @@ final class DocumentationController extends AbstractController
             'businessHoursVersions' => $this->businessHoursVersions(),
             'sleepVersions' => $this->sleepVersions(),
             'retryVersions' => $this->retryVersions(),
-            'symfonyBundleVersions' => $this->symfonyBundleVersions()
+            'rateLimiterVersions' => $this->rateLimiterVersions(),
+            'symfonyBundleVersions' => $this->symfonyBundleVersions(),
         ]);
     }
 }

@@ -14,9 +14,6 @@ final class RetryDocumentation extends AbstractController
 {
     use CodeReflectionTrait;
 
-    /**
-     * @var ParameterBagInterface
-     */
     private ParameterBagInterface $parameterBag;
 
     public function __construct(ParameterBagInterface $parameterBag)
@@ -24,7 +21,7 @@ final class RetryDocumentation extends AbstractController
         $this->parameterBag = $parameterBag;
     }
 
-    protected function parameterBag() : ParameterBagInterface
+    protected function parameterBag(): ParameterBagInterface
     {
         return $this->parameterBag;
     }
@@ -32,7 +29,7 @@ final class RetryDocumentation extends AbstractController
     /**
      * @Route("/docs/retry", name="docs_retry")
      */
-    public function retry() : Response
+    public function retry(): Response
     {
         return $this->render('documentation/retry.html.twig', [
             'activeSection' => 'retry',
@@ -43,7 +40,7 @@ final class RetryDocumentation extends AbstractController
     /**
      * @Route("/docs/retry/{version}", name="docs_retry_version")
      */
-    public function retryVersion(string $version) : Response
+    public function retryVersion(string $version): Response
     {
         return $this->render('documentation/retry_version.html.twig', [
             'activeSection' => 'retry',
@@ -55,7 +52,7 @@ final class RetryDocumentation extends AbstractController
     /**
      * @Route("/docs/retry/{version}/{classSlug}", name="docs_retry_class")
      */
-    public function retryClass(string $version, string $classSlug) : Response
+    public function retryClass(string $version, string $classSlug): Response
     {
         foreach ($classes = $this->retryClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
@@ -69,13 +66,13 @@ final class RetryDocumentation extends AbstractController
             }
         }
 
-        throw $this->createNotFoundException("Class ". $classSlug . " does not exists");
+        throw $this->createNotFoundException('Class '.$classSlug.' does not exists');
     }
 
     /**
      * @Route("/docs/retry/{version}/{classSlug}/method/{methodSlug}", name="docs_retry_class_method")
      */
-    public function retryClassMethod(string $version, string $classSlug, string $methodSlug) : Response
+    public function retryClassMethod(string $version, string $classSlug, string $methodSlug): Response
     {
         foreach ($classes = $this->retryClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
@@ -92,10 +89,10 @@ final class RetryDocumentation extends AbstractController
                     }
                 }
 
-                throw $this->createNotFoundException("Class ". $classSlug . " method " . $methodSlug ." does not exists");
+                throw $this->createNotFoundException('Class '.$classSlug.' method '.$methodSlug.' does not exists');
             }
         }
 
-        throw $this->createNotFoundException("Class ". $classSlug . " does not exists");
+        throw $this->createNotFoundException('Class '.$classSlug.' does not exists');
     }
 }

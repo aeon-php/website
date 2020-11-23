@@ -11,7 +11,7 @@ use Aeon\Calendar\TimeUnit;
  */
 final class DummyProcess implements Process
 {
-    public function sleep(TimeUnit $timeUnit) : void
+    public function sleep(TimeUnit $timeUnit): void
     {
     }
 }

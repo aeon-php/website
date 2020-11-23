@@ -14,7 +14,7 @@ final class AeonTimeZoneType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getParent() : string
+    public function getParent(): string
     {
         return TimezoneType::class;
     }
@@ -22,7 +22,7 @@ final class AeonTimeZoneType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix() : string
+    public function getBlockPrefix(): string
     {
         return 'aeon_timezone';
     }
@@ -30,7 +30,7 @@ final class AeonTimeZoneType extends AbstractType
     /**
      * @phpstan-ignore-next-line
      */
-    public function buildForm(FormBuilderInterface $builder, array $options) : void
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         parent::buildForm($builder, $options);
 

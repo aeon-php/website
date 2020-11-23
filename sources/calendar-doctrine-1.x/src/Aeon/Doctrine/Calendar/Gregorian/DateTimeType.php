@@ -25,7 +25,7 @@ final class DateTimeType extends \Doctrine\DBAL\Types\DateTimeType
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        if ($value === null) {
+        if (null === $value) {
             return $value;
         }
 
@@ -41,7 +41,7 @@ final class DateTimeType extends \Doctrine\DBAL\Types\DateTimeType
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        if ($value === null || $value instanceof DateTime) {
+        if (null === $value || $value instanceof DateTime) {
             return $value;
         }
 

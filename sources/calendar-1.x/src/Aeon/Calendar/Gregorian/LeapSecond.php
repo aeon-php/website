@@ -26,12 +26,12 @@ final class LeapSecond
         $this->offsetTAI = $offsetTAI;
     }
 
-    public function dateTime() : DateTime
+    public function dateTime(): DateTime
     {
         return $this->dateTime;
     }
 
-    public function offsetTAI() : TimeUnit
+    public function offsetTAI(): TimeUnit
     {
         return $this->offsetTAI;
     }

@@ -890,7 +890,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function isValid(string $name) : bool
+    public static function isValid(string $name): bool
     {
         try {
             new \DateTimeZone($name);
@@ -906,7 +906,7 @@ final class TimeZone
      *
      * @throws InvalidArgumentException
      */
-    public static function fromDateTimeZone(\DateTimeZone $dateTimeZone) : self
+    public static function fromDateTimeZone(\DateTimeZone $dateTimeZone): self
     {
         return new self($dateTimeZone->getName());
     }
@@ -915,7 +915,7 @@ final class TimeZone
      * @codeCoverageIgnoreStart
      * @psalm-pure
      */
-    public static function africaAbidjan() : self
+    public static function africaAbidjan(): self
     {
         return new self(self::AFRICA_ABIDJAN);
     }
@@ -923,7 +923,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaAccra() : self
+    public static function africaAccra(): self
     {
         return new self(self::AFRICA_ACCRA);
     }
@@ -931,7 +931,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaAddisAbaba() : self
+    public static function africaAddisAbaba(): self
     {
         return new self(self::AFRICA_ADDIS_ABABA);
     }
@@ -939,7 +939,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaAlgiers() : self
+    public static function africaAlgiers(): self
     {
         return new self(self::AFRICA_ALGIERS);
     }
@@ -947,7 +947,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaAsmara() : self
+    public static function africaAsmara(): self
     {
         return new self(self::AFRICA_ASMARA);
     }
@@ -955,7 +955,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaBamako() : self
+    public static function africaBamako(): self
     {
         return new self(self::AFRICA_BAMAKO);
     }
@@ -963,7 +963,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaBangui() : self
+    public static function africaBangui(): self
     {
         return new self(self::AFRICA_BANGUI);
     }
@@ -971,7 +971,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaBanjul() : self
+    public static function africaBanjul(): self
     {
         return new self(self::AFRICA_BANJUL);
     }
@@ -979,7 +979,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaBissau() : self
+    public static function africaBissau(): self
     {
         return new self(self::AFRICA_BISSAU);
     }
@@ -987,7 +987,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaBlantyre() : self
+    public static function africaBlantyre(): self
     {
         return new self(self::AFRICA_BLANTYRE);
     }
@@ -995,7 +995,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaBrazzaville() : self
+    public static function africaBrazzaville(): self
     {
         return new self(self::AFRICA_BRAZZAVILLE);
     }
@@ -1003,7 +1003,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaBujumbura() : self
+    public static function africaBujumbura(): self
     {
         return new self(self::AFRICA_BUJUMBURA);
     }
@@ -1011,7 +1011,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaCairo() : self
+    public static function africaCairo(): self
     {
         return new self(self::AFRICA_CAIRO);
     }
@@ -1019,7 +1019,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaCasablanca() : self
+    public static function africaCasablanca(): self
     {
         return new self(self::AFRICA_CASABLANCA);
     }
@@ -1027,7 +1027,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaCeuta() : self
+    public static function africaCeuta(): self
     {
         return new self(self::AFRICA_CEUTA);
     }
@@ -1035,7 +1035,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaConakry() : self
+    public static function africaConakry(): self
     {
         return new self(self::AFRICA_CONAKRY);
     }
@@ -1043,7 +1043,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaDakar() : self
+    public static function africaDakar(): self
     {
         return new self(self::AFRICA_DAKAR);
     }
@@ -1051,7 +1051,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaDarEsSalaam() : self
+    public static function africaDarEsSalaam(): self
     {
         return new self(self::AFRICA_DAR_ES_SALAAM);
     }
@@ -1059,7 +1059,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaDjibouti() : self
+    public static function africaDjibouti(): self
     {
         return new self(self::AFRICA_DJIBOUTI);
     }
@@ -1067,7 +1067,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaDouala() : self
+    public static function africaDouala(): self
     {
         return new self(self::AFRICA_DOUALA);
     }
@@ -1075,7 +1075,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaElAaiun() : self
+    public static function africaElAaiun(): self
     {
         return new self(self::AFRICA_EL_AAIUN);
     }
@@ -1083,7 +1083,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaFreetown() : self
+    public static function africaFreetown(): self
     {
         return new self(self::AFRICA_FREETOWN);
     }
@@ -1091,7 +1091,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaGaborone() : self
+    public static function africaGaborone(): self
     {
         return new self(self::AFRICA_GABORONE);
     }
@@ -1099,7 +1099,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaHarare() : self
+    public static function africaHarare(): self
     {
         return new self(self::AFRICA_HARARE);
     }
@@ -1107,7 +1107,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaJohannesburg() : self
+    public static function africaJohannesburg(): self
     {
         return new self(self::AFRICA_JOHANNESBURG);
     }
@@ -1115,7 +1115,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaJuba() : self
+    public static function africaJuba(): self
     {
         return new self(self::AFRICA_JUBA);
     }
@@ -1123,7 +1123,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaKampala() : self
+    public static function africaKampala(): self
     {
         return new self(self::AFRICA_KAMPALA);
     }
@@ -1131,7 +1131,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaKhartoum() : self
+    public static function africaKhartoum(): self
     {
         return new self(self::AFRICA_KHARTOUM);
     }
@@ -1139,7 +1139,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaKigali() : self
+    public static function africaKigali(): self
     {
         return new self(self::AFRICA_KIGALI);
     }
@@ -1147,7 +1147,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaKinshasa() : self
+    public static function africaKinshasa(): self
     {
         return new self(self::AFRICA_KINSHASA);
     }
@@ -1155,7 +1155,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaLagos() : self
+    public static function africaLagos(): self
     {
         return new self(self::AFRICA_LAGOS);
     }
@@ -1163,7 +1163,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaLibreville() : self
+    public static function africaLibreville(): self
     {
         return new self(self::AFRICA_LIBREVILLE);
     }
@@ -1171,7 +1171,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaLome() : self
+    public static function africaLome(): self
     {
         return new self(self::AFRICA_LOME);
     }
@@ -1179,7 +1179,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaLuanda() : self
+    public static function africaLuanda(): self
     {
         return new self(self::AFRICA_LUANDA);
     }
@@ -1187,7 +1187,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaLubumbashi() : self
+    public static function africaLubumbashi(): self
     {
         return new self(self::AFRICA_LUBUMBASHI);
     }
@@ -1195,7 +1195,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaLusaka() : self
+    public static function africaLusaka(): self
     {
         return new self(self::AFRICA_LUSAKA);
     }
@@ -1203,7 +1203,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaMalabo() : self
+    public static function africaMalabo(): self
     {
         return new self(self::AFRICA_MALABO);
     }
@@ -1211,7 +1211,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaMaputo() : self
+    public static function africaMaputo(): self
     {
         return new self(self::AFRICA_MAPUTO);
     }
@@ -1219,7 +1219,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaMaseru() : self
+    public static function africaMaseru(): self
     {
         return new self(self::AFRICA_MASERU);
     }
@@ -1227,7 +1227,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaMbabane() : self
+    public static function africaMbabane(): self
     {
         return new self(self::AFRICA_MBABANE);
     }
@@ -1235,7 +1235,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaMogadishu() : self
+    public static function africaMogadishu(): self
     {
         return new self(self::AFRICA_MOGADISHU);
     }
@@ -1243,7 +1243,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaMonrovia() : self
+    public static function africaMonrovia(): self
     {
         return new self(self::AFRICA_MONROVIA);
     }
@@ -1251,7 +1251,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaNairobi() : self
+    public static function africaNairobi(): self
     {
         return new self(self::AFRICA_NAIROBI);
     }
@@ -1259,7 +1259,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaNdjamena() : self
+    public static function africaNdjamena(): self
     {
         return new self(self::AFRICA_NDJAMENA);
     }
@@ -1267,7 +1267,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaNiamey() : self
+    public static function africaNiamey(): self
     {
         return new self(self::AFRICA_NIAMEY);
     }
@@ -1275,7 +1275,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaNouakchott() : self
+    public static function africaNouakchott(): self
     {
         return new self(self::AFRICA_NOUAKCHOTT);
     }
@@ -1283,7 +1283,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaOuagadougou() : self
+    public static function africaOuagadougou(): self
     {
         return new self(self::AFRICA_OUAGADOUGOU);
     }
@@ -1291,7 +1291,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaPortoNovo() : self
+    public static function africaPortoNovo(): self
     {
         return new self(self::AFRICA_PORTO_NOVO);
     }
@@ -1299,7 +1299,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaSaoTome() : self
+    public static function africaSaoTome(): self
     {
         return new self(self::AFRICA_SAO_TOME);
     }
@@ -1307,7 +1307,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaTripoli() : self
+    public static function africaTripoli(): self
     {
         return new self(self::AFRICA_TRIPOLI);
     }
@@ -1315,7 +1315,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaTunis() : self
+    public static function africaTunis(): self
     {
         return new self(self::AFRICA_TUNIS);
     }
@@ -1323,7 +1323,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function africaWindhoek() : self
+    public static function africaWindhoek(): self
     {
         return new self(self::AFRICA_WINDHOEK);
     }
@@ -1331,7 +1331,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaAdak() : self
+    public static function americaAdak(): self
     {
         return new self(self::AMERICA_ADAK);
     }
@@ -1339,7 +1339,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaAnchorage() : self
+    public static function americaAnchorage(): self
     {
         return new self(self::AMERICA_ANCHORAGE);
     }
@@ -1347,7 +1347,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaAnguilla() : self
+    public static function americaAnguilla(): self
     {
         return new self(self::AMERICA_ANGUILLA);
     }
@@ -1355,7 +1355,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaAntigua() : self
+    public static function americaAntigua(): self
     {
         return new self(self::AMERICA_ANTIGUA);
     }
@@ -1363,7 +1363,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaAraguaina() : self
+    public static function americaAraguaina(): self
     {
         return new self(self::AMERICA_ARAGUAINA);
     }
@@ -1371,7 +1371,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaArgentinaBuenosAires() : self
+    public static function americaArgentinaBuenosAires(): self
     {
         return new self(self::AMERICA_ARGENTINA_BUENOS_AIRES);
     }
@@ -1379,7 +1379,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaArgentinaCatamarca() : self
+    public static function americaArgentinaCatamarca(): self
     {
         return new self(self::AMERICA_ARGENTINA_CATAMARCA);
     }
@@ -1387,7 +1387,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaArgentinaCordoba() : self
+    public static function americaArgentinaCordoba(): self
     {
         return new self(self::AMERICA_ARGENTINA_CORDOBA);
     }
@@ -1395,7 +1395,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaArgentinaJujuy() : self
+    public static function americaArgentinaJujuy(): self
     {
         return new self(self::AMERICA_ARGENTINA_JUJUY);
     }
@@ -1403,7 +1403,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaArgentinaLaRioja() : self
+    public static function americaArgentinaLaRioja(): self
     {
         return new self(self::AMERICA_ARGENTINA_LA_RIOJA);
     }
@@ -1411,7 +1411,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaArgentinaMendoza() : self
+    public static function americaArgentinaMendoza(): self
     {
         return new self(self::AMERICA_ARGENTINA_MENDOZA);
     }
@@ -1419,7 +1419,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaArgentinaRioGallegos() : self
+    public static function americaArgentinaRioGallegos(): self
     {
         return new self(self::AMERICA_ARGENTINA_RIO_GALLEGOS);
     }
@@ -1427,7 +1427,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaArgentinaSalta() : self
+    public static function americaArgentinaSalta(): self
     {
         return new self(self::AMERICA_ARGENTINA_SALTA);
     }
@@ -1435,7 +1435,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaArgentinaSanJuan() : self
+    public static function americaArgentinaSanJuan(): self
     {
         return new self(self::AMERICA_ARGENTINA_SAN_JUAN);
     }
@@ -1443,7 +1443,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaArgentinaSanLuis() : self
+    public static function americaArgentinaSanLuis(): self
     {
         return new self(self::AMERICA_ARGENTINA_SAN_LUIS);
     }
@@ -1451,7 +1451,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaArgentinaTucuman() : self
+    public static function americaArgentinaTucuman(): self
     {
         return new self(self::AMERICA_ARGENTINA_TUCUMAN);
     }
@@ -1459,7 +1459,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaArgentinaUshuaia() : self
+    public static function americaArgentinaUshuaia(): self
     {
         return new self(self::AMERICA_ARGENTINA_USHUAIA);
     }
@@ -1467,7 +1467,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaAruba() : self
+    public static function americaAruba(): self
     {
         return new self(self::AMERICA_ARUBA);
     }
@@ -1475,7 +1475,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaAsuncion() : self
+    public static function americaAsuncion(): self
     {
         return new self(self::AMERICA_ASUNCION);
     }
@@ -1483,7 +1483,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaAtikokan() : self
+    public static function americaAtikokan(): self
     {
         return new self(self::AMERICA_ATIKOKAN);
     }
@@ -1491,7 +1491,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaBahia() : self
+    public static function americaBahia(): self
     {
         return new self(self::AMERICA_BAHIA);
     }
@@ -1499,7 +1499,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaBahiaBanderas() : self
+    public static function americaBahiaBanderas(): self
     {
         return new self(self::AMERICA_BAHIA_BANDERAS);
     }
@@ -1507,7 +1507,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaBarbados() : self
+    public static function americaBarbados(): self
     {
         return new self(self::AMERICA_BARBADOS);
     }
@@ -1515,7 +1515,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaBelem() : self
+    public static function americaBelem(): self
     {
         return new self(self::AMERICA_BELEM);
     }
@@ -1523,7 +1523,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaBelize() : self
+    public static function americaBelize(): self
     {
         return new self(self::AMERICA_BELIZE);
     }
@@ -1531,7 +1531,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaBlancSablon() : self
+    public static function americaBlancSablon(): self
     {
         return new self(self::AMERICA_BLANC_SABLON);
     }
@@ -1539,7 +1539,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaBoaVista() : self
+    public static function americaBoaVista(): self
     {
         return new self(self::AMERICA_BOA_VISTA);
     }
@@ -1547,7 +1547,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaBogota() : self
+    public static function americaBogota(): self
     {
         return new self(self::AMERICA_BOGOTA);
     }
@@ -1555,7 +1555,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaBoise() : self
+    public static function americaBoise(): self
     {
         return new self(self::AMERICA_BOISE);
     }
@@ -1563,7 +1563,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaCambridgeBay() : self
+    public static function americaCambridgeBay(): self
     {
         return new self(self::AMERICA_CAMBRIDGE_BAY);
     }
@@ -1571,7 +1571,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaCampoGrande() : self
+    public static function americaCampoGrande(): self
     {
         return new self(self::AMERICA_CAMPO_GRANDE);
     }
@@ -1579,7 +1579,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaCancun() : self
+    public static function americaCancun(): self
     {
         return new self(self::AMERICA_CANCUN);
     }
@@ -1587,7 +1587,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaCaracas() : self
+    public static function americaCaracas(): self
     {
         return new self(self::AMERICA_CARACAS);
     }
@@ -1595,7 +1595,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaCayenne() : self
+    public static function americaCayenne(): self
     {
         return new self(self::AMERICA_CAYENNE);
     }
@@ -1603,7 +1603,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaCayman() : self
+    public static function americaCayman(): self
     {
         return new self(self::AMERICA_CAYMAN);
     }
@@ -1611,7 +1611,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaChicago() : self
+    public static function americaChicago(): self
     {
         return new self(self::AMERICA_CHICAGO);
     }
@@ -1619,7 +1619,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaChihuahua() : self
+    public static function americaChihuahua(): self
     {
         return new self(self::AMERICA_CHIHUAHUA);
     }
@@ -1627,7 +1627,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaCostaRica() : self
+    public static function americaCostaRica(): self
     {
         return new self(self::AMERICA_COSTA_RICA);
     }
@@ -1635,7 +1635,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaCreston() : self
+    public static function americaCreston(): self
     {
         return new self(self::AMERICA_CRESTON);
     }
@@ -1643,7 +1643,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaCuiaba() : self
+    public static function americaCuiaba(): self
     {
         return new self(self::AMERICA_CUIABA);
     }
@@ -1651,7 +1651,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaCuracao() : self
+    public static function americaCuracao(): self
     {
         return new self(self::AMERICA_CURACAO);
     }
@@ -1659,7 +1659,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaDanmarkshavn() : self
+    public static function americaDanmarkshavn(): self
     {
         return new self(self::AMERICA_DANMARKSHAVN);
     }
@@ -1667,7 +1667,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaDawson() : self
+    public static function americaDawson(): self
     {
         return new self(self::AMERICA_DAWSON);
     }
@@ -1675,7 +1675,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaDawsonCreek() : self
+    public static function americaDawsonCreek(): self
     {
         return new self(self::AMERICA_DAWSON_CREEK);
     }
@@ -1683,7 +1683,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaDenver() : self
+    public static function americaDenver(): self
     {
         return new self(self::AMERICA_DENVER);
     }
@@ -1691,7 +1691,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaDetroit() : self
+    public static function americaDetroit(): self
     {
         return new self(self::AMERICA_DETROIT);
     }
@@ -1699,7 +1699,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaDominica() : self
+    public static function americaDominica(): self
     {
         return new self(self::AMERICA_DOMINICA);
     }
@@ -1707,7 +1707,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaEdmonton() : self
+    public static function americaEdmonton(): self
     {
         return new self(self::AMERICA_EDMONTON);
     }
@@ -1715,7 +1715,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaEirunepe() : self
+    public static function americaEirunepe(): self
     {
         return new self(self::AMERICA_EIRUNEPE);
     }
@@ -1723,7 +1723,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaElSalvador() : self
+    public static function americaElSalvador(): self
     {
         return new self(self::AMERICA_EL_SALVADOR);
     }
@@ -1731,7 +1731,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaFortNelson() : self
+    public static function americaFortNelson(): self
     {
         return new self(self::AMERICA_FORT_NELSON);
     }
@@ -1739,7 +1739,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaFortaleza() : self
+    public static function americaFortaleza(): self
     {
         return new self(self::AMERICA_FORTALEZA);
     }
@@ -1747,7 +1747,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaGlaceBay() : self
+    public static function americaGlaceBay(): self
     {
         return new self(self::AMERICA_GLACE_BAY);
     }
@@ -1755,7 +1755,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaGooseBay() : self
+    public static function americaGooseBay(): self
     {
         return new self(self::AMERICA_GOOSE_BAY);
     }
@@ -1763,7 +1763,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaGodthab() : self
+    public static function americaGodthab(): self
     {
         return new self(self::AMERICA_GODTHAB);
     }
@@ -1771,7 +1771,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaGrandTurk() : self
+    public static function americaGrandTurk(): self
     {
         return new self(self::AMERICA_GRAND_TURK);
     }
@@ -1779,7 +1779,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaGrenada() : self
+    public static function americaGrenada(): self
     {
         return new self(self::AMERICA_GRENADA);
     }
@@ -1787,7 +1787,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaGuadeloupe() : self
+    public static function americaGuadeloupe(): self
     {
         return new self(self::AMERICA_GUADELOUPE);
     }
@@ -1795,7 +1795,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaGuatemala() : self
+    public static function americaGuatemala(): self
     {
         return new self(self::AMERICA_GUATEMALA);
     }
@@ -1803,7 +1803,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaGuayaquil() : self
+    public static function americaGuayaquil(): self
     {
         return new self(self::AMERICA_GUAYAQUIL);
     }
@@ -1811,7 +1811,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaGuyana() : self
+    public static function americaGuyana(): self
     {
         return new self(self::AMERICA_GUYANA);
     }
@@ -1819,7 +1819,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaHalifax() : self
+    public static function americaHalifax(): self
     {
         return new self(self::AMERICA_HALIFAX);
     }
@@ -1827,7 +1827,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaHavana() : self
+    public static function americaHavana(): self
     {
         return new self(self::AMERICA_HAVANA);
     }
@@ -1835,7 +1835,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaHermosillo() : self
+    public static function americaHermosillo(): self
     {
         return new self(self::AMERICA_HERMOSILLO);
     }
@@ -1843,7 +1843,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaIndianaIndianapolis() : self
+    public static function americaIndianaIndianapolis(): self
     {
         return new self(self::AMERICA_INDIANA_INDIANAPOLIS);
     }
@@ -1851,7 +1851,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaIndianaKnox() : self
+    public static function americaIndianaKnox(): self
     {
         return new self(self::AMERICA_INDIANA_KNOX);
     }
@@ -1859,7 +1859,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaIndianaMarengo() : self
+    public static function americaIndianaMarengo(): self
     {
         return new self(self::AMERICA_INDIANA_MARENGO);
     }
@@ -1867,7 +1867,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaIndianaPetersburg() : self
+    public static function americaIndianaPetersburg(): self
     {
         return new self(self::AMERICA_INDIANA_PETERSBURG);
     }
@@ -1875,7 +1875,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaIndianaTellCity() : self
+    public static function americaIndianaTellCity(): self
     {
         return new self(self::AMERICA_INDIANA_TELL_CITY);
     }
@@ -1883,7 +1883,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaIndianaVevay() : self
+    public static function americaIndianaVevay(): self
     {
         return new self(self::AMERICA_INDIANA_VEVAY);
     }
@@ -1891,7 +1891,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaIndianaVincennes() : self
+    public static function americaIndianaVincennes(): self
     {
         return new self(self::AMERICA_INDIANA_VINCENNES);
     }
@@ -1899,7 +1899,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaIndianaWinamac() : self
+    public static function americaIndianaWinamac(): self
     {
         return new self(self::AMERICA_INDIANA_WINAMAC);
     }
@@ -1907,7 +1907,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaInuvik() : self
+    public static function americaInuvik(): self
     {
         return new self(self::AMERICA_INUVIK);
     }
@@ -1915,7 +1915,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaIqaluit() : self
+    public static function americaIqaluit(): self
     {
         return new self(self::AMERICA_IQALUIT);
     }
@@ -1923,7 +1923,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaJamaica() : self
+    public static function americaJamaica(): self
     {
         return new self(self::AMERICA_JAMAICA);
     }
@@ -1931,7 +1931,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaJuneau() : self
+    public static function americaJuneau(): self
     {
         return new self(self::AMERICA_JUNEAU);
     }
@@ -1939,7 +1939,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaKentuckyLouisville() : self
+    public static function americaKentuckyLouisville(): self
     {
         return new self(self::AMERICA_KENTUCKY_LOUISVILLE);
     }
@@ -1947,7 +1947,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaKentuckyMonticello() : self
+    public static function americaKentuckyMonticello(): self
     {
         return new self(self::AMERICA_KENTUCKY_MONTICELLO);
     }
@@ -1955,7 +1955,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaKralendijk() : self
+    public static function americaKralendijk(): self
     {
         return new self(self::AMERICA_KRALENDIJK);
     }
@@ -1963,7 +1963,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaLaPaz() : self
+    public static function americaLaPaz(): self
     {
         return new self(self::AMERICA_LA_PAZ);
     }
@@ -1971,7 +1971,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaLima() : self
+    public static function americaLima(): self
     {
         return new self(self::AMERICA_LIMA);
     }
@@ -1979,7 +1979,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaLosAngeles() : self
+    public static function americaLosAngeles(): self
     {
         return new self(self::AMERICA_LOS_ANGELES);
     }
@@ -1987,7 +1987,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaLowerPrinces() : self
+    public static function americaLowerPrinces(): self
     {
         return new self(self::AMERICA_LOWER_PRINCES);
     }
@@ -1995,7 +1995,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaMaceio() : self
+    public static function americaMaceio(): self
     {
         return new self(self::AMERICA_MACEIO);
     }
@@ -2003,7 +2003,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaManagua() : self
+    public static function americaManagua(): self
     {
         return new self(self::AMERICA_MANAGUA);
     }
@@ -2011,7 +2011,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaManaus() : self
+    public static function americaManaus(): self
     {
         return new self(self::AMERICA_MANAUS);
     }
@@ -2019,7 +2019,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaMarigot() : self
+    public static function americaMarigot(): self
     {
         return new self(self::AMERICA_MARIGOT);
     }
@@ -2027,7 +2027,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaMartinique() : self
+    public static function americaMartinique(): self
     {
         return new self(self::AMERICA_MARTINIQUE);
     }
@@ -2035,7 +2035,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaMatamoros() : self
+    public static function americaMatamoros(): self
     {
         return new self(self::AMERICA_MATAMOROS);
     }
@@ -2043,7 +2043,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaMazatlan() : self
+    public static function americaMazatlan(): self
     {
         return new self(self::AMERICA_MAZATLAN);
     }
@@ -2051,7 +2051,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaMenominee() : self
+    public static function americaMenominee(): self
     {
         return new self(self::AMERICA_MENOMINEE);
     }
@@ -2059,7 +2059,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaMerida() : self
+    public static function americaMerida(): self
     {
         return new self(self::AMERICA_MERIDA);
     }
@@ -2067,7 +2067,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaMetlakatla() : self
+    public static function americaMetlakatla(): self
     {
         return new self(self::AMERICA_METLAKATLA);
     }
@@ -2075,7 +2075,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaMexicoCity() : self
+    public static function americaMexicoCity(): self
     {
         return new self(self::AMERICA_MEXICO_CITY);
     }
@@ -2083,7 +2083,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaMiquelon() : self
+    public static function americaMiquelon(): self
     {
         return new self(self::AMERICA_MIQUELON);
     }
@@ -2091,7 +2091,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaMoncton() : self
+    public static function americaMoncton(): self
     {
         return new self(self::AMERICA_MONCTON);
     }
@@ -2099,7 +2099,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaMonterrey() : self
+    public static function americaMonterrey(): self
     {
         return new self(self::AMERICA_MONTERREY);
     }
@@ -2107,7 +2107,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaMontevideo() : self
+    public static function americaMontevideo(): self
     {
         return new self(self::AMERICA_MONTEVIDEO);
     }
@@ -2115,7 +2115,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaMontserrat() : self
+    public static function americaMontserrat(): self
     {
         return new self(self::AMERICA_MONTSERRAT);
     }
@@ -2123,7 +2123,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaNassau() : self
+    public static function americaNassau(): self
     {
         return new self(self::AMERICA_NASSAU);
     }
@@ -2131,7 +2131,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaNewYork() : self
+    public static function americaNewYork(): self
     {
         return new self(self::AMERICA_NEW_YORK);
     }
@@ -2139,7 +2139,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaNipigon() : self
+    public static function americaNipigon(): self
     {
         return new self(self::AMERICA_NIPIGON);
     }
@@ -2147,7 +2147,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaNome() : self
+    public static function americaNome(): self
     {
         return new self(self::AMERICA_NOME);
     }
@@ -2155,7 +2155,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaNoronha() : self
+    public static function americaNoronha(): self
     {
         return new self(self::AMERICA_NORONHA);
     }
@@ -2163,7 +2163,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaNorthDakotaBeulah() : self
+    public static function americaNorthDakotaBeulah(): self
     {
         return new self(self::AMERICA_NORTH_DAKOTA_BEULAH);
     }
@@ -2171,7 +2171,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaNorthDakotaCenter() : self
+    public static function americaNorthDakotaCenter(): self
     {
         return new self(self::AMERICA_NORTH_DAKOTA_CENTER);
     }
@@ -2179,7 +2179,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaNorthDakotaNewSalem() : self
+    public static function americaNorthDakotaNewSalem(): self
     {
         return new self(self::AMERICA_NORTH_DAKOTA_NEW_SALEM);
     }
@@ -2187,7 +2187,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaNuuk() : self
+    public static function americaNuuk(): self
     {
         return new self(self::AMERICA_NUUK);
     }
@@ -2195,7 +2195,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaOjinaga() : self
+    public static function americaOjinaga(): self
     {
         return new self(self::AMERICA_OJINAGA);
     }
@@ -2203,7 +2203,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaPanama() : self
+    public static function americaPanama(): self
     {
         return new self(self::AMERICA_PANAMA);
     }
@@ -2211,7 +2211,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaPangnirtung() : self
+    public static function americaPangnirtung(): self
     {
         return new self(self::AMERICA_PANGNIRTUNG);
     }
@@ -2219,7 +2219,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaParamaribo() : self
+    public static function americaParamaribo(): self
     {
         return new self(self::AMERICA_PARAMARIBO);
     }
@@ -2227,7 +2227,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaPhoenix() : self
+    public static function americaPhoenix(): self
     {
         return new self(self::AMERICA_PHOENIX);
     }
@@ -2235,7 +2235,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaPortAuPrince() : self
+    public static function americaPortAuPrince(): self
     {
         return new self(self::AMERICA_PORT_AU_PRINCE);
     }
@@ -2243,7 +2243,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaPortOfSpain() : self
+    public static function americaPortOfSpain(): self
     {
         return new self(self::AMERICA_PORT_OF_SPAIN);
     }
@@ -2251,7 +2251,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaPortoVelho() : self
+    public static function americaPortoVelho(): self
     {
         return new self(self::AMERICA_PORTO_VELHO);
     }
@@ -2259,7 +2259,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaPuertoRico() : self
+    public static function americaPuertoRico(): self
     {
         return new self(self::AMERICA_PUERTO_RICO);
     }
@@ -2267,7 +2267,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaPuntaArenas() : self
+    public static function americaPuntaArenas(): self
     {
         return new self(self::AMERICA_PUNTA_ARENAS);
     }
@@ -2275,7 +2275,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaRainyRiver() : self
+    public static function americaRainyRiver(): self
     {
         return new self(self::AMERICA_RAINY_RIVER);
     }
@@ -2283,7 +2283,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaRankinInlet() : self
+    public static function americaRankinInlet(): self
     {
         return new self(self::AMERICA_RANKIN_INLET);
     }
@@ -2291,7 +2291,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaRecife() : self
+    public static function americaRecife(): self
     {
         return new self(self::AMERICA_RECIFE);
     }
@@ -2299,7 +2299,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaRegina() : self
+    public static function americaRegina(): self
     {
         return new self(self::AMERICA_REGINA);
     }
@@ -2307,7 +2307,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaResolute() : self
+    public static function americaResolute(): self
     {
         return new self(self::AMERICA_RESOLUTE);
     }
@@ -2315,7 +2315,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaRioBranco() : self
+    public static function americaRioBranco(): self
     {
         return new self(self::AMERICA_RIO_BRANCO);
     }
@@ -2323,7 +2323,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaSantarem() : self
+    public static function americaSantarem(): self
     {
         return new self(self::AMERICA_SANTAREM);
     }
@@ -2331,7 +2331,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaSantiago() : self
+    public static function americaSantiago(): self
     {
         return new self(self::AMERICA_SANTIAGO);
     }
@@ -2339,7 +2339,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaSantoDomingo() : self
+    public static function americaSantoDomingo(): self
     {
         return new self(self::AMERICA_SANTO_DOMINGO);
     }
@@ -2347,7 +2347,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaSaoPaulo() : self
+    public static function americaSaoPaulo(): self
     {
         return new self(self::AMERICA_SAO_PAULO);
     }
@@ -2355,7 +2355,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaScoresbysund() : self
+    public static function americaScoresbysund(): self
     {
         return new self(self::AMERICA_SCORESBYSUND);
     }
@@ -2363,7 +2363,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaSitka() : self
+    public static function americaSitka(): self
     {
         return new self(self::AMERICA_SITKA);
     }
@@ -2371,7 +2371,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaStBarthelemy() : self
+    public static function americaStBarthelemy(): self
     {
         return new self(self::AMERICA_ST_BARTHELEMY);
     }
@@ -2379,7 +2379,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaStJohns() : self
+    public static function americaStJohns(): self
     {
         return new self(self::AMERICA_ST_JOHNS);
     }
@@ -2387,7 +2387,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaStKitts() : self
+    public static function americaStKitts(): self
     {
         return new self(self::AMERICA_ST_KITTS);
     }
@@ -2395,7 +2395,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaStLucia() : self
+    public static function americaStLucia(): self
     {
         return new self(self::AMERICA_ST_LUCIA);
     }
@@ -2403,7 +2403,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaStThomas() : self
+    public static function americaStThomas(): self
     {
         return new self(self::AMERICA_ST_THOMAS);
     }
@@ -2411,7 +2411,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaStVincent() : self
+    public static function americaStVincent(): self
     {
         return new self(self::AMERICA_ST_VINCENT);
     }
@@ -2419,7 +2419,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaSwiftCurrent() : self
+    public static function americaSwiftCurrent(): self
     {
         return new self(self::AMERICA_SWIFT_CURRENT);
     }
@@ -2427,7 +2427,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaTegucigalpa() : self
+    public static function americaTegucigalpa(): self
     {
         return new self(self::AMERICA_TEGUCIGALPA);
     }
@@ -2435,7 +2435,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaThule() : self
+    public static function americaThule(): self
     {
         return new self(self::AMERICA_THULE);
     }
@@ -2443,7 +2443,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaThunderBay() : self
+    public static function americaThunderBay(): self
     {
         return new self(self::AMERICA_THUNDER_BAY);
     }
@@ -2451,7 +2451,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaTijuana() : self
+    public static function americaTijuana(): self
     {
         return new self(self::AMERICA_TIJUANA);
     }
@@ -2459,7 +2459,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaToronto() : self
+    public static function americaToronto(): self
     {
         return new self(self::AMERICA_TORONTO);
     }
@@ -2467,7 +2467,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaTortola() : self
+    public static function americaTortola(): self
     {
         return new self(self::AMERICA_TORTOLA);
     }
@@ -2475,7 +2475,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaVancouver() : self
+    public static function americaVancouver(): self
     {
         return new self(self::AMERICA_VANCOUVER);
     }
@@ -2483,7 +2483,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaWhitehorse() : self
+    public static function americaWhitehorse(): self
     {
         return new self(self::AMERICA_WHITEHORSE);
     }
@@ -2491,7 +2491,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaWinnipeg() : self
+    public static function americaWinnipeg(): self
     {
         return new self(self::AMERICA_WINNIPEG);
     }
@@ -2499,7 +2499,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaYakutat() : self
+    public static function americaYakutat(): self
     {
         return new self(self::AMERICA_YAKUTAT);
     }
@@ -2507,7 +2507,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function americaYellowknife() : self
+    public static function americaYellowknife(): self
     {
         return new self(self::AMERICA_YELLOWKNIFE);
     }
@@ -2515,7 +2515,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function antarcticaCasey() : self
+    public static function antarcticaCasey(): self
     {
         return new self(self::ANTARCTICA_CASEY);
     }
@@ -2523,7 +2523,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function antarcticaDavis() : self
+    public static function antarcticaDavis(): self
     {
         return new self(self::ANTARCTICA_DAVIS);
     }
@@ -2531,7 +2531,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function antarcticaDumontDUrville() : self
+    public static function antarcticaDumontDUrville(): self
     {
         return new self(self::ANTARCTICA_DUMONTDURVILLE);
     }
@@ -2539,7 +2539,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function antarcticaMacquarie() : self
+    public static function antarcticaMacquarie(): self
     {
         return new self(self::ANTARCTICA_MACQUARIE);
     }
@@ -2547,7 +2547,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function antarcticaMawson() : self
+    public static function antarcticaMawson(): self
     {
         return new self(self::ANTARCTICA_MAWSON);
     }
@@ -2555,7 +2555,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function antarcticaMcMurdo() : self
+    public static function antarcticaMcMurdo(): self
     {
         return new self(self::ANTARCTICA_MCMURDO);
     }
@@ -2563,7 +2563,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function antarcticaPalmer() : self
+    public static function antarcticaPalmer(): self
     {
         return new self(self::ANTARCTICA_PALMER);
     }
@@ -2571,7 +2571,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function antarcticaRothera() : self
+    public static function antarcticaRothera(): self
     {
         return new self(self::ANTARCTICA_ROTHERA);
     }
@@ -2579,7 +2579,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function antarcticaSyowa() : self
+    public static function antarcticaSyowa(): self
     {
         return new self(self::ANTARCTICA_SYOWA);
     }
@@ -2587,7 +2587,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function antarcticaTroll() : self
+    public static function antarcticaTroll(): self
     {
         return new self(self::ANTARCTICA_TROLL);
     }
@@ -2595,7 +2595,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function antarcticaVostok() : self
+    public static function antarcticaVostok(): self
     {
         return new self(self::ANTARCTICA_VOSTOK);
     }
@@ -2603,7 +2603,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function arcticLongyearbyen() : self
+    public static function arcticLongyearbyen(): self
     {
         return new self(self::ARCTIC_LONGYEARBYEN);
     }
@@ -2611,7 +2611,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaAden() : self
+    public static function asiaAden(): self
     {
         return new self(self::ASIA_ADEN);
     }
@@ -2619,7 +2619,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaAlmaty() : self
+    public static function asiaAlmaty(): self
     {
         return new self(self::ASIA_ALMATY);
     }
@@ -2627,7 +2627,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaAmman() : self
+    public static function asiaAmman(): self
     {
         return new self(self::ASIA_AMMAN);
     }
@@ -2635,7 +2635,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaAnadyr() : self
+    public static function asiaAnadyr(): self
     {
         return new self(self::ASIA_ANADYR);
     }
@@ -2643,7 +2643,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaAqtau() : self
+    public static function asiaAqtau(): self
     {
         return new self(self::ASIA_AQTAU);
     }
@@ -2651,7 +2651,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaAqtobe() : self
+    public static function asiaAqtobe(): self
     {
         return new self(self::ASIA_AQTOBE);
     }
@@ -2659,7 +2659,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaAshgabat() : self
+    public static function asiaAshgabat(): self
     {
         return new self(self::ASIA_ASHGABAT);
     }
@@ -2667,7 +2667,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaAtyrau() : self
+    public static function asiaAtyrau(): self
     {
         return new self(self::ASIA_ATYRAU);
     }
@@ -2675,7 +2675,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaBaghdad() : self
+    public static function asiaBaghdad(): self
     {
         return new self(self::ASIA_BAGHDAD);
     }
@@ -2683,7 +2683,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaBahrain() : self
+    public static function asiaBahrain(): self
     {
         return new self(self::ASIA_BAHRAIN);
     }
@@ -2691,7 +2691,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaBaku() : self
+    public static function asiaBaku(): self
     {
         return new self(self::ASIA_BAKU);
     }
@@ -2699,7 +2699,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaBangkok() : self
+    public static function asiaBangkok(): self
     {
         return new self(self::ASIA_BANGKOK);
     }
@@ -2707,7 +2707,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaBarnaul() : self
+    public static function asiaBarnaul(): self
     {
         return new self(self::ASIA_BARNAUL);
     }
@@ -2715,7 +2715,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaBeirut() : self
+    public static function asiaBeirut(): self
     {
         return new self(self::ASIA_BEIRUT);
     }
@@ -2723,7 +2723,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaBishkek() : self
+    public static function asiaBishkek(): self
     {
         return new self(self::ASIA_BISHKEK);
     }
@@ -2731,7 +2731,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaBrunei() : self
+    public static function asiaBrunei(): self
     {
         return new self(self::ASIA_BRUNEI);
     }
@@ -2739,7 +2739,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaChita() : self
+    public static function asiaChita(): self
     {
         return new self(self::ASIA_CHITA);
     }
@@ -2747,7 +2747,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaChoibalsan() : self
+    public static function asiaChoibalsan(): self
     {
         return new self(self::ASIA_CHOIBALSAN);
     }
@@ -2755,7 +2755,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaColombo() : self
+    public static function asiaColombo(): self
     {
         return new self(self::ASIA_COLOMBO);
     }
@@ -2763,7 +2763,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaDamascus() : self
+    public static function asiaDamascus(): self
     {
         return new self(self::ASIA_DAMASCUS);
     }
@@ -2771,7 +2771,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaDhaka() : self
+    public static function asiaDhaka(): self
     {
         return new self(self::ASIA_DHAKA);
     }
@@ -2779,7 +2779,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaDili() : self
+    public static function asiaDili(): self
     {
         return new self(self::ASIA_DILI);
     }
@@ -2787,7 +2787,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaDubai() : self
+    public static function asiaDubai(): self
     {
         return new self(self::ASIA_DUBAI);
     }
@@ -2795,7 +2795,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaDushanbe() : self
+    public static function asiaDushanbe(): self
     {
         return new self(self::ASIA_DUSHANBE);
     }
@@ -2803,7 +2803,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaFamagusta() : self
+    public static function asiaFamagusta(): self
     {
         return new self(self::ASIA_FAMAGUSTA);
     }
@@ -2811,7 +2811,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaGaza() : self
+    public static function asiaGaza(): self
     {
         return new self(self::ASIA_GAZA);
     }
@@ -2819,7 +2819,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaHebron() : self
+    public static function asiaHebron(): self
     {
         return new self(self::ASIA_HEBRON);
     }
@@ -2827,7 +2827,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaHoChiMinh() : self
+    public static function asiaHoChiMinh(): self
     {
         return new self(self::ASIA_HO_CHI_MINH);
     }
@@ -2835,7 +2835,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaHongKong() : self
+    public static function asiaHongKong(): self
     {
         return new self(self::ASIA_HONG_KONG);
     }
@@ -2843,7 +2843,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaHovd() : self
+    public static function asiaHovd(): self
     {
         return new self(self::ASIA_HOVD);
     }
@@ -2851,7 +2851,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaIrkutsk() : self
+    public static function asiaIrkutsk(): self
     {
         return new self(self::ASIA_IRKUTSK);
     }
@@ -2859,7 +2859,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaJakarta() : self
+    public static function asiaJakarta(): self
     {
         return new self(self::ASIA_JAKARTA);
     }
@@ -2867,7 +2867,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaJayapura() : self
+    public static function asiaJayapura(): self
     {
         return new self(self::ASIA_JAYAPURA);
     }
@@ -2875,7 +2875,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaJerusalem() : self
+    public static function asiaJerusalem(): self
     {
         return new self(self::ASIA_JERUSALEM);
     }
@@ -2883,7 +2883,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaKabul() : self
+    public static function asiaKabul(): self
     {
         return new self(self::ASIA_KABUL);
     }
@@ -2891,7 +2891,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaKamchatka() : self
+    public static function asiaKamchatka(): self
     {
         return new self(self::ASIA_KAMCHATKA);
     }
@@ -2899,7 +2899,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaKarachi() : self
+    public static function asiaKarachi(): self
     {
         return new self(self::ASIA_KARACHI);
     }
@@ -2907,7 +2907,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaKathmandu() : self
+    public static function asiaKathmandu(): self
     {
         return new self(self::ASIA_KATHMANDU);
     }
@@ -2915,7 +2915,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaKhandyga() : self
+    public static function asiaKhandyga(): self
     {
         return new self(self::ASIA_KHANDYGA);
     }
@@ -2923,7 +2923,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaKolkata() : self
+    public static function asiaKolkata(): self
     {
         return new self(self::ASIA_KOLKATA);
     }
@@ -2931,7 +2931,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaKrasnoyarsk() : self
+    public static function asiaKrasnoyarsk(): self
     {
         return new self(self::ASIA_KRASNOYARSK);
     }
@@ -2939,7 +2939,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaKualaLumpur() : self
+    public static function asiaKualaLumpur(): self
     {
         return new self(self::ASIA_KUALA_LUMPUR);
     }
@@ -2947,7 +2947,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaKuching() : self
+    public static function asiaKuching(): self
     {
         return new self(self::ASIA_KUCHING);
     }
@@ -2955,7 +2955,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaKuwait() : self
+    public static function asiaKuwait(): self
     {
         return new self(self::ASIA_KUWAIT);
     }
@@ -2963,7 +2963,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaMacau() : self
+    public static function asiaMacau(): self
     {
         return new self(self::ASIA_MACAU);
     }
@@ -2971,7 +2971,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaMagadan() : self
+    public static function asiaMagadan(): self
     {
         return new self(self::ASIA_MAGADAN);
     }
@@ -2979,7 +2979,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaMakassar() : self
+    public static function asiaMakassar(): self
     {
         return new self(self::ASIA_MAKASSAR);
     }
@@ -2987,7 +2987,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaManila() : self
+    public static function asiaManila(): self
     {
         return new self(self::ASIA_MANILA);
     }
@@ -2995,7 +2995,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaMuscat() : self
+    public static function asiaMuscat(): self
     {
         return new self(self::ASIA_MUSCAT);
     }
@@ -3003,7 +3003,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaNicosia() : self
+    public static function asiaNicosia(): self
     {
         return new self(self::ASIA_NICOSIA);
     }
@@ -3011,7 +3011,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaNovokuznetsk() : self
+    public static function asiaNovokuznetsk(): self
     {
         return new self(self::ASIA_NOVOKUZNETSK);
     }
@@ -3019,7 +3019,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaNovosibirsk() : self
+    public static function asiaNovosibirsk(): self
     {
         return new self(self::ASIA_NOVOSIBIRSK);
     }
@@ -3027,7 +3027,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaOmsk() : self
+    public static function asiaOmsk(): self
     {
         return new self(self::ASIA_OMSK);
     }
@@ -3035,7 +3035,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaOral() : self
+    public static function asiaOral(): self
     {
         return new self(self::ASIA_ORAL);
     }
@@ -3043,7 +3043,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaPhnomPenh() : self
+    public static function asiaPhnomPenh(): self
     {
         return new self(self::ASIA_PHNOM_PENH);
     }
@@ -3051,7 +3051,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaPontianak() : self
+    public static function asiaPontianak(): self
     {
         return new self(self::ASIA_PONTIANAK);
     }
@@ -3059,7 +3059,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaPyongyang() : self
+    public static function asiaPyongyang(): self
     {
         return new self(self::ASIA_PYONGYANG);
     }
@@ -3067,7 +3067,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaQatar() : self
+    public static function asiaQatar(): self
     {
         return new self(self::ASIA_QATAR);
     }
@@ -3075,7 +3075,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaQostanay() : self
+    public static function asiaQostanay(): self
     {
         return new self(self::ASIA_QOSTANAY);
     }
@@ -3083,7 +3083,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaQyzylorda() : self
+    public static function asiaQyzylorda(): self
     {
         return new self(self::ASIA_QYZYLORDA);
     }
@@ -3091,7 +3091,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaRiyadh() : self
+    public static function asiaRiyadh(): self
     {
         return new self(self::ASIA_RIYADH);
     }
@@ -3099,7 +3099,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaSakhalin() : self
+    public static function asiaSakhalin(): self
     {
         return new self(self::ASIA_SAKHALIN);
     }
@@ -3107,7 +3107,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaSamarkand() : self
+    public static function asiaSamarkand(): self
     {
         return new self(self::ASIA_SAMARKAND);
     }
@@ -3115,7 +3115,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaSeoul() : self
+    public static function asiaSeoul(): self
     {
         return new self(self::ASIA_SEOUL);
     }
@@ -3123,7 +3123,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaShanghai() : self
+    public static function asiaShanghai(): self
     {
         return new self(self::ASIA_SHANGHAI);
     }
@@ -3131,7 +3131,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaSingapore() : self
+    public static function asiaSingapore(): self
     {
         return new self(self::ASIA_SINGAPORE);
     }
@@ -3139,7 +3139,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaSrednekolymsk() : self
+    public static function asiaSrednekolymsk(): self
     {
         return new self(self::ASIA_SREDNEKOLYMSK);
     }
@@ -3147,7 +3147,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaTaipei() : self
+    public static function asiaTaipei(): self
     {
         return new self(self::ASIA_TAIPEI);
     }
@@ -3155,7 +3155,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaTashkent() : self
+    public static function asiaTashkent(): self
     {
         return new self(self::ASIA_TASHKENT);
     }
@@ -3163,7 +3163,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaTbilisi() : self
+    public static function asiaTbilisi(): self
     {
         return new self(self::ASIA_TBILISI);
     }
@@ -3171,7 +3171,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaTehran() : self
+    public static function asiaTehran(): self
     {
         return new self(self::ASIA_TEHRAN);
     }
@@ -3179,7 +3179,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaThimphu() : self
+    public static function asiaThimphu(): self
     {
         return new self(self::ASIA_THIMPHU);
     }
@@ -3187,7 +3187,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaTokyo() : self
+    public static function asiaTokyo(): self
     {
         return new self(self::ASIA_TOKYO);
     }
@@ -3195,7 +3195,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaTomsk() : self
+    public static function asiaTomsk(): self
     {
         return new self(self::ASIA_TOMSK);
     }
@@ -3203,7 +3203,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaUlaanbaatar() : self
+    public static function asiaUlaanbaatar(): self
     {
         return new self(self::ASIA_ULAANBAATAR);
     }
@@ -3211,7 +3211,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaUrumqi() : self
+    public static function asiaUrumqi(): self
     {
         return new self(self::ASIA_URUMQI);
     }
@@ -3219,7 +3219,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaUstNera() : self
+    public static function asiaUstNera(): self
     {
         return new self(self::ASIA_UST_NERA);
     }
@@ -3227,7 +3227,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaVientiane() : self
+    public static function asiaVientiane(): self
     {
         return new self(self::ASIA_VIENTIANE);
     }
@@ -3235,7 +3235,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaVladivostok() : self
+    public static function asiaVladivostok(): self
     {
         return new self(self::ASIA_VLADIVOSTOK);
     }
@@ -3243,7 +3243,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaYakutsk() : self
+    public static function asiaYakutsk(): self
     {
         return new self(self::ASIA_YAKUTSK);
     }
@@ -3251,7 +3251,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaYangon() : self
+    public static function asiaYangon(): self
     {
         return new self(self::ASIA_YANGON);
     }
@@ -3259,7 +3259,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaYekaterinburg() : self
+    public static function asiaYekaterinburg(): self
     {
         return new self(self::ASIA_YEKATERINBURG);
     }
@@ -3267,7 +3267,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function asiaYerevan() : self
+    public static function asiaYerevan(): self
     {
         return new self(self::ASIA_YEREVAN);
     }
@@ -3275,7 +3275,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function atlanticAzores() : self
+    public static function atlanticAzores(): self
     {
         return new self(self::ATLANTIC_AZORES);
     }
@@ -3283,7 +3283,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function atlanticBermuda() : self
+    public static function atlanticBermuda(): self
     {
         return new self(self::ATLANTIC_BERMUDA);
     }
@@ -3291,7 +3291,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function atlanticCanary() : self
+    public static function atlanticCanary(): self
     {
         return new self(self::ATLANTIC_CANARY);
     }
@@ -3299,7 +3299,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function atlanticCapeVerde() : self
+    public static function atlanticCapeVerde(): self
     {
         return new self(self::ATLANTIC_CAPE_VERDE);
     }
@@ -3307,7 +3307,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function atlanticFaroe() : self
+    public static function atlanticFaroe(): self
     {
         return new self(self::ATLANTIC_FAROE);
     }
@@ -3315,7 +3315,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function atlanticMadeira() : self
+    public static function atlanticMadeira(): self
     {
         return new self(self::ATLANTIC_MADEIRA);
     }
@@ -3323,7 +3323,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function atlanticReykjavik() : self
+    public static function atlanticReykjavik(): self
     {
         return new self(self::ATLANTIC_REYKJAVIK);
     }
@@ -3331,7 +3331,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function atlanticSouthGeorgia() : self
+    public static function atlanticSouthGeorgia(): self
     {
         return new self(self::ATLANTIC_SOUTH_GEORGIA);
     }
@@ -3339,7 +3339,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function atlanticStHelena() : self
+    public static function atlanticStHelena(): self
     {
         return new self(self::ATLANTIC_ST_HELENA);
     }
@@ -3347,7 +3347,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function atlanticStanley() : self
+    public static function atlanticStanley(): self
     {
         return new self(self::ATLANTIC_STANLEY);
     }
@@ -3355,7 +3355,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function australiaAdelaide() : self
+    public static function australiaAdelaide(): self
     {
         return new self(self::AUSTRALIA_ADELAIDE);
     }
@@ -3363,7 +3363,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function australiaBrisbane() : self
+    public static function australiaBrisbane(): self
     {
         return new self(self::AUSTRALIA_BRISBANE);
     }
@@ -3371,7 +3371,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function australiaBrokenHill() : self
+    public static function australiaBrokenHill(): self
     {
         return new self(self::AUSTRALIA_BROKEN_HILL);
     }
@@ -3379,7 +3379,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function australiaCurrie() : self
+    public static function australiaCurrie(): self
     {
         return new self(self::AUSTRALIA_CURRIE);
     }
@@ -3387,7 +3387,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function australiaDarwin() : self
+    public static function australiaDarwin(): self
     {
         return new self(self::AUSTRALIA_DARWIN);
     }
@@ -3395,7 +3395,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function australiaEucla() : self
+    public static function australiaEucla(): self
     {
         return new self(self::AUSTRALIA_EUCLA);
     }
@@ -3403,7 +3403,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function australiaHobart() : self
+    public static function australiaHobart(): self
     {
         return new self(self::AUSTRALIA_HOBART);
     }
@@ -3411,7 +3411,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function australiaLindeman() : self
+    public static function australiaLindeman(): self
     {
         return new self(self::AUSTRALIA_LINDEMAN);
     }
@@ -3419,7 +3419,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function australiaLordHowe() : self
+    public static function australiaLordHowe(): self
     {
         return new self(self::AUSTRALIA_LORD_HOWE);
     }
@@ -3427,7 +3427,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function australiaMelbourne() : self
+    public static function australiaMelbourne(): self
     {
         return new self(self::AUSTRALIA_MELBOURNE);
     }
@@ -3435,7 +3435,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function australiaPerth() : self
+    public static function australiaPerth(): self
     {
         return new self(self::AUSTRALIA_PERTH);
     }
@@ -3443,7 +3443,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function australiaSydney() : self
+    public static function australiaSydney(): self
     {
         return new self(self::AUSTRALIA_SYDNEY);
     }
@@ -3451,7 +3451,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeAmsterdam() : self
+    public static function europeAmsterdam(): self
     {
         return new self(self::EUROPE_AMSTERDAM);
     }
@@ -3459,7 +3459,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeAndorra() : self
+    public static function europeAndorra(): self
     {
         return new self(self::EUROPE_ANDORRA);
     }
@@ -3467,7 +3467,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeAstrakhan() : self
+    public static function europeAstrakhan(): self
     {
         return new self(self::EUROPE_ASTRAKHAN);
     }
@@ -3475,7 +3475,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeAthens() : self
+    public static function europeAthens(): self
     {
         return new self(self::EUROPE_ATHENS);
     }
@@ -3483,7 +3483,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeBelgrade() : self
+    public static function europeBelgrade(): self
     {
         return new self(self::EUROPE_BELGRADE);
     }
@@ -3491,7 +3491,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeBerlin() : self
+    public static function europeBerlin(): self
     {
         return new self(self::EUROPE_BERLIN);
     }
@@ -3499,7 +3499,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeBratislava() : self
+    public static function europeBratislava(): self
     {
         return new self(self::EUROPE_BRATISLAVA);
     }
@@ -3507,7 +3507,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeBrussels() : self
+    public static function europeBrussels(): self
     {
         return new self(self::EUROPE_BRUSSELS);
     }
@@ -3515,7 +3515,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeBucharest() : self
+    public static function europeBucharest(): self
     {
         return new self(self::EUROPE_BUCHAREST);
     }
@@ -3523,7 +3523,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeBudapest() : self
+    public static function europeBudapest(): self
     {
         return new self(self::EUROPE_BUDAPEST);
     }
@@ -3531,7 +3531,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeBusingen() : self
+    public static function europeBusingen(): self
     {
         return new self(self::EUROPE_BUSINGEN);
     }
@@ -3539,7 +3539,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeChisinau() : self
+    public static function europeChisinau(): self
     {
         return new self(self::EUROPE_CHISINAU);
     }
@@ -3547,7 +3547,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeCopenhagen() : self
+    public static function europeCopenhagen(): self
     {
         return new self(self::EUROPE_COPENHAGEN);
     }
@@ -3555,7 +3555,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeDublin() : self
+    public static function europeDublin(): self
     {
         return new self(self::EUROPE_DUBLIN);
     }
@@ -3563,7 +3563,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeGibraltar() : self
+    public static function europeGibraltar(): self
     {
         return new self(self::EUROPE_GIBRALTAR);
     }
@@ -3571,7 +3571,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeGuernsey() : self
+    public static function europeGuernsey(): self
     {
         return new self(self::EUROPE_GUERNSEY);
     }
@@ -3579,7 +3579,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeHelsinki() : self
+    public static function europeHelsinki(): self
     {
         return new self(self::EUROPE_HELSINKI);
     }
@@ -3587,7 +3587,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeIsleOfMan() : self
+    public static function europeIsleOfMan(): self
     {
         return new self(self::EUROPE_ISLE_OF_MAN);
     }
@@ -3595,7 +3595,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeIstanbul() : self
+    public static function europeIstanbul(): self
     {
         return new self(self::EUROPE_ISTANBUL);
     }
@@ -3603,7 +3603,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeJersey() : self
+    public static function europeJersey(): self
     {
         return new self(self::EUROPE_JERSEY);
     }
@@ -3611,7 +3611,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeKaliningrad() : self
+    public static function europeKaliningrad(): self
     {
         return new self(self::EUROPE_KALININGRAD);
     }
@@ -3619,7 +3619,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeKiev() : self
+    public static function europeKiev(): self
     {
         return new self(self::EUROPE_KIEV);
     }
@@ -3627,7 +3627,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeKirov() : self
+    public static function europeKirov(): self
     {
         return new self(self::EUROPE_KIROV);
     }
@@ -3635,7 +3635,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeLisbon() : self
+    public static function europeLisbon(): self
     {
         return new self(self::EUROPE_LISBON);
     }
@@ -3643,7 +3643,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeLjubljana() : self
+    public static function europeLjubljana(): self
     {
         return new self(self::EUROPE_LJUBLJANA);
     }
@@ -3651,7 +3651,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeLondon() : self
+    public static function europeLondon(): self
     {
         return new self(self::EUROPE_LONDON);
     }
@@ -3659,7 +3659,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeLuxembourg() : self
+    public static function europeLuxembourg(): self
     {
         return new self(self::EUROPE_LUXEMBOURG);
     }
@@ -3667,7 +3667,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeMadrid() : self
+    public static function europeMadrid(): self
     {
         return new self(self::EUROPE_MADRID);
     }
@@ -3675,7 +3675,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeMalta() : self
+    public static function europeMalta(): self
     {
         return new self(self::EUROPE_MALTA);
     }
@@ -3683,7 +3683,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeMariehamn() : self
+    public static function europeMariehamn(): self
     {
         return new self(self::EUROPE_MARIEHAMN);
     }
@@ -3691,7 +3691,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeMinsk() : self
+    public static function europeMinsk(): self
     {
         return new self(self::EUROPE_MINSK);
     }
@@ -3699,7 +3699,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeMonaco() : self
+    public static function europeMonaco(): self
     {
         return new self(self::EUROPE_MONACO);
     }
@@ -3707,7 +3707,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeMoscow() : self
+    public static function europeMoscow(): self
     {
         return new self(self::EUROPE_MOSCOW);
     }
@@ -3715,7 +3715,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeOslo() : self
+    public static function europeOslo(): self
     {
         return new self(self::EUROPE_OSLO);
     }
@@ -3723,7 +3723,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeParis() : self
+    public static function europeParis(): self
     {
         return new self(self::EUROPE_PARIS);
     }
@@ -3731,7 +3731,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europePodgorica() : self
+    public static function europePodgorica(): self
     {
         return new self(self::EUROPE_PODGORICA);
     }
@@ -3739,7 +3739,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europePrague() : self
+    public static function europePrague(): self
     {
         return new self(self::EUROPE_PRAGUE);
     }
@@ -3747,7 +3747,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeRiga() : self
+    public static function europeRiga(): self
     {
         return new self(self::EUROPE_RIGA);
     }
@@ -3755,7 +3755,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeRome() : self
+    public static function europeRome(): self
     {
         return new self(self::EUROPE_ROME);
     }
@@ -3763,7 +3763,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeSamara() : self
+    public static function europeSamara(): self
     {
         return new self(self::EUROPE_SAMARA);
     }
@@ -3771,7 +3771,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeSanMarino() : self
+    public static function europeSanMarino(): self
     {
         return new self(self::EUROPE_SAN_MARINO);
     }
@@ -3779,7 +3779,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeSarajevo() : self
+    public static function europeSarajevo(): self
     {
         return new self(self::EUROPE_SARAJEVO);
     }
@@ -3787,7 +3787,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeSaratov() : self
+    public static function europeSaratov(): self
     {
         return new self(self::EUROPE_SARATOV);
     }
@@ -3795,7 +3795,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeSimferopol() : self
+    public static function europeSimferopol(): self
     {
         return new self(self::EUROPE_SIMFEROPOL);
     }
@@ -3803,7 +3803,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeSkopje() : self
+    public static function europeSkopje(): self
     {
         return new self(self::EUROPE_SKOPJE);
     }
@@ -3811,7 +3811,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeSofia() : self
+    public static function europeSofia(): self
     {
         return new self(self::EUROPE_SOFIA);
     }
@@ -3819,7 +3819,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeStockholm() : self
+    public static function europeStockholm(): self
     {
         return new self(self::EUROPE_STOCKHOLM);
     }
@@ -3827,7 +3827,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeTallinn() : self
+    public static function europeTallinn(): self
     {
         return new self(self::EUROPE_TALLINN);
     }
@@ -3835,7 +3835,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeTirane() : self
+    public static function europeTirane(): self
     {
         return new self(self::EUROPE_TIRANE);
     }
@@ -3843,7 +3843,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeUlyanovsk() : self
+    public static function europeUlyanovsk(): self
     {
         return new self(self::EUROPE_ULYANOVSK);
     }
@@ -3851,7 +3851,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeUzhgorod() : self
+    public static function europeUzhgorod(): self
     {
         return new self(self::EUROPE_UZHGOROD);
     }
@@ -3859,7 +3859,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeVaduz() : self
+    public static function europeVaduz(): self
     {
         return new self(self::EUROPE_VADUZ);
     }
@@ -3867,7 +3867,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeVatican() : self
+    public static function europeVatican(): self
     {
         return new self(self::EUROPE_VATICAN);
     }
@@ -3875,7 +3875,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeVienna() : self
+    public static function europeVienna(): self
     {
         return new self(self::EUROPE_VIENNA);
     }
@@ -3883,7 +3883,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeVilnius() : self
+    public static function europeVilnius(): self
     {
         return new self(self::EUROPE_VILNIUS);
     }
@@ -3891,7 +3891,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeVolgograd() : self
+    public static function europeVolgograd(): self
     {
         return new self(self::EUROPE_VOLGOGRAD);
     }
@@ -3899,7 +3899,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeWarsaw() : self
+    public static function europeWarsaw(): self
     {
         return new self(self::EUROPE_WARSAW);
     }
@@ -3907,7 +3907,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeZagreb() : self
+    public static function europeZagreb(): self
     {
         return new self(self::EUROPE_ZAGREB);
     }
@@ -3915,7 +3915,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeZaporozhye() : self
+    public static function europeZaporozhye(): self
     {
         return new self(self::EUROPE_ZAPOROZHYE);
     }
@@ -3923,7 +3923,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function europeZurich() : self
+    public static function europeZurich(): self
     {
         return new self(self::EUROPE_ZURICH);
     }
@@ -3931,7 +3931,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function indianAntananarivo() : self
+    public static function indianAntananarivo(): self
     {
         return new self(self::INDIAN_ANTANANARIVO);
     }
@@ -3939,7 +3939,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function indianChagos() : self
+    public static function indianChagos(): self
     {
         return new self(self::INDIAN_CHAGOS);
     }
@@ -3947,7 +3947,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function indianChristmas() : self
+    public static function indianChristmas(): self
     {
         return new self(self::INDIAN_CHRISTMAS);
     }
@@ -3955,7 +3955,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function indianCocos() : self
+    public static function indianCocos(): self
     {
         return new self(self::INDIAN_COCOS);
     }
@@ -3963,7 +3963,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function indianComoro() : self
+    public static function indianComoro(): self
     {
         return new self(self::INDIAN_COMORO);
     }
@@ -3971,7 +3971,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function indianKerguelen() : self
+    public static function indianKerguelen(): self
     {
         return new self(self::INDIAN_KERGUELEN);
     }
@@ -3979,7 +3979,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function indianMahe() : self
+    public static function indianMahe(): self
     {
         return new self(self::INDIAN_MAHE);
     }
@@ -3987,7 +3987,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function indianMaldives() : self
+    public static function indianMaldives(): self
     {
         return new self(self::INDIAN_MALDIVES);
     }
@@ -3995,7 +3995,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function indianMauritius() : self
+    public static function indianMauritius(): self
     {
         return new self(self::INDIAN_MAURITIUS);
     }
@@ -4003,7 +4003,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function indianMayotte() : self
+    public static function indianMayotte(): self
     {
         return new self(self::INDIAN_MAYOTTE);
     }
@@ -4011,7 +4011,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function indianReunion() : self
+    public static function indianReunion(): self
     {
         return new self(self::INDIAN_REUNION);
     }
@@ -4019,7 +4019,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificApia() : self
+    public static function pacificApia(): self
     {
         return new self(self::PACIFIC_APIA);
     }
@@ -4027,7 +4027,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificAuckland() : self
+    public static function pacificAuckland(): self
     {
         return new self(self::PACIFIC_AUCKLAND);
     }
@@ -4035,7 +4035,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificBougainville() : self
+    public static function pacificBougainville(): self
     {
         return new self(self::PACIFIC_BOUGAINVILLE);
     }
@@ -4043,7 +4043,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificChatham() : self
+    public static function pacificChatham(): self
     {
         return new self(self::PACIFIC_CHATHAM);
     }
@@ -4051,7 +4051,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificChuuk() : self
+    public static function pacificChuuk(): self
     {
         return new self(self::PACIFIC_CHUUK);
     }
@@ -4059,7 +4059,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificEaster() : self
+    public static function pacificEaster(): self
     {
         return new self(self::PACIFIC_EASTER);
     }
@@ -4067,7 +4067,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificEfate() : self
+    public static function pacificEfate(): self
     {
         return new self(self::PACIFIC_EFATE);
     }
@@ -4075,7 +4075,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificEnderbury() : self
+    public static function pacificEnderbury(): self
     {
         return new self(self::PACIFIC_ENDERBURY);
     }
@@ -4083,7 +4083,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificFakaofo() : self
+    public static function pacificFakaofo(): self
     {
         return new self(self::PACIFIC_FAKAOFO);
     }
@@ -4091,7 +4091,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificFiji() : self
+    public static function pacificFiji(): self
     {
         return new self(self::PACIFIC_FIJI);
     }
@@ -4099,7 +4099,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificFunafuti() : self
+    public static function pacificFunafuti(): self
     {
         return new self(self::PACIFIC_FUNAFUTI);
     }
@@ -4107,7 +4107,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificGalapagos() : self
+    public static function pacificGalapagos(): self
     {
         return new self(self::PACIFIC_GALAPAGOS);
     }
@@ -4115,7 +4115,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificGambier() : self
+    public static function pacificGambier(): self
     {
         return new self(self::PACIFIC_GAMBIER);
     }
@@ -4123,7 +4123,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificGuadalcanal() : self
+    public static function pacificGuadalcanal(): self
     {
         return new self(self::PACIFIC_GUADALCANAL);
     }
@@ -4131,7 +4131,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificGuam() : self
+    public static function pacificGuam(): self
     {
         return new self(self::PACIFIC_GUAM);
     }
@@ -4139,7 +4139,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificHonolulu() : self
+    public static function pacificHonolulu(): self
     {
         return new self(self::PACIFIC_HONOLULU);
     }
@@ -4147,7 +4147,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificKiritimati() : self
+    public static function pacificKiritimati(): self
     {
         return new self(self::PACIFIC_KIRITIMATI);
     }
@@ -4155,7 +4155,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificJohnston() : self
+    public static function pacificJohnston(): self
     {
         return new self(self::PACIFIC_JOHNSTON);
     }
@@ -4163,7 +4163,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificKosrae() : self
+    public static function pacificKosrae(): self
     {
         return new self(self::PACIFIC_KOSRAE);
     }
@@ -4171,7 +4171,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificKwajalein() : self
+    public static function pacificKwajalein(): self
     {
         return new self(self::PACIFIC_KWAJALEIN);
     }
@@ -4179,7 +4179,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificMajuro() : self
+    public static function pacificMajuro(): self
     {
         return new self(self::PACIFIC_MAJURO);
     }
@@ -4187,7 +4187,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificMarquesas() : self
+    public static function pacificMarquesas(): self
     {
         return new self(self::PACIFIC_MARQUESAS);
     }
@@ -4195,7 +4195,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificMidway() : self
+    public static function pacificMidway(): self
     {
         return new self(self::PACIFIC_MIDWAY);
     }
@@ -4203,7 +4203,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificNauru() : self
+    public static function pacificNauru(): self
     {
         return new self(self::PACIFIC_NAURU);
     }
@@ -4211,7 +4211,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificNiue() : self
+    public static function pacificNiue(): self
     {
         return new self(self::PACIFIC_NIUE);
     }
@@ -4219,7 +4219,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificNorfolk() : self
+    public static function pacificNorfolk(): self
     {
         return new self(self::PACIFIC_NORFOLK);
     }
@@ -4227,7 +4227,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificNoumea() : self
+    public static function pacificNoumea(): self
     {
         return new self(self::PACIFIC_NOUMEA);
     }
@@ -4235,7 +4235,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificPagoPago() : self
+    public static function pacificPagoPago(): self
     {
         return new self(self::PACIFIC_PAGO_PAGO);
     }
@@ -4243,7 +4243,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificPalau() : self
+    public static function pacificPalau(): self
     {
         return new self(self::PACIFIC_PALAU);
     }
@@ -4251,7 +4251,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificPitcairn() : self
+    public static function pacificPitcairn(): self
     {
         return new self(self::PACIFIC_PITCAIRN);
     }
@@ -4259,7 +4259,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificPohnpei() : self
+    public static function pacificPohnpei(): self
     {
         return new self(self::PACIFIC_POHNPEI);
     }
@@ -4267,7 +4267,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificPortMoresby() : self
+    public static function pacificPortMoresby(): self
     {
         return new self(self::PACIFIC_PORT_MORESBY);
     }
@@ -4275,7 +4275,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificRarotonga() : self
+    public static function pacificRarotonga(): self
     {
         return new self(self::PACIFIC_RAROTONGA);
     }
@@ -4283,7 +4283,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificSaipan() : self
+    public static function pacificSaipan(): self
     {
         return new self(self::PACIFIC_SAIPAN);
     }
@@ -4291,7 +4291,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificTahiti() : self
+    public static function pacificTahiti(): self
     {
         return new self(self::PACIFIC_TAHITI);
     }
@@ -4299,7 +4299,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificTarawa() : self
+    public static function pacificTarawa(): self
     {
         return new self(self::PACIFIC_TARAWA);
     }
@@ -4307,7 +4307,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificTongatapu() : self
+    public static function pacificTongatapu(): self
     {
         return new self(self::PACIFIC_TONGATAPU);
     }
@@ -4315,7 +4315,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificWake() : self
+    public static function pacificWake(): self
     {
         return new self(self::PACIFIC_WAKE);
     }
@@ -4323,7 +4323,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function pacificWallis() : self
+    public static function pacificWallis(): self
     {
         return new self(self::PACIFIC_WALLIS);
     }
@@ -4331,7 +4331,7 @@ final class TimeZone
     /**
      * @psalm-pure
      */
-    public static function UTC() : self
+    public static function UTC(): self
     {
         return new self(self::UTC);
     }
@@ -4341,7 +4341,7 @@ final class TimeZone
      *
      * @return array<TimeZone>
      */
-    public static function all() : array
+    public static function all(): array
     {
         return [
             new self(self::AMERICA_ARUBA),
@@ -4765,12 +4765,12 @@ final class TimeZone
         ];
     }
 
-    public function toDateTimeZone() : \DateTimeZone
+    public function toDateTimeZone(): \DateTimeZone
     {
         return new \DateTimeZone($this->name);
     }
 
-    public function name() : string
+    public function name(): string
     {
         return $this->toDateTimeZone()->getName();
     }
@@ -4779,13 +4779,13 @@ final class TimeZone
      * Offset depends on date because daylight & saving time will have it different and
      * the only way to get it is to take it from date time.
      */
-    public function timeOffset(DateTime $dateTime) : TimeOffset
+    public function timeOffset(DateTime $dateTime): TimeOffset
     {
         return TimeOffset::fromTimeUnit(TimeUnit::seconds($this->toDateTimeZone()->getOffset($dateTime->toDateTimeImmutable())));
     }
 
     // @codeCoverageIgnoreEnd
-    public function toCountryCode() : ?string
+    public function toCountryCode(): ?string
     {
         $mapping = [
             self::AMERICA_ARUBA => 'AW',

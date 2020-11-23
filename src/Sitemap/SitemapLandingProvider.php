@@ -21,12 +21,12 @@ final class SitemapLandingProvider extends AbstractSinglePageSitemapProvider
         $this->urlGenerator->setContext(new RequestContext('', 'GET', 'aeon-php.org', 'https'));
     }
 
-    public function getSectionName() : string
+    public function getSectionName(): string
     {
         return 'landing';
     }
 
-    public function getSinglePage() : SitemapSectionPage
+    public function getSinglePage(): SitemapSectionPage
     {
         $page = new SitemapSectionPage();
 

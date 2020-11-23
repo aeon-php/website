@@ -23,7 +23,7 @@ final class HolidayValidator extends ConstraintValidator
     /**
      * {@inheritdoc}
      */
-    public function validate($value, Constraint $constraint) : void
+    public function validate($value, Constraint $constraint): void
     {
         if (!$constraint instanceof Holiday) {
             throw new UnexpectedTypeException($constraint, Holiday::class);
@@ -36,7 +36,7 @@ final class HolidayValidator extends ConstraintValidator
         if (!\is_string($value) && !$value instanceof Day && !$value instanceof \DateTimeInterface) {
             \var_dump($value);
 
-            throw new UnexpectedValueException($value, 'string or ' . Day::class);
+            throw new UnexpectedValueException($value, 'string or '.Day::class);
         }
 
         try {

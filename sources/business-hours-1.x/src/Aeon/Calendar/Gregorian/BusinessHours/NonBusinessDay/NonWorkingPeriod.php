@@ -22,11 +22,11 @@ final class NonWorkingPeriod implements NonBusinessDay
         $this->timePeriod = $timePeriod;
     }
 
-    public function is(Day $day) : bool
+    public function is(Day $day): bool
     {
         $days = $this->timePeriod
             ->iterate(TimeUnit::day(), Interval::rightOpen())
-            ->filter(function (TimePeriod $timePeriod) use ($day) : bool {
+            ->filter(function (TimePeriod $timePeriod) use ($day): bool {
                 return $timePeriod->start()->day()->isEqual($day);
             });
 

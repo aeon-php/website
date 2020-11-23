@@ -31,18 +31,18 @@ final class YasumiHolidays implements Holidays
         $this->providerClass = Providers::fromCountryCode($countryCode);
     }
 
-    public function isHoliday(Day $day) : bool
+    public function isHoliday(Day $day): bool
     {
-        /** @psalm-suppress ImpureMethodCall */
+        /* @psalm-suppress ImpureMethodCall */
         return $this->yasumi($day->year()->number())->isHoliday($day->toDateTimeImmutable());
     }
 
-    public function holidaysAt(Day $day) : array
+    public function holidaysAt(Day $day): array
     {
         return \array_values(
             \array_map(
-                function (Holiday $holiday) : AeonHoliday {
-                    /** @psalm-suppress ImpureMethodCall */
+                function (Holiday $holiday): AeonHoliday {
+                    /* @psalm-suppress ImpureMethodCall */
                     return new AeonHoliday(
                         Day::fromDateTime($holiday),
                         new HolidayName(
@@ -52,7 +52,7 @@ final class YasumiHolidays implements Holidays
                 },
                 \array_filter(
                     $this->yasumi($day->year()->number())->getHolidays(),
-                    function (Holiday $holiday) use ($day) : bool {
+                    function (Holiday $holiday) use ($day): bool {
                         return Day::fromDateTime($holiday)->isEqual($day);
                     }
                 )
@@ -61,14 +61,14 @@ final class YasumiHolidays implements Holidays
     }
 
     /** @phpstan-ignore-next-line */
-    private function yasumi(int $year) : AbstractProvider
+    private function yasumi(int $year): AbstractProvider
     {
         if (isset($this->yasumi[$year])) {
             return $this->yasumi[$year];
         }
 
         try {
-            /**
+            /*
              * @psalm-suppress InaccessibleProperty
              * @psalm-suppress ImpureMethodCall
              */
@@ -76,7 +76,7 @@ final class YasumiHolidays implements Holidays
 
             return $this->yasumi[$year];
         } catch (ProviderNotFoundException $providerNotFoundException) {
-            throw new HolidayException('Yasumi provider ' . $this->providerClass . ' does not exists', 0, $providerNotFoundException);
+            throw new HolidayException('Yasumi provider '.$this->providerClass.' does not exists', 0, $providerNotFoundException);
         }
     }
 }

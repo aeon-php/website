@@ -22,7 +22,7 @@ final class HolidaysChain implements Holidays
         $this->holidaysProviders = $holidaysProviders;
     }
 
-    public function isHoliday(Day $day) : bool
+    public function isHoliday(Day $day): bool
     {
         foreach ($this->holidaysProviders as $holidays) {
             if ($holidays->isHoliday($day)) {
@@ -36,11 +36,11 @@ final class HolidaysChain implements Holidays
     /**
      * @return array<Holiday>
      */
-    public function holidaysAt(Day $day) : array
+    public function holidaysAt(Day $day): array
     {
         return \array_merge(
             ...\array_map(
-                function (Holidays $holidays) use ($day) : array {
+                function (Holidays $holidays) use ($day): array {
                     return $holidays->holidaysAt($day);
                 },
                 $this->holidaysProviders

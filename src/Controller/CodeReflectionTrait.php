@@ -17,7 +17,7 @@ trait CodeReflectionTrait
     /**
      * @return PHPClass[]
      */
-    protected function codeClassesReflection(string $codePath, string ...$dependenciesPaths) : array
+    protected function codeClassesReflection(string $codePath, string ...$dependenciesPaths): array
     {
         $betterReflection = new BetterReflection();
         $astLocator = ($betterReflection)->astLocator();
@@ -30,7 +30,7 @@ trait CodeReflectionTrait
         $reflector = new ClassReflector($directoriesSourceLocator);
 
         return \array_filter(\array_map(
-            function (ReflectionClass $reflectionClass) use ($reflector, $codePath) : ?PHPClass {
+            function (ReflectionClass $reflectionClass) use ($reflector, $codePath): ?PHPClass {
                 if (!str_starts_with($reflectionClass->getLocatedSource()->getFileName(), $codePath)) {
                     return null;
                 }
@@ -41,12 +41,12 @@ trait CodeReflectionTrait
         ));
     }
 
-    private function calendarVersions() : array
+    private function calendarVersions(): array
     {
         return $this->parameterBag()->get('aeon_libraries')['calendar']['versions'];
     }
 
-    private function calendarClasses(string $version) : array
+    private function calendarClasses(string $version): array
     {
         return $this->loadCode(
             $this->parameterBag()->get('aeon_libraries')['calendar'],
@@ -54,12 +54,12 @@ trait CodeReflectionTrait
         );
     }
 
-    private function calendarTwigVersions() : array
+    private function calendarTwigVersions(): array
     {
         return $this->parameterBag()->get('aeon_libraries')['calendar_twig']['versions'];
     }
 
-    private function calendarTwigClasses(string $version) : array
+    private function calendarTwigClasses(string $version): array
     {
         return $this->loadCode(
             $this->parameterBag()->get('aeon_libraries')['calendar_twig'],
@@ -67,7 +67,7 @@ trait CodeReflectionTrait
         );
     }
 
-    private function symfonyBundleClasses(string $version) : array
+    private function symfonyBundleClasses(string $version): array
     {
         return $this->loadCode(
             $this->parameterBag()->get('aeon_libraries')['symfony_bundle'],
@@ -75,17 +75,17 @@ trait CodeReflectionTrait
         );
     }
 
-    private function symfonyBundleVersions() : array
+    private function symfonyBundleVersions(): array
     {
         return $this->parameterBag()->get('aeon_libraries')['symfony_bundle']['versions'];
     }
 
-    private function calendarDoctrineVersions() : array
+    private function calendarDoctrineVersions(): array
     {
         return $this->parameterBag()->get('aeon_libraries')['calendar_doctrine']['versions'];
     }
 
-    private function calendarDoctrineClasses(string $version) : array
+    private function calendarDoctrineClasses(string $version): array
     {
         return $this->loadCode(
             $this->parameterBag()->get('aeon_libraries')['calendar_doctrine'],
@@ -93,7 +93,7 @@ trait CodeReflectionTrait
         );
     }
 
-    private function calendarHolidaysClasses(string $version) : array
+    private function calendarHolidaysClasses(string $version): array
     {
         return $this->loadCode(
             $this->parameterBag()->get('aeon_libraries')['calendar_holidays'],
@@ -101,12 +101,12 @@ trait CodeReflectionTrait
         );
     }
 
-    private function calendarHolidaysVersions() : array
+    private function calendarHolidaysVersions(): array
     {
         return $this->parameterBag()->get('aeon_libraries')['calendar_holidays']['versions'];
     }
 
-    private function calendarHolidaysYasumiClasses(string $version) : array
+    private function calendarHolidaysYasumiClasses(string $version): array
     {
         return $this->loadCode(
             $this->parameterBag()->get('aeon_libraries')['calendar_holidays_yasumi'],
@@ -114,12 +114,12 @@ trait CodeReflectionTrait
         );
     }
 
-    private function calendarHolidaysYasumiVersions() : array
+    private function calendarHolidaysYasumiVersions(): array
     {
         return $this->parameterBag()->get('aeon_libraries')['calendar_holidays_yasumi']['versions'];
     }
 
-    private function businessHoursClasses(string $version) : array
+    private function businessHoursClasses(string $version): array
     {
         return $this->loadCode(
             $this->parameterBag()->get('aeon_libraries')['business_hours'],
@@ -127,7 +127,7 @@ trait CodeReflectionTrait
         );
     }
 
-    private function businessHoursVersions() : array
+    private function businessHoursVersions(): array
     {
         return $this->parameterBag()->get('aeon_libraries')['business_hours']['versions'];
     }
@@ -158,7 +158,20 @@ trait CodeReflectionTrait
         return $this->parameterBag()->get('aeon_libraries')['retry']['versions'];
     }
 
-    private function loadCode(array $library, string $version) : array
+    private function rateLimiterClasses(string $version)
+    {
+        return $this->loadCode(
+            $this->parameterBag()->get('aeon_libraries')['rate_limiter'],
+            $version
+        );
+    }
+
+    private function rateLimiterVersions()
+    {
+        return $this->parameterBag()->get('aeon_libraries')['rate_limiter']['versions'];
+    }
+
+    private function loadCode(array $library, string $version): array
     {
         $codePath = $library['versions'][$version]['destination'];
 
@@ -180,5 +193,5 @@ trait CodeReflectionTrait
         );
     }
 
-    abstract protected function parameterBag() : ParameterBagInterface;
+    abstract protected function parameterBag(): ParameterBagInterface;
 }

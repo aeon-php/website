@@ -31,7 +31,7 @@ final class Interval
      *
      * @psalm-pure
      */
-    public static function closed() : self
+    public static function closed(): self
     {
         return new self(self::CLOSED);
     }
@@ -41,7 +41,7 @@ final class Interval
      *
      * @psalm-pure
      */
-    public static function rightOpen() : self
+    public static function rightOpen(): self
     {
         return new self(self::RIGHT_OPEN);
     }
@@ -51,7 +51,7 @@ final class Interval
      *
      * @psalm-pure
      */
-    public static function leftOpen() : self
+    public static function leftOpen(): self
     {
         return new self(self::LEFT_OPEN);
     }
@@ -61,7 +61,7 @@ final class Interval
      *
      * @psalm-pure
      */
-    public static function open() : self
+    public static function open(): self
     {
         return new self(self::OPEN);
     }
@@ -69,9 +69,9 @@ final class Interval
     /**
      * @phpstan-ignore-next-line
      */
-    public function toDatePeriod(DateTime $left, Unit $timeUnit, DateTime $right) : \DatePeriod
+    public function toDatePeriod(DateTime $left, Unit $timeUnit, DateTime $right): \DatePeriod
     {
-        if ($this->type === self::CLOSED) {
+        if (self::CLOSED === $this->type) {
             return new \DatePeriod(
                 $left->toDateTimeImmutable(),
                 $timeUnit->toDateInterval(),
@@ -79,7 +79,7 @@ final class Interval
             );
         }
 
-        if ($this->type === self::LEFT_OPEN) {
+        if (self::LEFT_OPEN === $this->type) {
             return new \DatePeriod(
                 $left->add($timeUnit)->toDateTimeImmutable(),
                 $timeUnit->toDateInterval(),
@@ -87,7 +87,7 @@ final class Interval
             );
         }
 
-        if ($this->type === self::RIGHT_OPEN) {
+        if (self::RIGHT_OPEN === $this->type) {
             return new \DatePeriod(
                 $left->toDateTimeImmutable(),
                 $timeUnit->toDateInterval(),
@@ -105,9 +105,9 @@ final class Interval
     /**
      * @phpstan-ignore-next-line
      */
-    public function toDatePeriodBackward(DateTime $left, Unit $timeUnit, DateTime $right) : \DatePeriod
+    public function toDatePeriodBackward(DateTime $left, Unit $timeUnit, DateTime $right): \DatePeriod
     {
-        if ($this->type === self::CLOSED) {
+        if (self::CLOSED === $this->type) {
             return new \DatePeriod(
                 $left->sub($timeUnit)->toDateTimeImmutable(),
                 $timeUnit->toDateInterval(),
@@ -115,7 +115,7 @@ final class Interval
             );
         }
 
-        if ($this->type === self::LEFT_OPEN) {
+        if (self::LEFT_OPEN === $this->type) {
             return new \DatePeriod(
                 $left->toDateTimeImmutable(),
                 $timeUnit->toDateInterval(),
@@ -123,7 +123,7 @@ final class Interval
             );
         }
 
-        if ($this->type === self::RIGHT_OPEN) {
+        if (self::RIGHT_OPEN === $this->type) {
             return new \DatePeriod(
                 $left->sub($timeUnit)->toDateTimeImmutable(),
                 $timeUnit->toDateInterval(),

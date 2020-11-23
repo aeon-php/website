@@ -21,12 +21,12 @@ final class Holiday
         $this->name = $name;
     }
 
-    public function day() : Day
+    public function day(): Day
     {
         return $this->day;
     }
 
-    public function name(?string $locale = null) : string
+    public function name(?string $locale = null): string
     {
         return $this->name->name($locale);
     }
@@ -34,7 +34,7 @@ final class Holiday
     /**
      * @return array<string>
      */
-    public function locales() : array
+    public function locales(): array
     {
         return $this->name->locales();
     }

@@ -27,32 +27,32 @@ final class ClassMethod
         $this->reflector = $reflector;
     }
 
-    public function returnTypeClass() : PHPClass
+    public function returnTypeClass(): PHPClass
     {
         return new PHPClass($this->reflector->reflect($this->reflectionMethod->getReturnType()->getName()), $this->reflector);
     }
 
-    public function PHPClass() : PHPClass
+    public function PHPClass(): PHPClass
     {
         return $this->PHPClass;
     }
 
-    public function reflectionClass() : ReflectionClass
+    public function reflectionClass(): ReflectionClass
     {
         return $this->PHPClass->reflectionClass();
     }
 
-    public function reflectionMethod() : ReflectionMethod
+    public function reflectionMethod(): ReflectionMethod
     {
         return $this->reflectionMethod;
     }
 
-    public function name() : string
+    public function name(): string
     {
         return $this->reflectionMethod->getName();
     }
 
-    public function accessType() : string
+    public function accessType(): string
     {
         if ($this->reflectionMethod->isPrivate()) {
             return 'private';
@@ -68,17 +68,17 @@ final class ClassMethod
     /**
      * @return Parameter[]
      */
-    public function parameters() : array
+    public function parameters(): array
     {
         return \array_map(
-            function (ReflectionParameter $reflectionParameter) : Parameter {
+            function (ReflectionParameter $reflectionParameter): Parameter {
                 return new Parameter($reflectionParameter, $this->reflector);
             },
             $this->reflectionMethod->getParameters()
         );
     }
 
-    public function docComment() : ?DocBlock
+    public function docComment(): ?DocBlock
     {
         if ($this->reflectionMethod->getDocComment()) {
             return DocBlockFactory::createInstance()->create($this->reflectionMethod->getDocComment());

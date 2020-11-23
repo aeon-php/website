@@ -33,7 +33,7 @@ final class Month
     /**
      * @psalm-pure
      */
-    public static function create(int $year, int $month) : self
+    public static function create(int $year, int $month): self
     {
         return new self(
             new Year($year),
@@ -45,7 +45,7 @@ final class Month
      * @psalm-pure
      * @psalm-suppress ImpureMethodCall
      */
-    public static function fromDateTime(\DateTimeInterface $dateTime) : self
+    public static function fromDateTime(\DateTimeInterface $dateTime): self
     {
         return new self(
             new Year((int) $dateTime->format('Y')),
@@ -56,7 +56,7 @@ final class Month
     /**
      * @psalm-pure
      */
-    public static function fromString(string $date) : self
+    public static function fromString(string $date): self
     {
         return self::fromDateTime(new \DateTimeImmutable($date));
     }
@@ -64,7 +64,7 @@ final class Month
     /**
      * @return array{year: int, month: int}
      */
-    public function __debugInfo() : array
+    public function __debugInfo(): array
     {
         return [
             'year' => $this->year->number(),
@@ -72,120 +72,112 @@ final class Month
         ];
     }
 
-    public function toString() : string
+    public function toString(): string
     {
         return $this->toDateTimeImmutable()->format('Y-m');
     }
 
-    public function previous() : self
+    public function previous(): self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->modify('-1 month'));
     }
 
-    public function next() : self
+    public function next(): self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->modify('+1 month'));
     }
 
-    public function plus(int $years, int $months) : self
+    public function plus(int $years, int $months): self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->modify(\sprintf('+%d months +%d years', $months, $years)));
     }
 
-    public function minus(int $years, int $months) : self
+    public function minus(int $years, int $months): self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->modify(\sprintf('-%d months -%d years', $months, $years)));
     }
 
-    public function plusMonths(int $months) : self
+    public function plusMonths(int $months): self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->modify(\sprintf('+%d month', $months)));
     }
 
-    public function minusMonths(int $months) : self
+    public function minusMonths(int $months): self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->modify(\sprintf('-%d month', $months)));
     }
 
-    public function plusYears(int $years) : self
+    public function plusYears(int $years): self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->modify(\sprintf('+%d years', $years)));
     }
 
-    public function minusYears(int $years) : self
+    public function minusYears(int $years): self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->modify(\sprintf('-%d years', $years)));
     }
 
-    public function firstDay() : Day
+    public function firstDay(): Day
     {
         return $this->days()->first();
     }
 
-    public function lastDay() : Day
+    public function lastDay(): Day
     {
         return $this->days()->last();
     }
 
-    public function number() : int
+    public function number(): int
     {
         return $this->number;
     }
 
-    public function year() : Year
+    public function year(): Year
     {
         return $this->year;
     }
 
-    public function days() : MonthDays
+    public function days(): MonthDays
     {
         return $this->days;
     }
 
-    public function numberOfDays() : int
+    public function numberOfDays(): int
     {
         return (int) $this->toDateTimeImmutable()->format('t');
     }
 
-    public function shortName() : string
+    public function shortName(): string
     {
         return $this->toDateTimeImmutable()->format('M');
     }
 
-    public function name() : string
+    public function name(): string
     {
         return $this->toDateTimeImmutable()->format('F');
     }
 
-    public function toDateTimeImmutable() : \DateTimeImmutable
+    public function toDateTimeImmutable(): \DateTimeImmutable
     {
         return new \DateTimeImmutable(\sprintf('%d-%d-01 00:00:00.000000 UTC', $this->year()->number(), $this->number()));
     }
 
-    public function iterate(self $destination, Interval $interval) : Months
+    public function iterate(self $destination, Interval $interval): Months
     {
         return $this->isAfter($destination)
             ? $this->since($destination, $interval)
             : $this->until($destination, $interval);
     }
 
-    public function until(self $month, Interval $interval) : Months
+    public function until(self $month, Interval $interval): Months
     {
         if ($this->isAfter($month)) {
-            throw new InvalidArgumentException(
-                \sprintf(
-                    '%s %d is after %s %d',
-                    $this->name(),
-                    $this->year->number(),
-                    $month->name(),
-                    $month->year->number(),
-                )
-            );
+            throw new InvalidArgumentException(\sprintf('%s %d is after %s %d', $this->name(), $this->year->number(), $month->name(), $month->year->number(), ));
         }
 
         return new Months(
             ...\array_map(
-                function (\DateTimeImmutable $dateTimeImmutable) : self {
+                function (\DateTimeImmutable $dateTimeImmutable): self {
                     return self::fromDateTime($dateTimeImmutable);
                 },
                 \iterator_to_array(
@@ -199,23 +191,15 @@ final class Month
         );
     }
 
-    public function since(self $month, Interval $interval) : Months
+    public function since(self $month, Interval $interval): Months
     {
         if ($this->isBefore($month)) {
-            throw new InvalidArgumentException(
-                \sprintf(
-                    '%s %d is before %s %d',
-                    $this->name(),
-                    $this->year->number(),
-                    $month->name(),
-                    $month->year->number(),
-                )
-            );
+            throw new InvalidArgumentException(\sprintf('%s %d is before %s %d', $this->name(), $this->year->number(), $month->name(), $month->year->number(), ));
         }
 
         return new Months(
             ...\array_map(
-                function (\DateTimeImmutable $dateTimeImmutable) : self {
+                function (\DateTimeImmutable $dateTimeImmutable): self {
                     return self::fromDateTime($dateTimeImmutable);
                 },
                 \array_reverse(
@@ -231,13 +215,13 @@ final class Month
         );
     }
 
-    public function isEqual(self $month) : bool
+    public function isEqual(self $month): bool
     {
         return $this->number() == $month->number()
             && $this->year()->isEqual($month->year());
     }
 
-    public function isBefore(self $month) : bool
+    public function isBefore(self $month): bool
     {
         if ($this->year()->isBefore($month->year())) {
             return true;
@@ -250,7 +234,7 @@ final class Month
         return $this->number() < $month->number();
     }
 
-    public function isBeforeOrEqual(self $month) : bool
+    public function isBeforeOrEqual(self $month): bool
     {
         if ($this->year()->isBefore($month->year())) {
             return true;
@@ -263,7 +247,7 @@ final class Month
         return $this->number() <= $month->number();
     }
 
-    public function isAfter(self $month) : bool
+    public function isAfter(self $month): bool
     {
         if ($this->year()->isAfter($month->year())) {
             return true;
@@ -276,7 +260,7 @@ final class Month
         return $this->number() > $month->number();
     }
 
-    public function isAfterOrEqual(self $month) : bool
+    public function isAfterOrEqual(self $month): bool
     {
         if ($this->year()->isAfter($month->year())) {
             return true;
@@ -289,12 +273,12 @@ final class Month
         return $this->number() >= $month->number();
     }
 
-    public function distance(self $to) : TimeUnit
+    public function distance(self $to): TimeUnit
     {
         return (new TimePeriod($this->firstDay()->midnight(TimeZone::UTC()), $to->firstDay()->midnight(TimeZone::UTC())))->distance();
     }
 
-    public function quarter() : Quarter
+    public function quarter(): Quarter
     {
         return $this->year->quarter((int) \ceil($this->number / 3));
     }

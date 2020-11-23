@@ -14,12 +14,12 @@ final class SlugGeneratorTest extends TestCase
     /**
      * @dataProvider generate_slug_for_classes_data_provider
      */
-    public function test_generate_slug_for_classes(string $className, string $slug) : void
+    public function test_generate_slug_for_classes(string $className, string $slug): void
     {
         $this->assertSame($slug, SlugGenerator::forClass($className));
     }
 
-    public function generate_slug_for_classes_data_provider() : \Generator
+    public function generate_slug_for_classes_data_provider(): \Generator
     {
         yield ['Aeon\\Calendar\\Gregorian\\BusinessHours', 'business-hours'];
         yield [Process::class, 'process'];

@@ -22,9 +22,9 @@ final class BusinessHours
     private NonBusinessDays $nonBusinessDays;
 
     /**
-     * @param BusinessDays $regularBusinessDays - lowest priority when checking open hours, overwrites nothing
-     * @param BusinessDays $customBusinessDays - highest priority when checking open hours, overwrites business days and non business days
-     * @param NonBusinessDays $nonBusinessDays - medium priority when checking open hours, overwrites regular business days
+     * @param BusinessDays    $regularBusinessDays - lowest priority when checking open hours, overwrites nothing
+     * @param BusinessDays    $customBusinessDays  - highest priority when checking open hours, overwrites business days and non business days
+     * @param NonBusinessDays $nonBusinessDays     - medium priority when checking open hours, overwrites regular business days
      */
     public function __construct(BusinessDays $regularBusinessDays, BusinessDays $customBusinessDays, NonBusinessDays $nonBusinessDays)
     {
@@ -33,7 +33,7 @@ final class BusinessHours
         $this->nonBusinessDays = $nonBusinessDays;
     }
 
-    public function isOpen(DateTime $dateTime) : bool
+    public function isOpen(DateTime $dateTime): bool
     {
         if ($this->customBusinessDays->isOpen($dateTime)) {
             return true;
@@ -46,7 +46,7 @@ final class BusinessHours
         return $this->regularBusinessDays->isOpen($dateTime);
     }
 
-    public function isOpenOn(Day $day) : bool
+    public function isOpenOn(Day $day): bool
     {
         if ($this->customBusinessDays->isOpenOn($day)) {
             return true;
@@ -59,7 +59,7 @@ final class BusinessHours
         return $this->regularBusinessDays->isOpenOn($day);
     }
 
-    public function nextBusinessDay(Day $day, int $maximumDays = 365) : Day
+    public function nextBusinessDay(Day $day, int $maximumDays = 365): Day
     {
         if ($maximumDays <= 0) {
             throw new InvalidArgumentException('Maximum days must be greater or equal 1');
@@ -74,7 +74,7 @@ final class BusinessHours
                 && !$this->customBusinessDays->isOpenOn($nextDay))
         ) {
             $nextDay = $nextDay->next();
-            $daysChecked += 1;
+            ++$daysChecked;
 
             if ($daysChecked >= $maximumDays) {
                 throw new BusinessDayException(\sprintf('Could not find any business days in next %d days', $daysChecked));
@@ -84,7 +84,7 @@ final class BusinessHours
         return $nextDay;
     }
 
-    public function workingHours(Day $day) : WorkingHours
+    public function workingHours(Day $day): WorkingHours
     {
         if ($this->customBusinessDays->isOpenOn($day)) {
             return $this->customBusinessDays->get($day)->workingHours();

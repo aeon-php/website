@@ -20,24 +20,24 @@ final class GoogleCalendarRegionalHolidays implements Holidays
     private array $countryCodes;
 
     /**
-     * @var null|array<array<string, array<Holiday>>>
+     * @var array<array<string, array<Holiday>>>|null
      */
     private ?array $calendars;
 
     public function __construct(string ...$countryCodes)
     {
-        if (\count($countryCodes) === 0) {
+        if (0 === \count($countryCodes)) {
             throw new InvalidArgumentException('List of country codes must not be empty');
         }
 
         \array_map(
-            function (string $countryCode) : void {
+            function (string $countryCode): void {
                 if (!\in_array($countryCode, Holidays\GoogleCalendar\CountryCodes::all(), true)) {
-                    throw new InvalidArgumentException('Country with code ' . $countryCode . ' does not exists.');
+                    throw new InvalidArgumentException('Country with code '.$countryCode.' does not exists.');
                 }
             },
             $normalizedCountryCodes = \array_map(
-                function (string $countryCode) : string {
+                function (string $countryCode): string {
                     return \mb_strtoupper($countryCode);
                 },
                 $countryCodes
@@ -52,15 +52,11 @@ final class GoogleCalendarRegionalHolidays implements Holidays
     }
 
     /**
-     * @param Day $day
-     *
      * @throws HolidayYearException
-     *
-     * @return bool
      */
-    public function isHoliday(Day $day) : bool
+    public function isHoliday(Day $day): bool
     {
-        if ($this->calendars === null) {
+        if (null === $this->calendars) {
             $this->loadCalendars();
         }
 
@@ -85,9 +81,9 @@ final class GoogleCalendarRegionalHolidays implements Holidays
     /**
      * @return array<Holiday>
      */
-    public function holidaysAt(Day $day) : array
+    public function holidaysAt(Day $day): array
     {
-        if ($this->calendars === null) {
+        if (null === $this->calendars) {
             $this->loadCalendars();
         }
 
@@ -109,9 +105,9 @@ final class GoogleCalendarRegionalHolidays implements Holidays
         return [];
     }
 
-    private function loadCalendars() : void
+    private function loadCalendars(): void
     {
-        if ($this->calendars !== null) {
+        if (null !== $this->calendars) {
             return;
         }
 
@@ -121,7 +117,7 @@ final class GoogleCalendarRegionalHolidays implements Holidays
     }
 
     /** @psalm-suppress InaccessibleProperty */
-    private function loadCalendar(string $countryCode) : void
+    private function loadCalendar(string $countryCode): void
     {
         /**
          * @var array{
@@ -139,9 +135,9 @@ final class GoogleCalendarRegionalHolidays implements Holidays
          *             }>
          *             } $data
          */
-        $data = (array) \json_decode((string) \file_get_contents(__DIR__ . '/data/regional/' . $countryCode . '.json'), true, JSON_THROW_ON_ERROR);
+        $data = (array) \json_decode((string) \file_get_contents(__DIR__.'/data/regional/'.$countryCode.'.json'), true, JSON_THROW_ON_ERROR);
 
-        if ($this->calendars === null) {
+        if (null === $this->calendars) {
             $this->calendars = [];
         }
 

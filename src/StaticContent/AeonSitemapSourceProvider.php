@@ -20,7 +20,7 @@ final class AeonSitemapSourceProvider implements SourceProvider
         $this->parameterBag = $parameterBag;
     }
 
-    protected function parameterBag() : ParameterBagInterface
+    protected function parameterBag(): ParameterBagInterface
     {
         return $this->parameterBag;
     }
@@ -28,7 +28,7 @@ final class AeonSitemapSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    public function all() : array
+    public function all(): array
     {
         return [
             new Source('werkspot_sitemap_section_page', ['section' => 'documentation', 'page' => 1]),

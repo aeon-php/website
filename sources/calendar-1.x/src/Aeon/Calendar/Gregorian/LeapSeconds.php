@@ -35,7 +35,7 @@ final class LeapSeconds
      * @psalm-pure
      * @psalm-suppress ImpureStaticProperty
      */
-    public static function load() : self
+    public static function load(): self
     {
         if (self::$instance instanceof self) {
             return self::$instance;
@@ -76,32 +76,32 @@ final class LeapSeconds
         return self::$instance;
     }
 
-    public function expirationDate() : DateTime
+    public function expirationDate(): DateTime
     {
         return $this->listExpirationDate;
     }
 
-    public function since(DateTime $dateTime) : self
+    public function since(DateTime $dateTime): self
     {
-        return $this->filter(function (LeapSecond $leapSecond) use ($dateTime) : bool {
+        return $this->filter(function (LeapSecond $leapSecond) use ($dateTime): bool {
             return $dateTime
                     ->toTimeZone(TimeZone::UTC())
                     ->isBefore($leapSecond->dateTime());
         });
     }
 
-    public function until(DateTime $dateTime) : self
+    public function until(DateTime $dateTime): self
     {
-        return $this->filter(function (LeapSecond $leapSecond) use ($dateTime) : bool {
+        return $this->filter(function (LeapSecond $leapSecond) use ($dateTime): bool {
             return $dateTime
                 ->toTimeZone(TimeZone::UTC())
                 ->isAfterOrEqual($leapSecond->dateTime());
         });
     }
 
-    public function findAllBetween(TimePeriod $timePeriod) : self
+    public function findAllBetween(TimePeriod $timePeriod): self
     {
-        return $this->filter(function (LeapSecond $leapSecond) use ($timePeriod) : bool {
+        return $this->filter(function (LeapSecond $leapSecond) use ($timePeriod): bool {
             return $timePeriod->start()
                     ->toTimeZone(TimeZone::UTC())
                     ->isBeforeOrEqual($leapSecond->dateTime())
@@ -111,7 +111,7 @@ final class LeapSeconds
         });
     }
 
-    public function offsetTAI() : TimeUnit
+    public function offsetTAI(): TimeUnit
     {
         return $this->leapSeconds[\count($this->leapSeconds) - 1]->offsetTAI();
     }
@@ -119,7 +119,7 @@ final class LeapSeconds
     /**
      * @param callable(LeapSecond $leapSecond) : bool $filter
      */
-    public function filter(callable $filter) : self
+    public function filter(callable $filter): self
     {
         return new self(
             $this->expirationDate(),
@@ -127,7 +127,7 @@ final class LeapSeconds
         );
     }
 
-    public function count() : TimeUnit
+    public function count(): TimeUnit
     {
         return TimeUnit::seconds(\count($this->all()));
     }
@@ -135,7 +135,7 @@ final class LeapSeconds
     /**
      * @return array<int, LeapSecond>
      */
-    public function all() : array
+    public function all(): array
     {
         return $this->leapSeconds;
     }

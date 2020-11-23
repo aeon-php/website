@@ -1,0 +1,110 @@
+{% extends 'docs.html.twig' %}
+
+{% block title %}Aeon PHP - Rate Limiter - Documentation{% endblock %}
+
+{% block body %}
+    <div class="row doc-content-body">
+        <article class="col-md-9">
+            <section id="calendar-interface">
+                <h5 class="section-title-2">Rate Limiter</h5>
+                <hr/>
+                Available versions:
+                <ul>
+                    {% for version, src in versions %}
+                        <li><a href="{{ path('docs_rate_limiter_version', { version: version }) }}">{{ version }}</a></li>
+                    {% endfor %}
+                </ul>
+            </section>
+            <section>
+                <h3>Installation</h3>
+                <p>
+                    <code class="code">composer require aeon-php/rate-limiter</code>
+                </p>
+            </section>
+            <section>
+                <h3>Description</h3>
+
+                <p>
+                    RateLimiter with two implementations of Algorithm and Storage.
+                </p>
+                <ul>
+                    <li>LeakyBucketAlgorithm</li>
+                    <li>SlidingWindowAlgorithm</li>
+                </ul>
+                <ul>
+                    <li>MemoryStorage</li>
+                    <li>PSRCacheStorage</li>
+                </ul>
+
+                <pre><code class="language-php">{% apply spaceless  %}
+final class RateLimiter
+{
+    private Algorithm $algorithm;
+
+    private Storage $storage;
+
+    public function __construct(Algorithm $algorithm, Storage $storage)
+    {
+        $this->algorithm = $algorithm;
+        $this->storage = $storage;
+    }
+}
+{% endapply %}</code></pre>
+                <pre><code class="language-php">{% apply spaceless  %}
+&lt;?php
+
+declare(strict_types=1);
+
+namespace Aeon\RateLimiter;
+
+use Aeon\Calendar\TimeUnit;
+
+interface Storage
+{
+    public function addHit(string $id, TimeUnit $ttl): void;
+
+    public function all(string $id): Hits;
+
+    public function count(string $id): int;
+}
+{% endapply %}</code></pre>
+                <pre><code class="language-php">{% apply spaceless  %}
+&lt;?php
+
+declare(strict_types=1);
+
+namespace Aeon\RateLimiter;
+
+use Aeon\Calendar\TimeUnit;
+use Aeon\RateLimiter\Exception\RateLimitException;
+
+interface Algorithm
+{
+    /**
+     * @throws RateLimitException
+     */
+    public function hit(string $id, Storage $storage): void;
+
+    /**
+     * Estimate the time in which next hit is allowed.
+     */
+    public function estimate(string $id, Storage $storage): TimeUnit;
+
+    /**
+     * Return hits left before throttling next hit.
+     */
+    public function capacity(string $id, Storage $storage): int;
+}
+
+{% endapply %}</code></pre>
+            </section>
+        </article>
+        <aside class="col-md-3">
+            <div class="sticky">
+                <section class="text-center">
+                    <a href="https://github.com/aeon-php/website/blob/1.x/templates/{{ _self }}" class="btn btn-secondary p-1" target="_blank"><i class="fab fa-github"></i> Edit this page</a>
+                </section>
+            </div>
+        </aside>
+    </div>
+{% endblock %}
