@@ -25,78 +25,101 @@
                 <h3>Description</h3>
 
                 <p>
-                    RateLimiter with two implementations of Algorithm and Storage.
+                    RateLimiter components makes possible to limit frequency of operations execution.
+                </p>
+                <p>
+                    Rate Limiter implements following limiting algorithms:
                 </p>
                 <ul>
-                    <li>LeakyBucketAlgorithm</li>
-                    <li>SlidingWindowAlgorithm</li>
+                    <li>
+                        <a href="{{ path('docs_rate_limiter_class', {'version': '1.x', 'classSlug': 'algorithm-leakybucketalgorithm'}) }}">LeakyBucketAlgorithm</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('docs_rate_limiter_class', {'version': '1.x', 'classSlug': 'algorithm-slidingwindowalgorithm'}) }}">SlidingWindowAlgorithm</a>
+                    </li>
                 </ul>
+
+                <p>
+                    Rate Limiter implements following types of storage
+                </p>
                 <ul>
                     <li>MemoryStorage</li>
                     <li>PSRCacheStorage</li>
                 </ul>
 
+                <p>
+                    It's worth to mention that PSRCacheStorage works perfectly fine with any caching library that
+                    implements <a href="https://www.php-fig.org/psr/psr-6/" target="_blank">PSR-6: Caching Interface</a>.
+                    Most of available PSR-6 implementations can be found at <a href="https://packagist.org/providers/psr/cache-implementation" target="_blank">packagist</a>.
+                </p>
+
+                <p>
+                    RateLimiter API is pretty much self-explanatory
+                </p>
+
                 <pre><code class="language-php">{% apply spaceless  %}
+&lt;?php
+
+namespace Aeon\RateLimiter;
+
 final class RateLimiter
 {
-    private Algorithm $algorithm;
+    /**
+     * Record next hit, throws an extension where there are no available hits left according to the selected algorithm.
+     *
+     * @throws \Aeon\RateLimiter\Exception\RateLimitException
+     */
+    public function hit(string $id) : void;
 
-    private Storage $storage;
+    /**
+     * Estimate time required to the next hit. If current capacity is greater than 0, time will be 0.
+     */
+    public function estimate(string $id) : TimeUnit;
 
-    public function __construct(Algorithm $algorithm, Storage $storage)
+    /**
+     * Returns current capacity according to the selected algorithm, when there are no available hits left, it will return 0.
+     * Use RateLimiter::estimate method to find out when next hit will be possible.
+     */
+    public function capacity(string $id) : int;
+
+    /**
+     * Initial available capacity before registering any hits or when all hits time out.
+     */
+    public function capacityInitial() : int;
+
+    /**
+     * Time required to fully reset to the total capacity.
+     */
+    public function resetIn(string $id) : TimeUnit;
+
+    /**
+     * Try to record next hit, in case of rate limit exception take the cooldown time and sleep current process.
+     */
+    public function throttle(string $id, Process $process) : void;
+}
+
+{% endapply %}</code></pre>
+
+                <p>
+                    <code>RateLimitException</code> does not only tell you that the execution is forbidden, it also
+                    says how long you should wait.
+                </p>
+
+                <pre><code class="language-php">{% apply spaceless  %}
+&lt;?php
+
+    public function throttle(string $id, Process $process) : void
     {
-        $this->algorithm = $algorithm;
-        $this->storage = $storage;
+        try {
+            $this->algorithm->hit($id, $this->storage);
+        } catch (RateLimitException $rateLimitException) {
+            $process->sleep($rateLimitException->cooldown());
+            $this->algorithm->hit($id, $this->storage);
+        }
     }
-}
-{% endapply %}</code></pre>
-                <pre><code class="language-php">{% apply spaceless  %}
-&lt;?php
-
-declare(strict_types=1);
-
-namespace Aeon\RateLimiter;
-
-use Aeon\Calendar\TimeUnit;
-
-interface Storage
-{
-    public function addHit(string $id, TimeUnit $ttl): void;
-
-    public function all(string $id): Hits;
-
-    public function count(string $id): int;
-}
-{% endapply %}</code></pre>
-                <pre><code class="language-php">{% apply spaceless  %}
-&lt;?php
-
-declare(strict_types=1);
-
-namespace Aeon\RateLimiter;
-
-use Aeon\Calendar\TimeUnit;
-use Aeon\RateLimiter\Exception\RateLimitException;
-
-interface Algorithm
-{
-    /**
-     * @throws RateLimitException
-     */
-    public function hit(string $id, Storage $storage): void;
-
-    /**
-     * Estimate the time in which next hit is allowed.
-     */
-    public function estimate(string $id, Storage $storage): TimeUnit;
-
-    /**
-     * Return hits left before throttling next hit.
-     */
-    public function capacity(string $id, Storage $storage): int;
-}
 
 {% endapply %}</code></pre>
+
             </section>
         </article>
         <aside class="col-md-3">
