@@ -16,17 +16,17 @@ final class MonthDays implements \Countable
         $this->month = $month;
     }
 
-    public function count() : int
+    public function count(): int
     {
         return $this->month->numberOfDays();
     }
 
-    public function first() : Day
+    public function first(): Day
     {
         return new Day($this->month, 1);
     }
 
-    public function last() : Day
+    public function last(): Day
     {
         return new Day($this->month, $this->month->numberOfDays());
     }
@@ -34,10 +34,10 @@ final class MonthDays implements \Countable
     /**
      * @return array<int, Day>
      */
-    public function all() : array
+    public function all(): array
     {
         return \array_map(
-            fn (int $dayNumber) : Day => new Day($this->month, $dayNumber),
+            fn (int $dayNumber): Day => new Day($this->month, $dayNumber),
             \range(1, $this->month->numberOfDays())
         );
     }
@@ -47,7 +47,7 @@ final class MonthDays implements \Countable
      *
      * @return array<mixed>
      */
-    public function map(callable $iterator) : array
+    public function map(callable $iterator): array
     {
         return \array_map(
             $iterator,
@@ -57,10 +57,8 @@ final class MonthDays implements \Countable
 
     /**
      * @param callable(Day $day) : bool $iterator
-     *
-     * @return Days
      */
-    public function filter(callable $iterator) : Days
+    public function filter(callable $iterator): Days
     {
         return new Days(
             ...\array_filter(

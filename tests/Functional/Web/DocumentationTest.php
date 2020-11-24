@@ -6,7 +6,7 @@ use App\Tests\Functional\WebTestCase;
 
 final class DocumentationTest extends WebTestCase
 {
-    public function test_sitemap() : void
+    public function test_sitemap(): void
     {
         $client = self::createClient();
         $client->request('GET', $this->generateUrl('werkspot_sitemap_index'));
@@ -14,7 +14,7 @@ final class DocumentationTest extends WebTestCase
         $this->assertResponseStatusCodeSame(200);
     }
 
-    public function test_calendar_page() : void
+    public function test_calendar_page(): void
     {
         $client = self::createClient();
         $client->request('GET', $this->generateUrl('docs_calendar'));
@@ -22,7 +22,7 @@ final class DocumentationTest extends WebTestCase
         $this->assertResponseStatusCodeSame(200);
     }
 
-    public function test_calendar_holidays_page() : void
+    public function test_calendar_holidays_page(): void
     {
         $client = self::createClient();
         $client->request('GET', $this->generateUrl('docs_calendar_holidays'));
@@ -30,7 +30,7 @@ final class DocumentationTest extends WebTestCase
         $this->assertResponseStatusCodeSame(200);
     }
 
-    public function test_calendar_holidays_yasumi_page() : void
+    public function test_calendar_holidays_yasumi_page(): void
     {
         $client = self::createClient();
         $client->request('GET', $this->generateUrl('docs_calendar_holidays_yasumi'));
@@ -38,7 +38,7 @@ final class DocumentationTest extends WebTestCase
         $this->assertResponseStatusCodeSame(200);
     }
 
-    public function test_sleep_page() : void
+    public function test_sleep_page(): void
     {
         $client = self::createClient();
         $client->request('GET', $this->generateUrl('docs_sleep'));
@@ -46,7 +46,7 @@ final class DocumentationTest extends WebTestCase
         $this->assertResponseStatusCodeSame(200);
     }
 
-    public function test_calendar_doctrine_page() : void
+    public function test_calendar_doctrine_page(): void
     {
         $client = self::createClient();
         $client->request('GET', $this->generateUrl('docs_calendar_doctrine'));
@@ -54,7 +54,7 @@ final class DocumentationTest extends WebTestCase
         $this->assertResponseStatusCodeSame(200);
     }
 
-    public function test_calendar_twig_page() : void
+    public function test_calendar_twig_page(): void
     {
         $client = self::createClient();
         $client->request('GET', $this->generateUrl('docs_calendar_twig'));
@@ -62,10 +62,18 @@ final class DocumentationTest extends WebTestCase
         $this->assertResponseStatusCodeSame(200);
     }
 
-    public function test_retry_page() : void
+    public function test_retry_page(): void
     {
         $client = self::createClient();
         $client->request('GET', $this->generateUrl('docs_retry'));
+
+        $this->assertResponseStatusCodeSame(200);
+    }
+
+    public function test_rate_limiter_page(): void
+    {
+        $client = self::createClient();
+        $client->request('GET', $this->generateUrl('docs_rate_limiter'));
 
         $this->assertResponseStatusCodeSame(200);
     }

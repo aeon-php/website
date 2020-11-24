@@ -14,9 +14,6 @@ final class CalendarHolidaysDocumentation extends AbstractController
 {
     use CodeReflectionTrait;
 
-    /**
-     * @var ParameterBagInterface
-     */
     private ParameterBagInterface $parameterBag;
 
     public function __construct(ParameterBagInterface $parameterBag)
@@ -24,7 +21,7 @@ final class CalendarHolidaysDocumentation extends AbstractController
         $this->parameterBag = $parameterBag;
     }
 
-    protected function parameterBag() : ParameterBagInterface
+    protected function parameterBag(): ParameterBagInterface
     {
         return $this->parameterBag;
     }
@@ -32,7 +29,7 @@ final class CalendarHolidaysDocumentation extends AbstractController
     /**
      * @Route("/docs/calendar-holidays", name="docs_calendar_holidays")
      */
-    public function calendarHolidays() : Response
+    public function calendarHolidays(): Response
     {
         return $this->render('documentation/calendar_holidays.html.twig', [
             'activeSection' => 'calendar-holidays',
@@ -43,7 +40,7 @@ final class CalendarHolidaysDocumentation extends AbstractController
     /**
      * @Route("/docs/calendar-holidays/{version}", name="docs_calendar_holidays_version")
      */
-    public function calendarHolidaysVersion(string $version) : Response
+    public function calendarHolidaysVersion(string $version): Response
     {
         return $this->render('documentation/calendar_holidays_version.html.twig', [
             'activeSection' => 'calendar-holidays',
@@ -55,7 +52,7 @@ final class CalendarHolidaysDocumentation extends AbstractController
     /**
      * @Route("/docs/calendar-holidays/{version}/{classSlug}", name="docs_calendar_holidays_class")
      */
-    public function calendarHolidaysClass(string $version, string $classSlug) : Response
+    public function calendarHolidaysClass(string $version, string $classSlug): Response
     {
         foreach ($classes = $this->calendarHolidaysClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
@@ -69,13 +66,13 @@ final class CalendarHolidaysDocumentation extends AbstractController
             }
         }
 
-        throw $this->createNotFoundException("Class ". $classSlug . " does not exists");
+        throw $this->createNotFoundException('Class '.$classSlug.' does not exists');
     }
 
     /**
      * @Route("/docs/calendar-holidays/{version}/{classSlug}/method/{methodSlug}", name="docs_calendar_holidays_class_method")
      */
-    public function calendarHolidaysClassMethod(string $version, string $classSlug, string $methodSlug) : Response
+    public function calendarHolidaysClassMethod(string $version, string $classSlug, string $methodSlug): Response
     {
         foreach ($classes = $this->calendarHolidaysClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
@@ -92,10 +89,10 @@ final class CalendarHolidaysDocumentation extends AbstractController
                     }
                 }
 
-                throw $this->createNotFoundException("Class ". $classSlug . " method " . $methodSlug ." does not exists");
+                throw $this->createNotFoundException('Class '.$classSlug.' method '.$methodSlug.' does not exists');
             }
         }
 
-        throw $this->createNotFoundException("Class ". $classSlug . " does not exists");
+        throw $this->createNotFoundException('Class '.$classSlug.' does not exists');
     }
 }

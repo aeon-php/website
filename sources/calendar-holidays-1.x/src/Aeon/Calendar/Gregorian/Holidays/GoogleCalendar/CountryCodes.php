@@ -468,7 +468,7 @@ final class CountryCodes
      *
      * @return array<int, string>
      */
-    public static function all() : array
+    public static function all(): array
     {
         return [
             self::AD,

@@ -9,7 +9,7 @@ use Aeon\Calendar\Gregorian\HolidaysFactory;
 
 final class GoogleRegionalHolidaysFactory implements HolidaysFactory
 {
-    public function create(string $countryCode) : Holidays
+    public function create(string $countryCode): Holidays
     {
         return new GoogleCalendarRegionalHolidays($countryCode);
     }

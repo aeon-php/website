@@ -14,9 +14,6 @@ final class SleepDocumentation extends AbstractController
 {
     use CodeReflectionTrait;
 
-    /**
-     * @var ParameterBagInterface
-     */
     private ParameterBagInterface $parameterBag;
 
     public function __construct(ParameterBagInterface $parameterBag)
@@ -24,7 +21,7 @@ final class SleepDocumentation extends AbstractController
         $this->parameterBag = $parameterBag;
     }
 
-    protected function parameterBag() : ParameterBagInterface
+    protected function parameterBag(): ParameterBagInterface
     {
         return $this->parameterBag;
     }
@@ -32,7 +29,7 @@ final class SleepDocumentation extends AbstractController
     /**
      * @Route("/docs/sleep", name="docs_sleep")
      */
-    public function sleep() : Response
+    public function sleep(): Response
     {
         return $this->render('documentation/sleep.html.twig', [
             'activeSection' => 'sleep',
@@ -43,7 +40,7 @@ final class SleepDocumentation extends AbstractController
     /**
      * @Route("/docs/sleep/{version}", name="docs_sleep_version")
      */
-    public function sleepVersion(string $version) : Response
+    public function sleepVersion(string $version): Response
     {
         return $this->render('documentation/sleep_version.html.twig', [
             'activeSection' => 'sleep',
@@ -55,7 +52,7 @@ final class SleepDocumentation extends AbstractController
     /**
      * @Route("/docs/sleep/{version}/{classSlug}", name="docs_sleep_class")
      */
-    public function sleepClass(string $version, string $classSlug) : Response
+    public function sleepClass(string $version, string $classSlug): Response
     {
         foreach ($classes = $this->sleepClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
@@ -69,13 +66,13 @@ final class SleepDocumentation extends AbstractController
             }
         }
 
-        throw $this->createNotFoundException("Class ". $classSlug . " does not exists");
+        throw $this->createNotFoundException('Class '.$classSlug.' does not exists');
     }
 
     /**
      * @Route("/docs/sleep/{version}/{classSlug}/method/{methodSlug}", name="docs_sleep_class_method")
      */
-    public function sleepClassMethod(string $version, string $classSlug, string $methodSlug) : Response
+    public function sleepClassMethod(string $version, string $classSlug, string $methodSlug): Response
     {
         foreach ($classes = $this->sleepClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
@@ -92,10 +89,10 @@ final class SleepDocumentation extends AbstractController
                     }
                 }
 
-                throw $this->createNotFoundException("Class ". $classSlug . " method " . $methodSlug ." does not exists");
+                throw $this->createNotFoundException('Class '.$classSlug.' method '.$methodSlug.' does not exists');
             }
         }
 
-        throw $this->createNotFoundException("Class ". $classSlug . " does not exists");
+        throw $this->createNotFoundException('Class '.$classSlug.' does not exists');
     }
 }

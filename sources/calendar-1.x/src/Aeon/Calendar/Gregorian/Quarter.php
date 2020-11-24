@@ -21,7 +21,7 @@ final class Quarter
             throw new InvalidArgumentException('Quarter number must be greater or equal 1 and less or equal than 4');
         }
 
-        if (\count($months) !== 3) {
+        if (3 !== \count($months)) {
             throw new InvalidArgumentException('Quarter must have exactly 3 months');
         }
 
@@ -56,12 +56,12 @@ final class Quarter
         $this->months = $months;
     }
 
-    public function number() : int
+    public function number(): int
     {
         return $this->number;
     }
 
-    public function months() : Months
+    public function months(): Months
     {
         return $this->months;
     }

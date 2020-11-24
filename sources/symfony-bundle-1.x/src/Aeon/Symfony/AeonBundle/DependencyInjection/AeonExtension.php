@@ -13,7 +13,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 final class AeonExtension extends Extension
 {
     /** @phpstan-ignore-next-line  */
-    public function load(array $configs, ContainerBuilder $container) : void
+    public function load(array $configs, ContainerBuilder $container): void
     {
         /**
          * @psalm-suppress PossiblyNullArgument
@@ -21,7 +21,7 @@ final class AeonExtension extends Extension
          */
         $config = $this->processConfiguration($this->getConfiguration($configs, $container), $configs);
 
-        $loader = new PhpFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader = new PhpFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('aeon_calendar.php');
         $loader->load('aeon_calendar_twig.php');
         $loader->load('aeon_calendar_holidays_google.php');
@@ -39,7 +39,7 @@ final class AeonExtension extends Extension
         }
 
         if ($container->hasParameter('kernel.environment')) {
-            if ($container->getParameter('kernel.environment') === 'test') {
+            if ('test' === $container->getParameter('kernel.environment')) {
                 $container->getDefinition('calendar')
                     ->setClass(GregorianCalendarStub::class);
 

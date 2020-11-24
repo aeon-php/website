@@ -24,12 +24,12 @@ final class RangedModifier implements DelayModifier
         $this->rangeEnd = $rangeEnd;
     }
 
-    public static function between(TimeUnit $rangeStart, TimeUnit $rangeEnd) : self
+    public static function between(TimeUnit $rangeStart, TimeUnit $rangeEnd): self
     {
         return new self($rangeStart, $rangeEnd);
     }
 
-    public function modify(int $retry, TimeUnit $timeUnit) : TimeUnit
+    public function modify(int $retry, TimeUnit $timeUnit): TimeUnit
     {
         if ($this->rangeStart->isGreaterThan(TimeUnit::second())) {
             return $timeUnit->add(TimeUnit::seconds(

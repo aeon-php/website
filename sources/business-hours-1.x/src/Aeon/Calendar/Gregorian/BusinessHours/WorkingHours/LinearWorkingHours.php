@@ -27,17 +27,17 @@ final class LinearWorkingHours implements WorkingHours
         $this->endHour = $endHour;
     }
 
-    public function openFrom() : Time
+    public function openFrom(): Time
     {
         return $this->startHour;
     }
 
-    public function openTo() : Time
+    public function openTo(): Time
     {
         return $this->endHour;
     }
 
-    public function isOpen(Time $time) : bool
+    public function isOpen(Time $time): bool
     {
         return $time->isGreaterThanEq($this->openFrom()) &&
             $time->isLessThanEq($this->openTo());

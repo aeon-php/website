@@ -20,7 +20,7 @@ final class Holidays implements NonBusinessDay
         $this->holidays = $holidays;
     }
 
-    public function is(Day $day) : bool
+    public function is(Day $day): bool
     {
         return $this->holidays->isHoliday($day);
     }

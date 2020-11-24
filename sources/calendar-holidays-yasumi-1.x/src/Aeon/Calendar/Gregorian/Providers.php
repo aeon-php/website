@@ -122,7 +122,7 @@ final class Providers
     /**
      * @return array<string>
      */
-    public static function all() : array
+    public static function all(): array
     {
         return [
             'AU' => self::AU,
@@ -165,12 +165,12 @@ final class Providers
         ];
     }
 
-    public static function fromCountryCode(string $countryCode) : string
+    public static function fromCountryCode(string $countryCode): string
     {
         $upperCaseCountryCode = \strtoupper($countryCode);
 
         if (!\array_key_exists($upperCaseCountryCode, self::all())) {
-            throw new InvalidArgumentException('Country code ' . $upperCaseCountryCode . ' is ont assigned to any Yasumi provider.');
+            throw new InvalidArgumentException('Country code '.$upperCaseCountryCode.' is ont assigned to any Yasumi provider.');
         }
 
         return self::all()[$upperCaseCountryCode];

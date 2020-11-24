@@ -20,13 +20,13 @@ final class ShiftsWorkingHours implements WorkingHours
 
     public function __construct(LinearWorkingHours ...$workingHours)
     {
-        if (\count($workingHours) === 0) {
+        if (0 === \count($workingHours)) {
             throw new InvalidArgumentException('Shifts can\'t be empty');
         }
 
         \uasort(
             $workingHours,
-            function (LinearWorkingHours $workingHoursA, LinearWorkingHours $workingHoursB) : int {
+            function (LinearWorkingHours $workingHoursA, LinearWorkingHours $workingHoursB): int {
                 return $workingHoursA->openFrom()->isLessThanEq($workingHoursB->openFrom())
                     ? -1
                     : 1;
@@ -36,17 +36,17 @@ final class ShiftsWorkingHours implements WorkingHours
         $this->workingHours = \array_values($workingHours);
     }
 
-    public function openFrom() : Time
+    public function openFrom(): Time
     {
         return $this->workingHours[0]->openFrom();
     }
 
-    public function openTo() : Time
+    public function openTo(): Time
     {
         return $this->workingHours[\count($this->workingHours) - 1]->openTo();
     }
 
-    public function isOpen(Time $time) : bool
+    public function isOpen(Time $time): bool
     {
         foreach ($this->workingHours as $workingHours) {
             if ($workingHours->isOpen($time)) {

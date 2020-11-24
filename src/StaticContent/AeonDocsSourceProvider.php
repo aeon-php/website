@@ -21,7 +21,7 @@ final class AeonDocsSourceProvider implements SourceProvider
         $this->parameterBag = $parameterBag;
     }
 
-    protected function parameterBag() : ParameterBagInterface
+    protected function parameterBag(): ParameterBagInterface
     {
         return $this->parameterBag;
     }
@@ -29,7 +29,7 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    public function all() : array
+    public function all(): array
     {
         return \array_merge(
             $this->calendarSources(),
@@ -40,14 +40,15 @@ final class AeonDocsSourceProvider implements SourceProvider
             $this->businessHoursSources(),
             $this->sleepSources(),
             $this->retrySources(),
-            $this->symfonyBundleSources()
+            $this->symfonyBundleSources(),
+            $this->rateLimiterSources()
         );
     }
 
     /**
      * @return Source[]
      */
-    private function calendarSources() : array
+    private function calendarSources(): array
     {
         $sources = [];
 
@@ -82,7 +83,7 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    private function calendarDoctrineSources() : array
+    private function calendarDoctrineSources(): array
     {
         $sources = [];
 
@@ -117,7 +118,7 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    private function calendarTwigSources() : array
+    private function calendarTwigSources(): array
     {
         $sources = [];
 
@@ -152,7 +153,7 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    private function calendarHolidaysSources() : array
+    private function calendarHolidaysSources(): array
     {
         $sources = [];
 
@@ -187,7 +188,7 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    private function calendarHolidaysYasumiSources() : array
+    private function calendarHolidaysYasumiSources(): array
     {
         $sources = [];
 
@@ -222,7 +223,7 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    private function businessHoursSources() : array
+    private function businessHoursSources(): array
     {
         $sources = [];
 
@@ -257,7 +258,7 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    private function sleepSources() : array
+    private function sleepSources(): array
     {
         $sources = [];
 
@@ -292,7 +293,7 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    private function retrySources() : array
+    private function retrySources(): array
     {
         $sources = [];
 
@@ -327,7 +328,42 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    private function symfonyBundleSources() : array
+    private function rateLimiterSources(): array
+    {
+        $sources = [];
+
+        foreach ($this->rateLimiterVersions() as $version => $srv) {
+            $sources[] = new Source('docs_rate_limiter_version', ['version' => $version]);
+        }
+
+        foreach ($this->rateLimiterVersions() as $version => $srv) {
+            foreach ($this->rateLimiterClasses($version) as $phpClass) {
+                $sources[] = new Source('docs_rate_limiter_class', ['version' => $version, 'classSlug' => SlugGenerator::forPHPClass($phpClass)]);
+            }
+        }
+
+        foreach ($this->rateLimiterVersions() as $version => $srv) {
+            foreach ($this->rateLimiterClasses($version) as $phpClass) {
+                foreach ($phpClass->methods() as $method) {
+                    $sources[] = new Source(
+                        'docs_rate_limiter_class_method',
+                        [
+                            'version' => $version,
+                            'classSlug' => SlugGenerator::forPHPClass($phpClass),
+                            'methodSlug' => SlugGenerator::forClassMethod($method),
+                        ]
+                    );
+                }
+            }
+        }
+
+        return $sources;
+    }
+
+    /**
+     * @return Source[]
+     */
+    private function symfonyBundleSources(): array
     {
         $sources = [];
 

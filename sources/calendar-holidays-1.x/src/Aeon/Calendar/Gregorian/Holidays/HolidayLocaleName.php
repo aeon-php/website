@@ -19,17 +19,17 @@ final class HolidayLocaleName
         $this->name = $name;
     }
 
-    public function locale() : string
+    public function locale(): string
     {
         return $this->locale;
     }
 
-    public function name() : string
+    public function name(): string
     {
         return $this->name;
     }
 
-    public function in(string $locale) : bool
+    public function in(string $locale): bool
     {
         return $this->locale === \mb_strtolower($locale);
     }

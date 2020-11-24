@@ -8,5 +8,5 @@ use Aeon\Calendar\TimeUnit;
 
 interface Process
 {
-    public function sleep(TimeUnit $timeUnit) : void;
+    public function sleep(TimeUnit $timeUnit): void;
 }

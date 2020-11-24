@@ -13,12 +13,12 @@ final class SystemProcess implements Process
     {
     }
 
-    public static function current() : self
+    public static function current(): self
     {
         return new self();
     }
 
-    public function sleep(TimeUnit $timeUnit) : void
+    public function sleep(TimeUnit $timeUnit): void
     {
         system_sleep($timeUnit);
     }

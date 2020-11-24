@@ -12,9 +12,9 @@ use Aeon\Calendar\Gregorian\Day;
  */
 interface BusinessDay
 {
-    public function is(Day $day) : bool;
+    public function is(Day $day): bool;
 
-    public function isOpen(DateTime $dateTime) : bool;
+    public function isOpen(DateTime $dateTime): bool;
 
-    public function workingHours() : WorkingHours;
+    public function workingHours(): WorkingHours;
 }

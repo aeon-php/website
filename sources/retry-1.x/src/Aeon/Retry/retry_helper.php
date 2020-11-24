@@ -24,7 +24,7 @@ function retry(callable $function, int $retries, TimeUnit $delay, DelayModifier 
         $retries,
         $delay
     ))->modifyDelay(
-        $delayModifier === null
+        null === $delayModifier
             ? new ConstantDelay()
             : $delayModifier
     )->execute($function);
@@ -33,8 +33,8 @@ function retry(callable $function, int $retries, TimeUnit $delay, DelayModifier 
 /**
  * @template FunctionReturnType
  *
- * @param callable(Execution $execution) : FunctionReturnType $function
- * @param array<string> $exceptionClasses
+ * @param callable(Execution $execution)       : FunctionReturnType $function
+ * @param array<string>      $exceptionClasses
  *
  * @throws \Throwable
  *
@@ -48,7 +48,7 @@ function retryOnlyFor(callable $function, int $retries, TimeUnit $delay, array $
         $delay
     ))->onlyFor(...$exceptionClasses)
     ->modifyDelay(
-        $delayModifier === null
+        null === $delayModifier
             ? new ConstantDelay()
             : $delayModifier
     )->execute($function);

@@ -24,17 +24,17 @@ final class CustomBusinessDay implements BusinessDay
         $this->workingHours = $workingHours;
     }
 
-    public function is(Day $day) : bool
+    public function is(Day $day): bool
     {
         return $this->day->isEqual($day);
     }
 
-    public function isOpen(DateTime $dateTime) : bool
+    public function isOpen(DateTime $dateTime): bool
     {
         return $this->is($dateTime->day()) && $this->workingHours()->isOpen($dateTime->time());
     }
 
-    public function workingHours() : WorkingHours
+    public function workingHours(): WorkingHours
     {
         return $this->workingHours;
     }

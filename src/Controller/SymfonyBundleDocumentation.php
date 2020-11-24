@@ -14,9 +14,6 @@ final class SymfonyBundleDocumentation extends AbstractController
 {
     use CodeReflectionTrait;
 
-    /**
-     * @var ParameterBagInterface
-     */
     private ParameterBagInterface $parameterBag;
 
     public function __construct(ParameterBagInterface $parameterBag)
@@ -24,7 +21,7 @@ final class SymfonyBundleDocumentation extends AbstractController
         $this->parameterBag = $parameterBag;
     }
 
-    protected function parameterBag() : ParameterBagInterface
+    protected function parameterBag(): ParameterBagInterface
     {
         return $this->parameterBag;
     }
@@ -32,7 +29,7 @@ final class SymfonyBundleDocumentation extends AbstractController
     /**
      * @Route("/docs/symfony-bundle", name="docs_symfony_bundle")
      */
-    public function symfonyBundle() : Response
+    public function symfonyBundle(): Response
     {
         return $this->render('documentation/symfony_bundle.html.twig', [
             'activeSection' => 'symfony-bundle',
@@ -43,7 +40,7 @@ final class SymfonyBundleDocumentation extends AbstractController
     /**
      * @Route("/docs/symfony-bundle/{version}", name="docs_symfony_bundle_version")
      */
-    public function symfonyBundleVersion(string $version) : Response
+    public function symfonyBundleVersion(string $version): Response
     {
         return $this->render('documentation/symfony_bundle_version.html.twig', [
             'activeSection' => 'symfony-bundle',
@@ -55,7 +52,7 @@ final class SymfonyBundleDocumentation extends AbstractController
     /**
      * @Route("/docs/symfony-bundle/{version}/{classSlug}", name="docs_symfony_bundle_class")
      */
-    public function symfonyBundleClass(string $version, string $classSlug) : Response
+    public function symfonyBundleClass(string $version, string $classSlug): Response
     {
         foreach ($classes = $this->symfonyBundleClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
@@ -69,13 +66,13 @@ final class SymfonyBundleDocumentation extends AbstractController
             }
         }
 
-        throw $this->createNotFoundException("Class ". $classSlug . " does not exists");
+        throw $this->createNotFoundException('Class '.$classSlug.' does not exists');
     }
 
     /**
      * @Route("/docs/symfony-bundle/{version}/{classSlug}/method/{methodSlug}", name="docs_symfony_bundle_class_method")
      */
-    public function calendarTwigClassMethod(string $version, string $classSlug, string $methodSlug) : Response
+    public function calendarTwigClassMethod(string $version, string $classSlug, string $methodSlug): Response
     {
         foreach ($classes = $this->symfonyBundleClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
@@ -92,10 +89,10 @@ final class SymfonyBundleDocumentation extends AbstractController
                     }
                 }
 
-                throw $this->createNotFoundException("Class ". $classSlug . " method " . $methodSlug ." does not exists");
+                throw $this->createNotFoundException('Class '.$classSlug.' method '.$methodSlug.' does not exists');
             }
         }
 
-        throw $this->createNotFoundException("Class ". $classSlug . " does not exists");
+        throw $this->createNotFoundException('Class '.$classSlug.' does not exists');
     }
 }

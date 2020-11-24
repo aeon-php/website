@@ -11,5 +11,5 @@ use Aeon\Calendar\Gregorian\Day;
  */
 interface NonBusinessDay
 {
-    public function is(Day $day) : bool;
+    public function is(Day $day): bool;
 }

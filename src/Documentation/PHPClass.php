@@ -22,17 +22,17 @@ final class PHPClass
         $this->reflector = $reflector;
     }
 
-    public function reflectionClass() : ReflectionClass
+    public function reflectionClass(): ReflectionClass
     {
         return $this->reflectionClass;
     }
 
-    public function name() : string
+    public function name(): string
     {
         return $this->reflectionClass->getName();
     }
 
-    public function type() : string
+    public function type(): string
     {
         if ($this->reflectionClass->isInterface()) {
             return 'interface';
@@ -49,7 +49,7 @@ final class PHPClass
         return 'class';
     }
 
-    public function shortName() : string
+    public function shortName(): string
     {
         return $this->reflectionClass->getShortName();
     }
@@ -57,10 +57,10 @@ final class PHPClass
     /**
      * @return ClassMethod[]
      */
-    public function methods() : array
+    public function methods(): array
     {
         return \array_map(
-            function (ReflectionMethod $reflectionMethod) : ClassMethod {
+            function (ReflectionMethod $reflectionMethod): ClassMethod {
                 return new ClassMethod($this, $reflectionMethod, $this->reflector);
             },
             $this->reflectionClass->getMethods()
@@ -70,17 +70,17 @@ final class PHPClass
     /**
      * @return PHPClass[]
      */
-    public function interfaces() : array
+    public function interfaces(): array
     {
         return \array_map(
-            function (ReflectionClass $reflectionClass) : PHPClass {
+            function (ReflectionClass $reflectionClass): PHPClass {
                 return new PHPClass($reflectionClass, $this->reflector);
             },
             $this->reflectionClass()->getInterfaces()
         );
     }
 
-    public function parent() : ?PHPClass
+    public function parent(): ?PHPClass
     {
         if ($this->reflectionClass->getParentClass()) {
             return new PHPClass($this->reflectionClass->getParentClass(), $this->reflector);
@@ -89,12 +89,12 @@ final class PHPClass
         return null;
     }
 
-    public function isInternal() : bool
+    public function isInternal(): bool
     {
         return $this->reflectionClass->isInternal();
     }
 
-    public function docComment() : DocBlock
+    public function docComment(): DocBlock
     {
         return DocBlockFactory::createInstance()->create($this->reflectionClass->getDocComment());
     }

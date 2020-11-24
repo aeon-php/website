@@ -16,61 +16,61 @@ final class PHPCalculator implements Calculator
         $this->precision = $precision;
     }
 
-    public function precision() : int
+    public function precision(): int
     {
         return $this->precision;
     }
 
-    public function divide(string $value, string $divisor) : string
+    public function divide(string $value, string $divisor): string
     {
         return \number_format(\floatval($value) / \floatval($divisor), $this->precision, '.', '');
     }
 
-    public function modulo(string $value, string $divisor) : string
+    public function modulo(string $value, string $divisor): string
     {
         return \number_format(\fmod(\floatval($value), \floatval($divisor)), $this->precision, '.', '');
     }
 
-    public function multiply(string $value, string $multiplier) : string
+    public function multiply(string $value, string $multiplier): string
     {
         return \number_format(\floatval($value) * \floatval($multiplier), $this->precision, '.', '');
     }
 
-    public function add(string $value, string $nextValue) : string
+    public function add(string $value, string $nextValue): string
     {
         return \number_format(\floatval($value) + \floatval($nextValue), $this->precision, '.', '');
     }
 
-    public function sub(string $value, string $nextValue) : string
+    public function sub(string $value, string $nextValue): string
     {
         return \number_format(\floatval($value) - \floatval($nextValue), $this->precision, '.', '');
     }
 
-    public function isGreaterThan(string $value, string $nextValue) : bool
+    public function isGreaterThan(string $value, string $nextValue): bool
     {
         return \floatval(\number_format(\floatval($value), $this->precision, '.', '')) >
             \floatval(\number_format(\floatval($nextValue), $this->precision, '.', ''));
     }
 
-    public function isGreaterThanEq(string $value, string $nextValue) : bool
+    public function isGreaterThanEq(string $value, string $nextValue): bool
     {
         return \floatval(\number_format(\floatval($value), $this->precision, '.', '')) >=
             \floatval(\number_format(\floatval($nextValue), $this->precision, '.', ''));
     }
 
-    public function isLessThan(string $value, string $nextValue) : bool
+    public function isLessThan(string $value, string $nextValue): bool
     {
         return \floatval(\number_format(\floatval($value), $this->precision, '.', '')) <
             \floatval(\number_format(\floatval($nextValue), $this->precision, '.', ''));
     }
 
-    public function isLessThanEq(string $value, string $nextValue) : bool
+    public function isLessThanEq(string $value, string $nextValue): bool
     {
         return \floatval(\number_format(\floatval($value), $this->precision, '.', '')) <=
             \floatval(\number_format(\floatval($nextValue), $this->precision, '.', ''));
     }
 
-    public function isEqual(string $value, string $nextValue) : bool
+    public function isEqual(string $value, string $nextValue): bool
     {
         return \floatval(\number_format(\floatval($value), $this->precision, '.', '')) ==
             \floatval(\number_format(\floatval($nextValue), $this->precision, '.', ''));
