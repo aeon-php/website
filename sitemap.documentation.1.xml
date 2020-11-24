@@ -26,6 +26,14 @@
             <changefreq>weekly</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
+            <loc>https://aeon-php.org/docs/rate-limiter</loc>
+            <changefreq>weekly</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x</loc>
+            <changefreq>weekly</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
             <loc>https://aeon-php.org/docs/calendar-holidays</loc>
             <changefreq>weekly</changefreq>
             <priority>1.0</priority>                    </url>
@@ -6075,6 +6083,334 @@
             <priority>1.0</priority>                    </url>
             <url>
             <loc>https://aeon-php.org/docs/symfony-bundle/1.x/aeon-symfony-aeonbundle-dependencyinjection-aeonextension/method/isconfigenabled</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/ratelimiter</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/hits</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/algorithm-slidingwindowalgorithm</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/algorithm-leakybucketalgorithm</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/algorithm</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/storage-psrcachestorage</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/storage-memorystorage</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/storage-storageidnormalizer</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/hit</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/storage</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-runtimeexception</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-ratelimitexception</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/ratelimiter/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/ratelimiter/method/hit</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/ratelimiter/method/estimate</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/ratelimiter/method/capacity</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/ratelimiter/method/throttle</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/hits/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/hits/method/fromarray</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/hits/method/count</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/hits/method/oldest</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/hits/method/filterexpired</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/hits/method/add</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/hits/method/normalize</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/algorithm-slidingwindowalgorithm/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/algorithm-slidingwindowalgorithm/method/hit</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/algorithm-slidingwindowalgorithm/method/estimate</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/algorithm-slidingwindowalgorithm/method/capacity</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/algorithm-leakybucketalgorithm/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/algorithm-leakybucketalgorithm/method/hit</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/algorithm-leakybucketalgorithm/method/estimate</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/algorithm-leakybucketalgorithm/method/capacity</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/algorithm/method/hit</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/algorithm/method/estimate</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/algorithm/method/capacity</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/storage-psrcachestorage/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/storage-psrcachestorage/method/addhit</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/storage-psrcachestorage/method/all</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/storage-psrcachestorage/method/count</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/storage-psrcachestorage/method/normalize</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/storage-memorystorage/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/storage-memorystorage/method/addhit</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/storage-memorystorage/method/all</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/storage-memorystorage/method/count</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/storage-memorystorage/method/hits</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/storage-memorystorage/method/hasfor</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/storage-memorystorage/method/normalize</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/storage-storageidnormalizer/method/normalize</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/hit/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/hit/method/fromarray</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/hit/method/expired</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/hit/method/isolderthan</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/hit/method/ttlleft</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/hit/method/normalize</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/storage/method/addhit</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/storage/method/all</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/storage/method/count</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-runtimeexception/method/clone</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-runtimeexception/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-runtimeexception/method/getmessage</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-runtimeexception/method/getcode</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-runtimeexception/method/getfile</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-runtimeexception/method/getline</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-runtimeexception/method/gettrace</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-runtimeexception/method/getprevious</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-runtimeexception/method/gettraceasstring</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-runtimeexception/method/tostring</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-runtimeexception/method/wakeup</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-ratelimitexception/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-ratelimitexception/method/id</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-ratelimitexception/method/cooldown</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-ratelimitexception/method/clone</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-ratelimitexception/method/getmessage</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-ratelimitexception/method/getcode</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-ratelimitexception/method/getfile</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-ratelimitexception/method/getline</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-ratelimitexception/method/gettrace</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-ratelimitexception/method/getprevious</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-ratelimitexception/method/gettraceasstring</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-ratelimitexception/method/tostring</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/rate-limiter/1.x/exception-ratelimitexception/method/wakeup</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
     </urlset>

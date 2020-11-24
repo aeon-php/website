@@ -15,7 +15,7 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', '11');
+        gtag('config', 'UA-170080616-1');
     </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
@@ -258,51 +258,94 @@
                 <h3>Description</h3>
 
                 <p>
-                    Retry operations that might fail like for example http requests, with different
-                    delay modifiers.
+                    RateLimiter components makes possible to limit frequency of operations execution.
                 </p>
-
-                <pre><code class="language-php">&lt;?php
-
-use Aeon\Calendar\TimeUnit;
-use Aeon\Retry\Execution;
-use function Aeon\Retry\retry;
-
-$result = retry(function (Execution $execution) {
-    $random = \random_int(1, 3);
-
-    if ($random === 2) {
-        throw new \RuntimeException('exception');
-    }
-
-    return $random;
-}, 3, TimeUnit::seconds(3));</code></pre>
+                <p>
+                    Rate Limiter implements following limiting algorithms:
+                </p>
+                <ul>
+                    <li>
+                        <a href="/docs/rate-limiter/1.x/algorithm-leakybucketalgorithm">LeakyBucketAlgorithm</a>
+                    </li>
+                    <li>
+                        <a href="/docs/rate-limiter/1.x/algorithm-slidingwindowalgorithm">SlidingWindowAlgorithm</a>
+                    </li>
+                </ul>
 
                 <p>
-                    Object implementation that multiplies delays by retry number after each failure.
+                    Rate Limiter implements following types of storage
+                </p>
+                <ul>
+                    <li>MemoryStorage</li>
+                    <li>PSRCacheStorage</li>
+                </ul>
+
+                <p>
+                    It's worth to mention that PSRCacheStorage works perfectly fine with any caching library that
+                    implements <a href="https://www.php-fig.org/psr/psr-6/" target="_blank">PSR-6: Caching Interface</a>.
+                    Most of available PSR-6 implementations can be found at <a href="https://packagist.org/providers/psr/cache-implementation" target="_blank">packagist</a>.
+                </p>
+
+                <p>
+                    RateLimiter API is pretty much self-explanatory
                 </p>
 
                 <pre><code class="language-php">&lt;?php
 
-use Aeon\Calendar\System\SystemProcess;use Aeon\Calendar\TimeUnit;
-use Aeon\Retry\DelayModifier\RetryMultiplyDelay;use Aeon\Retry\Execution;
-use Aeon\Retry\Retry;
+namespace Aeon\RateLimiter;
 
-return (new Retry(
-        SystemProcess::current(),
-        5,
-        TimeUnit::milliseconds(100)
-    ))->modifyDelay(
-        new RetryMultiplyDelay()
-    )->execute(function (Execution $execution) {
-        $random = \random_int(1, 3);
+final class RateLimiter
+{
+    /**
+     * Record next hit, throws an extension where there are no available hits left according to the selected algorithm.
+     *
+     * @throws \Aeon\RateLimiter\Exception\RateLimitException
+     */
+    public function hit(string $id) : void;
 
-        if ($random === 2) {
-            throw new \RuntimeException('exception');
+    /**
+     * Estimate time required to the next hit. If current capacity is greater than 0, time will be 0.
+     */
+    public function estimate(string $id) : TimeUnit;
+
+    /**
+     * Returns current capacity according to the selected algorithm, when there are no available hits left, it will return 0.
+     * Use RateLimiter::estimate method to find out when next hit will be possible.
+     */
+    public function capacity(string $id) : int;
+
+    /**
+     * Initial available capacity before registering any hits or when all hits time out.
+     */
+    public function capacityInitial() : int;
+
+    /**
+     * Time required to fully reset to the total capacity.
+     */
+    public function resetIn(string $id) : TimeUnit;
+
+    /**
+     * Try to record next hit, in case of rate limit exception take the cooldown time and sleep current process.
+     */
+    public function throttle(string $id, Process $process) : void;
+}</code></pre>
+
+                <p>
+                    <code>RateLimitException</code> does not only tell you that the execution is forbidden, it also
+                    says how long you should wait.
+                </p>
+
+                <pre><code class="language-php">&lt;?php
+
+    public function throttle(string $id, Process $process) : void
+    {
+        try {
+            $this->algorithm->hit($id, $this->storage);
+        } catch (RateLimitException $rateLimitException) {
+            $process->sleep($rateLimitException->cooldown());
+            $this->algorithm->hit($id, $this->storage);
         }
-
-        return $random;
-    });</code></pre>
+    }</code></pre>
 
             </section>
         </article>
