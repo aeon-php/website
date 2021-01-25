@@ -22,21 +22,28 @@ final class CalendarExtension extends AbstractExtension
 {
     private Calendar $calendar;
 
+    private TimeZone $defaultTimeZone;
+
     private string $defaultDateTimeFormat;
 
     private string $defaultDayFormat;
 
     private string $defaultTimeFormat;
 
-    public function __construct(Calendar $calendar, string $defaultDateTimeFormat = 'Y-m-d H:i:s', string $defaultDayFormat = 'Y-m-d', string $defaultTimeFormat = 'H:i:s')
+    public function __construct(Calendar $calendar, string $defaultTimeZone = 'UTC', string $defaultDateTimeFormat = 'Y-m-d H:i:s', string $defaultDayFormat = 'Y-m-d', string $defaultTimeFormat = 'H:i:s')
     {
+        if (!TimeZone::isValid($defaultTimeZone)) {
+            throw new InvalidArgumentException($defaultTimeZone . ' is not valid timezone name.');
+        }
+
         $this->calendar = $calendar;
+        $this->defaultTimeZone = TimeZone::fromString($defaultTimeZone);
         $this->defaultDateTimeFormat = $defaultDateTimeFormat;
         $this->defaultDayFormat = $defaultDayFormat;
         $this->defaultTimeFormat = $defaultTimeFormat;
     }
 
-    public function getFilters(): array
+    public function getFilters() : array
     {
         return [
             new TwigFilter('aeon_datetime_format', [$this, 'aeon_datetime_format']),
@@ -56,7 +63,7 @@ final class CalendarExtension extends AbstractExtension
         ];
     }
 
-    public function getFunctions(): array
+    public function getFunctions() : array
     {
         return [
             new TwigFunction('aeon_now', [$this, 'aeon_now']),
@@ -71,10 +78,10 @@ final class CalendarExtension extends AbstractExtension
         ];
     }
 
-    public function aeon_datetime_format(DateTime $dateTime, string $format = null, string $timezone = null): string
+    public function aeon_datetime_format(DateTime $dateTime, string $format = null, string $timezone = null) : string
     {
         $tz = (\is_string($timezone) && TimeZone::isValid($timezone))
-            ? new TimeZone($timezone)
+            ? TimeZone::fromString($timezone)
             : null;
 
         $fmt = \is_string($format)
@@ -85,10 +92,10 @@ final class CalendarExtension extends AbstractExtension
             return $dateTime->toTimeZone($tz)->format($fmt);
         }
 
-        return $dateTime->format($fmt);
+        return $dateTime->toTimeZone($this->defaultTimeZone)->format($fmt);
     }
 
-    public function aeon_time_format(Time $time, string $format = null): string
+    public function aeon_time_format(Time $time, string $format = null) : string
     {
         $fmt = \is_string($format)
             ? $format
@@ -97,7 +104,7 @@ final class CalendarExtension extends AbstractExtension
         return $time->format($fmt);
     }
 
-    public function aeon_day_format(Day $day, string $format = null): string
+    public function aeon_day_format(Day $day, string $format = null) : string
     {
         $fmt = \is_string($format)
             ? $format
@@ -106,7 +113,7 @@ final class CalendarExtension extends AbstractExtension
         return $day->format($fmt);
     }
 
-    public function aeon_interval(string $interval): Interval
+    public function aeon_interval(string $interval) : Interval
     {
         switch (\strtolower($interval)) {
             case 'open':
@@ -121,85 +128,85 @@ final class CalendarExtension extends AbstractExtension
                 return Interval::leftOpen();
 
             default:
-                throw new InvalidArgumentException('Invalid interval type: '.$interval);
+                throw new InvalidArgumentException('Invalid interval type: ' . $interval);
         }
     }
 
-    public function aeon_in_seconds_precise(TimeUnit $timeUnit): string
+    public function aeon_in_seconds_precise(TimeUnit $timeUnit) : string
     {
         return $timeUnit->inSecondsPrecise();
     }
 
-    public function aeon_in_seconds(TimeUnit $timeUnit): int
+    public function aeon_in_seconds(TimeUnit $timeUnit) : int
     {
         return $timeUnit->inSeconds();
     }
 
-    public function aeon_second(int $seconds): TimeUnit
+    public function aeon_second(int $seconds) : TimeUnit
     {
         return TimeUnit::seconds($seconds);
     }
 
-    public function aeon_minute(int $minutes): TimeUnit
+    public function aeon_minute(int $minutes) : TimeUnit
     {
         return TimeUnit::minutes($minutes);
     }
 
-    public function aeon_hour(int $hours): TimeUnit
+    public function aeon_hour(int $hours) : TimeUnit
     {
         return TimeUnit::hours($hours);
     }
 
-    public function aeon_day(int $days): TimeUnit
+    public function aeon_day(int $days) : TimeUnit
     {
         return TimeUnit::days($days);
     }
 
-    public function aeon_now(string $timezone = null): DateTime
+    public function aeon_now(string $timezone = null) : DateTime
     {
         if (\is_string($timezone) && TimeZone::isValid($timezone)) {
-            return $this->calendar->now()->toTimeZone(new TimeZone($timezone));
+            return $this->calendar->now()->toTimeZone(TimeZone::fromString($timezone));
         }
 
         return $this->calendar->now();
     }
 
-    public function aeon_current_time(): Time
+    public function aeon_current_time() : Time
     {
         return $this->calendar->now()->time();
     }
 
-    public function aeon_current_day(): Day
+    public function aeon_current_day() : Day
     {
         return $this->calendar->currentDay();
     }
 
-    public function aeon_current_month(): Month
+    public function aeon_current_month() : Month
     {
         return $this->calendar->currentMonth();
     }
 
-    public function aeon_current_year(): Year
+    public function aeon_current_year() : Year
     {
         return $this->calendar->currentYear();
     }
 
-    public function aeon_interval_left_open(): Interval
+    public function aeon_interval_left_open() : Interval
     {
         return Interval::leftOpen();
     }
 
-    public function aeon_interval_right_open(): Interval
+    public function aeon_interval_right_open() : Interval
     {
         return Interval::rightOpen();
     }
 
-    public function aeon_interval_closed(): Interval
+    public function aeon_interval_closed() : Interval
     {
         return Interval::closed();
     }
 
-    public function aeon_interval_open(): Interval
+    public function aeon_interval_open() : Interval
     {
         return Interval::open();
     }

@@ -28,62 +28,74 @@ final class TimeOffset
     }
 
     /** @psalm-pure */
-    public static function UTC(): self
+    public static function UTC() : self
     {
         return new self(false, 0, 0);
     }
 
     /** @psalm-pure */
-    public static function fromString(string $offset): self
+    public static function fromString(string $offset) : self
     {
         if (!\preg_match(self::OFFSET_REGEXP, $offset, $matches)) {
             throw new InvalidArgumentException("\"{$offset}\" is not a valid UTC Offset.");
         }
 
-        return new self('-' === $matches[1], (int) $matches[2], (int) $matches[3]);
+        return new self($matches[1] === '-', (int) $matches[2], (int) $matches[3]);
     }
 
     /** @psalm-pure */
-    public static function isValid(string $offset): bool
+    public static function isValid(string $offset) : bool
     {
         return (bool) \preg_match(self::OFFSET_REGEXP, $offset, $matches);
     }
 
     /** @psalm-pure */
-    public static function fromTimeUnit(TimeUnit $timeUnit): self
+    public static function fromTimeUnit(TimeUnit $timeUnit) : self
     {
         return self::fromString(
             ($timeUnit->isNegative() ? '-' : '+')
-                .\str_pad((string) $timeUnit->inHoursAbs(), 2, '0', STR_PAD_LEFT)
-                .':'
-                .\str_pad((string) $timeUnit->inTimeMinutes(), 2, '0', STR_PAD_LEFT)
+                . \str_pad((string) $timeUnit->inHoursAbs(), 2, '0', STR_PAD_LEFT)
+                . ':'
+                . \str_pad((string) $timeUnit->inTimeMinutes(), 2, '0', STR_PAD_LEFT)
         );
     }
 
-    public function toString(): string
+    /**
+     * @return array{hours: int, minutes: int, negative: bool}
+     */
+    public function __serialize() : array
     {
-        return ($this->negative ? '-' : '+')
-            .\str_pad((string) $this->hours, 2, '0', STR_PAD_LEFT).':'.\str_pad((string) $this->minutes, 2, '0', STR_PAD_LEFT);
+        return [
+            'hours' => $this->hours,
+            'minutes' => $this->minutes,
+            'negative' => $this->negative,
+        ];
     }
 
-    public function toTimeUnit(): TimeUnit
+    public function toString() : string
+    {
+        return ($this->negative ? '-' : '+')
+            . \str_pad((string) $this->hours, 2, '0', STR_PAD_LEFT) . ':' . \str_pad((string) $this->minutes, 2, '0', STR_PAD_LEFT);
+    }
+
+    public function toTimeUnit() : TimeUnit
     {
         return $this->negative
             ? TimeUnit::minutes($this->minutes)->add(TimeUnit::hours($this->hours))->invert()
             : TimeUnit::minutes($this->minutes)->add(TimeUnit::hours($this->hours));
     }
 
-    public function toDateTimeZone(): \DateTimeZone
+    public function toDateTimeZone() : \DateTimeZone
     {
         return new \DateTimeZone($this->toString());
     }
 
-    public function isUTC(): bool
+    public function isUTC() : bool
     {
-        return 0 === $this->hours && 0 === $this->minutes;
+        return $this->hours === 0 && $this->minutes === 0;
     }
 
-    public function isEqual(self $timeOffset): bool
+    public function isEqual(self $timeOffset) : bool
     {
         return $this->negative === $timeOffset->negative
             && $this->hours === $timeOffset->hours

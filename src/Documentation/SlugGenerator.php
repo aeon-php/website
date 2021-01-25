@@ -37,8 +37,8 @@ final class SlugGenerator
             return \str_replace('\\', '-', \mb_strtolower(\ltrim(\str_replace('Aeon\\Calendar\\Gregorian\\BusinessHours', '', $className), '\\')));
         }
 
-        if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calendar\\System\\')) {
-            return \str_replace('\\', '-', \mb_strtolower(\ltrim(\str_replace('Aeon\\Calendar\\System', '', $className), '\\')));
+        if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Sleep')) {
+            return \str_replace('\\', '-', \mb_strtolower(\ltrim(\str_replace('Aeon\\Sleep', '', $className), '\\')));
         }
 
         if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Retry')) {

@@ -25,13 +25,13 @@ final class PSRCacheStorage implements Storage
         $this->calendar = $calendar;
     }
 
-    public function addHit(string $id, TimeUnit $ttl): void
+    public function addHit(string $id, TimeUnit $ttl) : void
     {
         $cacheItem = $this->pool->getItem($this->normalize($id));
-        /** @var string|null $hitsDataJson */
+        /** @var null|string $hitsDataJson */
         $hitsDataJson = $cacheItem->get();
 
-        if (null === $hitsDataJson) {
+        if ($hitsDataJson === null) {
             $hits = (new Hits(new Hit($id, $this->calendar->now(), $ttl)));
         } else {
             /** @var array<int, array{id: string, datetime: string, ttl: string}> $hitsData */
@@ -47,14 +47,14 @@ final class PSRCacheStorage implements Storage
         $this->pool->save($cacheItem);
     }
 
-    public function all(string $id): Hits
+    public function all(string $id) : Hits
     {
         $cacheItem = $this->pool->getItem($this->normalize($id));
 
-        /** @var string|null $hitsDataJson */
+        /** @var null|string $hitsDataJson */
         $hitsDataJson = $cacheItem->get();
 
-        if (null === $hitsDataJson) {
+        if ($hitsDataJson === null) {
             return new Hits();
         }
 
@@ -64,7 +64,7 @@ final class PSRCacheStorage implements Storage
         return Hits::fromArray($hitsData)->filterExpired($this->calendar);
     }
 
-    public function count(string $id): int
+    public function count(string $id) : int
     {
         return $this->all($this->normalize($id))->count();
     }

@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Aeon\Retry;
 
 use Aeon\Calendar\Exception\InvalidArgumentException;
-use Aeon\Calendar\System\Process;
 use Aeon\Calendar\TimeUnit;
 use Aeon\Retry\DelayModifier\ConstantDelay;
 use Aeon\Retry\Exception\RetryException;
+use Aeon\Sleep\Process;
 
 final class Retry
 {
@@ -48,18 +48,18 @@ final class Retry
         $this->onlyForExceptions = [];
     }
 
-    public function modifyDelay(DelayModifier $delayModifier): self
+    public function modifyDelay(DelayModifier $delayModifier) : self
     {
         $this->delayModifier = $delayModifier;
 
         return $this;
     }
 
-    public function onlyFor(string ...$exceptionClasses): self
+    public function onlyFor(string ...$exceptionClasses) : self
     {
         foreach ($exceptionClasses as $exceptionClass) {
             if (!\class_exists($exceptionClass)) {
-                throw new InvalidArgumentException('Class '.$exceptionClass.' does not exists.');
+                throw new InvalidArgumentException('Class ' . $exceptionClass . ' does not exists.');
             }
         }
 
@@ -84,7 +84,7 @@ final class Retry
          */
         $exceptions = [];
 
-        if (0 === $this->retries) {
+        if ($this->retries === 0) {
             try {
                 $lastReturn = $function($this->lastExecution = new Execution(0));
 
@@ -102,7 +102,7 @@ final class Retry
             }
         }
 
-        for ($retry = 0; $retry < $this->retries; ++$retry) {
+        for ($retry = 0; $retry < $this->retries; $retry++) {
             try {
                 $lastReturn = $function($this->lastExecution = new Execution($retry, $exceptions));
 
@@ -141,14 +141,14 @@ final class Retry
         throw new RetryException(\sprintf('Retry failed to execute function and return value in %d attempts', $this->retries));
     }
 
-    public function wait(): void
+    public function wait() : void
     {
         $this->process->sleep($this->delayModifier->modify($this->lastExecution()->retry(), $this->delay));
     }
 
-    public function lastExecution(): Execution
+    public function lastExecution() : Execution
     {
-        if (null === $this->lastExecution) {
+        if ($this->lastExecution === null) {
             throw new RetryException('Never executed');
         }
 

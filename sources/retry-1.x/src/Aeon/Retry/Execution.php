@@ -20,6 +20,7 @@ final class Execution
     private array $exceptions;
 
     /**
+     * @param int $retry
      * @param array<\Throwable> $exceptions
      * @psalm-suppress DocblockTypeContradiction
      */
@@ -37,32 +38,32 @@ final class Execution
         $this->exceptions = $exceptions;
     }
 
-    public function retry(): int
+    public function retry() : int
     {
         return $this->retry;
     }
 
-    public function terminate(\Throwable $terminationException): void
+    public function terminate(\Throwable $terminationException) : void
     {
         $this->terminationException = $terminationException;
     }
 
-    public function continue(): void
+    public function continue() : void
     {
         $this->continue = true;
     }
 
-    public function isContinued(): bool
+    public function isContinued() : bool
     {
         return $this->continue;
     }
 
-    public function isTerminated(): bool
+    public function isTerminated() : bool
     {
-        return null !== $this->terminationException;
+        return $this->terminationException !== null;
     }
 
-    public function terminationException(): ?\Throwable
+    public function terminationException() : ?\Throwable
     {
         return $this->terminationException;
     }
@@ -70,12 +71,12 @@ final class Execution
     /**
      * @return array<\Throwable>
      */
-    public function exceptions(): array
+    public function exceptions() : array
     {
         return $this->exceptions;
     }
 
-    public function lasException(): ?\Throwable
+    public function lasException() : ?\Throwable
     {
         return \count($this->exceptions) ? \end($this->exceptions) : null;
     }

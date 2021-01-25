@@ -27,7 +27,7 @@ final class MemoryStorage implements Storage
         $this->hits = [];
     }
 
-    public function addHit(string $id, TimeUnit $ttl): void
+    public function addHit(string $id, TimeUnit $ttl) : void
     {
         if (!$this->hasFor($id)) {
             $this->hits[$this->normalize($id)] = new Hits(new Hit($id, $this->calendar->now(), $ttl));
@@ -38,17 +38,17 @@ final class MemoryStorage implements Storage
         }
     }
 
-    public function all(string $id): Hits
+    public function all(string $id) : Hits
     {
         return $this->hits($id);
     }
 
-    public function count(string $id): int
+    public function count(string $id) : int
     {
         return $this->hits($id)->count();
     }
 
-    private function hits(string $id): Hits
+    private function hits(string $id) : Hits
     {
         if (!$this->hasFor($id)) {
             return new Hits();
@@ -57,7 +57,7 @@ final class MemoryStorage implements Storage
         return $this->hits[$this->normalize($id)]->filterExpired($this->calendar);
     }
 
-    private function hasFor(string $id): bool
+    private function hasFor(string $id) : bool
     {
         if (!\array_key_exists($this->normalize($id), $this->hits)) {
             return false;

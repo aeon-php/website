@@ -14,7 +14,7 @@ final class AeonDayType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getParent(): string
+    public function getParent() : string
     {
         return DateType::class;
     }
@@ -22,7 +22,7 @@ final class AeonDayType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix(): string
+    public function getBlockPrefix() : string
     {
         return 'aeon_day';
     }
@@ -30,7 +30,7 @@ final class AeonDayType extends AbstractType
     /**
      * @phpstan-ignore-next-line
      */
-    public function buildForm(FormBuilderInterface $builder, array $options): void
+    public function buildForm(FormBuilderInterface $builder, array $options) : void
     {
         parent::buildForm($builder, $options);
 

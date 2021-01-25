@@ -267,8 +267,14 @@
 (                            <span style="color: #693;">string</span>
         <span style="color: #369;">$id</span>
     
+        ,                             <span style="color: #693;">int</span>
+        <span style="color: #369;">$limit</span>
+    
         ,                                         <a href="/docs/calendar/1.x/timeunit" style="color: #369; border-bottom: 1px solid;">TimeUnit</a>
-                <span style="color: #369;">$cooldown</span>
+                <span style="color: #369;">$retryIn</span>
+    
+        ,                                         <a href="/docs/calendar/1.x/timeunit" style="color: #369; border-bottom: 1px solid;">TimeUnit</a>
+                <span style="color: #369;">$reset</span>
     
         ,             <span style="color: #737373;">[</span>    ?                        <span style="color: #737373; border-bottom: 1px solid;">\Throwable</span>
                 <span style="color: #369;">$previous</span>
@@ -283,7 +289,19 @@
 <span>:</span>             string
     </div>
                                             <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
-<a href="/docs/rate-limiter/1.x/exception-ratelimitexception/method/cooldown" style="color:#369; border-bottom: 1px solid;">cooldown</a>
+<a href="/docs/rate-limiter/1.x/exception-ratelimitexception/method/limit" style="color:#369; border-bottom: 1px solid;">limit</a>
+(    <span style="color: #737373;">void</span>
+)
+<span>:</span>             int
+    </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/rate-limiter/1.x/exception-ratelimitexception/method/retryin" style="color:#369; border-bottom: 1px solid;">retryIn</a>
+(    <span style="color: #737373;">void</span>
+)
+<span>:</span>                         <a href="/docs/calendar/1.x/timeunit" style="color:#369; border-bottom: 1px solid;">TimeUnit</a>
+            </div>
+                                            <div style="padding-left: 2rem; margin-bottom:0.5rem;"><span style="color: #936;">public</span>
+<a href="/docs/rate-limiter/1.x/exception-ratelimitexception/method/reset" style="color:#369; border-bottom: 1px solid;">reset</a>
 (    <span style="color: #737373;">void</span>
 )
 <span>:</span>                         <a href="/docs/calendar/1.x/timeunit" style="color:#369; border-bottom: 1px solid;">TimeUnit</a>
@@ -358,7 +376,9 @@
                 <ul>
                                             <li><a style="color: #369;" href="/docs/rate-limiter/1.x/exception-ratelimitexception/method/construct">RateLimitException::__construct</a></li>
                                             <li><a style="color: #369;" href="/docs/rate-limiter/1.x/exception-ratelimitexception/method/id">RateLimitException::id</a></li>
-                                            <li><a style="color: #369;" href="/docs/rate-limiter/1.x/exception-ratelimitexception/method/cooldown">RateLimitException::cooldown</a></li>
+                                            <li><a style="color: #369;" href="/docs/rate-limiter/1.x/exception-ratelimitexception/method/limit">RateLimitException::limit</a></li>
+                                            <li><a style="color: #369;" href="/docs/rate-limiter/1.x/exception-ratelimitexception/method/retryin">RateLimitException::retryIn</a></li>
+                                            <li><a style="color: #369;" href="/docs/rate-limiter/1.x/exception-ratelimitexception/method/reset">RateLimitException::reset</a></li>
                                             <li><a style="color: #369;" href="/docs/rate-limiter/1.x/exception-ratelimitexception/method/clone">RateLimitException::__clone</a></li>
                                             <li><a style="color: #369;" href="/docs/rate-limiter/1.x/exception-ratelimitexception/method/getmessage">RateLimitException::getMessage</a></li>
                                             <li><a style="color: #369;" href="/docs/rate-limiter/1.x/exception-ratelimitexception/method/getcode">RateLimitException::getCode</a></li>

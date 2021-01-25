@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
+use function Symfony\Component\DependencyInjection\Loader\Configurator\ref;
 use Aeon\Symfony\AeonBundle\Validator\Constraints\HolidayValidator;
 use Aeon\Symfony\AeonBundle\Validator\Constraints\NotHolidayValidator;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use function Symfony\Component\DependencyInjection\Loader\Configurator\ref;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
+return static function (ContainerConfigurator $containerConfigurator) : void {
     $services = $containerConfigurator->services();
 
     $services->set('calendar.holidays.validator.not_holiday', NotHolidayValidator::class)

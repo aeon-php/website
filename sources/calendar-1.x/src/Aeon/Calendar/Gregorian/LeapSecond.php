@@ -26,12 +26,23 @@ final class LeapSecond
         $this->offsetTAI = $offsetTAI;
     }
 
-    public function dateTime(): DateTime
+    /**
+     * @return array{dateTime: DateTime, offsetTAI: TimeUnit}
+     */
+    public function __serialize() : array
+    {
+        return [
+            'dateTime' => $this->dateTime,
+            'offsetTAI' => $this->offsetTAI,
+        ];
+    }
+
+    public function dateTime() : DateTime
     {
         return $this->dateTime;
     }
 
-    public function offsetTAI(): TimeUnit
+    public function offsetTAI() : TimeUnit
     {
         return $this->offsetTAI;
     }

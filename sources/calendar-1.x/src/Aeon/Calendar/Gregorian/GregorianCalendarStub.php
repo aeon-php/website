@@ -10,50 +10,66 @@ namespace Aeon\Calendar\Gregorian;
  */
 final class GregorianCalendarStub implements Calendar
 {
-    private ?\DateTimeImmutable $currentDate;
+    private TimeZone $timeZone;
 
-    public function __construct(?\DateTimeImmutable $currentDate = null)
+    private ?DateTime $currentDate;
+
+    public function __construct(TimeZone $timeZone)
     {
-        $this->currentDate = $currentDate;
+        $this->timeZone = $timeZone;
+        $this->currentDate = null;
     }
 
-    public function timeZone(): TimeZone
+    /**
+     * @psalm-pure
+     */
+    public static function UTC() : self
     {
-        $tz = $this->now()->timeZone();
-
-        return $tz ? $tz : TimeZone::UTC();
+        return new self(TimeZone::UTC());
     }
 
-    public function currentYear(): Year
+    /**
+     * @psalm-pure
+     * @psalm-suppress ImpureFunctionCall
+     */
+    public static function systemDefault() : self
+    {
+        return new self(TimeZone::fromString(\date_default_timezone_get()));
+    }
+
+    public function timeZone() : TimeZone
+    {
+        return $this->timeZone;
+    }
+
+    public function currentYear() : Year
     {
         return Year::fromDateTime($this->now()->toDateTimeImmutable());
     }
 
-    public function currentMonth(): Month
+    public function currentMonth() : Month
     {
         return Month::fromDateTime($this->now()->toDateTimeImmutable());
     }
 
-    public function currentDay(): Day
+    public function currentDay() : Day
     {
         return Day::fromDateTime($this->now()->toDateTimeImmutable());
     }
 
-    public function now(): DateTime
+    public function now() : DateTime
     {
-        return DateTime::fromDateTime(
-            $this->currentDate
-                ? $this->currentDate
-                : new \DateTimeImmutable('now', new \DateTimeZone('UTC'))
-        );
+        return $this->currentDate
+            ? $this->currentDate
+            : DateTime::fromDateTime(new \DateTimeImmutable('now', $this->timeZone->toDateTimeZone()));
     }
 
-    public function yesterday(): DateTime
+    public function yesterday() : DateTime
     {
         return $this->now()->yesterday();
     }
 
-    public function tomorrow(): DateTime
+    public function tomorrow() : DateTime
     {
         return $this->now()->tomorrow();
     }
@@ -61,8 +77,8 @@ final class GregorianCalendarStub implements Calendar
     /**
      * @psalm-suppress InaccessibleProperty
      */
-    public function setNow(DateTime $dateTime): void
+    public function setNow(DateTime $dateTime) : void
     {
-        $this->currentDate = $dateTime->toDateTimeImmutable();
+        $this->currentDate = $dateTime;
     }
 }

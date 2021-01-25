@@ -14,7 +14,7 @@ final class AeonTimeType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getParent(): string
+    public function getParent() : string
     {
         return TimeType::class;
     }
@@ -22,7 +22,7 @@ final class AeonTimeType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix(): string
+    public function getBlockPrefix() : string
     {
         return 'aeon_time';
     }
@@ -30,7 +30,7 @@ final class AeonTimeType extends AbstractType
     /**
      * @phpstan-ignore-next-line
      */
-    public function buildForm(FormBuilderInterface $builder, array $options): void
+    public function buildForm(FormBuilderInterface $builder, array $options) : void
     {
         parent::buildForm($builder, $options);
 

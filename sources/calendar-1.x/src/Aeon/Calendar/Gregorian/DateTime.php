@@ -6,7 +6,6 @@ namespace Aeon\Calendar\Gregorian;
 
 use Aeon\Calendar\Exception\Exception;
 use Aeon\Calendar\Exception\InvalidArgumentException;
-use Aeon\Calendar\Gregorian\TimeZone\TimeOffset;
 use Aeon\Calendar\TimeUnit;
 use Aeon\Calendar\Unit;
 
@@ -19,54 +18,19 @@ final class DateTime
 
     private Time $time;
 
-    private ?TimeZone $timeZone;
+    private TimeZone $timeZone;
 
-    private TimeOffset $timeOffset;
-
-    private \DateTimeImmutable $dateTimeImmutable;
-
-    private int $unixTimestamp;
-
-    /**
-     * TimeZone is optional, if not provided it will be set to UTC.
-     * DateTime always has TimeOffset but when not provided it's calculated from offset and when
-     * offset is not provided is set to UTC.
-     */
-    public function __construct(Day $day, Time $time, ?TimeZone $timeZone = null, ?TimeOffset $timeOffset = null)
+    public function __construct(Day $day, Time $time, TimeZone $timeZone)
     {
         $this->day = $day;
         $this->time = $time;
         $this->timeZone = $timeZone;
-
-        $this->dateTimeImmutable = new \DateTimeImmutable(
-            \sprintf(
-                '%d-%02d-%02d %02d:%02d:%02d.%06d%s',
-                $this->day->year()->number(),
-                $this->day->month()->number(),
-                $this->day->number(),
-                $this->time->hour(),
-                $this->time->minute(),
-                $this->time->second(),
-                $this->time->microsecond(),
-                (null === $this->timeZone && null !== $timeOffset) ? $timeOffset->toString() : ''
-            ),
-            (null === $this->timeZone) ? null : $this->timeZone->toDateTimeZone()
-        );
-        $this->unixTimestamp = $this->dateTimeImmutable->getTimestamp();
-
-        $this->timeOffset = null === $timeOffset
-            ? TimeOffset::fromTimeUnit(TimeUnit::seconds($this->dateTimeImmutable->getOffset()))
-            : $timeOffset;
-
-        if (null !== $this->timeZone) {
-            $this->timeOffset = $this->timeZone->timeOffset($this);
-        }
     }
 
     /**
      * @psalm-pure
      */
-    public static function create(int $year, int $month, int $day, int $hour, int $minute, int $second, int $microsecond = 0, string $timezone = 'UTC'): self
+    public static function create(int $year, int $month, int $day, int $hour, int $minute, int $second, int $microsecond = 0, string $timezone = 'UTC') : self
     {
         return new self(
             new Day(
@@ -77,7 +41,7 @@ final class DateTime
                 $day
             ),
             new Time($hour, $minute, $second, $microsecond),
-            new TimeZone($timezone)
+            TimeZone::fromString($timezone)
         );
     }
 
@@ -85,155 +49,224 @@ final class DateTime
      * @psalm-pure
      * @psalm-suppress ImpureMethodCall
      */
-    public static function fromDateTime(\DateTimeInterface $dateTime): self
+    public static function fromDateTime(\DateTimeInterface $dateTime) : self
     {
         try {
             $tz = TimeZone::fromDateTimeZone($dateTime->getTimezone());
         } catch (InvalidArgumentException $e) {
-            $tz = null;
+            $tz = TimeZone::UTC();
         }
 
         return new self(
             Day::fromDateTime($dateTime),
             Time::fromDateTime($dateTime),
-            $tz,
-            TimeOffset::fromTimeUnit(TimeUnit::seconds($dateTime->getOffset()))
+            $tz
         );
     }
 
     /**
      * @psalm-pure
+     * @psalm-suppress ImpureFunctionCall
      */
-    public static function fromString(string $date): self
+    public static function fromString(string $date) : self
     {
-        return self::fromDateTime(new \DateTimeImmutable($date));
+        $dateNormalized = \trim(\strtolower($date));
+        $dateTimeParts = \date_parse($date);
+
+        if (!\is_array($dateTimeParts)) {
+            throw new InvalidArgumentException("Value \"{$date}\" is not valid date time format.");
+        }
+
+        if ($dateTimeParts['error_count'] > 0) {
+            throw new InvalidArgumentException("Value \"{$date}\" is not valid date time format.");
+        }
+
+        $constructor = function (string $date) : self {
+            $currentPHPTimeZone = \date_default_timezone_get();
+            \date_default_timezone_set('UTC');
+            $dateTime = self::fromDateTime(new \DateTimeImmutable($date));
+            \date_default_timezone_set($currentPHPTimeZone);
+
+            return $dateTime;
+        };
+
+        if (isset($dateTimeParts['relative'])) {
+            return $constructor($date);
+        }
+
+        foreach (['midnight', 'noon', 'now', 'today'] as $relativeFormat) {
+            if (\substr($dateNormalized, 0, \strlen($relativeFormat)) === $relativeFormat) {
+                return $constructor($date);
+            }
+        }
+
+        if (!\is_int($dateTimeParts['year']) || !\is_int($dateTimeParts['month']) || !\is_int($dateTimeParts['day'])) {
+            throw new InvalidArgumentException("Value \"{$date}\" is not valid date time format.");
+        }
+
+        return $constructor($date);
     }
 
     /**
      * @psalm-pure
+     * @psalm-suppress ImpureFunctionCall
      */
-    public static function fromTimestampUnix(int $timestamp): self
+    public static function fromTimestampUnix(int $timestamp) : self
     {
-        return self::fromDateTime((new \DateTimeImmutable())->setTimestamp($timestamp));
+        $currentPHPTimeZone = \date_default_timezone_get();
+
+        \date_default_timezone_set('UTC');
+
+        $dateTime = self::fromDateTime((new \DateTimeImmutable)->setTimestamp($timestamp));
+
+        \date_default_timezone_set($currentPHPTimeZone);
+
+        return $dateTime;
     }
 
-    public function __toString(): string
+    public function __toString() : string
     {
         return $this->toISO8601();
     }
 
-    public function year(): Year
+    /**
+     * @return array{datetime: string, day: Day, time: Time, timeZone: TimeZone}
+     */
+    public function __debugInfo() : array
+    {
+        return [
+            'datetime' => $this->toISO8601(),
+            'day' => $this->day,
+            'time' => $this->time,
+            'timeZone' => $this->timeZone,
+        ];
+    }
+
+    /**
+     * @return array{day: Day, time: Time, timeZone: TimeZone}
+     */
+    public function __serialize() : array
+    {
+        return [
+            'day' => $this->day,
+            'time' => $this->time,
+            'timeZone' => $this->timeZone,
+        ];
+    }
+
+    public function year() : Year
     {
         return $this->month()->year();
     }
 
-    public function month(): Month
+    public function month() : Month
     {
         return $this->day()->month();
     }
 
-    public function day(): Day
+    public function day() : Day
     {
         return $this->day;
     }
 
-    public function time(): Time
+    public function time() : Time
     {
         return $this->time;
     }
 
-    public function setTime(Time $time): self
+    public function setTime(Time $time) : self
     {
         return new self(
             $this->day(),
             $time,
-            $this->timeZone(),
-            $this->timeOffset()
+            $this->timeZone()
         );
     }
 
-    public function setTimeIn(Time $time, TimeZone $timeZone): self
+    public function setTimeIn(Time $time, TimeZone $timeZone) : self
     {
         return (new self(
             $this->day(),
             $time,
-            $this->timeZone(),
-            $this->timeOffset()
+            $this->timeZone()
         ))->toTimeZone($timeZone)
             ->setTime($time);
     }
 
-    public function setDay(Day $day): self
+    public function setDay(Day $day) : self
     {
         return new self(
             $day,
             $this->time(),
-            $this->timeZone(),
-            $this->timeOffset()
+            $this->timeZone()
         );
     }
 
-    public function toDateTimeImmutable(): \DateTimeImmutable
+    public function toDateTimeImmutable() : \DateTimeImmutable
     {
-        return $this->dateTimeImmutable;
+        return new \DateTimeImmutable(
+            \sprintf(
+                '%d-%02d-%02d %02d:%02d:%02d.%06d',
+                $this->day->year()->number(),
+                $this->day->month()->number(),
+                $this->day->number(),
+                $this->time->hour(),
+                $this->time->minute(),
+                $this->time->second(),
+                $this->time->microsecond(),
+            ),
+            $this->timeZone->toDateTimeZone()
+        );
     }
 
-    public function toAtomicTime(): self
+    public function toAtomicTime() : self
     {
         return $this->add(LeapSeconds::load()->until($this)->offsetTAI());
     }
 
-    public function toGPSTime(): self
+    public function toGPSTime() : self
     {
         return $this->add(LeapSeconds::load()
             ->since(TimeEpoch::GPS()->date())
             ->until($this)->count());
     }
 
-    public function format(string $format): string
+    public function format(string $format) : string
     {
         return $this->toDateTimeImmutable()->format($format);
     }
 
-    public function timeZone(): ?TimeZone
+    public function timeZone() : TimeZone
     {
         return $this->timeZone;
     }
 
-    public function timeOffset(): TimeOffset
-    {
-        return $this->timeOffset;
-    }
-
-    /**
-     * @psalm-pure
-     */
-    public function toTimeZone(TimeZone $dateTimeZone): self
+    public function toTimeZone(TimeZone $dateTimeZone) : self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->setTimezone($dateTimeZone->toDateTimeZone()));
     }
 
-    public function toISO8601(bool $extended = true): string
+    public function toISO8601(bool $extended = true) : string
     {
         return $extended
             ? $this->toDateTimeImmutable()->format('Y-m-d\TH:i:sP')
             : $this->toDateTimeImmutable()->format('Ymd\THisO');
     }
 
-    public function isDaylightSaving(): bool
+    public function isDaylightSaving() : bool
     {
         return (bool) $this->toDateTimeImmutable()->format('I');
     }
 
-    public function isDaylight(): bool
+    public function isDaylight() : bool
     {
         return !$this->isDaylightSaving();
     }
 
-    public function timestamp(TimeEpoch $timeEpoch): TimeUnit
+    public function timestamp(TimeEpoch $timeEpoch) : TimeUnit
     {
         if ($this->isBefore($timeEpoch->date())) {
-            throw new Exception('Given epoch started at '.$timeEpoch->date()->toISO8601().' which was after '.$this->toISO8601());
+            throw new Exception('Given epoch started at ' . $timeEpoch->date()->toISO8601() . ' which was after ' . $this->toISO8601());
         }
 
         switch ($timeEpoch->type()) {
@@ -261,252 +294,251 @@ final class DateTime
      * Number of seconds elapsed since Unix epoch started at 1970-01-01 (1970-01-01T00:00:00Z)
      * Not including leap seconds.
      */
-    public function timestampUNIX(): TimeUnit
+    public function timestampUNIX() : TimeUnit
     {
-        $unixTimestamp = $this->unixTimestamp;
+        $timestamp = $this->toDateTimeImmutable()->getTimestamp();
 
-        return $unixTimestamp >= 0
-            ? TimeUnit::positive($unixTimestamp, $this->time->microsecond())
-            : TimeUnit::negative(\abs($unixTimestamp), $this->time->microsecond());
+        if ($timestamp >= 0) {
+            return TimeUnit::positive($timestamp, $this->time->microsecond());
+        }
+
+        return TimeUnit::negative(\abs($timestamp), $this->time->microsecond());
     }
 
-    public function modify(string $modify): self
+    public function modify(string $modify) : self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->modify($modify));
     }
 
-    public function addHour(): self
+    public function addHour() : self
     {
         return $this->modify('+1 hour');
     }
 
-    public function subHour(): self
+    public function subHour() : self
     {
         return $this->modify('-1 hour');
     }
 
-    public function addHours(int $hours): self
+    public function addHours(int $hours) : self
     {
         return $this->modify(\sprintf('+%d hour', $hours));
     }
 
-    public function subHours(int $hours): self
+    public function subHours(int $hours) : self
     {
         return $this->modify(\sprintf('-%d hour', $hours));
     }
 
-    public function addMinute(): self
+    public function addMinute() : self
     {
         return $this->modify('+1 minute');
     }
 
-    public function subMinute(): self
+    public function subMinute() : self
     {
         return $this->modify('-1 minute');
     }
 
-    public function addMinutes(int $minutes): self
+    public function addMinutes(int $minutes) : self
     {
         return $this->modify(\sprintf('+%d minute', $minutes));
     }
 
-    public function subMinutes(int $minutes): self
+    public function subMinutes(int $minutes) : self
     {
         return $this->modify(\sprintf('-%d minute', $minutes));
     }
 
-    public function addSecond(): self
+    public function addSecond() : self
     {
         return $this->modify('+1 second');
     }
 
-    public function subSecond(): self
+    public function subSecond() : self
     {
         return $this->modify('-1 second');
     }
 
-    public function addSeconds(int $seconds): self
+    public function addSeconds(int $seconds) : self
     {
         return $this->modify(\sprintf('+%d second', $seconds));
     }
 
-    public function subSeconds(int $seconds): self
+    public function subSeconds(int $seconds) : self
     {
         return $this->modify(\sprintf('-%d second', $seconds));
     }
 
-    public function addDay(): self
+    public function addDay() : self
     {
         return $this->modify('+1 day');
     }
 
-    public function subDay(): self
+    public function subDay() : self
     {
         return $this->modify('-1 day');
     }
 
-    public function addDays(int $days): self
+    public function addDays(int $days) : self
     {
         return $this->modify(\sprintf('+%d day', $days));
     }
 
-    public function subDays(int $days): self
+    public function subDays(int $days) : self
     {
         return $this->modify(\sprintf('-%d day', $days));
     }
 
-    public function addMonth(): self
+    public function addMonth() : self
     {
         return $this->modify('+1 month');
     }
 
-    public function subMonth(): self
+    public function subMonth() : self
     {
         return $this->modify('-1 month');
     }
 
-    public function addMonths(int $months): self
+    public function addMonths(int $months) : self
     {
         return $this->modify(\sprintf('+%d months', $months));
     }
 
-    public function subMonths(int $months): self
+    public function subMonths(int $months) : self
     {
         return $this->modify(\sprintf('-%d months', $months));
     }
 
-    public function addYear(): self
+    public function addYear() : self
     {
         return $this->modify('+1 year');
     }
 
-    public function subYear(): self
+    public function subYear() : self
     {
         return $this->modify('-1 year');
     }
 
-    public function addYears(int $years): self
+    public function addYears(int $years) : self
     {
         return $this->modify(\sprintf('+%d years', $years));
     }
 
-    public function subYears(int $years): self
+    public function subYears(int $years) : self
     {
         return $this->modify(\sprintf('-%d years', $years));
     }
 
-    public function midnight(): self
+    public function midnight() : self
     {
         return new self(
             $this->day(),
             new Time(0, 0, 0, 0),
-            $this->timeZone(),
-            $this->timeOffset()
+            $this->timeZone()
         );
     }
 
-    public function noon(): self
+    public function noon() : self
     {
         return new self(
             $this->day(),
             new Time(12, 0, 0, 0),
-            $this->timeZone(),
-            $this->timeOffset()
+            $this->timeZone()
         );
     }
 
-    public function endOfDay(): self
+    public function endOfDay() : self
     {
         return new self(
             $this->day(),
             new Time(23, 59, 59, 999999),
-            $this->timeZone(),
-            $this->timeOffset()
+            $this->timeZone()
         );
     }
 
-    public function yesterday(): self
+    public function yesterday() : self
     {
         return $this->sub(TimeUnit::day())->midnight();
     }
 
-    public function tomorrow(): self
+    public function tomorrow() : self
     {
         return $this->add(TimeUnit::day())->midnight();
     }
 
-    public function add(Unit $timeUnit): self
+    public function add(Unit $timeUnit) : self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->add($timeUnit->toDateInterval()));
     }
 
-    public function sub(Unit $timeUnit): self
+    public function sub(Unit $timeUnit) : self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->sub($timeUnit->toDateInterval()));
     }
 
-    public function isEqual(self $dateTime): bool
+    public function isEqual(self $dateTime) : bool
     {
         return $this->toDateTimeImmutable() == $dateTime->toDateTimeImmutable();
     }
 
-    public function isAfter(self $dateTime): bool
+    public function isAfter(self $dateTime) : bool
     {
         return $this->toDateTimeImmutable() > $dateTime->toDateTimeImmutable();
     }
 
-    public function isAfterOrEqual(self $dateTime): bool
+    public function isAfterOrEqual(self $dateTime) : bool
     {
         return $this->toDateTimeImmutable() >= $dateTime->toDateTimeImmutable();
     }
 
-    public function isBeforeOrEqual(self $dateTime): bool
+    public function isBeforeOrEqual(self $dateTime) : bool
     {
         return $this->toDateTimeImmutable() <= $dateTime->toDateTimeImmutable();
     }
 
-    public function isBefore(self $dateTime): bool
+    public function isBefore(self $dateTime) : bool
     {
         return $this->toDateTimeImmutable() < $dateTime->toDateTimeImmutable();
     }
 
-    public function until(self $dateTime): TimePeriod
+    public function until(self $dateTime) : TimePeriod
     {
         return new TimePeriod($this, $dateTime);
     }
 
-    public function since(self $dateTime): TimePeriod
+    public function since(self $dateTime) : TimePeriod
     {
         return new TimePeriod($dateTime, $this);
     }
 
-    public function distance(self $dateTime): TimeUnit
+    public function distance(self $dateTime) : TimeUnit
     {
         return $this->until($dateTime)->distance();
     }
 
-    public function distanceSince(self $dateTime): TimeUnit
+    public function distanceSince(self $dateTime) : TimeUnit
     {
         return $this->since($dateTime)->distance();
     }
 
-    public function distanceUntil(self $dateTime): TimeUnit
+    public function distanceUntil(self $dateTime) : TimeUnit
     {
         return $this->until($dateTime)->distance();
     }
 
-    public function iterate(self $pointInTime, TimeUnit $by): TimePeriods
+    public function iterate(self $pointInTime, TimeUnit $by) : TimePeriods
     {
         return $pointInTime->isBefore($this)
             ? $this->since($pointInTime)->iterateBackward($by, Interval::closed())
             : $this->until($pointInTime)->iterate($by, Interval::closed());
     }
 
-    public function isAmbiguous(): bool
+    public function isAmbiguous() : bool
     {
         $tz = $this->timeZone();
 
-        if (null === $tz || $tz->timeOffset($this)->isUTC()) {
+        if ($tz->timeOffset($this)->isUTC()) {
             return false;
         }
 
@@ -518,18 +550,18 @@ final class DateTime
             $this->timestampUNIX()->add(TimeUnit::hours(1))->inSeconds(),
         );
 
-        if (1 === \count($transitions)) {
+        if (\count($transitions) === 1) {
             return false;
         }
 
-        if (3600 === $transitions[1]['offset'] - $transitions[0]['offset']) {
+        if ($transitions[1]['offset'] - $transitions[0]['offset'] === 3600) {
             return false;
         }
 
         return true;
     }
 
-    public function quarter(): Quarter
+    public function quarter() : Quarter
     {
         return $this->year()->quarter((int) \ceil($this->month()->number() / 3));
     }

@@ -55,7 +55,7 @@ final class PHPDocsExtension extends AbstractExtension
             return $this->router->generate('docs_rate_limiter_class', ['classSlug' => SlugGenerator::forClass($className), 'version' => $version]);
         }
 
-        if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Calendar\\System')) {
+        if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Sleep')) {
             return $this->router->generate('docs_sleep_class', ['classSlug' => SlugGenerator::forClass($className), 'version' => $version]);
         }
 

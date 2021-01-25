@@ -23,9 +23,9 @@ final class AeonTimeToDateTimeTransformer implements DataTransformerInterface
         return $value;
     }
 
-    public function reverseTransform($value): ?Time
+    public function reverseTransform($value) : ?Time
     {
-        if (null === $value) {
+        if ($value === null) {
             return null;
         }
 

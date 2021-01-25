@@ -30,12 +30,12 @@ final class DayValue
     /**
      * @psalm-pure
      */
-    public static function createEmpty(Day $day): self
+    public static function createEmpty(Day $day) : self
     {
         return new self($day, null);
     }
 
-    public function day(): Day
+    public function day() : Day
     {
         return $this->day;
     }

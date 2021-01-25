@@ -28,16 +28,26 @@ final class LeakyBucketAlgorithm implements Algorithm
         $this->leakTime = $leakTime;
     }
 
+    public function capacityInitial() : int
+    {
+        return $this->bucketSize;
+    }
+
     /**
      * @psalm-suppress PossiblyNullReference
      */
-    public function hit(string $id, Storage $storage): void
+    public function hit(string $id, Storage $storage) : void
     {
         $hits = $storage->all($id);
 
         if ($hits->count() >= $this->bucketSize) {
-            /* @phpstan-ignore-next-line */
-            throw new RateLimitException($id, $hits->oldest()->ttlLeft($this->calendar));
+            throw new RateLimitException(
+                $id,
+                $this->capacityInitial(),
+                /** @phpstan-ignore-next-line */
+                $hits->oldest()->ttlLeft($this->calendar),
+                $this->resetIn($id, $storage)
+            );
         }
 
         $ttl = TimeUnit::seconds((int) (\floor($hits->count() / $this->leakSize) * $this->leakTime->inSeconds() + $this->leakTime->inSeconds()));
@@ -48,22 +58,34 @@ final class LeakyBucketAlgorithm implements Algorithm
     /**
      * @psalm-suppress PossiblyNullReference
      */
-    public function estimate(string $id, Storage $storage): TimeUnit
+    public function estimate(string $id, Storage $storage) : TimeUnit
     {
         $hits = $storage->all($id);
 
         if ($hits->count() >= $this->bucketSize) {
-            /* @phpstan-ignore-next-line */
+            /** @phpstan-ignore-next-line */
             return $hits->oldest()->ttlLeft($this->calendar);
         }
 
         return TimeUnit::seconds(0);
     }
 
-    public function capacity(string $id, Storage $storage): int
+    public function capacity(string $id, Storage $storage) : int
     {
         $hits = $storage->all($id);
 
         return $this->bucketSize - $hits->count();
+    }
+
+    /**
+     * @psalm-suppress InvalidNullableReturnType
+     * @psalm-suppress NullableReturnStatement
+     */
+    public function resetIn(string $id, Storage $storage) : TimeUnit
+    {
+        $hits = $storage->all($id);
+
+        /** @phpstan-ignore-next-line */
+        return $hits->count() ? $hits->longestTTL($this->calendar) : TimeUnit::seconds(0);
     }
 }

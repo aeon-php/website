@@ -18,12 +18,12 @@ final class YearMonths implements \Countable
         $this->year = $year;
     }
 
-    public function count(): int
+    public function count() : int
     {
         return $this->year->numberOfMonths();
     }
 
-    public function byNumber(int $number): Month
+    public function byNumber(int $number) : Month
     {
         return new Month($this->year, $number);
     }
@@ -31,20 +31,23 @@ final class YearMonths implements \Countable
     /**
      * @return array<int, Month>
      */
-    public function all(): array
+    public function all() : array
     {
+        /** @psalm-suppress ImpureFunctionCall */
         return \array_map(
-            fn (int $monthNumber): Month => new Month($this->year, $monthNumber),
+            fn (int $monthNumber) : Month => new Month($this->year, $monthNumber),
             \range(1, $this->year->numberOfMonths())
         );
     }
 
     /**
+     * @psalm-param pure-callable(Month $day) : void $iterator
+     *
      * @param callable(Month $day) : void $iterator
      *
      * @return array<mixed>
      */
-    public function map(callable $iterator): array
+    public function map(callable $iterator) : array
     {
         return \array_map(
             $iterator,
@@ -53,11 +56,13 @@ final class YearMonths implements \Countable
     }
 
     /**
+     * @psalm-param pure-callable(Month $day) : bool $iterator
+     *
      * @param callable(Month $day) : bool $iterator
      *
      * @return array<Month>
      */
-    public function filter(callable $iterator): array
+    public function filter(callable $iterator) : array
     {
         return \array_filter(
             $this->all(),
@@ -65,7 +70,7 @@ final class YearMonths implements \Countable
         );
     }
 
-    public function slice(int $from, int $size): Months
+    public function slice(int $from, int $size) : Months
     {
         if ($from < 0) {
             throw new InvalidArgumentException('Slice out of range.');

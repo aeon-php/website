@@ -9,7 +9,7 @@ use Aeon\Retry\DelayModifier;
 
 final class ConstantDelay implements DelayModifier
 {
-    public function modify(int $retry, TimeUnit $timeUnit): TimeUnit
+    public function modify(int $retry, TimeUnit $timeUnit) : TimeUnit
     {
         return $timeUnit;
     }

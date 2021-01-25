@@ -6,6 +6,7 @@ namespace Aeon\RateLimiter;
 
 use Aeon\Calendar\Gregorian\Calendar;
 use Aeon\Calendar\Gregorian\DateTime;
+use Aeon\Calendar\TimeUnit;
 
 /**
  * @psalm-immutable
@@ -25,7 +26,7 @@ final class Hits implements \Countable
     /**
      * @param array<int, array{id: string, datetime: string, ttl: string}> $data
      */
-    public static function fromArray(array $data): self
+    public static function fromArray(array $data) : self
     {
         $hits = [];
 
@@ -36,17 +37,17 @@ final class Hits implements \Countable
         return new self(...$hits);
     }
 
-    public function count(): int
+    public function count() : int
     {
         return \count($this->hits);
     }
 
-    public function oldest(): ?Hit
+    public function oldest() : ?Hit
     {
         $oldest = null;
 
         foreach ($this->hits as $hit) {
-            if (null === $oldest) {
+            if ($oldest === null) {
                 $oldest = $hit;
 
                 continue;
@@ -60,12 +61,12 @@ final class Hits implements \Countable
         return $oldest;
     }
 
-    public function filterExpired(Calendar $calendar): self
+    public function filterExpired(Calendar $calendar) : self
     {
-        return new self(...\array_filter($this->hits, fn (Hit $hit): bool => !$hit->expired($calendar)));
+        return new self(...\array_filter($this->hits, fn (Hit $hit) : bool => !$hit->expired($calendar)));
     }
 
-    public function add(Hit $hit): self
+    public function add(Hit $hit) : self
     {
         return new self(...\array_merge($this->hits, [$hit]));
     }
@@ -73,7 +74,7 @@ final class Hits implements \Countable
     /**
      * @return array<int, array{id: string, datetime: string, ttl: string}>
      */
-    public function normalize(): array
+    public function normalize() : array
     {
         $hitsData = [];
 
@@ -82,5 +83,24 @@ final class Hits implements \Countable
         }
 
         return $hitsData;
+    }
+
+    public function longestTTL(Calendar $calendar) : ?TimeUnit
+    {
+        $longestTTL = null;
+
+        foreach ($this->hits as $hit) {
+            if ($longestTTL === null) {
+                $longestTTL = $hit;
+
+                continue;
+            }
+
+            if ($hit->ttlLeft($calendar)->isGreaterThan($longestTTL->ttlLeft($calendar))) {
+                $longestTTL = $hit;
+            }
+        }
+
+        return $longestTTL ? $longestTTL->ttlLeft($calendar) : null;
     }
 }

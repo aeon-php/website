@@ -34,7 +34,7 @@ final class TimeEpoch
      *
      * @psalm-pure
      */
-    public static function UNIX(): self
+    public static function UNIX() : self
     {
         return new self(self::UNIX, DateTime::fromString('1970-01-01 00:00:00 UTC'));
     }
@@ -44,7 +44,7 @@ final class TimeEpoch
      *
      * @psalm-pure
      */
-    public static function POSIX(): self
+    public static function POSIX() : self
     {
         return self::UNIX();
     }
@@ -54,7 +54,7 @@ final class TimeEpoch
      *
      * @psalm-pure
      */
-    public static function UTC(): self
+    public static function UTC() : self
     {
         return new self(self::UTC, DateTime::fromString('1972-01-01 00:00:00 UTC'));
     }
@@ -65,7 +65,7 @@ final class TimeEpoch
      *
      * @psalm-pure
      */
-    public static function GPS(): self
+    public static function GPS() : self
     {
         return new self(self::GPS, DateTime::fromString('1980-01-06 00:00:00 UTC'));
     }
@@ -75,17 +75,17 @@ final class TimeEpoch
      *
      * @psalm-pure
      */
-    public static function TAI(): self
+    public static function TAI() : self
     {
         return new self(self::TAI, DateTime::fromString('1958-01-01 00:00:00 UTC'));
     }
 
-    public function type(): int
+    public function type() : int
     {
         return $this->type;
     }
 
-    public function date(): DateTime
+    public function date() : DateTime
     {
         return $this->dateTime;
     }
@@ -93,7 +93,7 @@ final class TimeEpoch
     /**
      * Returns difference in seconds between epoches without leap seconds.
      */
-    public function distanceTo(self $timeEpoch): TimeUnit
+    public function distanceTo(self $timeEpoch) : TimeUnit
     {
         switch ($this->type) {
             case self::UTC:

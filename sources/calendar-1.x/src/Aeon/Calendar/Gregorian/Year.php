@@ -27,7 +27,7 @@ final class Year
      * @psalm-pure
      * @psalm-suppress ImpureMethodCall
      */
-    public static function fromDateTime(\DateTimeInterface $dateTime): self
+    public static function fromDateTime(\DateTimeInterface $dateTime) : self
     {
         return new self((int) $dateTime->format('Y'));
     }
@@ -35,127 +35,165 @@ final class Year
     /**
      * @psalm-pure
      */
-    public static function fromString(string $date): self
+    public static function fromString(string $date) : self
     {
-        return self::fromDateTime(new \DateTimeImmutable($date));
+        $dateNormalized = \is_numeric($date) ? \sprintf('%d-01-01', $date) : \trim($date);
+        $dateParts = \date_parse($dateNormalized);
+
+        if (!\is_array($dateParts)) {
+            throw new InvalidArgumentException("Value \"{$date}\" is not valid year format.");
+        }
+
+        if ($dateParts['error_count'] > 0) {
+            throw new InvalidArgumentException("Value \"{$date}\" is not valid year format.");
+        }
+
+        if (isset($dateParts['relative']) || \in_array(\strtolower($dateNormalized), ['midnight', 'noon', 'now', 'today'], true)) {
+            return self::fromDateTime(new \DateTimeImmutable($date));
+        }
+
+        if (!isset($dateParts['year']) || !\is_int($dateParts['year'])) {
+            throw new InvalidArgumentException("Value \"{$date}\" is not valid year format.");
+        }
+
+        return new self($dateParts['year']);
     }
 
     /**
      * @return array{year:int}
      */
-    public function __debugInfo(): array
+    public function __debugInfo() : array
     {
         return [
             'year' => $this->year,
         ];
     }
 
-    public function toString(): string
+    /**
+     * @return array{year:int}
+     */
+    public function __serialize() : array
+    {
+        return [
+            'year' => $this->year,
+        ];
+    }
+
+    /**
+     * @param array{year:int} $data
+     */
+    public function __unserialize(array $data) : void
+    {
+        $this->year = $data['year'];
+        $this->months = new YearMonths($this);
+    }
+
+    public function toString() : string
     {
         return (string) $this->year;
     }
 
-    public function january(): Month
+    public function january() : Month
     {
         return $this->months()->byNumber(1);
     }
 
-    public function february(): Month
+    public function february() : Month
     {
         return $this->months()->byNumber(2);
     }
 
-    public function march(): Month
+    public function march() : Month
     {
         return $this->months()->byNumber(3);
     }
 
-    public function april(): Month
+    public function april() : Month
     {
         return $this->months()->byNumber(4);
     }
 
-    public function may(): Month
+    public function may() : Month
     {
         return $this->months()->byNumber(5);
     }
 
-    public function june(): Month
+    public function june() : Month
     {
         return $this->months()->byNumber(6);
     }
 
-    public function july(): Month
+    public function july() : Month
     {
         return $this->months()->byNumber(7);
     }
 
-    public function august(): Month
+    public function august() : Month
     {
         return $this->months()->byNumber(8);
     }
 
-    public function september(): Month
+    public function september() : Month
     {
         return $this->months()->byNumber(9);
     }
 
-    public function october(): Month
+    public function october() : Month
     {
         return $this->months()->byNumber(10);
     }
 
-    public function november(): Month
+    public function november() : Month
     {
         return $this->months()->byNumber(11);
     }
 
-    public function december(): Month
+    public function december() : Month
     {
         return $this->months()->byNumber(12);
     }
 
-    public function months(): YearMonths
+    public function months() : YearMonths
     {
         return $this->months;
     }
 
-    public function number(): int
+    public function number() : int
     {
         return $this->year;
     }
 
-    public function plus(int $years): self
+    public function plus(int $years) : self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->modify(\sprintf('+%d year', $years)));
     }
 
-    public function minus(int $years): self
+    public function minus(int $years) : self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->modify(\sprintf('-%d year', $years)));
     }
 
-    public function next(): self
+    public function next() : self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->modify('+1 year'));
     }
 
-    public function previous(): self
+    public function previous() : self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->modify('-1 year'));
     }
 
-    public function numberOfMonths(): int
+    public function numberOfMonths() : int
     {
         return 12;
     }
 
-    public function numberOfDays(): int
+    public function numberOfDays() : int
     {
         return $this->isLeap() ? 366 : 365;
     }
 
-    public function quarter(int $number): Quarter
+    public function quarter(int $number) : Quarter
     {
         switch ($number) {
             case 1:
@@ -173,17 +211,20 @@ final class Year
     }
 
     /**
+     * @psalm-param pure-callable(Day $day) : void $iterator
+     *
      * @param callable(Day $day) : void $iterator
      *
      * @return array<mixed>
      */
-    public function mapDays(callable $iterator): array
+    public function mapDays(callable $iterator) : array
     {
+        /** @psalm-suppress ImpureFunctionCall */
         return \array_map(
             $iterator,
             \array_merge(
                 ...\array_map(
-                    fn (int $month): array => $this->months()->byNumber($month)->days()->all(),
+                    fn (int $month) : array => $this->months()->byNumber($month)->days()->all(),
                     \range(1, 12)
                 )
             )
@@ -191,14 +232,19 @@ final class Year
     }
 
     /**
+     * @psalm-param pure-callable(Day $day) : bool $iterator
+     *
      * @param callable(Day $day) : bool $iterator
+     *
+     * @return Days
      */
-    public function filterDays(callable $iterator): Days
+    public function filterDays(callable $iterator) : Days
     {
+        /** @psalm-suppress ImpureFunctionCall */
         return new Days(...\array_filter(
             \array_merge(
                 ...\array_map(
-                    fn (int $month): array => $this->months()->byNumber($month)->days()->all(),
+                    fn (int $month) : array => $this->months()->byNumber($month)->days()->all(),
                     \range(1, 12)
                 )
             ),
@@ -206,57 +252,63 @@ final class Year
         ));
     }
 
-    public function isLeap(): bool
+    public function isLeap() : bool
     {
         return (bool) $this->toDateTimeImmutable()->format('L');
     }
 
-    public function toDateTimeImmutable(): \DateTimeImmutable
+    public function toDateTimeImmutable() : \DateTimeImmutable
     {
         return new \DateTimeImmutable(\sprintf('%d-01-01 00:00:00.000000 UTC', $this->number()));
     }
 
-    public function isEqual(self $year): bool
+    public function isEqual(self $year) : bool
     {
         return $this->number() === $year->number();
     }
 
-    public function isBefore(self $year): bool
+    public function isBefore(self $year) : bool
     {
         return $this->number() < $year->number();
     }
 
-    public function isBeforeOrEqual(self $year): bool
+    public function isBeforeOrEqual(self $year) : bool
     {
         return $this->number() <= $year->number();
     }
 
-    public function isAfter(self $year): bool
+    public function isAfter(self $year) : bool
     {
         return $this->number() > $year->number();
     }
 
-    public function isAfterOrEqual(self $year): bool
+    public function isAfterOrEqual(self $year) : bool
     {
         return $this->number() >= $year->number();
     }
 
-    public function iterate(self $destination, Interval $interval): Years
+    public function iterate(self $destination, Interval $interval) : Years
     {
         return $this->isAfter($destination)
             ? $this->since($destination, $interval)
             : $this->until($destination, $interval);
     }
 
-    public function until(self $month, Interval $interval): Years
+    public function until(self $month, Interval $interval) : Years
     {
         if ($this->isAfter($month)) {
-            throw new InvalidArgumentException(\sprintf('%d is after %d', $this->number(), $month->number(), ));
+            throw new InvalidArgumentException(
+                \sprintf(
+                    '%d is after %d',
+                    $this->number(),
+                    $month->number(),
+                )
+            );
         }
 
         return new Years(
             ...\array_map(
-                function (\DateTimeImmutable $dateTimeImmutable): self {
+                function (\DateTimeImmutable $dateTimeImmutable) : self {
                     return self::fromDateTime($dateTimeImmutable);
                 },
                 \iterator_to_array(
@@ -270,15 +322,21 @@ final class Year
         );
     }
 
-    public function since(self $month, Interval $interval): Years
+    public function since(self $month, Interval $interval) : Years
     {
         if ($this->isBefore($month)) {
-            throw new InvalidArgumentException(\sprintf('%d is before %d', $this->number(), $month->number(), ));
+            throw new InvalidArgumentException(
+                \sprintf(
+                    '%d is before %d',
+                    $this->number(),
+                    $month->number(),
+                )
+            );
         }
 
         return new Years(
             ...\array_map(
-                function (\DateTimeImmutable $dateTimeImmutable): self {
+                function (\DateTimeImmutable $dateTimeImmutable) : self {
                     return self::fromDateTime($dateTimeImmutable);
                 },
                 \array_reverse(
@@ -294,7 +352,7 @@ final class Year
         );
     }
 
-    public function distance(self $to): TimeUnit
+    public function distance(self $to) : TimeUnit
     {
         return (new TimePeriod($this->january()->firstDay()->midnight(TimeZone::UTC()), $to->january()->firstDay()->midnight(TimeZone::UTC())))->distance();
     }

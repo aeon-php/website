@@ -12,7 +12,7 @@ final class PreciseCalculator
      * @psalm-pure
      * @psalm-suppress ImpureStaticProperty
      */
-    public static function initialize(int $precision): Calculator
+    public static function initialize(int $precision) : Calculator
     {
         if (self::$instance instanceof Calculator && self::$instance->precision() === $precision) {
             return self::$instance;

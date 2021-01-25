@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Aeon\Retry;
 
-use Aeon\Calendar\System\SystemProcess;
 use Aeon\Calendar\TimeUnit;
 use Aeon\Retry\DelayModifier\ConstantDelay;
+use Aeon\Sleep\SystemProcess;
 
 /**
  * @template FunctionReturnType
@@ -24,7 +24,7 @@ function retry(callable $function, int $retries, TimeUnit $delay, DelayModifier 
         $retries,
         $delay
     ))->modifyDelay(
-        null === $delayModifier
+        $delayModifier === null
             ? new ConstantDelay()
             : $delayModifier
     )->execute($function);
@@ -33,8 +33,8 @@ function retry(callable $function, int $retries, TimeUnit $delay, DelayModifier 
 /**
  * @template FunctionReturnType
  *
- * @param callable(Execution $execution)       : FunctionReturnType $function
- * @param array<string>      $exceptionClasses
+ * @param callable(Execution $execution) : FunctionReturnType $function
+ * @param array<string> $exceptionClasses
  *
  * @throws \Throwable
  *
@@ -48,7 +48,7 @@ function retryOnlyFor(callable $function, int $retries, TimeUnit $delay, array $
         $delay
     ))->onlyFor(...$exceptionClasses)
     ->modifyDelay(
-        null === $delayModifier
+        $delayModifier === null
             ? new ConstantDelay()
             : $delayModifier
     )->execute($function);

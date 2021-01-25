@@ -13,12 +13,14 @@ use Symfony\Component\Validator\Constraints\AbstractComparisonValidator;
 final class AfterOrEqualValidator extends AbstractComparisonValidator
 {
     /**
-     * @param DateTime|Day|Month|Year     $value1
+     * @param DateTime|Day|Month|Year $value1
      * @param ?DateTime|?Day|?Month|?Year $value2
+     *
+     * @return bool
      */
-    protected function compareValues($value1, $value2): bool
+    protected function compareValues($value1, $value2) : bool
     {
-        if (!$value2 instanceof DateTime && !$value2 instanceof Day && !$value2 instanceof Month && !$value2 instanceof Year) {
+        if (!$value2 instanceof DateTime && !$value2 instanceof Day && !$value2 instanceof Month  && !$value2 instanceof Year) {
             return false;
         }
 
@@ -32,7 +34,7 @@ final class AfterOrEqualValidator extends AbstractComparisonValidator
     /**
      * {@inheritdoc}
      */
-    protected function getErrorCode(): string
+    protected function getErrorCode() : string
     {
         return AfterOrEqual::BEFORE_ERROR;
     }

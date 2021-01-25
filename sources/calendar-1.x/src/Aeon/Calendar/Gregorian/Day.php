@@ -20,7 +20,7 @@ final class Day
     public function __construct(Month $month, int $number)
     {
         if ($number <= 0 || $number > $month->numberOfDays()) {
-            throw new InvalidArgumentException('Day number must be greater or equal 1 and less or equal than '.$month->numberOfDays());
+            throw new InvalidArgumentException('Day number must be greater or equal 1 and less or equal than ' . $month->numberOfDays());
         }
 
         $this->number = $number;
@@ -30,7 +30,7 @@ final class Day
     /**
      * @psalm-pure
      */
-    public static function create(int $year, int $month, int $day): self
+    public static function create(int $year, int $month, int $day) : self
     {
         return new self(
             new Month(
@@ -45,7 +45,7 @@ final class Day
      * @psalm-pure
      * @psalm-suppress ImpureMethodCall
      */
-    public static function fromDateTime(\DateTimeInterface $dateTime): self
+    public static function fromDateTime(\DateTimeInterface $dateTime) : self
     {
         return new self(
             new Month(
@@ -59,15 +59,34 @@ final class Day
     /**
      * @psalm-pure
      */
-    public static function fromString(string $date): self
+    public static function fromString(string $date) : self
     {
-        return self::fromDateTime(new \DateTimeImmutable($date));
+        $dateNormalized = \trim(\strtolower($date));
+        $dateParts = \date_parse($date);
+
+        if (!\is_array($dateParts)) {
+            throw new InvalidArgumentException("Value \"{$date}\" is not valid day format.");
+        }
+
+        if ($dateParts['error_count'] > 0) {
+            throw new InvalidArgumentException("Value \"{$date}\" is not valid day format.");
+        }
+
+        if (isset($dateParts['relative']) || \in_array($dateNormalized, ['midnight', 'noon', 'now', 'today'], true)) {
+            return self::fromDateTime(new \DateTimeImmutable($date));
+        }
+
+        if (!\is_int($dateParts['year']) || !\is_int($dateParts['month']) || !\is_int($dateParts['day'])) {
+            throw new InvalidArgumentException("Value \"{$date}\" is not valid day format.");
+        }
+
+        return new self(new Month(new Year($dateParts['year']), $dateParts['month']), $dateParts['day']);
     }
 
     /**
      * @return array{year: int, month:int, day: int}
      */
-    public function __debugInfo(): array
+    public function __debugInfo() : array
     {
         return [
             'year' => $this->month->year()->number(),
@@ -76,82 +95,93 @@ final class Day
         ];
     }
 
-    public function toString(): string
+    /**
+     * @return array{month: Month, number: int}
+     */
+    public function __serialize() : array
+    {
+        return [
+            'month' => $this->month,
+            'number' => $this->number,
+        ];
+    }
+
+    public function toString() : string
     {
         return $this->format('Y-m-d');
     }
 
-    public function timeBetween(self $day): TimeUnit
+    public function timeBetween(self $day) : TimeUnit
     {
         return TimeUnit::seconds(\abs(($this->toDateTimeImmutable()->getTimestamp() - $day->toDateTimeImmutable()->getTimestamp())));
     }
 
-    public function plus(int $years, int $months, int $days): self
+    public function plus(int $years, int $months, int $days) : self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->modify(\sprintf('+%d days +%d months +%d years', $days, $months, $years)));
     }
 
-    public function minus(int $years, int $months, int $days): self
+    public function minus(int $years, int $months, int $days) : self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->modify(\sprintf('-%d days -%d months -%d years', $days, $months, $years)));
     }
 
-    public function plusDays(int $days): self
+    public function plusDays(int $days) : self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->modify(\sprintf('+%d days', $days)));
     }
 
-    public function minusDays(int $days): self
+    public function minusDays(int $days) : self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->modify(\sprintf('-%d days', $days)));
     }
 
-    public function plusMonths(int $months): self
+    public function plusMonths(int $months) : self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->modify(\sprintf('+%d months', $months)));
     }
 
-    public function minusMonths(int $months): self
+    public function minusMonths(int $months) : self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->modify(\sprintf('-%d months', $months)));
     }
 
-    public function plusYears(int $years): self
+    public function plusYears(int $years) : self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->modify(\sprintf('+%d years', $years)));
     }
 
-    public function minusYears(int $years): self
+    public function minusYears(int $years) : self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->modify(\sprintf('-%d years', $years)));
     }
 
-    public function previous(): self
+    public function previous() : self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->modify('-1 day'));
     }
 
-    public function next(): self
+    public function next() : self
     {
         return self::fromDateTime($this->toDateTimeImmutable()->modify('+1 day'));
     }
 
-    public function midnight(TimeZone $timeZone): DateTime
+    public function midnight(TimeZone $timeZone) : DateTime
     {
         return new DateTime($this, new Time(0, 0, 0, 0), $timeZone);
     }
 
-    public function noon(TimeZone $timeZone): DateTime
+    public function noon(TimeZone $timeZone) : DateTime
     {
         return new DateTime($this, new Time(12, 0, 0, 0), $timeZone);
     }
 
-    public function endOfDay(TimeZone $timeZone): DateTime
+    public function endOfDay(TimeZone $timeZone) : DateTime
     {
         return new DateTime($this, new Time(23, 59, 59, 999999), $timeZone);
     }
 
-    public function setTime(Time $time, TimeZone $timeZone): DateTime
+    public function setTime(Time $time, TimeZone $timeZone) : DateTime
     {
         return new DateTime(
             $this,
@@ -160,22 +190,22 @@ final class Day
         );
     }
 
-    public function month(): Month
+    public function month() : Month
     {
         return $this->month;
     }
 
-    public function year(): Year
+    public function year() : Year
     {
         return $this->month()->year();
     }
 
-    public function number(): int
+    public function number() : int
     {
         return $this->number;
     }
 
-    public function weekDay(): WeekDay
+    public function weekDay() : WeekDay
     {
         return new WeekDay((int) $this->toDateTimeImmutable()->format('N'));
     }
@@ -183,7 +213,7 @@ final class Day
     /**
      * Week of year starting from 1.
      */
-    public function weekOfYear(): int
+    public function weekOfYear() : int
     {
         return (int) $this->toDateTimeImmutable()->format('W');
     }
@@ -191,7 +221,7 @@ final class Day
     /**
      * Week of year starting from 1.
      */
-    public function weekOfMonth(): int
+    public function weekOfMonth() : int
     {
         return $this->weekOfYear() - $this->month()->days()->first()->weekOfYear() + 1;
     }
@@ -199,33 +229,33 @@ final class Day
     /**
      * Day of year starting from 1.
      */
-    public function dayOfYear(): int
+    public function dayOfYear() : int
     {
         return \intval($this->toDateTimeImmutable()->format('z')) + 1;
     }
 
-    public function isWeekend(): bool
+    public function isWeekend() : bool
     {
         return $this->weekDay()->isWeekend();
     }
 
-    public function toDateTimeImmutable(): \DateTimeImmutable
+    public function toDateTimeImmutable() : \DateTimeImmutable
     {
         return new \DateTimeImmutable(\sprintf('%d-%d-%d 00:00:00.000000 UTC', $this->month()->year()->number(), $this->month()->number(), $this->number()));
     }
 
-    public function format(string $format): string
+    public function format(string $format) : string
     {
         return $this->toDateTimeImmutable()->format($format);
     }
 
-    public function isEqual(self $day): bool
+    public function isEqual(self $day) : bool
     {
         return $this->number() === $day->number()
             && $this->month()->isEqual($day->month());
     }
 
-    public function isBefore(self $day): bool
+    public function isBefore(self $day) : bool
     {
         if ($this->month()->isBefore($day->month())) {
             return true;
@@ -238,7 +268,7 @@ final class Day
         return $this->number() < $day->number();
     }
 
-    public function isBeforeOrEqual(self $day): bool
+    public function isBeforeOrEqual(self $day) : bool
     {
         if ($this->month()->isBefore($day->month())) {
             return true;
@@ -251,7 +281,7 @@ final class Day
         return $this->number() <= $day->number();
     }
 
-    public function isAfter(self $day): bool
+    public function isAfter(self $day) : bool
     {
         if ($this->month()->isAfter($day->month())) {
             return true;
@@ -264,7 +294,7 @@ final class Day
         return $this->number() > $day->number();
     }
 
-    public function isAfterOrEqual(self $day): bool
+    public function isAfterOrEqual(self $day) : bool
     {
         if ($this->month()->isAfter($day->month())) {
             return true;
@@ -277,22 +307,32 @@ final class Day
         return $this->number() >= $day->number();
     }
 
-    public function iterate(self $destination, Interval $interval): Days
+    public function iterate(self $destination, Interval $interval) : Days
     {
         return $this->isAfter($destination)
             ? $this->since($destination, $interval)
             : $this->until($destination, $interval);
     }
 
-    public function until(self $day, Interval $interval): Days
+    public function until(self $day, Interval $interval) : Days
     {
         if ($this->isAfter($day)) {
-            throw new InvalidArgumentException(\sprintf('%d %s %d is after %d %s %d', $this->number(), $this->month()->name(), $this->month()->year()->number(), $day->number(), $day->month()->name(), $day->month()->year()->number(), ));
+            throw new InvalidArgumentException(
+                \sprintf(
+                    '%d %s %d is after %d %s %d',
+                    $this->number(),
+                    $this->month()->name(),
+                    $this->month()->year()->number(),
+                    $day->number(),
+                    $day->month()->name(),
+                    $day->month()->year()->number(),
+                )
+            );
         }
 
         return new Days(
             ...\array_map(
-                function (\DateTimeImmutable $dateTimeImmutable): self {
+                function (\DateTimeImmutable $dateTimeImmutable) : self {
                     return self::fromDateTime($dateTimeImmutable);
                 },
                 \iterator_to_array(
@@ -302,15 +342,25 @@ final class Day
         );
     }
 
-    public function since(self $day, Interval $interval): Days
+    public function since(self $day, Interval $interval) : Days
     {
         if ($this->isBefore($day)) {
-            throw new InvalidArgumentException(\sprintf('%d %s %d is before %d %s %d', $this->number(), $this->month()->name(), $this->month()->year()->number(), $day->number(), $day->month()->name(), $day->month()->year()->number(), ));
+            throw new InvalidArgumentException(
+                \sprintf(
+                    '%d %s %d is before %d %s %d',
+                    $this->number(),
+                    $this->month()->name(),
+                    $this->month()->year()->number(),
+                    $day->number(),
+                    $day->month()->name(),
+                    $day->month()->year()->number(),
+                )
+            );
         }
 
         return new Days(
             ...\array_map(
-                function (\DateTimeImmutable $dateTimeImmutable): self {
+                function (\DateTimeImmutable $dateTimeImmutable) : self {
                     return self::fromDateTime($dateTimeImmutable);
                 },
                 \array_reverse(
@@ -322,12 +372,12 @@ final class Day
         );
     }
 
-    public function distance(self $to): TimeUnit
+    public function distance(self $to) : TimeUnit
     {
         return (new TimePeriod($this->midnight(TimeZone::UTC()), $to->midnight(TimeZone::UTC())))->distance();
     }
 
-    public function quarter(): Quarter
+    public function quarter() : Quarter
     {
         return $this->year()->quarter((int) \ceil($this->month()->number() / 3));
     }

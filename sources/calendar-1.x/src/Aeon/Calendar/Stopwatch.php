@@ -34,65 +34,65 @@ final class Stopwatch
         $this->end = null;
     }
 
-    public function isStarted(): bool
+    public function isStarted() : bool
     {
-        return null !== $this->start;
+        return $this->start !== null;
     }
 
-    public function isStopped(): bool
+    public function isStopped() : bool
     {
-        return null !== $this->end;
+        return $this->end !== null;
     }
 
     /**
      * Stopwatch::lap() used once will generate two laps, first between start and lap[0] and
      * second between lap[0] and end.
      */
-    public function laps(): int
+    public function laps() : int
     {
         return \count($this->laps) > 0
             ? \count($this->laps) + 1
             : 0;
     }
 
-    public function start(): void
+    public function start() : void
     {
         $this->start = \hrtime(false);
     }
 
-    public function lap(): void
+    public function lap() : void
     {
-        if (null === $this->start) {
+        if ($this->start === null) {
             throw new Exception('Stopwatch not started');
         }
 
         $this->laps[] = \hrtime(false);
     }
 
-    public function stop(): void
+    public function stop() : void
     {
-        if (null === $this->start) {
+        if ($this->start === null) {
             throw new Exception('Stopwatch not started');
         }
 
-        if (null !== $this->end) {
+        if ($this->end !== null) {
             throw new Exception('Stopwatch already stopped');
         }
 
         $this->end = \hrtime(false);
     }
 
-    public function elapsedTime(int $lap): TimeUnit
+    public function elapsedTime(int $lap) : TimeUnit
     {
-        if (null === $this->start) {
+        if ($this->start === null) {
             throw new Exception('Stopwatch not started');
         }
 
-        if (0 === \count($this->laps)) {
+        if (\count($this->laps) === 0) {
             throw new Exception('Stopwatch does not have any laps.');
         }
 
-        if (1 === $lap) {
+        if ($lap === 1) {
             return $this->firstLapElapsedTime();
         }
 
@@ -108,13 +108,13 @@ final class Stopwatch
             ->sub(HRTime::convert($this->laps[$lap - 2][0], $this->laps[$lap - 2][1]));
     }
 
-    public function firstLapElapsedTime(): TimeUnit
+    public function firstLapElapsedTime() : TimeUnit
     {
-        if (null === $this->start) {
+        if ($this->start === null) {
             throw new Exception('Stopwatch not started');
         }
 
-        if (0 === \count($this->laps)) {
+        if (\count($this->laps) === 0) {
             throw new Exception('Stopwatch does not have any laps.');
         }
 
@@ -122,17 +122,17 @@ final class Stopwatch
             ->sub(HRTime::convert($this->start[0], $this->start[1]));
     }
 
-    public function lastLapElapsedTime(): TimeUnit
+    public function lastLapElapsedTime() : TimeUnit
     {
-        if (null === $this->start) {
+        if ($this->start === null) {
             throw new Exception('Stopwatch not started');
         }
 
-        if (null === $this->end) {
+        if ($this->end === null) {
             throw new Exception('Stopwatch not stopped');
         }
 
-        if (0 === \count($this->laps)) {
+        if (\count($this->laps) === 0) {
             throw new Exception('Stopwatch does not have any laps.');
         }
 
@@ -140,13 +140,13 @@ final class Stopwatch
             ->sub(HRTime::convert(\end($this->laps)[0], \end($this->laps)[1]));
     }
 
-    public function totalElapsedTime(): TimeUnit
+    public function totalElapsedTime() : TimeUnit
     {
-        if (null === $this->start) {
+        if ($this->start === null) {
             throw new Exception('Stopwatch not started');
         }
 
-        if (null === $this->end) {
+        if ($this->end === null) {
             throw new Exception('Stopwatch not stopped');
         }
 

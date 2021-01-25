@@ -21,60 +21,64 @@ final class Years implements \ArrayAccess, \Countable, \IteratorAggregate
         $this->years = $years;
     }
 
-    public function offsetExists($offset): bool
+    public function offsetExists($offset) : bool
     {
         return isset($this->all()[\intval($offset)]);
     }
 
-    public function offsetGet($offset): ?Year
+    public function offsetGet($offset) : ?Year
     {
         return isset($this->all()[\intval($offset)]) ? $this->all()[\intval($offset)] : null;
     }
 
     /** @codeCoverageIgnore */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
-        throw new \RuntimeException(__CLASS__.' is immutable.');
+        throw new \RuntimeException(__CLASS__ . ' is immutable.');
     }
 
     /** @codeCoverageIgnore */
-    public function offsetUnset($offset): void
+    public function offsetUnset($offset) : void
     {
-        throw new \RuntimeException(__CLASS__.' is immutable.');
+        throw new \RuntimeException(__CLASS__ . ' is immutable.');
     }
 
     /**
      * @return array<int, Year>
      */
-    public function all(): array
+    public function all() : array
     {
         return $this->years;
     }
 
     /**
+     * @psalm-param pure-callable(Year $year) : mixed $iterator
+     *
      * @param callable(Year $year) : mixed $iterator
      *
      * @return array<mixed>
      */
-    public function map(callable $iterator): array
+    public function map(callable $iterator) : array
     {
         return \array_map($iterator, $this->all());
     }
 
     /**
+     * @psalm-param pure-callable(Year $year) : bool $iterator
+     *
      * @param callable(Year $year) : bool $iterator
      */
-    public function filter(callable $iterator): self
+    public function filter(callable $iterator) : self
     {
         return new self(...\array_filter($this->all(), $iterator));
     }
 
-    public function count(): int
+    public function count() : int
     {
         return \count($this->all());
     }
 
-    public function getIterator(): \Traversable
+    public function getIterator() : \Traversable
     {
         return new \ArrayIterator($this->all());
     }

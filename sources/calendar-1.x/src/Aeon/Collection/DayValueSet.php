@@ -25,7 +25,7 @@ final class DayValueSet implements \Countable
 
         foreach ($dayValues as $dayValue) {
             if (\array_key_exists($dayValue->day()->toString(), $indexedDayValues)) {
-                throw new InvalidArgumentException('Set does not allow duplicated days, day '.$dayValue->day()->toString().' is duplicated');
+                throw new InvalidArgumentException('Set does not allow duplicated days, day ' . $dayValue->day()->toString() . ' is duplicated');
             }
 
             $indexedDayValues[$dayValue->day()->toString()] = $dayValue;
@@ -37,13 +37,13 @@ final class DayValueSet implements \Countable
     /**
      * @psalm-pure
      */
-    public static function createEmpty(Day $start, Day $end): self
+    public static function createEmpty(Day $start, Day $end) : self
     {
         return new self(
             ...$start->until(
                 $end,
                 Interval::closed()
-            )->map(fn (Day $day): DayValue => DayValue::createEmpty($day))
+            )->map(fn (Day $day) : DayValue => DayValue::createEmpty($day))
         );
     }
 
@@ -52,13 +52,13 @@ final class DayValueSet implements \Countable
      *
      * @param mixed $value
      */
-    public static function createWith(Day $start, Day $end, $value): self
+    public static function createWith(Day $start, Day $end, $value) : self
     {
         return new self(
             ...$start->until(
                 $end,
                 Interval::closed()
-            )->map(fn (Day $day): DayValue => new DayValue($day, $value))
+            )->map(fn (Day $day) : DayValue => new DayValue($day, $value))
         );
     }
 
@@ -66,7 +66,7 @@ final class DayValueSet implements \Countable
      * @param mixed $value
      * @psalm-suppress PossiblyNullReference
      */
-    public function fillMissingWith($value): self
+    public function fillMissingWith($value) : self
     {
         if (!$this->count()) {
             return $this;
@@ -86,7 +86,7 @@ final class DayValueSet implements \Countable
         return $sortedDayValues;
     }
 
-    public function put(DayValue ...$dayValues): self
+    public function put(DayValue ...$dayValues) : self
     {
         $currentDayValues = $this->dayValues;
 
@@ -97,7 +97,7 @@ final class DayValueSet implements \Countable
         return new self(...\array_values($currentDayValues));
     }
 
-    public function remove(Day ...$days): self
+    public function remove(Day ...$days) : self
     {
         $currentDayValues = $this->dayValues;
 
@@ -110,30 +110,31 @@ final class DayValueSet implements \Countable
         return new self(...\array_values($currentDayValues));
     }
 
-    public function has(Day $day): bool
+    public function has(Day $day) : bool
     {
         return \array_key_exists($day->toString(), $this->dayValues);
     }
 
-    public function get(Day $day): DayValue
+    public function get(Day $day) : DayValue
     {
         if (!\array_key_exists($day->toString(), $this->dayValues)) {
-            throw new InvalidArgumentException('There is no value for day '.$day->toString());
+            throw new InvalidArgumentException('There is no value for day ' . $day->toString());
         }
 
         return $this->dayValues[$day->toString()];
     }
 
-    public function first(): ?DayValue
+    public function first() : ?DayValue
     {
         if (!$this->count()) {
             return null;
         }
 
+        /* @phpstan-ignore-next-line */
         return \current($this->dayValues);
     }
 
-    public function last(): ?DayValue
+    public function last() : ?DayValue
     {
         if (!$this->count()) {
             return null;
@@ -143,23 +144,27 @@ final class DayValueSet implements \Countable
         return \end($this->dayValues);
     }
 
-    public function count(): int
+    public function count() : int
     {
         return \count($this->dayValues);
     }
 
     /**
+     * @psalm-param pure-callable(DayValue $dayValue) : bool $callback
+     *
      * @param callable(DayValue $dayValue) : bool $callback
      */
-    public function filter(callable $callback): self
+    public function filter(callable $callback) : self
     {
         return new self(...\array_values(\array_filter($this->dayValues, $callback)));
     }
 
     /**
+     * @psalm-param pure-callable(DayValue $dayValue) : DayValue $callback
+     *
      * @param callable(DayValue $dayValue) : DayValue $callback
      */
-    public function map(callable $callback): self
+    public function map(callable $callback) : self
     {
         /** @var array<DayValue> $dayValues */
         $dayValues = \array_values(\array_map($callback, $this->dayValues));
@@ -168,8 +173,10 @@ final class DayValueSet implements \Countable
     }
 
     /**
+     * @psalm-param pure-callable(mixed $initial, DayValue $nextDayValue) : mixed $callback
+     *
      * @param callable(mixed $initial, DayValue $nextDayValue) : mixed $callback
-     * @param mixed|null     $initial
+     * @param null|mixed $initial
      *
      * @return mixed
      */
@@ -178,7 +185,7 @@ final class DayValueSet implements \Countable
         return \array_reduce($this->dayValues, $callback, $initial);
     }
 
-    public function toDays(): Days
+    public function toDays() : Days
     {
         $days = [];
 
@@ -194,7 +201,7 @@ final class DayValueSet implements \Countable
      *
      * @return array<mixed>
      */
-    public function values(): array
+    public function values() : array
     {
         $values = [];
 
@@ -205,13 +212,13 @@ final class DayValueSet implements \Countable
         return $values;
     }
 
-    public function sortAscending(): self
+    public function sortAscending() : self
     {
         $values = $this->dayValues;
 
         \uasort(
             $values,
-            function (DayValue $dayValueA, DayValue $dayValueB): int {
+            function (DayValue $dayValueA, DayValue $dayValueB) : int {
                 return $dayValueA->day()->toDateTimeImmutable() <=> $dayValueB->day()->toDateTimeImmutable();
             }
         );
@@ -219,13 +226,13 @@ final class DayValueSet implements \Countable
         return new self(...\array_values($values));
     }
 
-    public function sortDescending(): self
+    public function sortDescending() : self
     {
         $values = $this->dayValues;
 
         \uasort(
             $values,
-            function (DayValue $dayValueA, DayValue $dayValueB): int {
+            function (DayValue $dayValueA, DayValue $dayValueB) : int {
                 return $dayValueB->day()->toDateTimeImmutable() <=> $dayValueA->day()->toDateTimeImmutable();
             }
         );
@@ -236,7 +243,7 @@ final class DayValueSet implements \Countable
     /**
      * A form of slice that returns the first n elements.
      */
-    public function take(int $days): self
+    public function take(int $days) : self
     {
         if ($days < 0) {
             throw new InvalidArgumentException('Take does not accept negative number of days');
@@ -248,7 +255,7 @@ final class DayValueSet implements \Countable
     /**
      * Return a sub-sequence of the set between the given offset and given number of days.
      */
-    public function slice(int $offset, int $days): self
+    public function slice(int $offset, int $days) : self
     {
         if ($offset < 0) {
             throw new InvalidArgumentException('Slice does not accept negative offset');
@@ -264,7 +271,7 @@ final class DayValueSet implements \Countable
     /**
      * A form of slice that returns all but the first n elements.
      */
-    public function drop(int $offset): self
+    public function drop(int $offset) : self
     {
         if ($offset < 0) {
             throw new InvalidArgumentException('Drop does not accept negative offset');

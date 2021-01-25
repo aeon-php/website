@@ -8,5 +8,5 @@ use Aeon\Calendar\TimeUnit;
 
 interface DelayModifier
 {
-    public function modify(int $retry, TimeUnit $timeUnit): TimeUnit;
+    public function modify(int $retry, TimeUnit $timeUnit) : TimeUnit;
 }

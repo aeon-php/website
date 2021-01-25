@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Aeon\RateLimiter;
 
-use Aeon\Calendar\System\Process;
 use Aeon\Calendar\TimeUnit;
 use Aeon\RateLimiter\Exception\RateLimitException;
+use Aeon\Sleep\Process;
 
 final class RateLimiter
 {
@@ -25,7 +25,7 @@ final class RateLimiter
      *
      * @throws RateLimitException
      */
-    public function hit(string $id): void
+    public function hit(string $id) : void
     {
         $this->algorithm->hit($id, $this->storage);
     }
@@ -33,7 +33,7 @@ final class RateLimiter
     /**
      * Estimate time required to the next hit. If current capacity is greater than 0, time will be 0.
      */
-    public function estimate(string $id): TimeUnit
+    public function estimate(string $id) : TimeUnit
     {
         return $this->algorithm->estimate($id, $this->storage);
     }
@@ -42,20 +42,36 @@ final class RateLimiter
      * Returns current capacity according to the selected algorithm, when there are no available hits left, it will return 0.
      * Use RateLimiter::estimate method to find out when next hit will be possible.
      */
-    public function capacity(string $id): int
+    public function capacity(string $id) : int
     {
         return $this->algorithm->capacity($id, $this->storage);
     }
 
     /**
+     * Initial available capacity before registering any hits or when all hits time out.
+     */
+    public function capacityInitial() : int
+    {
+        return $this->algorithm->capacityInitial();
+    }
+
+    /**
+     * Time required to fully reset to the total capacity.
+     */
+    public function resetIn(string $id) : TimeUnit
+    {
+        return $this->algorithm->resetIn($id, $this->storage);
+    }
+
+    /**
      * Try to record next hit, in case of rate limit exception take the cooldown time and sleep current process.
      */
-    public function throttle(string $id, Process $process): void
+    public function throttle(string $id, Process $process) : void
     {
         try {
             $this->algorithm->hit($id, $this->storage);
         } catch (RateLimitException $rateLimitException) {
-            $process->sleep($rateLimitException->cooldown());
+            $process->sleep($rateLimitException->retryIn());
             $this->algorithm->hit($id, $this->storage);
         }
     }

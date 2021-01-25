@@ -46,7 +46,7 @@ final class WeekDay
      * @codeCoverageIgnore
      * @psalm-pure
      */
-    public static function monday(): self
+    public static function monday() : self
     {
         return new self(1);
     }
@@ -55,7 +55,7 @@ final class WeekDay
      * @codeCoverageIgnore
      * @psalm-pure
      */
-    public static function tuesday(): self
+    public static function tuesday() : self
     {
         return new self(2);
     }
@@ -64,7 +64,7 @@ final class WeekDay
      * @codeCoverageIgnore
      * @psalm-pure
      */
-    public static function wednesday(): self
+    public static function wednesday() : self
     {
         return new self(3);
     }
@@ -73,7 +73,7 @@ final class WeekDay
      * @codeCoverageIgnore
      * @psalm-pure
      */
-    public static function thursday(): self
+    public static function thursday() : self
     {
         return new self(4);
     }
@@ -82,7 +82,7 @@ final class WeekDay
      * @codeCoverageIgnore
      * @psalm-pure
      */
-    public static function friday(): self
+    public static function friday() : self
     {
         return new self(5);
     }
@@ -91,7 +91,7 @@ final class WeekDay
      * @codeCoverageIgnore
      * @psalm-pure
      */
-    public static function saturday(): self
+    public static function saturday() : self
     {
         return new self(6);
     }
@@ -100,32 +100,32 @@ final class WeekDay
      * @codeCoverageIgnore
      * @psalm-pure
      */
-    public static function sunday(): self
+    public static function sunday() : self
     {
         return new self(7);
     }
 
-    public function number(): int
+    public function number() : int
     {
         return $this->number;
     }
 
-    public function name(): string
+    public function name() : string
     {
         return self::NAMES[$this->number];
     }
 
-    public function shortName(): string
+    public function shortName() : string
     {
         return self::NAMES_SHORT[$this->number];
     }
 
-    public function isEqual(self $weekDay): bool
+    public function isEqual(self $weekDay) : bool
     {
         return $this->number() === $weekDay->number();
     }
 
-    public function isWeekend(): bool
+    public function isWeekend() : bool
     {
         return \in_array($this->number(), [6, 7], true);
     }

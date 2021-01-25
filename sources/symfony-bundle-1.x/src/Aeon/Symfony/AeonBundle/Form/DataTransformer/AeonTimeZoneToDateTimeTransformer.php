@@ -22,14 +22,14 @@ final class AeonTimeZoneToDateTimeTransformer implements DataTransformerInterfac
         return $value;
     }
 
-    public function reverseTransform($value): ?TimeZone
+    public function reverseTransform($value) : ?TimeZone
     {
-        if (null === $value) {
+        if ($value === null) {
             return null;
         }
 
         if (\is_string($value)) {
-            return new TimeZone($value);
+            return TimeZone::fromString($value);
         }
 
         if ($value instanceof \DateTimeZone) {
