@@ -22,12 +22,12 @@ final class SitemapDocumentationProvider extends AbstractSinglePageSitemapProvid
         $this->provider = $provider;
     }
 
-    public function getSectionName(): string
+    public function getSectionName() : string
     {
         return 'documentation';
     }
 
-    public function getSinglePage(): SitemapSectionPage
+    public function getSinglePage() : SitemapSectionPage
     {
         $page = new SitemapSectionPage();
 

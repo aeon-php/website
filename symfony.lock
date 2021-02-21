@@ -8,6 +8,9 @@
     "aeon-php/calendar-holidays-yasumi": {
         "version": "1.x-dev"
     },
+    "aeon-php/rate-limiter": {
+        "version": "0.5.0"
+    },
     "aeon-php/sleep": {
         "version": "0.2.0"
     },

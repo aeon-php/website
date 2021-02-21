@@ -21,7 +21,7 @@ final class CalendarHolidaysYasumiDocumentation extends AbstractController
         $this->parameterBag = $parameterBag;
     }
 
-    protected function parameterBag(): ParameterBagInterface
+    protected function parameterBag() : ParameterBagInterface
     {
         return $this->parameterBag;
     }
@@ -29,7 +29,7 @@ final class CalendarHolidaysYasumiDocumentation extends AbstractController
     /**
      * @Route("/docs/calendar-holidays-yasumi", name="docs_calendar_holidays_yasumi")
      */
-    public function calendarHolidaysYasumi(): Response
+    public function calendarHolidaysYasumi() : Response
     {
         return $this->render('documentation/calendar_holidays_yasumi.html.twig', [
             'activeSection' => 'calendar-holidays-yasumi',
@@ -40,7 +40,7 @@ final class CalendarHolidaysYasumiDocumentation extends AbstractController
     /**
      * @Route("/docs/calendar-holidays-yasumi/{version}", name="docs_calendar_holidays_yasumi_version")
      */
-    public function calendarHolidaysYasumiVersion(string $version): Response
+    public function calendarHolidaysYasumiVersion(string $version) : Response
     {
         return $this->render('documentation/calendar_holidays_yasumi_version.html.twig', [
             'activeSection' => 'calendar-holidays-yasumi',
@@ -52,7 +52,7 @@ final class CalendarHolidaysYasumiDocumentation extends AbstractController
     /**
      * @Route("/docs/calendar-holidays-yasumi/{version}/{classSlug}", name="docs_calendar_holidays_yasumi_class")
      */
-    public function calendarHolidaysYasumiClass(string $version, string $classSlug): Response
+    public function calendarHolidaysYasumiClass(string $version, string $classSlug) : Response
     {
         foreach ($classes = $this->calendarHolidaysYasumiClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
@@ -72,7 +72,7 @@ final class CalendarHolidaysYasumiDocumentation extends AbstractController
     /**
      * @Route("/docs/calendar-holidays-yasumi/{version}/{classSlug}/method/{methodSlug}", name="docs_calendar_holidays_yasumi_class_method")
      */
-    public function calendarHolidaysYasumiClassMethod(string $version, string $classSlug, string $methodSlug): Response
+    public function calendarHolidaysYasumiClassMethod(string $version, string $classSlug, string $methodSlug) : Response
     {
         foreach ($classes = $this->calendarHolidaysYasumiClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {

@@ -21,7 +21,7 @@ final class CalendarDoctrineDocumentation extends AbstractController
         $this->parameterBag = $parameterBag;
     }
 
-    protected function parameterBag(): ParameterBagInterface
+    protected function parameterBag() : ParameterBagInterface
     {
         return $this->parameterBag;
     }
@@ -29,7 +29,7 @@ final class CalendarDoctrineDocumentation extends AbstractController
     /**
      * @Route("/docs/calendar-doctrine", name="docs_calendar_doctrine")
      */
-    public function calendar(): Response
+    public function calendar() : Response
     {
         return $this->render('documentation/calendar_doctrine.html.twig', [
             'activeSection' => 'calendar-doctrine',
@@ -40,7 +40,7 @@ final class CalendarDoctrineDocumentation extends AbstractController
     /**
      * @Route("/docs/calendar-doctrine/{version}", name="docs_calendar_doctrine_version")
      */
-    public function calendarDoctrineVersion(string $version): Response
+    public function calendarDoctrineVersion(string $version) : Response
     {
         return $this->render('documentation/calendar_doctrine_version.html.twig', [
             'activeSection' => 'calendar-doctrine',
@@ -52,7 +52,7 @@ final class CalendarDoctrineDocumentation extends AbstractController
     /**
      * @Route("/docs/calendar-doctrine/{version}/{classSlug}", name="docs_calendar_doctrine_class")
      */
-    public function calendarDoctrineClass(string $version, string $classSlug): Response
+    public function calendarDoctrineClass(string $version, string $classSlug) : Response
     {
         foreach ($classes = $this->calendarDoctrineClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
@@ -72,7 +72,7 @@ final class CalendarDoctrineDocumentation extends AbstractController
     /**
      * @Route("/docs/calendar-doctrine/{version}/{classSlug}/method/{methodSlug}", name="docs_calendar_doctrine_class_method")
      */
-    public function calendarDoctrineClassMethod(string $version, string $classSlug, string $methodSlug): Response
+    public function calendarDoctrineClassMethod(string $version, string $classSlug, string $methodSlug) : Response
     {
         foreach ($classes = $this->calendarDoctrineClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {

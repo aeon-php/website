@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\Documentation\SlugGenerator;
@@ -19,7 +21,7 @@ class RateLimiterController extends AbstractController
         $this->parameterBag = $parameterBag;
     }
 
-    protected function parameterBag(): ParameterBagInterface
+    protected function parameterBag() : ParameterBagInterface
     {
         return $this->parameterBag;
     }
@@ -27,9 +29,11 @@ class RateLimiterController extends AbstractController
     /**
      * @Route("/docs/rate-limiter", name="docs_rate_limiter")
      */
-    public function rateLimiter(): Response
+    public function rateLimiter() : Response
     {
-        return $this->render('documentation/rate_limiter.html.twig', [
+        return $this->render(
+            'documentation/rate_limiter.html.twig',
+            [
                 'activeSection' => 'rate-limiter',
                 'versions' => $this->rateLimiterVersions(),
             ]
@@ -39,7 +43,7 @@ class RateLimiterController extends AbstractController
     /**
      * @Route("/docs/rate-limiter/{version}", name="docs_rate_limiter_version")
      */
-    public function rateLimiterVersion(string $version): Response
+    public function rateLimiterVersion(string $version) : Response
     {
         return $this->render('documentation/rate_limiter_version.html.twig', [
             'activeSection' => 'rate-limiter',
@@ -51,7 +55,7 @@ class RateLimiterController extends AbstractController
     /**
      * @Route("/docs/rate-limiter/{version}/{classSlug}", name="docs_rate_limiter_class")
      */
-    public function rateLimiterClass(string $version, string $classSlug): Response
+    public function rateLimiterClass(string $version, string $classSlug) : Response
     {
         foreach ($classes = $this->rateLimiterClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
@@ -71,7 +75,7 @@ class RateLimiterController extends AbstractController
     /**
      * @Route("/docs/rate-limiter/{version}/{classSlug}/method/{methodSlug}", name="docs_rate_limiter_class_method")
      */
-    public function rateLimiterClassMethod(string $version, string $classSlug, string $methodSlug): Response
+    public function rateLimiterClassMethod(string $version, string $classSlug, string $methodSlug) : Response
     {
         foreach ($classes = $this->rateLimiterClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {

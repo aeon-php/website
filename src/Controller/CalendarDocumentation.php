@@ -21,7 +21,7 @@ final class CalendarDocumentation extends AbstractController
         $this->parameterBag = $parameterBag;
     }
 
-    protected function parameterBag(): ParameterBagInterface
+    protected function parameterBag() : ParameterBagInterface
     {
         return $this->parameterBag;
     }
@@ -29,7 +29,7 @@ final class CalendarDocumentation extends AbstractController
     /**
      * @Route("/docs/calendar", name="docs_calendar")
      */
-    public function calendar(): Response
+    public function calendar() : Response
     {
         return $this->render('documentation/calendar.html.twig', [
             'activeSection' => 'calendar',
@@ -40,7 +40,7 @@ final class CalendarDocumentation extends AbstractController
     /**
      * @Route("/docs/calendar/{version}", name="docs_calendar_version")
      */
-    public function calendarVersion(string $version): Response
+    public function calendarVersion(string $version) : Response
     {
         return $this->render('documentation/calendar_version.html.twig', [
             'activeSection' => 'calendar',
@@ -52,7 +52,7 @@ final class CalendarDocumentation extends AbstractController
     /**
      * @Route("/docs/calendar/{version}/{classSlug}", name="docs_calendar_class")
      */
-    public function calendarClass(string $version, string $classSlug): Response
+    public function calendarClass(string $version, string $classSlug) : Response
     {
         foreach ($classes = $this->calendarClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
@@ -72,7 +72,7 @@ final class CalendarDocumentation extends AbstractController
     /**
      * @Route("/docs/calendar/{version}/{classSlug}/method/{methodSlug}", name="docs_calendar_class_method")
      */
-    public function calendarClassMethod(string $version, string $classSlug, string $methodSlug): Response
+    public function calendarClassMethod(string $version, string $classSlug, string $methodSlug) : Response
     {
         foreach ($classes = $this->calendarClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {

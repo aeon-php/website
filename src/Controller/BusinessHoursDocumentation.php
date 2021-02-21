@@ -21,7 +21,7 @@ final class BusinessHoursDocumentation extends AbstractController
         $this->parameterBag = $parameterBag;
     }
 
-    protected function parameterBag(): ParameterBagInterface
+    protected function parameterBag() : ParameterBagInterface
     {
         return $this->parameterBag;
     }
@@ -29,7 +29,7 @@ final class BusinessHoursDocumentation extends AbstractController
     /**
      * @Route("/docs/business-hours", name="docs_business_hours")
      */
-    public function businessHours(): Response
+    public function businessHours() : Response
     {
         return $this->render('documentation/business_hours.html.twig', [
             'activeSection' => 'business-hours',
@@ -40,7 +40,7 @@ final class BusinessHoursDocumentation extends AbstractController
     /**
      * @Route("/docs/business-hours/{version}", name="docs_business_hours_version")
      */
-    public function businessHoursVersion(string $version): Response
+    public function businessHoursVersion(string $version) : Response
     {
         return $this->render('documentation/business_hours_version.html.twig', [
             'activeSection' => 'business-hours',
@@ -52,7 +52,7 @@ final class BusinessHoursDocumentation extends AbstractController
     /**
      * @Route("/docs/business-hours/{version}/{classSlug}", name="docs_business_hours_class")
      */
-    public function businessHoursClass(string $version, string $classSlug): Response
+    public function businessHoursClass(string $version, string $classSlug) : Response
     {
         foreach ($classes = $this->businessHoursClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
@@ -72,7 +72,7 @@ final class BusinessHoursDocumentation extends AbstractController
     /**
      * @Route("/docs/business-hours/{version}/{classSlug}/method/{methodSlug}", name="docs_business_hours_class_method")
      */
-    public function businessHoursClassMethod(string $version, string $classSlug, string $methodSlug): Response
+    public function businessHoursClassMethod(string $version, string $classSlug, string $methodSlug) : Response
     {
         foreach ($classes = $this->businessHoursClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {

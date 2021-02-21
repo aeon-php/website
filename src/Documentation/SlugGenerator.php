@@ -6,12 +6,12 @@ namespace App\Documentation;
 
 final class SlugGenerator
 {
-    public static function forPHPClass(PHPClass $PHPClass): string
+    public static function forPHPClass(PHPClass $PHPClass) : string
     {
         return self::forClass($PHPClass->reflectionClass()->getName());
     }
 
-    public static function forClass(string $className): string
+    public static function forClass(string $className) : string
     {
         if ('Aeon\\Symfony\\AeonBundle' === \ltrim($className, '\\')) {
             return 'symfony-bundle';
@@ -68,12 +68,12 @@ final class SlugGenerator
         return \str_replace('\\', '-', \mb_strtolower($className));
     }
 
-    public static function forClassMethod(ClassMethod $method): string
+    public static function forClassMethod(ClassMethod $method) : string
     {
         return self::forMethod($method->name());
     }
 
-    public static function forMethod(string $method): string
+    public static function forMethod(string $method) : string
     {
         return \str_replace(
             '_',

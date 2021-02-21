@@ -20,7 +20,7 @@ final class DocumentationController extends AbstractController
         $this->parameterBag = $parameterBag;
     }
 
-    protected function parameterBag(): ParameterBagInterface
+    protected function parameterBag() : ParameterBagInterface
     {
         return $this->parameterBag;
     }
@@ -53,7 +53,7 @@ final class DocumentationController extends AbstractController
         ]);
     }
 
-    public function navigation(?string $activeSection = null): Response
+    public function navigation(?string $activeSection = null) : Response
     {
         return $this->render('documentation/_navigation.html.twig', [
             'activeSection' => $activeSection,

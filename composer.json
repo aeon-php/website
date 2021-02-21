@@ -7,6 +7,7 @@
         "php": ">=7.4.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "aeon-php/rate-limiter": ">=0.5.0",
         "aeon-php/calendar": ">=0.3.0",
         "aeon-php/calendar-holidays-yasumi": ">=0.2.0",
         "doctrine/cache": "^1.10",

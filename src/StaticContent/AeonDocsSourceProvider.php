@@ -21,7 +21,7 @@ final class AeonDocsSourceProvider implements SourceProvider
         $this->parameterBag = $parameterBag;
     }
 
-    protected function parameterBag(): ParameterBagInterface
+    protected function parameterBag() : ParameterBagInterface
     {
         return $this->parameterBag;
     }
@@ -29,7 +29,7 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    public function all(): array
+    public function all() : array
     {
         return \array_merge(
             $this->calendarSources(),
@@ -48,7 +48,7 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    private function calendarSources(): array
+    private function calendarSources() : array
     {
         $sources = [];
 
@@ -83,7 +83,7 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    private function calendarDoctrineSources(): array
+    private function calendarDoctrineSources() : array
     {
         $sources = [];
 
@@ -118,7 +118,7 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    private function calendarTwigSources(): array
+    private function calendarTwigSources() : array
     {
         $sources = [];
 
@@ -153,7 +153,7 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    private function calendarHolidaysSources(): array
+    private function calendarHolidaysSources() : array
     {
         $sources = [];
 
@@ -188,7 +188,7 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    private function calendarHolidaysYasumiSources(): array
+    private function calendarHolidaysYasumiSources() : array
     {
         $sources = [];
 
@@ -223,7 +223,7 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    private function businessHoursSources(): array
+    private function businessHoursSources() : array
     {
         $sources = [];
 
@@ -258,7 +258,7 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    private function sleepSources(): array
+    private function sleepSources() : array
     {
         $sources = [];
 
@@ -293,7 +293,7 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    private function retrySources(): array
+    private function retrySources() : array
     {
         $sources = [];
 
@@ -328,7 +328,7 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    private function rateLimiterSources(): array
+    private function rateLimiterSources() : array
     {
         $sources = [];
 
@@ -363,7 +363,7 @@ final class AeonDocsSourceProvider implements SourceProvider
     /**
      * @return Source[]
      */
-    private function symfonyBundleSources(): array
+    private function symfonyBundleSources() : array
     {
         $sources = [];
 

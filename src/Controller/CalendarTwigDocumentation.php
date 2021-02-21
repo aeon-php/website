@@ -21,7 +21,7 @@ final class CalendarTwigDocumentation extends AbstractController
         $this->parameterBag = $parameterBag;
     }
 
-    protected function parameterBag(): ParameterBagInterface
+    protected function parameterBag() : ParameterBagInterface
     {
         return $this->parameterBag;
     }
@@ -29,7 +29,7 @@ final class CalendarTwigDocumentation extends AbstractController
     /**
      * @Route("/docs/calendar-twig", name="docs_calendar_twig")
      */
-    public function calendar(): Response
+    public function calendar() : Response
     {
         return $this->render('documentation/calendar_twig.html.twig', [
             'activeSection' => 'calendar-twig',
@@ -40,7 +40,7 @@ final class CalendarTwigDocumentation extends AbstractController
     /**
      * @Route("/docs/calendar-twig/{version}", name="docs_calendar_twig_version")
      */
-    public function calendarTwigVersion(string $version): Response
+    public function calendarTwigVersion(string $version) : Response
     {
         return $this->render('documentation/calendar_twig_version.html.twig', [
             'activeSection' => 'calendar-twig',
@@ -52,7 +52,7 @@ final class CalendarTwigDocumentation extends AbstractController
     /**
      * @Route("/docs/calendar-twig/{version}/{classSlug}", name="docs_calendar_twig_class")
      */
-    public function calendarTwigClass(string $version, string $classSlug): Response
+    public function calendarTwigClass(string $version, string $classSlug) : Response
     {
         foreach ($classes = $this->calendarTwigClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
@@ -72,7 +72,7 @@ final class CalendarTwigDocumentation extends AbstractController
     /**
      * @Route("/docs/calendar-twig/{version}/{classSlug}/method/{methodSlug}", name="docs_calendar_twig_class_method")
      */
-    public function calendarTwigClassMethod(string $version, string $classSlug, string $methodSlug): Response
+    public function calendarTwigClassMethod(string $version, string $classSlug, string $methodSlug) : Response
     {
         foreach ($classes = $this->calendarTwigClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {

@@ -29,7 +29,7 @@ final class PHPDocsExtension extends AbstractExtension
         ];
     }
 
-    public function classUrlFilter(string $className, string $version): string
+    public function classUrlFilter(string $className, string $version) : string
     {
         if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Symfony\\AeonBundle')) {
             return $this->router->generate('docs_symfony_bundle_class', ['classSlug' => SlugGenerator::forClass($className), 'version' => $version]);
@@ -82,7 +82,7 @@ final class PHPDocsExtension extends AbstractExtension
         return '#';
     }
 
-    public function classMethodUrlFilter(string $className, string $methodName, string $version): string
+    public function classMethodUrlFilter(string $className, string $methodName, string $version) : string
     {
         if (\str_starts_with(\ltrim($className, '\\'), 'Aeon\\Symfony\\AeonBundle')) {
             return $this->router->generate('docs_symfony_bundle_class_method', [

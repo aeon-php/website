@@ -20,22 +20,22 @@ final class Parameter
         $this->reflector = $reflector;
     }
 
-    public function reflectionParameter(): ReflectionParameter
+    public function reflectionParameter() : ReflectionParameter
     {
         return $this->reflectionParameter;
     }
 
-    public function typeClass(): PHPClass
+    public function typeClass() : PHPClass
     {
         return new PHPClass($this->reflector->reflect($this->reflectionParameter->getType()->getName()), $this->reflector);
     }
 
-    public function isTypeFromGlobalNamespace(): bool
+    public function isTypeFromGlobalNamespace() : bool
     {
         return $this->typeClass()->isInternal();
     }
 
-    public function type(): string
+    public function type() : string
     {
         return $this->reflectionParameter->hasType()
             ? $this->reflectionParameter->getType()->getName()
