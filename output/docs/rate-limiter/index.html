@@ -260,7 +260,42 @@
                 <p>
                     RateLimiter components makes possible to limit frequency of operations execution.
                 </p>
-                <pre><code class="language-php">&lt;?php</code></pre>
+                <p>
+                    Following example shows how to use <a href="https://en.wikipedia.org/wiki/Leaky_bucket" target="_blank">Leaky Bucket</a> algorithm
+                    with Rate Limiter. This configuration will let 5 immediate executions with restore rate 1 execution every minute.
+                    It's recommended to replace <code>Symfony\Component\Cache\Adapter\ArrayAdapter</code> (in memory) adapter used by <code>PSRCacheStorage</code>
+                    with a more permanent storage, like for example Redis.
+                </p>
+                <pre><code class="language-php">&lt;?php
+
+$calendar = GregorianCalendar::UTC();
+
+$rateLimiter = new RateLimiter(
+    new LeakyBucketAlgorithm(
+        $calendar,
+        $bucketSize = 5,
+        $leakSize = 1,
+        $leakTime = TimeUnit::minute()
+    ),
+    new PSRCacheStorage(
+        new ArrayAdapter(),
+        $calendar
+    )
+);
+
+$rateLimiter->hit('operation.id');
+$rateLimiter->hit('operation.id');
+$rateLimiter->hit('operation.id');
+$rateLimiter->hit('operation.id');
+$rateLimiter->hit('operation.id');
+try {
+    $rateLimiter->hit('operation.id');
+} catch (RateLimitException $exception) {
+    echo "Rate limit exceeded, please wait {$exception->retryIn()->inSecondsPrecise()} seconds";
+}
+
+// this will put process into sleep for next ~59 seconds
+$rateLimiter->throttle('operation.id', SystemProcess::current());</code></pre>
                 <p>
                     Rate Limiter implements following limiting algorithms:
                 </p>
