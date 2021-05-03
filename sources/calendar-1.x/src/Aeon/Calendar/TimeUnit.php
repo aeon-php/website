@@ -306,6 +306,11 @@ final class TimeUnit implements Unit
         return \abs($this->inHours());
     }
 
+    public function inTimeHours() : int
+    {
+        return \abs($this->inHours() % 24);
+    }
+
     public function inMinutes() : int
     {
         return $this->negative
@@ -360,6 +365,11 @@ final class TimeUnit implements Unit
             : ($this->seconds * 1000 + \intval($this->microsecond / self::MICROSECONDS_IN_MILLISECOND));
     }
 
+    public function inTimeMilliseconds() : int
+    {
+        return \abs($this->inMilliseconds() % 1000);
+    }
+
     public function inMillisecondsAbs() : int
     {
         return \abs($this->inMilliseconds());
@@ -386,10 +396,5 @@ final class TimeUnit implements Unit
         }
 
         return $this->invert();
-    }
-
-    public function absolute() : self
-    {
-        return $this->isNegative() ? $this->invert() : $this;
     }
 }

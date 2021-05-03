@@ -5,48 +5,39 @@ declare(strict_types=1);
 namespace Aeon\Calendar\Gregorian;
 
 /**
- * @psalm-immutable
- * @implements \IteratorAggregate<int,TimePeriod>
- * @implements \ArrayAccess<int,TimePeriod>
+ * @implements \IteratorAggregate<TimePeriod>
  */
-final class TimePeriods implements \ArrayAccess, \Countable, \IteratorAggregate
+final class TimePeriods implements \Countable, \IteratorAggregate
 {
     /**
-     * @var array<int, TimePeriod>
+     * @var \Iterator<TimePeriod>
      */
-    private array $periods;
+    private \Iterator $periods;
 
-    public function __construct(TimePeriod ...$periods)
+    /**
+     * @param \Iterator<TimePeriod> $periods
+     */
+    private function __construct(\Iterator $periods)
     {
         $this->periods = $periods;
     }
 
-    public function offsetExists($offset) : bool
+    public static function fromArray(TimePeriod ...$periods) : self
     {
-        return isset($this->all()[\intval($offset)]);
+        return new self(new \ArrayIterator($periods));
     }
 
-    public function offsetGet($offset) : ?TimePeriod
+    public static function fromIterator(TimePeriodsIterator $timePeriodsIterator) : self
     {
-        return isset($this->all()[\intval($offset)]) ? $this->all()[\intval($offset)] : null;
-    }
-
-    public function offsetSet($offset, $value) : void
-    {
-        throw new \RuntimeException(__CLASS__ . ' is immutable.');
-    }
-
-    public function offsetUnset($offset) : void
-    {
-        throw new \RuntimeException(__CLASS__ . ' is immutable.');
+        return new self($timePeriodsIterator);
     }
 
     /**
-     * @return array<int, TimePeriod>
+     * @return array<TimePeriod>
      */
     public function all() : array
     {
-        return $this->periods;
+        return \iterator_to_array($this->periods);
     }
 
     /**
@@ -56,10 +47,9 @@ final class TimePeriods implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function each(callable $iterator) : void
     {
-        \array_map(
-            $iterator,
-            $this->all()
-        );
+        foreach ($this->periods as $period) {
+            $iterator($period);
+        }
     }
 
     /**
@@ -83,17 +73,17 @@ final class TimePeriods implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function filter(callable $iterator) : self
     {
-        return new self(...\array_filter($this->all(), $iterator));
+        return new self(new \CallbackFilterIterator($this->periods, $iterator));
     }
 
     public function count() : int
     {
-        return \count($this->all());
+        return \iterator_count($this->periods);
     }
 
     public function getIterator() : \Traversable
     {
-        return new \ArrayIterator($this->all());
+        return $this->periods;
     }
 
     /**
@@ -105,27 +95,76 @@ final class TimePeriods implements \ArrayAccess, \Countable, \IteratorAggregate
             function (TimePeriod $timePeriod) : TimePeriod {
                 return $timePeriod->isBackward() ? $timePeriod->revert() : $timePeriod;
             },
-            $this->all()
-        );
-
-        \uasort(
-            $periods,
-            function (TimePeriod $timePeriodA, TimePeriod $timePeriodB) : int {
-                return $timePeriodA->start()->toDateTimeImmutable() <=> $timePeriodB->start()->toDateTimeImmutable();
-            }
+            $this->sort()->all()
         );
 
         $gaps = [];
-        $previousPeriod = \current($periods);
+        $totalPeriod = \current($periods);
 
         while ($period = \next($periods)) {
-            if ($period->start()->isAfter($previousPeriod->end())) {
-                $gaps[] = new TimePeriod($previousPeriod->end(), $period->start());
+            if ($totalPeriod->overlaps($period) || $totalPeriod->abuts($period)) {
+                $totalPeriod = $totalPeriod->merge($period);
+            } else {
+                $gaps[] = new TimePeriod($totalPeriod->end(), $period->start());
+                $totalPeriod = $period;
             }
-
-            $previousPeriod = $period;
         }
 
-        return new self(...$gaps);
+        return self::fromArray(...$gaps);
+    }
+
+    public function sort() : self
+    {
+        return $this->sortBy(TimePeriodsSort::asc());
+    }
+
+    public function sortBy(TimePeriodsSort $sort) : self
+    {
+        $periods = $this->all();
+
+        \uasort(
+            $periods,
+            function (TimePeriod $timePeriodA, TimePeriod $timePeriodB) use ($sort) : int {
+                if ($sort->byStartDate()) {
+                    return $sort->isAscending()
+                        ? $timePeriodA->start()->toDateTimeImmutable() <=> $timePeriodB->start()->toDateTimeImmutable()
+                        : $timePeriodB->start()->toDateTimeImmutable() <=> $timePeriodA->start()->toDateTimeImmutable();
+                }
+
+                return $sort->isAscending()
+                    ? $timePeriodA->end()->toDateTimeImmutable() <=> $timePeriodB->end()->toDateTimeImmutable()
+                    : $timePeriodB->end()->toDateTimeImmutable() <=> $timePeriodA->end()->toDateTimeImmutable();
+            }
+        );
+
+        return self::fromArray(...$periods);
+    }
+
+    public function first() : ?TimePeriod
+    {
+        $this->periods->rewind();
+
+        return $this->periods->current();
+    }
+
+    public function last() : ?TimePeriod
+    {
+        $periods = $this->all();
+
+        if (!\count($periods)) {
+            return null;
+        }
+
+        return \end($periods);
+    }
+
+    public function add(TimePeriod ...$timePeriods) : self
+    {
+        return self::fromArray(...\array_merge($this->all(), $timePeriods));
+    }
+
+    public function merge(self $timePeriods) : self
+    {
+        return self::fromArray(...\array_merge($this->all(), $timePeriods->all()));
     }
 }

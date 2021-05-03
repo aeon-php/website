@@ -86,14 +86,6 @@
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalue</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalueset</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
             <loc>https://aeon-php.org/docs/calendar/1.x/timeunit</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
@@ -134,6 +126,14 @@
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-monthsiterator</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeiterator</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
             <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-year</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
@@ -147,6 +147,10 @@
             <priority>1.0</priority>                    </url>
             <url>
             <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-years</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiodssort</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
@@ -170,11 +174,19 @@
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-daysiterator</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
             <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-calendar</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
             <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timezone</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiodsiterator</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
@@ -187,6 +199,10 @@
             <priority>1.0</priority>                    </url>
             <url>
             <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-day-weekday</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeintervaliterator</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
@@ -235,106 +251,6 @@
             <priority>1.0</priority>                    </url>
             <url>
             <loc>https://aeon-php.org/docs/calendar/1.x/exception-exception</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalue/method/construct</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalue/method/createempty</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalue/method/day</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalue/method/value</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalueset/method/construct</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalueset/method/createempty</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalueset/method/createwith</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalueset/method/fillmissingwith</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalueset/method/put</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalueset/method/remove</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalueset/method/has</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalueset/method/get</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalueset/method/first</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalueset/method/last</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalueset/method/count</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalueset/method/filter</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalueset/method/map</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalueset/method/reduce</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalueset/method/todays</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalueset/method/values</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalueset/method/sortascending</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalueset/method/sortdescending</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalueset/method/take</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalueset/method/slice</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/dayvalueset/method/drop</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
@@ -486,6 +402,10 @@
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/timeunit/method/intimehours</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
             <loc>https://aeon-php.org/docs/calendar/1.x/timeunit/method/inminutes</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
@@ -518,6 +438,10 @@
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/timeunit/method/intimemilliseconds</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
             <loc>https://aeon-php.org/docs/calendar/1.x/timeunit/method/inmillisecondsabs</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
@@ -531,10 +455,6 @@
             <priority>1.0</priority>                    </url>
             <url>
             <loc>https://aeon-php.org/docs/calendar/1.x/timeunit/method/topositive</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/timeunit/method/absolute</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
@@ -586,19 +506,11 @@
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-months/method/offsetexists</loc>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-months/method/fromarray</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-months/method/offsetget</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-months/method/offsetset</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-months/method/offsetunset</loc>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-months/method/fromdatetimeiterator</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
@@ -654,6 +566,10 @@
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetime/method/unserialize</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
             <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetime/method/year</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
@@ -699,6 +615,10 @@
             <priority>1.0</priority>                    </url>
             <url>
             <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetime/method/timezone</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetime/method/timezoneabbreviation</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
@@ -927,6 +847,10 @@
             <priority>1.0</priority>                    </url>
             <url>
             <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-day/method/serialize</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-day/method/unserialize</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
@@ -1274,6 +1198,10 @@
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiod/method/isequal</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
             <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-time/method/construct</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
@@ -1446,11 +1374,87 @@
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-interval/method/todateperiod</loc>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-monthsiterator/method/construct</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-interval/method/todateperiodbackward</loc>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-monthsiterator/method/fromdatetimeiterator</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-monthsiterator/method/current</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-monthsiterator/method/reverse</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-monthsiterator/method/getinneriterator</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-monthsiterator/method/rewind</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-monthsiterator/method/valid</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-monthsiterator/method/key</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-monthsiterator/method/next</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeiterator/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeiterator/method/isforward</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeiterator/method/unit</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeiterator/method/start</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeiterator/method/end</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeiterator/method/current</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeiterator/method/next</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeiterator/method/hasnext</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeiterator/method/key</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeiterator/method/isfirst</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeiterator/method/valid</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeiterator/method/rewind</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
@@ -1742,6 +1746,34 @@
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiodssort/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiodssort/method/asc</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiodssort/method/desc</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiodssort/method/startdate</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiodssort/method/enddate</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiodssort/method/bystartdate</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiodssort/method/isascending</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
             <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-monthdays/method/construct</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
@@ -1774,19 +1806,11 @@
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiods/method/offsetexists</loc>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiods/method/fromarray</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiods/method/offsetget</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiods/method/offsetset</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiods/method/offsetunset</loc>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiods/method/fromiterator</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
@@ -1815,6 +1839,30 @@
             <priority>1.0</priority>                    </url>
             <url>
             <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiods/method/gaps</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiods/method/sort</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiods/method/sortby</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiods/method/first</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiods/method/last</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiods/method/add</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiods/method/merge</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
@@ -1895,6 +1943,42 @@
             <priority>1.0</priority>                    </url>
             <url>
             <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-gregoriancalendar/method/tomorrow</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-daysiterator/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-daysiterator/method/fromdatetimeiterator</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-daysiterator/method/current</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-daysiterator/method/reverse</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-daysiterator/method/getinneriterator</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-daysiterator/method/rewind</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-daysiterator/method/valid</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-daysiterator/method/key</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-daysiterator/method/next</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
@@ -1994,23 +2078,47 @@
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiodsiterator/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiodsiterator/method/current</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiodsiterator/method/accept</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiodsiterator/method/key</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiodsiterator/method/getinneriterator</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiodsiterator/method/rewind</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiodsiterator/method/valid</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeperiodsiterator/method/next</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
             <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-days/method/construct</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-days/method/offsetexists</loc>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-days/method/fromarray</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-days/method/offsetget</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-days/method/offsetset</loc>
-            <changefreq>daily</changefreq>
-            <priority>1.0</priority>                    </url>
-            <url>
-            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-days/method/offsetunset</loc>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-days/method/fromdatetimeiterator</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
@@ -2047,6 +2155,10 @@
             <priority>1.0</priority>                    </url>
             <url>
             <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-leapsecond/method/offsettai</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-leapsecond/method/isequal</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
@@ -2102,6 +2214,62 @@
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeintervaliterator/method/construct</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeintervaliterator/method/start</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeintervaliterator/method/end</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeintervaliterator/method/unit</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeintervaliterator/method/isforward</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeintervaliterator/method/interval</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeintervaliterator/method/hasnext</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeintervaliterator/method/accept</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeintervaliterator/method/key</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeintervaliterator/method/current</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeintervaliterator/method/getinneriterator</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeintervaliterator/method/rewind</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeintervaliterator/method/valid</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-datetimeintervaliterator/method/next</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
             <loc>https://aeon-php.org/docs/calendar/1.x/gregorian-timeepoch/method/construct</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
@@ -2146,6 +2314,22 @@
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/unit/method/invert</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/unit/method/isnegative</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/unit/method/tonegative</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/unit/method/topositive</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
             <loc>https://aeon-php.org/docs/calendar/1.x/relativetimeunit/method/construct</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
@@ -2167,6 +2351,34 @@
             <priority>1.0</priority>                    </url>
             <url>
             <loc>https://aeon-php.org/docs/calendar/1.x/relativetimeunit/method/todateinterval</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/relativetimeunit/method/invert</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/relativetimeunit/method/incalendarmonths</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/relativetimeunit/method/isnegative</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/relativetimeunit/method/inyears</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/relativetimeunit/method/tonegative</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/relativetimeunit/method/topositive</loc>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>                    </url>
+            <url>
+            <loc>https://aeon-php.org/docs/calendar/1.x/relativetimeunit/method/inmonths</loc>
             <changefreq>daily</changefreq>
             <priority>1.0</priority>                    </url>
             <url>

@@ -1,7 +1,93 @@
-## [Unreleased] - 2021-01-25
+## [0.18.0] - 2021-05-01
 
 ### Added
+- [#121](https://github.com/aeon-php/calendar/pull/121) - **DateTimeIterator** - [@norberttech](https://github.com/norberttech)
+- [#121](https://github.com/aeon-php/calendar/pull/121) - **DateTimeIntervalIterator** - [@norberttech](https://github.com/norberttech)
+- [#121](https://github.com/aeon-php/calendar/pull/121) - **TimePeriodsIterator** - [@norberttech](https://github.com/norberttech)
+- [#121](https://github.com/aeon-php/calendar/pull/121) - **\DateTimeImmutable cache in DateTime, Day, Month classes to improve time periods iteration performance** - [@norberttech](https://github.com/norberttech)
+
+### Changed
+- [#121](https://github.com/aeon-php/calendar/pull/121) - **Year::isLeap() uses algorithm instead of DateTimeImmutable** - [@norberttech](https://github.com/norberttech)
+- [#121](https://github.com/aeon-php/calendar/pull/121) - **Month::numberOfDays() uses algorithm instead of DateTimeImmutable** - [@norberttech](https://github.com/norberttech)
+- [#121](https://github.com/aeon-php/calendar/pull/121) - **updated infection dependency** - [@norberttech](https://github.com/norberttech)
+
+## [0.17.0] - 2021-04-24
+
+### Added
+- [#112](https://github.com/aeon-php/calendar/pull/112) - **post install/update composer scripts that installs tools** - [@norberttech](https://github.com/norberttech)
+
+### Changed
+- [#117](https://github.com/aeon-php/calendar/pull/117) - **replaced array of Day with DaysIterator in Days class constructor** - [@norberttech](https://github.com/norberttech)
+- [#117](https://github.com/aeon-php/calendar/pull/117) - **replaced array of Month with MonthIterator in Months class constructor** - [@norberttech](https://github.com/norberttech)
+- [#117](https://github.com/aeon-php/calendar/pull/117) - **Days::since() will always return days in the same order** - [@norberttech](https://github.com/norberttech)
+- [#117](https://github.com/aeon-php/calendar/pull/117) - **Months::since() will always return days in the same order** - [@norberttech](https://github.com/norberttech)
+- [#116](https://github.com/aeon-php/calendar/pull/116) - **updated tools** - [@norberttech](https://github.com/norberttech)
+- [#116](https://github.com/aeon-php/calendar/pull/116) - **adjusted code to the latest static analysis rules** - [@norberttech](https://github.com/norberttech)
+
+### Removed
+- [#117](https://github.com/aeon-php/calendar/pull/117) - **ArrayAccess behavior from Days class** - [@norberttech](https://github.com/norberttech)
+- [#117](https://github.com/aeon-php/calendar/pull/117) - **ArrayAccess behavior from Months class** - [@norberttech](https://github.com/norberttech)
+
+## [0.16.4] - 2021-04-04
+
+### Added
+- [#110](https://github.com/aeon-php/calendar/pull/110) - **Unit::invert() : self** - [@norberttech](https://github.com/norberttech)
+- [#110](https://github.com/aeon-php/calendar/pull/110) - **Unit::isNegative() : boolean** - [@norberttech](https://github.com/norberttech)
+- [#110](https://github.com/aeon-php/calendar/pull/110) - **validation to DateTime::modify() method to make sure that it only accepts relative time unit string** - [@norberttech](https://github.com/norberttech)
+
+### Changed
+- [#110](https://github.com/aeon-php/calendar/pull/110) - **static analyse tools update and fixed new issues** - [@norberttech](https://github.com/norberttech)
+- [#107](https://github.com/aeon-php/calendar/pull/107) - **Replaced phive with separated composer.json for tools** - [@norberttech](https://github.com/norberttech)
+
+### Fixed
+- [#110](https://github.com/aeon-php/calendar/pull/110) - **add/sub/modify methods when working with RelativeTimeUnit::month will first change the month and then adjust the day** - [@norberttech](https://github.com/norberttech)
+- [#110](https://github.com/aeon-php/calendar/pull/110) - **adding negative time unit to DateTime or Day** - [@norberttech](https://github.com/norberttech)
+- [#110](https://github.com/aeon-php/calendar/pull/110) - **subtracting negative time unit from DateTime or Day** - [@norberttech](https://github.com/norberttech)
+
+## [0.16.3] - 2021-03-22
+
+### Fixed
+- [#106](https://github.com/aeon-php/calendar/pull/106) - **detecting UTC timezone as abbreviation instead of identifier** - [@norberttech](https://github.com/norberttech)
+
+## [0.16.2] - 2021-03-21
+
+### Added
+- [#105](https://github.com/aeon-php/calendar/pull/105) - **DateTime::timeZoneAbbreviation method** - [@norberttech](https://github.com/norberttech)
+
+### Fixed
+- [#105](https://github.com/aeon-php/calendar/pull/105) - **TimeZone type detection when created from DateTimeZone** - [@norberttech](https://github.com/norberttech)
+
+## [0.16.1] - 2021-02-23
+
+### Added
+- [#104](https://github.com/aeon-php/calendar/pull/104) - **possibility to display relative time units in months/year/calendarMonths** - [@norberttech](https://github.com/norberttech)
+- [#103](https://github.com/aeon-php/calendar/pull/103) - **possibility to to get time milliseconds from time unit** - [@norberttech](https://github.com/norberttech)
+- [#102](https://github.com/aeon-php/calendar/pull/102) - **possibility to get time hours from time unit** - [@norberttech](https://github.com/norberttech)
+
+## [0.16.0] - 2021-02-19
+
+### Fixed
+- [#100](https://github.com/aeon-php/calendar/pull/100) - **failing time tests - creating time from relative string** - [@norberttech](https://github.com/norberttech)
+
+### Removed
+- [#101](https://github.com/aeon-php/calendar/pull/101) - **Collection namespace** - [@norberttech](https://github.com/norberttech)
+
+## [0.15.0] - 2021-02-04
+
+### Added
+- [#99](https://github.com/aeon-php/calendar/pull/99) - **possibility to set current date directly through GregorianCalendarStub constructor** - [@norberttech](https://github.com/norberttech)
+- [#96](https://github.com/aeon-php/calendar/pull/96) - **`TimePeriods::add()` method** - [@norberttech](https://github.com/norberttech)
+- [#96](https://github.com/aeon-php/calendar/pull/96) - **`TimePeriods::merge()` method** - [@norberttech](https://github.com/norberttech)
+- [#96](https://github.com/aeon-php/calendar/pull/96) - **`TimePeriods::sort()` method** - [@norberttech](https://github.com/norberttech)
+- [#96](https://github.com/aeon-php/calendar/pull/96) - **`TimePeriods::sortBy()` method** - [@norberttech](https://github.com/norberttech)
+- [#96](https://github.com/aeon-php/calendar/pull/96) - **`TimePeriods::first()` method** - [@norberttech](https://github.com/norberttech)
+- [#96](https://github.com/aeon-php/calendar/pull/96) - **`TimePeriods::last()` method** - [@norberttech](https://github.com/norberttech)
 - [#91](https://github.com/aeon-php/calendar/pull/91) - **static constructors to GregorianCalendarStub** - [@norberttech](https://github.com/norberttech)
+
+### Fixed
+- [#98](https://github.com/aeon-php/calendar/pull/98) - **merging abuts time periods** - [@norberttech](https://github.com/norberttech)
+- [#97](https://github.com/aeon-php/calendar/pull/97) - **TimePeriods gap detection** - [@norberttech](https://github.com/norberttech)
+- [#95](https://github.com/aeon-php/calendar/pull/95) - **breaking time from string test** - [@norberttech](https://github.com/norberttech)
 
 ## [0.14.0] - 2021-01-21
 

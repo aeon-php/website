@@ -6,6 +6,7 @@ namespace Aeon\Calendar\Gregorian;
 
 use Aeon\Calendar\Exception\InvalidArgumentException;
 use Aeon\Calendar\Gregorian\Day\WeekDay;
+use Aeon\Calendar\RelativeTimeUnit;
 use Aeon\Calendar\TimeUnit;
 
 /**
@@ -17,6 +18,8 @@ final class Day
 
     private int $number;
 
+    private ?\DateTimeImmutable $dateTime;
+
     public function __construct(Month $month, int $number)
     {
         if ($number <= 0 || $number > $month->numberOfDays()) {
@@ -25,6 +28,7 @@ final class Day
 
         $this->number = $number;
         $this->month = $month;
+        $this->dateTime = null;
     }
 
     /**
@@ -47,12 +51,14 @@ final class Day
      */
     public static function fromDateTime(\DateTimeInterface $dateTime) : self
     {
+        [$year, $month, $day] = \sscanf($dateTime->format('Y-m-d'), '%d-%d-%d');
+
         return new self(
             new Month(
-                new Year((int) $dateTime->format('Y')),
-                (int) $dateTime->format('m')
+                new Year((int) $year),
+                (int) $month
             ),
-            (int) $dateTime->format('d')
+            (int) $day
         );
     }
 
@@ -106,6 +112,16 @@ final class Day
         ];
     }
 
+    /**
+     * @param array{month: Month, number: int, dateTime: ?\DateTimeInterface} $data
+     */
+    public function __unserialize(array $data) : void
+    {
+        $this->month = $data['month'];
+        $this->number = $data['number'];
+        $this->dateTime = null;
+    }
+
     public function toString() : string
     {
         return $this->format('Y-m-d');
@@ -118,52 +134,80 @@ final class Day
 
     public function plus(int $years, int $months, int $days) : self
     {
-        return self::fromDateTime($this->toDateTimeImmutable()->modify(\sprintf('+%d days +%d months +%d years', $days, $months, $years)));
+        $dateTime = $this->midnight(TimeZone::UTC());
+
+        if ($years !== 0) {
+            $dateTime = $dateTime->add(RelativeTimeUnit::years($years));
+        }
+
+        if ($months !== 0) {
+            $dateTime = $dateTime->add(RelativeTimeUnit::months($months));
+        }
+
+        if ($days !== 0) {
+            $dateTime = $dateTime->add(TimeUnit::days($days));
+        }
+
+        return $dateTime->day();
     }
 
     public function minus(int $years, int $months, int $days) : self
     {
-        return self::fromDateTime($this->toDateTimeImmutable()->modify(\sprintf('-%d days -%d months -%d years', $days, $months, $years)));
+        $dateTime = $this->midnight(TimeZone::UTC());
+
+        if ($years !== 0) {
+            $dateTime = $dateTime->sub(RelativeTimeUnit::years($years));
+        }
+
+        if ($months !== 0) {
+            $dateTime = $dateTime->sub(RelativeTimeUnit::months($months));
+        }
+
+        if ($days !== 0) {
+            $dateTime = $dateTime->sub(TimeUnit::days($days));
+        }
+
+        return $dateTime->day();
     }
 
     public function plusDays(int $days) : self
     {
-        return self::fromDateTime($this->toDateTimeImmutable()->modify(\sprintf('+%d days', $days)));
+        return $this->midnight(TimeZone::UTC())->add(TimeUnit::days($days))->day();
     }
 
     public function minusDays(int $days) : self
     {
-        return self::fromDateTime($this->toDateTimeImmutable()->modify(\sprintf('-%d days', $days)));
+        return $this->midnight(TimeZone::UTC())->sub(TimeUnit::days($days))->day();
     }
 
     public function plusMonths(int $months) : self
     {
-        return self::fromDateTime($this->toDateTimeImmutable()->modify(\sprintf('+%d months', $months)));
+        return $this->midnight(TimeZone::UTC())->add(RelativeTimeUnit::months($months))->day();
     }
 
     public function minusMonths(int $months) : self
     {
-        return self::fromDateTime($this->toDateTimeImmutable()->modify(\sprintf('-%d months', $months)));
+        return $this->midnight(TimeZone::UTC())->sub(RelativeTimeUnit::months($months))->day();
     }
 
     public function plusYears(int $years) : self
     {
-        return self::fromDateTime($this->toDateTimeImmutable()->modify(\sprintf('+%d years', $years)));
+        return $this->midnight(TimeZone::UTC())->add(RelativeTimeUnit::years($years))->day();
     }
 
     public function minusYears(int $years) : self
     {
-        return self::fromDateTime($this->toDateTimeImmutable()->modify(\sprintf('-%d years', $years)));
+        return $this->midnight(TimeZone::UTC())->sub(RelativeTimeUnit::years($years))->day();
     }
 
     public function previous() : self
     {
-        return self::fromDateTime($this->toDateTimeImmutable()->modify('-1 day'));
+        return $this->midnight(TimeZone::UTC())->sub(TimeUnit::day())->day();
     }
 
     public function next() : self
     {
-        return self::fromDateTime($this->toDateTimeImmutable()->modify('+1 day'));
+        return $this->midnight(TimeZone::UTC())->add(TimeUnit::day())->day();
     }
 
     public function midnight(TimeZone $timeZone) : DateTime
@@ -239,9 +283,18 @@ final class Day
         return $this->weekDay()->isWeekend();
     }
 
+    /**
+     * @psalm-suppress InvalidNullableReturnType
+     * @psalm-suppress InaccessibleProperty
+     * @psalm-suppress NullableReturnStatement
+     */
     public function toDateTimeImmutable() : \DateTimeImmutable
     {
-        return new \DateTimeImmutable(\sprintf('%d-%d-%d 00:00:00.000000 UTC', $this->month()->year()->number(), $this->month()->number(), $this->number()));
+        if ($this->dateTime === null) {
+            $this->dateTime = new \DateTimeImmutable(\sprintf('%d-%d-%d 00:00:00.000000 UTC', $this->month()->year()->number(), $this->month()->number(), $this->number()));
+        }
+
+        return $this->dateTime;
     }
 
     public function format(string $format) : string
@@ -330,14 +383,12 @@ final class Day
             );
         }
 
-        return new Days(
-            ...\array_map(
-                function (\DateTimeImmutable $dateTimeImmutable) : self {
-                    return self::fromDateTime($dateTimeImmutable);
-                },
-                \iterator_to_array(
-                    $interval->toDatePeriod($this->midnight(TimeZone::UTC()), TimeUnit::day(), $day->midnight(TimeZone::UTC()))
-                )
+        return Days::fromDateTimeIterator(
+            new DateTimeIntervalIterator(
+                $this->midnight(TimeZone::UTC()),
+                $day->midnight(TimeZone::UTC()),
+                TimeUnit::day(),
+                $interval
             )
         );
     }
@@ -358,16 +409,12 @@ final class Day
             );
         }
 
-        return new Days(
-            ...\array_map(
-                function (\DateTimeImmutable $dateTimeImmutable) : self {
-                    return self::fromDateTime($dateTimeImmutable);
-                },
-                \array_reverse(
-                    \iterator_to_array(
-                        $interval->toDatePeriodBackward($day->midnight(TimeZone::UTC()), TimeUnit::day(), $this->midnight(TimeZone::UTC()))
-                    )
-                )
+        return Days::fromDateTimeIterator(
+            new DateTimeIntervalIterator(
+                $this->midnight(TimeZone::UTC()),
+                $day->midnight(TimeZone::UTC()),
+                TimeUnit::day()->toNegative(),
+                $interval
             )
         );
     }

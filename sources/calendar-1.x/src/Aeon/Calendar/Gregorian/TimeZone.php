@@ -553,31 +553,6 @@ use Aeon\Calendar\TimeUnit;
  * @method static self YPT()
  * @method static self YST()
  * @method static self YWT()
- * @method static self A()
- * @method static self B()
- * @method static self C()
- * @method static self D()
- * @method static self E()
- * @method static self F()
- * @method static self G()
- * @method static self H()
- * @method static self I()
- * @method static self K()
- * @method static self L()
- * @method static self M()
- * @method static self N()
- * @method static self O()
- * @method static self P()
- * @method static self Q()
- * @method static self R()
- * @method static self S()
- * @method static self T()
- * @method static self U()
- * @method static self V()
- * @method static self W()
- * @method static self X()
- * @method static self Y()
- * @method static self Z()
  *
  * @psalm-immutable
  */
@@ -591,11 +566,12 @@ final class TimeZone
 
     private string $name;
 
-    private int $type = self::TYPE_IDENTIFIER;
+    private int $type;
 
-    private function __construct(string $name)
+    private function __construct(string $name, int $type)
     {
         $this->name = $name;
+        $this->type = $type;
     }
 
     /**
@@ -608,19 +584,18 @@ final class TimeZone
         $normalized = \strtolower($identifier);
 
         if ($normalized === 'utc') {
-            return new self('UTC');
+            throw new InvalidArgumentException('"UTC" is timezone abbreviation, not identifier.');
         }
 
-        /** @var string $dateTimeZoneIdentifier */
         foreach (\DateTimeZone::listIdentifiers() as $dateTimeZoneIdentifier) {
             $normalizedDateTimeZoneIdentifier = \strtolower($dateTimeZoneIdentifier);
 
             if (\strtolower($dateTimeZoneIdentifier) === $normalized) {
-                return new self($dateTimeZoneIdentifier);
+                return new self($dateTimeZoneIdentifier, self::TYPE_IDENTIFIER);
             }
 
             if (\str_replace(['/', '_'], '', $normalizedDateTimeZoneIdentifier) === $normalized) {
-                return new self($dateTimeZoneIdentifier);
+                return new self($dateTimeZoneIdentifier, self::TYPE_IDENTIFIER);
             }
         }
 
@@ -640,10 +615,7 @@ final class TimeZone
          */
         foreach (\array_keys(\DateTimeZone::listAbbreviations()) as $dateTimeZoneAbbreviation) {
             if (\strtoupper($dateTimeZoneAbbreviation) === $normalized) {
-                $timezone = new self(\strtoupper($dateTimeZoneAbbreviation));
-                $timezone->type = self::TYPE_ABBREVIATION;
-
-                return $timezone;
+                return new self(\strtoupper($dateTimeZoneAbbreviation), self::TYPE_ABBREVIATION);
             }
         }
 
@@ -659,10 +631,7 @@ final class TimeZone
             throw new InvalidArgumentException("\"{$offset}\" is not a valid time offset.");
         }
 
-        $timezone = new self(TimeOffset::fromString($offset)->toString());
-        $timezone->type = self::TYPE_OFFSET;
-
-        return $timezone;
+        return new self(TimeOffset::fromString($offset)->toString(), self::TYPE_OFFSET);
     }
 
     /**
@@ -706,7 +675,18 @@ final class TimeZone
      */
     public static function fromDateTimeZone(\DateTimeZone $dateTimeZone) : self
     {
-        return new self($dateTimeZone->getName());
+        $name = $dateTimeZone->getName();
+        $type = self::TYPE_IDENTIFIER;
+
+        if (TimeOffset::isValid($name)) {
+            $type = self::TYPE_OFFSET;
+        }
+
+        if (\timezone_name_from_abbr($name) !== false) {
+            $type = self::TYPE_ABBREVIATION;
+        }
+
+        return new self($name, $type);
     }
 
     /**
@@ -717,7 +697,10 @@ final class TimeZone
      */
     public static function allIdentifiers() : array
     {
-        return \array_map(fn (string $identifier) : self => self::id($identifier), \DateTimeZone::listIdentifiers());
+        return \array_map(
+            fn (string $identifier) : self => self::id($identifier),
+            \array_filter(\DateTimeZone::listIdentifiers(), fn (string $identifier) : bool => $identifier !== 'UTC')
+        );
     }
 
     /**
@@ -731,7 +714,10 @@ final class TimeZone
         /** @var array<string> $abbreviations */
         $abbreviations = \array_keys(\DateTimeZone::listAbbreviations());
 
-        return \array_map(fn (string $abbreviation) : self => self::abbreviation($abbreviation), $abbreviations);
+        return \array_map(
+            fn (string $abbreviation) : self => self::abbreviation($abbreviation),
+            \array_filter($abbreviations, fn (string $abbreviation) : bool => \strlen($abbreviation) > 1)
+        );
     }
 
     /**
@@ -760,6 +746,7 @@ final class TimeZone
     {
         return [
             'name' => $this->name,
+            'type' => $this->type,
         ];
     }
 

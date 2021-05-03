@@ -45,6 +45,93 @@ final class RelativeTimeUnit implements Unit
 
     public function toDateInterval() : \DateInterval
     {
-        return new \DateInterval(\sprintf('P%dY%dM', $this->years ? $this->years : 0, $this->months ? $this->months : 0));
+        $dateInterval = new \DateInterval(\sprintf('P%dY%dM', $this->inYears() ? \abs($this->inYears()) : 0, $this->inCalendarMonths() ? \abs($this->inCalendarMonths()) : 0));
+
+        if ($this->isNegative()) {
+            /** @psalm-suppress ImpurePropertyAssignment */
+            $dateInterval->invert = 1;
+        }
+
+        return $dateInterval;
+    }
+
+    public function invert() : self
+    {
+        if ($this->years) {
+            return $this->isNegative() ? self::years(\abs($this->years)) : self::years(-$this->years);
+        }
+
+        /**
+         * @psalm-suppress PossiblyNullArgument
+         * @phpstan-ignore-next-line
+         */
+        return $this->isNegative() ? self::months(\abs($this->months)) : self::months(-$this->months);
+    }
+
+    public function inCalendarMonths() : int
+    {
+        if ($this->months === null) {
+            return 0;
+        }
+
+        return \abs($this->months % 12);
+    }
+
+    public function isNegative() : bool
+    {
+        return $this->years < 0 || $this->months < 0;
+    }
+
+    /**
+     * @psalm-suppress PossiblyNullOperand
+     * @psalm-suppress InvalidNullableReturnType
+     */
+    public function inYears() : int
+    {
+        if ($this->years !== null) {
+            return $this->years;
+        }
+
+        /**
+         * @psalm-suppress PossiblyNullArgument
+         * @phpstan-ignore-next-line
+         */
+        $years = (int) \floor(\abs($this->months) / 12);
+
+        return $this->isNegative() ? -$years : $years;
+    }
+
+    public function toNegative() : self
+    {
+        if ($this->isNegative()) {
+            return $this;
+        }
+
+        return $this->invert();
+    }
+
+    public function toPositive() : self
+    {
+        if (!$this->isNegative()) {
+            return $this;
+        }
+
+        return $this->invert();
+    }
+
+    /**
+     * @psalm-suppress NullableReturnStatement
+     * @psalm-suppress InvalidNullableReturnType
+     */
+    public function inMonths() : int
+    {
+        if ($this->years !== null) {
+            return $this->years * 12;
+        }
+
+        /**
+         * @phpstan-ignore-next-line
+         */
+        return $this->months;
     }
 }

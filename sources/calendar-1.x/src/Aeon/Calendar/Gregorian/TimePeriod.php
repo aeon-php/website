@@ -64,7 +64,7 @@ final class TimePeriod
 
         $result = $endUnixTimestamp
             ->sub($startUnixTimestamp)
-            ->absolute();
+            ->toPositive();
 
         return $this->start->isAfter($this->end) ? $result->invert() : $result;
     }
@@ -74,93 +74,20 @@ final class TimePeriod
         return LeapSeconds::load()->findAllBetween($this);
     }
 
+    /**
+     * @psalm-suppress ImpureMethodCall
+     */
     public function iterate(Unit $timeUnit, Interval $interval) : TimePeriods
     {
-        /** @psalm-suppress ImpureFunctionCall */
-        return new TimePeriods(
-            ...\array_filter(
-                \array_map(
-                    function (\DateTimeImmutable $dateTimeImmutable) use ($timeUnit, $interval) : ?self {
-                        $start = DateTime::fromDateTime($dateTimeImmutable);
-                        $end = $start->add($timeUnit);
-
-                        if ($interval->isRightOpen()) {
-                            if ($end->isAfter($this->end())) {
-                                $end = $this->end()->sub($timeUnit);
-                            }
-
-                            if ($end->isEqual($this->end())) {
-                                return null;
-                            }
-                        }
-
-                        if ($interval->isClosed() || $interval->isLeftOpen()) {
-                            if ($end->isAfter($this->end())) {
-                                $end = $this->end();
-                            }
-                        }
-
-                        if ($start->isAfterOrEqual($end) || $end->isAfter($this->end())) {
-                            return null;
-                        }
-
-                        return new self(
-                            $start,
-                            $end
-                        );
-                    },
-                    \iterator_to_array(
-                        $interval->toDatePeriod($this->start, $timeUnit, $this->end)
-                    )
-                )
-            )
-        );
+        return TimePeriods::fromIterator(new TimePeriodsIterator($this->start, $this->end, $timeUnit, $interval));
     }
 
+    /**
+     * @psalm-suppress ImpureMethodCall
+     */
     public function iterateBackward(Unit $timeUnit, Interval $interval) : TimePeriods
     {
-        /** @psalm-suppress ImpureFunctionCall */
-        return new TimePeriods(
-            ...\array_filter(
-                \array_map(
-                    function (\DateTimeImmutable $dateTimeImmutable) use ($timeUnit, $interval) : ?self {
-                        $start = DateTime::fromDateTime($dateTimeImmutable)->add($timeUnit);
-                        $end = DateTime::fromDateTime($dateTimeImmutable);
-
-                        if ($start->isAfter($this->end())) {
-                            $start = $this->end();
-                        }
-
-                        if ($interval->isLeftOpen()) {
-                            if ($end->isEqual($this->start())) {
-                                return null;
-                            }
-                        }
-
-                        if ($interval->isRightOpen()) {
-                            if ($start->isEqual($this->end())) {
-                                return null;
-                            }
-                        }
-
-                        if ($end->isBefore($this->start())) {
-                            return null;
-                        }
-
-                        if ($end->isEqual($start)) {
-                            return null;
-                        }
-
-                        return new self($start, $end);
-                    },
-                    \array_reverse(
-                        \iterator_to_array(
-                            $interval->toDatePeriodBackward($this->start, $timeUnit, $this->end)
-                        )
-                    )
-                )
-            )
-        );
+        return TimePeriods::fromIterator(new TimePeriodsIterator($this->end, $this->start, $timeUnit->toNegative(), $interval));
     }
 
     public function overlaps(self $timePeriod) : bool
@@ -226,7 +153,7 @@ final class TimePeriod
 
     public function merge(self $timePeriod) : self
     {
-        if (!$this->overlaps($timePeriod)) {
+        if (!$this->overlaps($timePeriod) && !$this->abuts($timePeriod)) {
             throw new InvalidArgumentException("Can't merge not overlapping time periods.");
         }
 
@@ -259,5 +186,10 @@ final class TimePeriod
         }
 
         return false;
+    }
+
+    public function isEqual(self $period) : bool
+    {
+        return $this->start->isEqual($period->start()) && $this->end->isEqual($period->end());
     }
 }

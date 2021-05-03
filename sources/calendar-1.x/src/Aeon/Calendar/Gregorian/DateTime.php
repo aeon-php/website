@@ -6,6 +6,7 @@ namespace Aeon\Calendar\Gregorian;
 
 use Aeon\Calendar\Exception\Exception;
 use Aeon\Calendar\Exception\InvalidArgumentException;
+use Aeon\Calendar\RelativeTimeUnit;
 use Aeon\Calendar\TimeUnit;
 use Aeon\Calendar\Unit;
 
@@ -20,11 +21,14 @@ final class DateTime
 
     private TimeZone $timeZone;
 
+    private ?\DateTimeImmutable $dateTime;
+
     public function __construct(Day $day, Time $time, TimeZone $timeZone)
     {
         $this->day = $day;
         $this->time = $time;
         $this->timeZone = $timeZone;
+        $this->dateTime = null;
     }
 
     /**
@@ -57,11 +61,19 @@ final class DateTime
             $tz = TimeZone::UTC();
         }
 
-        return new self(
+        $newDateTime = new self(
             Day::fromDateTime($dateTime),
             Time::fromDateTime($dateTime),
             $tz
         );
+
+        /**
+         * @psalm-suppress PropertyTypeCoercion
+         * @phpstan-ignore-next-line
+         */
+        $newDateTime->dateTime = $dateTime instanceof \DateTime ? \DateTimeImmutable::createFromMutable($dateTime) : $dateTime;
+
+        return $newDateTime;
     }
 
     /**
@@ -154,6 +166,17 @@ final class DateTime
         ];
     }
 
+    /**
+     * @param array{day: Day, time: Time, timeZone: TimeZone, dateTime: ?\DateTimeInterface} $data
+     */
+    public function __unserialize(array $data) : void
+    {
+        $this->day = $data['day'];
+        $this->time = $data['time'];
+        $this->timeZone = $data['timeZone'];
+        $this->dateTime = null;
+    }
+
     public function year() : Year
     {
         return $this->month()->year();
@@ -202,21 +225,30 @@ final class DateTime
         );
     }
 
+    /**
+     * @psalm-suppress InvalidNullableReturnType
+     * @psalm-suppress InaccessibleProperty
+     * @psalm-suppress NullableReturnStatement
+     */
     public function toDateTimeImmutable() : \DateTimeImmutable
     {
-        return new \DateTimeImmutable(
-            \sprintf(
-                '%d-%02d-%02d %02d:%02d:%02d.%06d',
-                $this->day->year()->number(),
-                $this->day->month()->number(),
-                $this->day->number(),
-                $this->time->hour(),
-                $this->time->minute(),
-                $this->time->second(),
-                $this->time->microsecond(),
-            ),
-            $this->timeZone->toDateTimeZone()
-        );
+        if ($this->dateTime === null) {
+            $this->dateTime = new \DateTimeImmutable(
+                \sprintf(
+                    '%d-%02d-%02d %02d:%02d:%02d.%06d',
+                    $this->day->year()->number(),
+                    $this->day->month()->number(),
+                    $this->day->number(),
+                    $this->time->hour(),
+                    $this->time->minute(),
+                    $this->time->second(),
+                    $this->time->microsecond(),
+                ),
+                $this->timeZone->toDateTimeZone()
+            );
+        }
+
+        return $this->dateTime;
     }
 
     public function toAtomicTime() : self
@@ -239,6 +271,15 @@ final class DateTime
     public function timeZone() : TimeZone
     {
         return $this->timeZone;
+    }
+
+    public function timeZoneAbbreviation() : TimeZone
+    {
+        if ($this->timeZone()->isOffset()) {
+            throw new Exception("TimeZone offset {$this->timeZone()->name()} can't be converted into abbreviation.");
+        }
+
+        return TimeZone::fromString($this->toDateTimeImmutable()->format('T'));
     }
 
     public function toTimeZone(TimeZone $dateTimeZone) : self
@@ -305,129 +346,169 @@ final class DateTime
         return TimeUnit::negative(\abs($timestamp), $this->time->microsecond());
     }
 
-    public function modify(string $modify) : self
+    public function modify(string $modifier) : self
     {
-        return self::fromDateTime($this->toDateTimeImmutable()->modify($modify));
+        $dateTimeParts = \date_parse($modifier);
+
+        if (!\is_array($dateTimeParts)) {
+            throw new InvalidArgumentException('Value "{modify}" is not valid relative time format.');
+        }
+
+        if ($dateTimeParts['error_count'] > 0) {
+            throw new InvalidArgumentException("Value \"{$modifier}\" is not valid relative time format.");
+        }
+
+        if (!isset($dateTimeParts['relative']) || !\is_array($dateTimeParts['relative'])) {
+            throw new InvalidArgumentException("Value \"{$modifier}\" is not valid relative time format.");
+        }
+
+        $dateTime = $this;
+
+        if (
+            !\is_int($dateTimeParts['relative']['year']) ||
+            !\is_int($dateTimeParts['relative']['month']) ||
+            !\is_int($dateTimeParts['relative']['day']) ||
+            !\is_int($dateTimeParts['relative']['hour']) ||
+            !\is_int($dateTimeParts['relative']['minute']) ||
+            !\is_int($dateTimeParts['relative']['second'])
+        ) {
+            throw new InvalidArgumentException("Value \"{$modifier}\" is not valid relative time format.");
+        }
+
+        if ($dateTimeParts['relative']['year'] !== 0) {
+            $dateTime = $dateTime->add(RelativeTimeUnit::years($dateTimeParts['relative']['year']));
+        }
+
+        if ($dateTimeParts['relative']['month'] !== 0) {
+            $dateTime = $dateTime->add(RelativeTimeUnit::months($dateTimeParts['relative']['month']));
+        }
+
+        return $dateTime->add(
+            TimeUnit::days($dateTimeParts['relative']['day'])
+                ->add(TimeUnit::hours($dateTimeParts['relative']['hour']))
+                ->add(TimeUnit::minutes($dateTimeParts['relative']['minute']))
+                ->add(TimeUnit::seconds($dateTimeParts['relative']['second']))
+        );
     }
 
     public function addHour() : self
     {
-        return $this->modify('+1 hour');
+        return $this->add(TimeUnit::hour());
     }
 
     public function subHour() : self
     {
-        return $this->modify('-1 hour');
+        return $this->sub(TimeUnit::hour());
     }
 
     public function addHours(int $hours) : self
     {
-        return $this->modify(\sprintf('+%d hour', $hours));
+        return $this->add(TimeUnit::hours($hours));
     }
 
     public function subHours(int $hours) : self
     {
-        return $this->modify(\sprintf('-%d hour', $hours));
+        return $this->sub(TimeUnit::hours($hours));
     }
 
     public function addMinute() : self
     {
-        return $this->modify('+1 minute');
+        return $this->add(TimeUnit::minute());
     }
 
     public function subMinute() : self
     {
-        return $this->modify('-1 minute');
+        return $this->sub(TimeUnit::minute());
     }
 
     public function addMinutes(int $minutes) : self
     {
-        return $this->modify(\sprintf('+%d minute', $minutes));
+        return $this->add(TimeUnit::minutes($minutes));
     }
 
     public function subMinutes(int $minutes) : self
     {
-        return $this->modify(\sprintf('-%d minute', $minutes));
+        return $this->sub(TimeUnit::minutes($minutes));
     }
 
     public function addSecond() : self
     {
-        return $this->modify('+1 second');
+        return $this->add(TimeUnit::second());
     }
 
     public function subSecond() : self
     {
-        return $this->modify('-1 second');
+        return $this->sub(TimeUnit::second());
     }
 
     public function addSeconds(int $seconds) : self
     {
-        return $this->modify(\sprintf('+%d second', $seconds));
+        return $this->add(TimeUnit::seconds($seconds));
     }
 
     public function subSeconds(int $seconds) : self
     {
-        return $this->modify(\sprintf('-%d second', $seconds));
+        return $this->sub(TimeUnit::seconds($seconds));
     }
 
     public function addDay() : self
     {
-        return $this->modify('+1 day');
+        return $this->add(TimeUnit::day());
     }
 
     public function subDay() : self
     {
-        return $this->modify('-1 day');
+        return $this->sub(TimeUnit::day());
     }
 
     public function addDays(int $days) : self
     {
-        return $this->modify(\sprintf('+%d day', $days));
+        return $this->add(TimeUnit::days($days));
     }
 
     public function subDays(int $days) : self
     {
-        return $this->modify(\sprintf('-%d day', $days));
+        return $this->sub(TimeUnit::days($days));
     }
 
     public function addMonth() : self
     {
-        return $this->modify('+1 month');
+        return $this->add(RelativeTimeUnit::month());
     }
 
     public function subMonth() : self
     {
-        return $this->modify('-1 month');
+        return $this->sub(RelativeTimeUnit::month());
     }
 
     public function addMonths(int $months) : self
     {
-        return $this->modify(\sprintf('+%d months', $months));
+        return $this->add(RelativeTimeUnit::months($months));
     }
 
     public function subMonths(int $months) : self
     {
-        return $this->modify(\sprintf('-%d months', $months));
+        return $this->sub(RelativeTimeUnit::months($months));
     }
 
     public function addYear() : self
     {
-        return $this->modify('+1 year');
+        return $this->add(RelativeTimeUnit::year());
     }
 
     public function subYear() : self
     {
-        return $this->modify('-1 year');
+        return $this->sub(RelativeTimeUnit::year());
     }
 
     public function addYears(int $years) : self
     {
-        return $this->modify(\sprintf('+%d years', $years));
+        return $this->add(RelativeTimeUnit::years($years));
     }
 
     public function subYears(int $years) : self
     {
-        return $this->modify(\sprintf('-%d years', $years));
+        return $this->sub(RelativeTimeUnit::years($years));
     }
 
     public function midnight() : self
@@ -467,14 +548,41 @@ final class DateTime
         return $this->add(TimeUnit::day())->midnight();
     }
 
+    /**
+     * When adding RelativeTimeUnit::month() this method will try to change month and adjust
+     * day of the month.
+     * Examples:
+     *  - 2021-02-28 + RelativeTimeUnit::month() = 2021-03-28.
+     */
     public function add(Unit $timeUnit) : self
     {
+        if ($timeUnit instanceof RelativeTimeUnit && $timeUnit->inMonths()) {
+            $years = $timeUnit->toPositive()->inYears();
+            $months = $timeUnit->inCalendarMonths();
+
+            $newMonth = $timeUnit->isNegative()
+                ? $this->month()->minus($years, $months)
+                : $this->month()->plus($years, $months);
+
+            if ($newMonth->lastDay()->number() < $this->day()->number()) {
+                return new self(new Day($newMonth, $newMonth->lastDay()->number()), $this->time(), $this->timeZone());
+            }
+
+            return new self(new Day($newMonth, $this->day()->number()), $this->time(), $this->timeZone());
+        }
+
         return self::fromDateTime($this->toDateTimeImmutable()->add($timeUnit->toDateInterval()));
     }
 
+    /**
+     * When subtracting RelativeTimeUnit::month() this method will try to change month and adjust
+     * day of the month.
+     * Examples:
+     *  - 2021-03-31 - RelativeTimeUnit::month() = 2021-02-28.
+     */
     public function sub(Unit $timeUnit) : self
     {
-        return self::fromDateTime($this->toDateTimeImmutable()->sub($timeUnit->toDateInterval()));
+        return $this->add($timeUnit->invert());
     }
 
     public function isEqual(self $dateTime) : bool

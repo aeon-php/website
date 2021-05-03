@@ -1,4 +1,4 @@
-## [Unreleased] - 2021-01-25
+## [Unreleased] - 2021-05-02
 
 ### Added
 - [#29](https://github.com/aeon-php/symfony-bundle/pull/29) - **Integration with Automation** - [@norberttech](https://github.com/norberttech)
@@ -8,6 +8,10 @@
 - [1a874e](https://github.com/aeon-php/symfony-bundle/commit/1a874ef13537e683a646e228db5e33b223d44bb7) - **mutation score to README** - [@norberttech](https://github.com/norberttech)
 
 ### Changed
+- [#78](https://github.com/aeon-php/symfony-bundle/pull/78) - **updated dependencies** - [@norberttech](https://github.com/norberttech)
+- [#69](https://github.com/aeon-php/symfony-bundle/pull/69) - **dependency constraint: aeon-php/calendar >=0.16.3** - [@norberttech](https://github.com/norberttech)
+- [#53](https://github.com/aeon-php/symfony-bundle/pull/53) - **Bump aeon-php/rate-limiter** - [@DawidSajdak](https://github.com/DawidSajdak)
+- [#51](https://github.com/aeon-php/symfony-bundle/pull/51) - **Bump aeon-php/rate-limiter** - [@DawidSajdak](https://github.com/DawidSajdak)
 - [#31](https://github.com/aeon-php/symfony-bundle/pull/31) - **Updated aeon-php dependencies** - [@norberttech](https://github.com/norberttech)
 - [#31](https://github.com/aeon-php/symfony-bundle/pull/31) - **Updated phive dependencies** - [@norberttech](https://github.com/norberttech)
 - [#25](https://github.com/aeon-php/symfony-bundle/pull/25) - **dependencies, fixed aeon-php/calendar BC breaks** - [@norberttech](https://github.com/norberttech)
@@ -24,10 +28,12 @@
 - [4606da](https://github.com/aeon-php/symfony-bundle/commit/4606daf0e77bd210a56d134367ca1aa41a46d656) - **Initial commit** - [@norberttech](https://github.com/norberttech)
 
 ### Fixed
+- [#52](https://github.com/aeon-php/symfony-bundle/pull/52) - **form data transformers empty value handling** - [@norberttech](https://github.com/norberttech)
 - [#12](https://github.com/aeon-php/symfony-bundle/pull/12) - **FormTypes block prefixes** - [@norberttech](https://github.com/norberttech)
 - [78cf87](https://github.com/aeon-php/symfony-bundle/commit/78cf878e836577b2b434f1c969ffe6afd90be2e1) - **failing tests** - [@norberttech](https://github.com/norberttech)
 
 ### Removed
+- [#78](https://github.com/aeon-php/symfony-bundle/pull/78) - **phive** - [@norberttech](https://github.com/norberttech)
 - [70e932](https://github.com/aeon-php/symfony-bundle/commit/70e9321b2ceda4c1895e8e1f8496a9b6fdc5fdb9) - **redundant |^5.1 constraint from symfony dependencies** - [@norberttech](https://github.com/norberttech)
 - [30a14d](https://github.com/aeon-php/symfony-bundle/commit/30a14db1e6b5bdb4a971d09215eb3d7be2cad319) - **not used dependency** - [@norberttech](https://github.com/norberttech)
 
