@@ -91,8 +91,9 @@ final class DownloadCommand extends Command
         $zip = new \ZipArchive();
 
         if (true === $zip->open($temporaryArchiveLocation)) {
-            $zip->extractTo($temporaryArchiveLocation = $tmp.DIRECTORY_SEPARATOR);
+            $zip->extractTo($temporaryLocation);
             $zip->close();
+
         }
 
         $io->note('Temporary Location: '.$temporaryLocation);
@@ -100,6 +101,8 @@ final class DownloadCommand extends Command
         if ($fs->exists($library['destination'])) {
             $fs->remove($library['destination']);
         }
+
+        $fs->mkdir($library['destination']);
 
         $fs->mirror(
             $temporaryLocation,
