@@ -7,6 +7,9 @@
         <article class="col-md-9">
 
             <h3><code>{{ class.name }}</code></h3>
+            <a href="{{ githubProjectUrl }}/blob/{{ version }}/src/{{ class.name|replace({'%\\%' : '/'}) }}.php" target="_blank">
+                <i class="fab fa-github"></i> View at GitHub
+            </a>
             <small>( {{ version }} )</small>
             <section id="introduction">
                 <h5 class="section-title-2">Introduction <a href="#introduction" class="clipboard"></a></h5>

@@ -7,6 +7,9 @@
         <article class="col-md-9">
 
             <h3>The <code><a href="{{ class.name|class_url(version) }}">{{ class.shortName }}</a>::{{ method.name }}</code> method</h3>
+            <a href="{{ githubProjectUrl }}/blob/{{ version }}/src/{{ class.name|replace({'%\\%' : '/'}) }}.php#L{{ method.startLineInFile }}-L{{ method.endLineInFile }}" target="_blank">
+                <i class="fab fa-github"></i> View at GitHub
+            </a>
             <small>version: {{ version }}</small>
             <section id="introduction">
                 <h5 class="section-title-2">Introduction</h5>

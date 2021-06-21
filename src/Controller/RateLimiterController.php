@@ -62,6 +62,7 @@ class RateLimiterController extends AbstractController
                 return $this->render('documentation/class.html.twig', [
                     'class' => $phpClass,
                     'activeSection' => 'rate-limiter',
+                    'githubProjectUrl' => "https://github.com/aeon-php/rate-limiter",
                     'version' => $version,
                     'classes' => $classes,
                     'library' => 'Rate Limiter',
@@ -84,6 +85,7 @@ class RateLimiterController extends AbstractController
                         return $this->render('documentation/method.html.twig', [
                             'class' => $phpClass,
                             'method' => $method,
+                            'githubProjectUrl' => "https://github.com/aeon-php/rate-limiter",
                             'activeSection' => 'rate-limiter',
                             'version' => $version,
                             'classes' => $classes,

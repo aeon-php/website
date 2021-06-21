@@ -59,6 +59,7 @@ final class SymfonyBundleDocumentation extends AbstractController
                 return $this->render('documentation/class.html.twig', [
                     'class' => $phpClass,
                     'activeSection' => 'symfony-bundle',
+                    'githubProjectUrl' => "https://github.com/aeon-php/symfony-bundle",
                     'version' => $version,
                     'classes' => $classes,
                     'library' => 'Symfony Bundle',
@@ -82,6 +83,7 @@ final class SymfonyBundleDocumentation extends AbstractController
                             'class' => $phpClass,
                             'method' => $method,
                             'activeSection' => 'symfony-bundle',
+                            'githubProjectUrl' => "https://github.com/aeon-php/symfony-bundle",
                             'version' => $version,
                             'classes' => $classes,
                             'library' => 'Symfony Bundle',

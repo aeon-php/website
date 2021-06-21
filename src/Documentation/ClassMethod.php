@@ -86,4 +86,14 @@ final class ClassMethod
 
         return null;
     }
+
+    public function startLineInFile() : int
+    {
+        return $this->reflectionMethod->getStartLine();
+    }
+
+    public function endLineInFile() : int
+    {
+        return $this->reflectionMethod->getEndLine();
+    }
 }

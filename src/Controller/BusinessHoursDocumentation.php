@@ -57,6 +57,7 @@ final class BusinessHoursDocumentation extends AbstractController
         foreach ($classes = $this->businessHoursClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
                 return $this->render('documentation/class.html.twig', [
+                    'githubProjectUrl' => "https://github.com/aeon-php/business-hours",
                     'class' => $phpClass,
                     'activeSection' => 'business-hours',
                     'version' => $version,
@@ -81,6 +82,7 @@ final class BusinessHoursDocumentation extends AbstractController
                         return $this->render('documentation/method.html.twig', [
                             'class' => $phpClass,
                             'method' => $method,
+                            'githubProjectUrl' => "https://github.com/aeon-php/business-hours",
                             'activeSection' => 'business-hours',
                             'version' => $version,
                             'classes' => $classes,

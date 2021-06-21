@@ -12,7 +12,7 @@ parameters:
                     source: "https://github.com/aeon-php/calendar/archive/1.x.zip"
                     destination: "%kernel.project_dir%/sources/calendar-1.x"
                 "1.0":
-                    source: "https://github.com/aeon-php/calendar/archive/1.0.0.zip"
+                    source: "https://github.com/aeon-php/calendar/archive/1.0.zip"
                     destination: "%kernel.project_dir%/sources/calendar-1.0"
         calendar_twig:
             name: 'calendar-twig'
@@ -36,8 +36,11 @@ parameters:
                 1.x:
                     source: "https://github.com/aeon-php/sleep/archive/1.x.zip"
                     destination: "%kernel.project_dir%/sources/sleep-1.x"
+                "1.0":
+                    source: "https://github.com/aeon-php/sleep/archive/1.0.zip"
+                    destination: "%kernel.project_dir%/sources/sleep-1.0"
             dependencies:
-                calendar: "1.x"
+                calendar: "1.0"
         retry:
             name: 'retry'
             versions:

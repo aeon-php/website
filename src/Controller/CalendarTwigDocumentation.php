@@ -57,6 +57,7 @@ final class CalendarTwigDocumentation extends AbstractController
         foreach ($classes = $this->calendarTwigClasses($version) as $phpClass) {
             if (SlugGenerator::forPHPClass($phpClass) === $classSlug) {
                 return $this->render('documentation/class.html.twig', [
+                    'githubProjectUrl' => "https://github.com/aeon-php/calendar-twig",
                     'class' => $phpClass,
                     'activeSection' => 'calendar-twig',
                     'version' => $version,
@@ -79,6 +80,7 @@ final class CalendarTwigDocumentation extends AbstractController
                 foreach ($phpClass->methods() as $method) {
                     if (SlugGenerator::forClassMethod($method) === $methodSlug) {
                         return $this->render('documentation/method.html.twig', [
+                            'githubProjectUrl' => "https://github.com/aeon-php/calendar-twig",
                             'class' => $phpClass,
                             'method' => $method,
                             'activeSection' => 'calendar-twig',

@@ -59,6 +59,7 @@ final class RetryDocumentation extends AbstractController
                 return $this->render('documentation/class.html.twig', [
                     'class' => $phpClass,
                     'activeSection' => 'retry',
+                    'githubProjectUrl' => "https://github.com/aeon-php/retry",
                     'version' => $version,
                     'classes' => $classes,
                     'library' => 'Retry',
@@ -82,6 +83,7 @@ final class RetryDocumentation extends AbstractController
                             'class' => $phpClass,
                             'method' => $method,
                             'activeSection' => 'retry',
+                            'githubProjectUrl' => "https://github.com/aeon-php/retry",
                             'version' => $version,
                             'classes' => $classes,
                             'library' => 'Retry',

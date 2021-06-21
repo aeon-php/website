@@ -59,6 +59,7 @@ final class SleepDocumentation extends AbstractController
                 return $this->render('documentation/class.html.twig', [
                     'class' => $phpClass,
                     'activeSection' => 'sleep',
+                    'githubProjectUrl' => "https://github.com/aeon-php/sleep",
                     'version' => $version,
                     'classes' => $classes,
                     'library' => 'Sleep',
@@ -82,6 +83,7 @@ final class SleepDocumentation extends AbstractController
                             'class' => $phpClass,
                             'method' => $method,
                             'activeSection' => 'sleep',
+                            'githubProjectUrl' => "https://github.com/aeon-php/sleep",
                             'version' => $version,
                             'classes' => $classes,
                             'library' => 'Sleep',
